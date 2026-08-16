@@ -12,17 +12,17 @@
     "operator": "Stiftung Zentrale Stelle Verpackungsregister (ZSVR)",
     "numberFormat": "DE + 13 digits",
     "numberOnInvoices": false,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": 0,
-    "notes": "Registration is free and done directly in LUCID (no local establishment required historically under VerpackG). VerpackDG (national PPWR adaptation act) in force 12.08.2026 — re-verify whether an authorised representative becomes mandatory for foreign distance sellers. LUCID number is issued ~24h after registration and must be entered in Amazon/eBay seller accounts."
+    "notes": "Registration is free and done directly in LUCID; it remains a personal duty of the producer. NEW from 12.08.2026 (PPWR + VerpackDG): companies based abroad without a German branch that sell packaging or packaged products directly to end users in Germany MUST appoint an authorised representative and enter them in LUCID before first supply (ZSVR knowledge base, fetched 2026-08-16). LUCID number must be entered in Amazon/eBay seller accounts."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "Lizenzero (Interzero)",
+        "name": "Lizenzero (Interzero dual system shop)",
         "url": "https://www.lizenzero.de",
-        "tariffUrl": "https://www.lizenzero.de/preise/"
+        "tariffUrl": "https://www.lizenzero.de/verpackungsmengen-kalkulator/"
       },
       {
         "name": "Der Grüne Punkt (DSD)",
@@ -34,22 +34,22 @@
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.288,
+      "plastic": 1.25,
+      "glass": 0.069,
+      "metal": 1.15,
+      "wood": 0.085,
+      "composite": 1.15
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
+    "tariffYear": 2026,
+    "minAnnualFeeEur": 39,
     "ecoModulation": "VerpackG §21 requires dual systems to set incentives for recyclability and recycled content; concrete bonus/malus differs per system."
   },
   "extraTaxes": [],
   "thresholds": {
     "deMinimis": "0 kg — first unit placed on the German market triggers registration and system participation"
   },
-  "notes": "Dual-system (PRO) contract is MANDATORY before the first supply of household packaging; LUCID registration alone is not compliance. Rate data intentionally null: public sources conflict (€0.6–1.0/kg vs €1.6–2.1/kg for plastic) — resolve against a real dual-system price list (e.g. Lizenzero public calculator) before publishing rates.",
+  "notes": "Dual-system (PRO) contract is MANDATORY before the first supply of household packaging; LUCID registration alone is not compliance. Rates are Lizenzero's public 2026 price list (active list 'A', fetched from their calculator API 2026-08-16): glass 0.069, paper/board 0.288, tinplate 1.15, aluminium 1.15, beverage cartons 1.15, other composites 1.15, plastic 1.25, natural materials/wood 0.085 €/kg; minimum €14 licence + €25 basic charge (≈€39/yr minimum). An alternative 2026 list ('C') is lower (plastic 0.955 €/kg). 'metal' = tinplate/aluminium (both 1.15). This resolves the earlier €0.6–1.0 vs €1.6–2.1/kg plastic conflict: actual Lizenzero 2026 plastic rate is 0.955–1.25 €/kg. Other dual systems price differently.",
   "sources": [
     {
       "url": "https://lucid.verpackungsregister.org",
@@ -58,18 +58,24 @@
       "official": true
     },
     {
-      "url": "https://www.verpackungsregister.org",
-      "title": "Stiftung Zentrale Stelle Verpackungsregister — operator site",
+      "url": "https://www.verpackungsregister.org/en/knowledge-bases/authorising-a-representative",
+      "title": "ZSVR knowledge base — authorised representative mandatory for foreign sellers from 12.08.2026",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (register name/coverage cross-check)",
+      "url": "https://www.lizenzero.de/ajaxInterserohApi/fetchActivePriceList?respectEffectiveDate=0",
+      "title": "Lizenzero calculator API — active 2026 price list (€/kg by fraction)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
+    },
+    {
+      "url": "https://www.lizenzero.de/verpackungsmengen-kalkulator/",
+      "title": "Lizenzero public packaging-volume calculator",
+      "checkedAt": "2026-08-16",
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

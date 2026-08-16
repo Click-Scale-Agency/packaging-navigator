@@ -12,46 +12,52 @@
     "operator": "FZOEU (Environmental Protection and Energy Efficiency Fund)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "State-run fee model: producers pay the Fund directly, no private PROs."
+    "notes": "State-run fee model: producers pay the Fund (FZOEU) directly, no private PROs. Fees prescribed by the Uredba o gospodarenju otpadnom ambalažom and published as an official fee list (popis naknada)."
   },
   "pro": {
     "membershipRequired": "state-run",
-    "schemes": [],
+    "schemes": [
+      {
+        "name": "FZOEU (state Fund — no private PRO)",
+        "url": "https://www.fzoeu.hr",
+        "tariffUrl": "https://www.fzoeu.hr/hr/naknade-9323/9323"
+      }
+    ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.119,
+      "plastic": 0.302,
+      "glass": 0.025,
+      "metal": 0.112,
+      "wood": 0.036,
+      "composite": 0.16
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "Fees are the Fund's collection costs (troškovi sakupljanja) per material for packaging outside the deposit-return system; aluminium (0.296 €/kg) is far dearer than steel (0.112). Beverage PET/glass/Al/Fe run through a separate deposit-return system (povratna naknada 0.10 €/unit)."
   },
   "extraTaxes": [
     {
       "name": "Poticajna naknada",
-      "summary": "Incentive fee on packaging placed on the market, paid to FZOEU alongside the regular packaging fee.",
+      "summary": "Incentive fee on packaging placed on the market, paid to FZOEU alongside the regular packaging management fee (naknada gospodarenja).",
       "collectedBy": "FZOEU",
       "url": "https://www.fzoeu.hr"
     }
   ],
-  "notes": "Indicative aluminium fee ~€54.4/t (netzerocompare, 2025) — unverified.",
+  "notes": "Rates from the official FZOEU 'POPIS NAKNADA u sustavu gospodarenja otpadnom ambalažom' fee list effective 20.05.2026 (fetched and parsed 2026-08-16), packaging outside the deposit-return system, collection-cost fee €/t → €/kg: paper/cardboard 119 → 0.119, polymer/plastic 302 → 0.302, glass (non-deposit) 25 → 0.025, steel (Fe) 112 → 0.112 (shown as 'metal'; aluminium 296 → 0.296), wood 36 → 0.036, multilayer/composite (mostly paper-card) 160 → 0.160, textile 100 → 0.100. NOTE: amounts are gross incl. Croatian VAT (per the fee list's own note), so net rates are lower. Transport costs (€/t·km) are billed separately.",
   "sources": [
     {
-      "url": "https://www.fzoeu.hr",
-      "title": "FZOEU — Environmental Protection and Energy Efficiency Fund",
+      "url": "https://www.fzoeu.hr/hr/naknade-9323/9323",
+      "title": "FZOEU — packaging waste management fees page (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.fzoeu.hr/UserDocsImages/datoteke/POPIS%20NAKNADA%20gospodarenja%20OA%20u%20sustavu%20Fonda_20.5.2026_.pdf",
+      "title": "FZOEU — POPIS NAKNADA fee list effective 20.05.2026 (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

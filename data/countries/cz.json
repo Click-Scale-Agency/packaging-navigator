@@ -7,49 +7,56 @@
   },
   "register": {
     "exists": true,
-    "name": "Seznam osob (packaging) / VISOH2",
+    "name": "Seznam osob (§ 14 zákona o obalech) / VISOH2",
     "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
     "operator": "Ministry of the Environment (MŽP)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "Registration fee 800 CZK (~€32). Application due within 60 days of the obligation arising. A joint-performance contract with the authorised packaging company (EKO-KOM) exempts from individual listing."
+    "notes": "Page fetched 2026-08-16 — confirms the Seznam osob under §14 of Packaging Act 477/2001 Sb. and that a joint-performance contract with the authorised packaging company (EKO-KOM) exempts from individual listing. Registration fee 800 CZK (~€33) and 60-day application deadline per earlier search-level research (not on the fetched page — reconfirm)."
   },
   "pro": {
     "membershipRequired": "de-facto — EKO-KOM contract is the standard route and exempts from individual listing",
     "schemes": [
       {
         "name": "EKO-KOM",
-        "url": "https://www.ekokom.cz"
+        "url": "https://www.ekokom.cz",
+        "tariffUrl": "https://www.ekokom.cz/wp-content/uploads/2025/11/Price_list_valid_from_1_1_2026.pdf"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.295,
+      "plastic": 0.654,
+      "glass": 0.076,
+      "metal": 0.108,
+      "wood": 0.155,
+      "composite": 0.453
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "tariffYear": 2026,
+    "minAnnualFeeEur": 66,
+    "ecoModulation": "Strong bottle eco-modulation: recycled-content clear PET beverage bottles 2,822 CZK/t (≈0.117 €/kg) vs virgin coloured-opaque 22,585 CZK/t (≈0.933 €/kg); composite plastics and 'others' 24,066 CZK/t (≈0.994 €/kg)."
   },
   "extraTaxes": [],
-  "notes": "Packaging Act č. 477/2001 Sb.",
+  "notes": "Rates from the official EKO-KOM 'Price list valid from 1.1.2026' PDF (fetched 2026-08-16), one-way sales (household) packaging, converted from CZK/t at 24.22 CZK/EUR (ECB-derived rate, 2026-08-16): paper 7,152 CZK/t → 0.295; rigid plastics 15,839 → 0.654 (soft/flexible 15,546 → 0.642); glass 1,852 → 0.076; steel (Fe) 2,611 → 0.108 (shown as 'metal'; rigid aluminium 5,220 → 0.216, flexible Al 18,032 → 0.745); wood 3,754 → 0.155; beverage cartons 10,967 → 0.453 ('composite'). Annual contract fee 1,600 CZK/yr ≈ €66. Invoices issued in CZK only — EUR values are indicative conversions.",
   "sources": [
     {
       "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
-      "title": "MŽP — Obaly (packaging agenda, Seznam osob)",
+      "title": "MŽP — Obaly (packaging agenda, Seznam osob §14) (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.ekokom.cz/wp-content/uploads/2025/11/Price_list_valid_from_1_1_2026.pdf",
+      "title": "EKO-KOM — Price list valid from 01.01.2026 (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
+    },
+    {
+      "url": "https://www.ekokom.cz/en/industry-and-business/fees/",
+      "title": "EKO-KOM — client fees page",
+      "checkedAt": "2026-08-16",
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

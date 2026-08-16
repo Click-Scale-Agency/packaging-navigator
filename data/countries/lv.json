@@ -36,9 +36,10 @@
   "extraTaxes": [
     {
       "name": "Dabas resursu nodoklis (DRN)",
-      "summary": "Natural resources tax on packaging placed on the Latvian market. A contract with a licensed recovery scheme (e.g. LZP, Zaļā josta) exempts from paying DRN at the full statutory rate — that exemption is why scheme membership is the standard route.",
+      "summary": "Natural resources tax on packaging placed on the Latvian market (Dabas resursu nodokļa likums, fetched from likumi.lv 2026-08-16; version in force 15.07.2026). Packaging material rates are in Annex 7 (7. pielikums), applied per material weight unit; laminated/composite packaging is taxed by its predominant material. A contract with a licensed recovery scheme (e.g. LZP, Zaļā josta) exempts from paying DRN at the full statutory rate — that exemption is why scheme membership is the standard route. Confirmed statutory rates from the law body: plastic shopping bags & plastic-containing fishing gear €4.80/kg, wet wipes & balloons €12.20/kg, tobacco filters €8.00/kg. Per VID, from 2026 foam polystyrene packaging €44.00/kg and foam plastic €24.40/kg (up from base plastic €1.22/kg, polystyrene €2.20/kg). Full Annex 7 per-material table (glass, paper, metal, wood base rates) not machine-readable from likumi.lv this session — Annex 7 is served as a separate attachment.",
+      "rate": "packaging by material (Annex 7); e.g. plastic bags/fishing gear €4.80/kg, foam polystyrene €44.00/kg (2026)",
       "collectedBy": "VID (State Revenue Service)",
-      "url": "https://www.vid.gov.lv"
+      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums"
     }
   ],
   "thresholds": {
@@ -49,6 +50,12 @@
     {
       "url": "https://www.vvd.gov.lv",
       "title": "VVD — State Environmental Service (current register landscape)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums",
+      "title": "Dabas resursu nodokļa likums — official law text (fetched; DRN rates, Annex 7)",
       "checkedAt": "2026-08-16",
       "official": true
     },

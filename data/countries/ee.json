@@ -9,17 +9,18 @@
     "exists": true,
     "name": "PAKIS (packaging register, separate from PROTO)",
     "url": "https://pakis.envir.ee",
-    "operator": "Ministry of Climate / Environment Agency",
+    "operator": "Kliimaministeerium (Climate Ministry) / Keskkonnaagentuur (Environment Agency)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": ""
+    "notes": "PAKIS fetched 2026-08-16 (Estonian, English option): board members get accounts from business-registry data, authenticate via ID-card/Mobile-ID/Smart-ID, and report packaging placed on market. Records feed both packaging and excise-tax reporting."
   },
   "pro": {
     "membershipRequired": false,
     "schemes": [
       {
         "name": "ETO (Eesti Taaskasutusorganisatsioon)",
-        "url": "https://www.eto.ee"
+        "url": "https://www.eto.ee",
+        "tariffUrl": "https://www.eto.ee/pakendiettevotjale/teenustasud/"
       },
       {
         "name": "TVO (Tootjavastutusorganisatsioon)",
@@ -27,40 +28,47 @@
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.115,
+      "plastic": 0.46,
+      "glass": 0.12,
+      "metal": 0.26,
+      "wood": 0.044,
+      "composite": 0.115
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "ETO sales-packaging fees: composite plastic (0.570) dearest, then mono plastic / plastic bottles (0.460); aluminium (0.290) above ferrous metal (0.260); wood cheapest (0.044). Group/transport packaging priced much lower."
   },
   "extraTaxes": [
     {
       "name": "Pakendiaktsiis",
-      "summary": "Packaging excise duty — payable when recovery targets are not met via a recovery organisation; joining a PRO in practice exempts from the excise.",
+      "summary": "Packaging excise duty (EMTA, confirmed 2026-08-16). Applies when packaged goods are first placed on the Estonian market. A packaging company that transfers its obligations by written contract to a licensed recovery organisation (ETO/TVO), or meets recovery targets itself, is EXEMPT — so joining a PRO is the economically sane route and avoids the excise.",
+      "rate": "glass €0.60/kg, plastic €2.50/kg, metal €2.50/kg, paper/cardboard €1.20/kg, wood €1.20/kg",
       "collectedBy": "EMTA (Estonian Tax and Customs Board)",
-      "url": "https://www.emta.ee"
+      "url": "https://www.emta.ee/ariklient/maksud-ja-tasumine/aktsiisid/pakend"
     }
   ],
-  "notes": "membershipRequired false = excise alternative exists, but PRO membership is the economically sane route. Indicative aluminium fee ~€145/t (netzerocompare, 2025) — unverified. Scheme URLs unverified.",
+  "notes": "Rates from ETO's official 'teenustasud' (service fees) page (fetched 2026-08-16), müügipakend (sales packaging) service fee €/t → €/kg (before 24% VAT): glass 120 → 0.120, paper/cardboard mono 115 → 0.115, plastic mono & bottles 460 → 0.460 (composite plastic 570 → 0.570), ferrous metal 260 → 0.260 (shown as 'metal'; aluminium 290 → 0.290), beverage carton 115 → 0.115 ('composite'), wood 44 → 0.044. ETO's page also shows a lower 'actual cost' column per material. membershipRequired=false because the pakendiaktsiis excise is the legal alternative, but PRO membership both fulfils EPR and grants excise exemption. Excise rates are ~5–10× the PRO fee, so almost everyone joins a PRO.",
   "sources": [
     {
       "url": "https://pakis.envir.ee",
-      "title": "PAKIS — Estonian packaging register",
+      "title": "PAKIS — Estonian packaging register (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.eto.ee/pakendiettevotjale/teenustasud/",
+      "title": "ETO — teenustasud (service fees) 2026 (fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
+    },
+    {
+      "url": "https://www.emta.ee/ariklient/maksud-ja-tasumine/aktsiisid/pakend",
+      "title": "EMTA — pakendiaktsiis (packaging excise) statutory rates (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

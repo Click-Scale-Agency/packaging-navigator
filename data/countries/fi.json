@@ -12,54 +12,55 @@
     "operator": "Lupa- ja valvontavirasto (LVV, Finnish Supervisory Agency)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "From 01.01.2026 held by the new Finnish Supervisory Agency (LVV), which took over from the Pirkanmaa ELY Centre. URL above is LVV's EPR information page — locate the exact register/e-service entry point in the verification batch."
+    "notes": "LVV EPR page fetched 2026-08-16 (took over from Pirkanmaa ELY 01.01.2026): EPR explicitly applies to distance sellers, and LVV recommends joining a producer organisation, which carries the legal obligations on behalf of the company. Exact register e-service entry point and possible state fees still to locate on LVV subpages."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "Suomen Pakkauskierrätys RINKI",
-        "url": "https://rinkiin.fi"
+        "name": "Suomen Pakkauskierrätys RINKI (service company)",
+        "url": "https://rinkiin.fi",
+        "tariffUrl": "https://rinkiin.fi/app/uploads/2025/10/2026-Price-List-SPT-ENG.pdf"
       },
       {
-        "name": "Suomen Pakkaustuottajat (Finnish Packaging Producers)",
+        "name": "Suomen Pakkaustuottajat (Finnish Packaging Producers Ltd)",
         "url": "https://suomenpakkaustuottajat.fi"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.079,
+      "plastic": 0.214,
+      "glass": 0.076,
+      "metal": 0.029,
+      "wood": 0.002,
+      "composite": 0.162
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "tariffYear": 2026,
+    "minAnnualFeeEur": 74,
+    "ecoModulation": "Three recyclability classes per material (consumer packaging): plastic A mono 0.214 / B multi 0.274 / C difficult (incl. PVC, biodegradable, combination) 0.360 €/kg; fibre A 0.079 / B 0.162 / C 0.241; metal A 0.029 / C 0.063."
   },
   "extraTaxes": [],
-  "notes": "",
+  "notes": "Rates from the official Finnish Packaging Producers Ltd (SPT) 'Price list 2026' PDF on rinkiin.fi (fetched 2026-08-16), consumer packaging, detailed declaration, Class A (recyclable): paper fibre 0.079, plastic 0.214, glass 0.076, metal 0.029, wood 0.002, liquid carton (fibre class B) 0.162 €/kg ('composite'). B2B packaging is far cheaper (paper 0.003, plastic 0.065). Companies placing <50,000 kg/yr may use the light declaration form (flat: paper 0.102, plastic 0.238, metal 0.030, glass 0.076 €/kg consumer). Rinki business service fee 0.00199 €/kg, min €74/yr, max €3,890/yr; SPT registration fee €0. 2026 SUP fee list published later.",
   "sources": [
     {
       "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",
-      "title": "LVV — information on extended producer responsibility",
+      "title": "LVV — information on extended producer responsibility (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://rinkiin.fi/en/producer-responsibility/whats-producer-responsibility/",
-      "title": "Rinki — producer responsibility overview",
+      "url": "https://rinkiin.fi/app/uploads/2025/10/2026-Price-List-SPT-ENG.pdf",
+      "title": "Suomen Pakkaustuottajat — Price list 2026 (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://rinkiin.fi/en/producer-responsibility/price-lists/",
+      "title": "Rinki — price lists page",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

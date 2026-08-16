@@ -12,14 +12,15 @@
     "operator": "Umweltbundesamt (for BMLUK)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "NOT VKS (v1 error). Registration via EDM portal or USP business portal. Foreign distance sellers (EU and third-country) selling directly to Austrian end customers must appoint an authorised representative."
+    "notes": "Portal fetched 2026-08-16 — confirms packaging under 'Bevollmächtigungen (EAG, BAT, Verpackung)'. NOT VKS (v1 error). Registration via EDM portal (erasreg registration form) or USP business portal. Foreign distance sellers (EU and third-country) selling directly to Austrian end customers must appoint an authorised representative."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "ARA (Altstoff Recycling Austria)",
-        "url": "https://www.ara.at"
+        "url": "https://www.ara.at",
+        "tariffUrl": "https://www.ara.at/uploads/Dokumente/Tarifbl%C3%A4tter/ARA-tariff-rates-2026.pdf"
       },
       {
         "name": "Reclay Österreich",
@@ -27,39 +28,39 @@
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.208,
+      "plastic": 1.04,
+      "glass": 0.108,
+      "metal": 0.45,
+      "wood": 0.02,
+      "composite": 1.02
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "tariffYear": 2026,
+    "minAnnualFeeEur": 90,
+    "ecoModulation": "Household vs commercial schemes priced separately; hard-to-recycle household fractions cost more (other composites 1.140, biodegradable materials 0.550, ceramics 0.140 €/kg)."
   },
   "extraTaxes": [],
-  "notes": "Indicative aluminium fee ~€480/t (netzerocompare, 2025) — unverified, resolve against ARA tariff list. Scheme URLs unverified.",
+  "notes": "Rates from the official ARA 'List of tariff rates 2026' PDF (fetched 2026-08-16, €/kg excl. VAT, household scheme from 01.01.2026): paper 0.208, glass 0.108, ferrous metal 0.450 (shown as 'metal'; aluminium 0.480), plastic 1.040, beverage cartons 1.020 ('composite'; other composites 1.140), ceramics 0.140, wood 0.020, textile fibres 0.200, biodegradable 0.550. ARA minimum fee €90/yr excl. VAT; flat fee €150/yr; standard fee €3,000 (see ARA T&C). Commercial packaging has its own, much lower rate card (paper 0.070, foils 0.180).",
   "sources": [
     {
       "url": "https://www.edm.gv.at",
-      "title": "EDM portal — Austrian electronic data management (register entry point)",
+      "title": "EDM portal — Austrian electronic data management (fetched; packaging covered)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.edm.gv.at/edm_portal/cms.do?get=/portal/registrierungsinformationen.main&ubastyle_lang=de",
-      "title": "EDM portal — registration information",
+      "url": "https://www.ara.at/uploads/Dokumente/Tarifbl%C3%A4tter/ARA-tariff-rates-2026.pdf",
+      "title": "ARA — List of tariff rates 2026 (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.ara.at/en/tariffs",
+      "title": "ARA — tariffs page",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

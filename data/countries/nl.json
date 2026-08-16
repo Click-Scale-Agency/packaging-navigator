@@ -7,44 +7,48 @@
   },
   "register": {
     "exists": false,
-    "notes": "No state packaging register — RWS UPV registers cover other streams. Packaging obligations are handled entirely through Verpact (formerly Afvalfonds Verpakkingen)."
+    "notes": "No state packaging register — RWS UPV registers cover other streams. Packaging obligations (registration, declaration, fees) are handled entirely through Verpact (formerly Afvalfonds Verpakkingen)."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "Verpact",
-        "url": "https://www.verpact.nl"
+        "url": "https://www.verpact.nl",
+        "tariffUrl": "https://www.verpact.nl/en/rates"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.017,
+      "plastic": 1.22,
+      "glass": 0.1,
+      "metal": 0.34,
+      "wood": 0.015,
+      "composite": 0.92
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": "SUP surcharge on top of base rates."
+    "ecoModulation": "Recyclate discount up to €0.60/kg for plastic with recycled content; reduced indirect-export rate for plastic (€0.87/kg); SUP surcharge €2.10 per 1,000 pieces (2026) on cups, beverage packaging, food packaging, carrier bags <50µm."
   },
   "extraTaxes": [],
-  "notes": "Indicative 2025 figures (unverified): paper ~€0.017/kg, plastic >€1/kg, aluminium ~€300/t. High plastic rate is deliberate steering. Pull the Verpact tariff page in the verification batch.",
+  "thresholds": {
+    "deMinimis": "Waste-management contribution applies above 50,000 kg packaging per calendar year (Verpact rates page references the 50,000 kg threshold for exemptions) — but registration/reporting duties can still apply below it"
+  },
+  "notes": "Rates from the official Verpact 2026 rates page (fetched 2026-08-16, €/kg excl. VAT): paper/cardboard 0.017, glass 0.100, aluminium 0.340 (shown as 'metal'; other metals 0.360), wood 0.015, beverage cartons 0.920 ('composite'), plastic rigid 1.220 (shown as 'plastic'; flexible 1.320). High plastic rate is deliberate steering. Reusable packaging system fee 0.015 €/kg.",
   "sources": [
+    {
+      "url": "https://www.verpact.nl/en/rates",
+      "title": "Verpact — official 2026 rates page (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
     {
       "url": "https://www.verpact.nl",
       "title": "Verpact — Dutch packaging producer organisation",
       "checkedAt": "2026-08-16",
       "official": true
-    },
-    {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
-      "checkedAt": "2026-08-16",
-      "official": false
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

@@ -14,7 +14,7 @@
     "numberOnInvoices": true,
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "BDO number must be obtained before trading and shown on invoices and waste documents."
+    "notes": "Portal fetched live 2026-08-16 (blocks some bots; reachable). BDO number must be obtained before trading and shown on invoices and waste documents. 2026 registration/annual fee: 200 PLN for micro-enterprises, 800 PLN for others (raised from 100/300 PLN; annual fee due by 28 February, non-payment leads to removal — confirmed on the Mazovia marshal office BIP notice). Annual fee is waived in the year the registration fee is paid."
   },
   "pro": {
     "membershipRequired": true,
@@ -37,19 +37,25 @@
     "ecoModulation": ""
   },
   "extraTaxes": [],
-  "notes": "Multiple competing organizacje odzysku exist; Rekopol listed as the largest (URL unverified). Polish packaging EPR reform (ROP) in progress — re-check scheme landscape.",
+  "notes": "Rates intentionally null: Polish recovery organisations (organizacje odzysku) price by individual contract and publish no official tariff table; Rekopol site (fetched 2026-08-16) lists a 'dopłaty' service but no rates. Polish packaging EPR reform (ROP / new packaging act, draft UC100) still in progress as of Aug 2026 — re-check scheme landscape when the act passes.",
   "sources": [
     {
       "url": "https://bdo.mos.gov.pl",
-      "title": "Rejestr-BDO — Polish waste database register",
+      "title": "Rejestr-BDO — Polish waste database register (fetched live)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://bip.mazovia.pl/pl/bip/komunikaty/przedsiebiorco-pamietaj-o-oplacie-rocznej-za-wpis-w-rejestrze-bdo-za-2026-rok.html",
+      "title": "Mazovia marshal office BIP — BDO annual fee 2026 (200/800 PLN, deadline 28.02)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
+    },
+    {
+      "url": "https://www.rekopol.pl",
+      "title": "Rekopol — recovery organisation (no public tariff table)",
+      "checkedAt": "2026-08-16",
+      "official": true
     }
   ],
   "verified": false,

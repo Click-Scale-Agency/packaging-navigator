@@ -10,16 +10,18 @@
     "name": "IVC/CIE (Interregional Packaging Commission)",
     "url": "https://www.ivcie.be",
     "operator": "Interregional Packaging Commission (three regions jointly)",
+    "numberOnInvoices": false,
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "Members of an accredited scheme declare via Fost Plus (household) / Valipac (industrial); non-members declare directly to the Commission."
+    "notes": "Site fetched 2026-08-16: IVC/CIE is the government authority for packaging EPR; recognised schemes are Fost Plus (household, recognition 02.02.2024) and Valipac (industrial, 02.12.2021). Members declare via their scheme; non-members declare directly via forma.ivcie.be (a 'Dossierkost' file cost applies to direct declarants — amount at ivcie.be/dossierkost/, not yet fetched). No AR statement found on the fetched page."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "Fost Plus (household packaging)",
-        "url": "https://www.fostplus.be"
+        "url": "https://www.fostplus.be",
+        "tariffUrl": "https://www.fostplus.be/en/media/1930/download"
       },
       {
         "name": "Valipac (industrial packaging)",
@@ -27,33 +29,33 @@
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.15,
+      "plastic": 0.802,
+      "glass": 0.105,
+      "metal": 0.186,
+      "wood": 4.419,
+      "composite": 0.808
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": "Fost Plus uses banded plastic tariffs (band 1 base ~€65/t, 2025, unverified)."
+    "ecoModulation": "Green Dot rates are per detailed material category: recyclable mono-materials cheap (clear PET bottles 0.360), hard-to-recycle formats punitive (other plastic films/PP films 2.210; composites, PVC, compostables, wood, obstructive packaging all 4.419 €/kg). New PPWR categories (beverage capsules 3.553–3.841, tea bags, fruit stickers) apply from 12.08.2026."
   },
   "extraTaxes": [],
-  "notes": "Indicative aluminium fee ~€48/t (netzerocompare, 2025) — unverified. Pull the current Fost Plus tariff PDF in the verification batch.",
+  "notes": "Rates from the official Fost Plus 'Green Dot rates 2026 per material' PDF (fetched 2026-08-16, EUR/kg excl. VAT): glass 0.105, paper-cardboard 0.150, steel 0.186 (shown as 'metal'; alu ≥50µm 0.049, alu <50µm 0.451), beverage cartons 0.808 ('composite'), wood 4.419. Plastics range 0.360 (clear PET bottles) – 0.802 (rigid PE, shown as 'plastic') – 1.016 (rigid PP) – 1.080 (PE films) – 2.210 (PP/other films) – 4.419 (PVC, laminates, compostables) €/kg. Fost Plus membership/admin fees not in the tariff PDF — minAnnualFeeEur left null.",
   "sources": [
     {
       "url": "https://www.ivcie.be",
-      "title": "IVC/CIE — Interregional Packaging Commission",
+      "title": "IVC/CIE — Interregional Packaging Commission (authority site)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.fostplus.be/en/media/1930/download",
+      "title": "Fost Plus — Green Dot rates 2026 per material (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

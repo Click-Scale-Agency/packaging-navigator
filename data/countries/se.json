@@ -8,48 +8,49 @@
   "register": {
     "exists": true,
     "name": "Producentansvarsregistret",
-    "url": "https://www.naturvardsverket.se",
+    "url": "https://www.naturvardsverket.se/vagledning-och-stod/producentansvar/producentansvar-for-forpackningar/",
     "operator": "Naturvårdsverket (Swedish EPA)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "Registration via the Naturvårdsverket e-service."
+    "notes": "Guidance page fetched 2026-08-16 (last reviewed 11.08.2026, already reflects PPWR changes from 12.08.2026). Registration and reporting via the Naturvårdsverket e-service; producers pay the packaging fee to their producentansvarsorganisation (PRO). Under the PPWR-driven rules, actors covered by the EU producer definition must register and report annually by 31 March (first deadline 31.03.2027 for the period 12.08–31.12.2026)."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "NPA (Näringslivets Producentansvar)",
-        "url": "https://npa.se"
+        "url": "https://npa.se",
+        "tariffUrl": "https://admin.npa.se/wp-content/uploads/2025/12/Forpackningsavgifter-20260101-version-20251124-01.pdf"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
+      "paper": 0.606,
+      "plastic": 1.217,
+      "glass": 0.254,
+      "metal": 1.143,
+      "wood": 1.244,
       "composite": null
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "Fees split by recyclability: plastics 13.40 (recyclable) / 18.02 (limited) / 19.56 (non-recyclable) SEK/kg; paper 6.67 vs 9.65 SEK/kg. Consumer (privat bruk) vs commercial use priced completely differently — commercial packaging is nearly free (e.g. recyclable paper 0.01 SEK/kg)."
   },
   "extraTaxes": [],
-  "notes": "High fees — indicative aluminium ~€1,090/t (netzerocompare, 2025), unverified. Scheme URL unverified.",
+  "notes": "Rates from the official NPA 'Förpackningsavgifter' list decided 24.11.2025, valid from 01.01.2026 (fetched 2026-08-16), household (privat bruk) recyclable-compatible categories, converted at 11.01 SEK/EUR (2026-08-16): paper 6.67 SEK/kg → 0.606; plastic 13.40 → 1.217; glass 2.80 → 0.254; aluminium 12.59 → 1.143 (shown as 'metal'; steel 21.49 → 1.951); wood single-use 13.70 → 1.244 (rises to 15.70 → ≈1.43 from 01.04.2026). No separate beverage-carton row — liquid cartons fall under the paper 'limited/not recyclable' band 9.65 SEK/kg ≈ 0.876 ('composite' left null). Swedish fees jumped sharply in 2025–2026 after municipalities took over collection. NPA invoices in SEK — EUR values are indicative conversions.",
   "sources": [
     {
-      "url": "https://www.naturvardsverket.se",
-      "title": "Naturvårdsverket — producer responsibility register",
+      "url": "https://www.naturvardsverket.se/vagledning-och-stod/producentansvar/producentansvar-for-forpackningar/",
+      "title": "Naturvårdsverket — producentansvar för förpackningar (fetched, reviewed 11.08.2026)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://admin.npa.se/wp-content/uploads/2025/12/Forpackningsavgifter-20260101-version-20251124-01.pdf",
+      "title": "NPA — Förpackningsavgifter from 01.01.2026 (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

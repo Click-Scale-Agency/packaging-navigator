@@ -7,19 +7,22 @@
   },
   "register": {
     "exists": true,
-    "name": "RPP (Registro de Productores de Producto) — packaging section",
-    "url": "https://www.miteco.gob.es",
-    "operator": "MITECO",
-    "arRequiredForForeignSellers": null,
+    "name": "RPP (Registro de Productores de Producto) — sección envases",
+    "url": "https://www.miteco.gob.es/en/calidad-y-evaluacion-ambiental/temas/prevencion-y-gestion-residuos/prevencion-y-gestion-residuos/registro-productores-producto-seccion-envases.html",
+    "operator": "MITECO (registration via sede electrónica, procedure 1523222)",
+    "numberFormat": "ENV/YYYY/XXXXXXXXX (year + 9 digits)",
+    "numberOnInvoices": true,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Registration in the RPP packaging section is what Amazon checks for ES (live since 2026-08 seller demands)."
+    "notes": "Fetched 2026-08-16: producers under RD 1055/2022 (and, subsidiarily, e-commerce platforms) must register; from 12.08.2026 PPWR extends this to transport, service and primary-production packaging. Foreign producers without Spanish establishment supplying end users directly MUST designate a representante autorizado, who handles registration and annual reporting. The ENV number must appear on invoices and commercial documentation. Annual report by 31 March (2026 data: 02.01–31.03.2027). No fee information published on the register page."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "Ecoembes",
-        "url": "https://www.ecoembes.com"
+        "url": "https://www.ecoembes.com",
+        "tariffUrl": "https://ecoembesempresas.com/app/uploads/2025/06/Ecoembes_Precios2026.pdf"
       },
       {
         "name": "Procircular",
@@ -27,41 +30,47 @@
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.115,
+      "plastic": 0.748,
+      "glass": 0.035,
+      "metal": 0.197,
+      "wood": 0.03,
+      "composite": 0.533
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "SUP-affected formats pay a surcharge (~+0.011 €/kg per row); flexibles/films are the most expensive plastic (1.243–1.254 €/kg) vs PET bottles 0.260; compostable packaging has own band 0.205–0.216 €/kg."
   },
   "extraTaxes": [
     {
       "name": "Impuesto especial sobre los envases de plástico no reutilizables",
-      "summary": "Separate plastic excise (Law 7/2022, since 01.01.2023) on non-recycled plastic in non-reusable packaging, empty or filled. Applies to manufacture, import AND intra-EU acquisition; de-minimis ≤5 kg non-recycled plastic/month; special registry + Model 592 returns. OPEN QUESTION: exact applicability to a LV e-shop shipping B2C to Spain — verify with AEAT guidance before the ES calculator module claims anything.",
+      "summary": "Separate plastic excise (Law 7/2022, arts. 67–83, since 01.01.2023) on non-recycled plastic in non-reusable packaging, empty or filled — confirmed on AEAT sede electrónica (fetched 2026-08-16). Taxable events: manufacture, import AND intra-EU acquisition; de-minimis ≤5 kg non-recycled plastic/month; territorial registry + Model 592 returns (Orden HFP/1314/2022). OPEN QUESTION (unresolved, no primary AEAT guidance found): whether a foreign B2C distance seller shipping parcels to Spanish consumers counts as making an intra-Community acquisition — do NOT claim applicability to foreign sellers until AEAT guidance is located.",
       "rate": "€0.45/kg non-recycled plastic",
       "collectedBy": "Agencia Tributaria (AEAT) — not the EPR scheme",
-      "url": "https://sede.agenciatributaria.gob.es"
+      "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-especiales-medioambientales/impuesto-especial-sobre-envases-plastico-reutilizables/informacion-general.html"
     }
   ],
-  "notes": "Indicative Ecoembes paper rate 0.105–0.115 €/kg (compliancegate, 2025) — unverified. ECOTIC ENVASES is a third scheme option.",
+  "notes": "Rates from the official Ecoembes 'Precios 2026' PDF (fetched 2026-08-16, €/kg): steel 0.197 (shown as 'metal'; aluminium 0.040), PET bottles 0.260–0.271, PET trays 0.659, HDPE rigid 0.285, other rigid plastics 0.748 (shown as 'plastic'), film/flexibles 1.243–1.254, UNE bags 0.586, compostable 0.205, beverage/food cartons (brik) 0.533 ('composite'), paper-cardboard 0.115 (SUP 0.126), ceramics 0.013, wood & cork 0.030, other materials 1.243. Glass via weight+unit factors: 0.03515 €/kg + 0.00498 €/unit ('glass' shows the weight factor only). ECOTIC ENVASES is a third scheme option.",
   "sources": [
     {
-      "url": "https://www.miteco.gob.es",
-      "title": "MITECO — Registro de Productores de Producto",
+      "url": "https://www.miteco.gob.es/en/calidad-y-evaluacion-ambiental/temas/prevencion-y-gestion-residuos/prevencion-y-gestion-residuos/registro-productores-producto-seccion-envases.html",
+      "title": "MITECO — Registro de Productores de Producto, sección envases (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://ecoembesempresas.com/app/uploads/2025/06/Ecoembes_Precios2026.pdf",
+      "title": "Ecoembes — Precios 2026, envases domésticos (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
+    },
+    {
+      "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-especiales-medioambientales/impuesto-especial-sobre-envases-plastico-reutilizables/informacion-general.html",
+      "title": "AEAT sede electrónica — plastic packaging excise, general information (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

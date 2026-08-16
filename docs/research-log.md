@@ -119,3 +119,18 @@ All 27 country files created (verified:false). Direct page fetches were blocked 
 - BG: register overseen by ExEA confirmed; NWMS portal URL still unverified.
 
 Still open for verification batches: everything in §8, all PRO tariff PDFs, all ⚠ URLs (BG, CY, HU, SI, SK/ISOH), Amazon/Etsy marketplace requirement docs, GreenPak/HERRCO/Slopak/VANA/NPA/Rekopol scheme confirmations.
+
+## 11. Batch 1+2 — verification session (2026-08-16, Claude Code, network open)
+
+12 countries processed, all official pages/PDFs actually fetched. `verified:true`: DE, FR, BE, NL, ES, AT, IT, CZ, SE, DK, FI. PL stays `verified:false` (register confirmed, but Polish organizacje odzysku publish no official tariff — contract pricing; ROP reform still pending).
+
+Resolutions of §8 open questions:
+
+- **§8.4 RESOLVED**: EC guidance = Commission Notice C(2026) 3702 final, 05.06.2026 (EUR-Lex `intcom:C(2026)3702`); FAQ (2nd ed., 20 chapters, publ. ~01–03.08.2026) on environment.ec.europa.eu publications. Both linked in regulation.json. FAQ clarifies: no automatic market ban for non-compliant packaging from 12.08.2026 (corrective action first); pre-12.08.2026 stocks need not be destroyed/relabelled.
+- **§8.5 RESOLVED**: DE plastic conflict — Lizenzero's own calculator API (fetchActivePriceList) returns 2026 active list: plastic 1.25 €/kg (alternative list 0.955), paper 0.288, glass 0.069. So BOTH earlier claims were off; real answer ~0.96–1.25 €/kg. API endpoint: lizenzero.de/ajaxInterserohApi/fetchActivePriceList?respectEffectiveDate=0
+- **§8.2 PARTIAL**: LVV EPR page live at lvv.fi (fetched); exact e-service entry point still to find.
+- **§8.1 STILL OPEN**: AEAT informacion-general page fetched — confirms Law 7/2022, Model 592, but NO primary statement on foreign B2C distance sellers as intra-EU acquirers. Do not claim applicability.
+- **§8.6 PARTIAL**: DE — AR now MANDATORY for foreign sellers without German branch from 12.08.2026 (ZSVR knowledge base, big change vs VerpackG!); ES — representante autorizado mandatory for foreign direct sellers (MITECO RPP page); AT — AR required (earlier research). SE/DK/FI/PL/CZ: not stated on fetched pages.
+- New: ES RPP number format ENV/YYYY/XXXXXXXXX, on invoices; PL BDO fees 2026 raised to 200/800 PLN (Mazovia BIP); DK VANA has flat small-producer rate <8 t/yr: household 3.81 DKK/kg (~0.51 €/kg); FI light declaration form for <50 t/yr; SE fees jumped after municipal collection takeover (plastic 13.40 SEK/kg ≈ 1.22 €/kg).
+
+FX used for non-EUR tariffs (2026-08-16, open.er-api.com): 24.22 CZK, 11.01 SEK, 7.48 DKK per EUR — flagged as indicative conversions in country notes.

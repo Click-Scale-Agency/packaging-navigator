@@ -12,7 +12,9 @@
     "applies": "2026-08-12",
     "directlyApplicable": true,
     "links": {
-      "eurLex": "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
+      "eurLex": "https://eur-lex.europa.eu/eli/reg/2025/40/oj",
+      "ecGuidance": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=intcom%3AC%282026%293702",
+      "ecFaq": "https://environment.ec.europa.eu/publications/faq-packaging-and-packaging-waste-regulation-ppwr_en"
     }
   },
   "timeline": [
@@ -57,11 +59,23 @@
       }
     }
   ],
-  "notes": "Environmental Omnibus (COM(2025) 982) relief for micro/small enterprises and the AR suspension were NOT in force as of 2026-08-16 — assume obligations apply. EC guidance (Mar 2026) + FAQ (updated Aug 2026) official links still to be located (see docs/research-log.md §8).",
+  "notes": "Environmental Omnibus (COM(2025) 982) relief for micro/small enterprises and the AR suspension were NOT in force as of 2026-08-16 — assume obligations apply. Official EC interpretation documents: Commission Notice C(2026) 3702 final of 05.06.2026 (guidance document for Regulation (EU) 2025/40) and the PPWR FAQ, 2nd edition published early August 2026 (20 chapters, incl. new enforcement chapter; clarifies i.a. that non-compliant packaging is not automatically banned from 12.08.2026 — corrective action first — and that pre-12.08.2026 stocks need not be destroyed or relabelled).",
   "sources": [
     {
       "url": "https://eur-lex.europa.eu/eli/reg/2025/40/oj",
       "title": "Regulation (EU) 2025/40 — EUR-Lex",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=intcom%3AC%282026%293702",
+      "title": "Commission Notice C(2026) 3702 final — Guidance document for Regulation (EU) 2025/40 (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://environment.ec.europa.eu/publications/faq-packaging-and-packaging-waste-regulation-ppwr_en",
+      "title": "European Commission — FAQ on the PPWR, updated edition published Aug 2026 (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     }

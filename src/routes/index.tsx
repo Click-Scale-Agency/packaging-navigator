@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
+import { briefings } from "@/data";
 import { Calculator } from "@/components/Calculator";
 import { CountryCatalog } from "@/components/CountryCatalog";
 import { Faq } from "@/components/Faq";
@@ -11,6 +12,11 @@ import { Hero } from "@/components/Hero";
 import { Timeline } from "@/components/Timeline";
 import { VideoBriefing } from "@/components/VideoBriefing";
 
+const briefing = briefings[0];
+const briefingThumb = briefing
+  ? `https://i.ytimg.com/vi/${briefing.source.videoId}/maxresdefault.jpg`
+  : null;
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -18,7 +24,37 @@ export const Route = createFileRoute("/")({
       { name: "description", content: lv.meta.description },
       { property: "og:title", content: lv.meta.title },
       { property: "og:description", content: lv.meta.description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      ...(briefingThumb
+        ? [
+            { property: "og:image", content: briefingThumb },
+            { name: "twitter:image", content: briefingThumb },
+          ]
+        : []),
     ],
+    scripts:
+      briefing && briefingThumb
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                name: briefing.title,
+                description: briefing.keyPoints[0],
+                thumbnailUrl: [briefingThumb],
+                uploadDate: briefing.source.publishedAt,
+                embedUrl: `https://www.youtube-nocookie.com/embed/${briefing.source.videoId}`,
+                contentUrl: briefing.source.url,
+                publisher: {
+                  "@type": "Organization",
+                  name: briefing.source.name,
+                },
+              }),
+            },
+          ]
+        : [],
   }),
   component: Index,
 });

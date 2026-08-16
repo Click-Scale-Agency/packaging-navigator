@@ -1,0 +1,16 @@
+{
+  "code": "PT",
+  "name": "Portugāle",
+  "register": {
+    "exists": true,
+    "name": null,
+    "url": null,
+    "numberFormat": null,
+    "note": "Dati vēl nav apkopoti."
+  },
+  "pro": [],
+  "extraTaxes": [],
+  "sources": [],
+  "verified": false,
+  "lastReviewed": null
+}

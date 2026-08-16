@@ -1,0 +1,243 @@
+import { Link, createFileRoute } from "@tanstack/react-router";
+
+import lv from "@/i18n/lv";
+import { MATERIALS, countryByCode } from "@/data";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import {
+  CropMarks,
+  FormRow,
+  Perforation,
+  Press,
+  UnverifiedStamp,
+} from "@/components/primitives";
+
+export const Route = createFileRoute("/valstis/$code")({
+  head: ({ params }) => {
+    const code = (params.code ?? "").toUpperCase();
+    const country = countryByCode(code);
+    const title = country
+      ? `${country.name} (${country.code}) — PPWR reģistrs, PRO shēmas un nodokļi`
+      : `${code} — nav datu | ${lv.brand.name}`;
+    const description = country
+      ? `${country.name}: ražotāju reģistrs, ražotāju atbildības organizācijas un papildu nodokļi iepakojumam saskaņā ar PPWR. Ar avotiem un pārbaudes datumu.`
+      : lv.meta.description;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+      ],
+    };
+  },
+  component: CountryDetail,
+});
+
+function CountryDetail() {
+  const { code } = Route.useParams();
+  const country = countryByCode(code);
+
+  if (!country) {
+    return (
+      <>
+        <Header />
+        <main className="mx-auto max-w-[1400px] px-5 py-28 md:px-10">
+          <h1 className="text-4xl md:text-6xl">{lv.detail.notFound}</h1>
+          <Link to="/" className="form-label mt-8 inline-block text-primary">
+            ← {lv.detail.back}
+          </Link>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <Header />
+      <main className="mx-auto max-w-[1100px] px-5 py-16 md:px-10 md:py-24">
+        <Press>
+          <Link to="/" className="form-label inline-block text-primary">
+            ← {lv.detail.back}
+          </Link>
+        </Press>
+
+        <Press delay={0.05} className="relative mt-8 border-2 border-foreground bg-card p-5 md:p-8">
+          <CropMarks />
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <div>
+              <span className="form-label">{country.name}</span>
+              <p className="data-value text-[18vw] font-bold leading-[0.85] tracking-[-0.05em] sm:text-8xl md:text-[8rem]">
+                {country.code}
+              </p>
+            </div>
+            <div className="text-right">
+              {country.verified ? (
+                <span className="form-label">{lv.badge.verified}</span>
+              ) : (
+                <UnverifiedStamp />
+              )}
+              <p className="form-label mt-3">
+                {lv.detail.lastReviewed}: {country.lastReviewed ?? "—"}
+              </p>
+            </div>
+          </div>
+          <Perforation className="mt-6 opacity-70" />
+        </Press>
+
+        {/* Layer 1 */}
+        <Press delay={0.08} className="mt-14">
+          <h2 className="text-2xl md:text-3xl">{lv.detail.registerTitle}</h2>
+          <div className="mt-6 border-t-2 border-foreground">
+            <FormRow label={lv.detail.exists}>
+              {country.register.exists ? lv.detail.yes : lv.detail.no}
+            </FormRow>
+            <FormRow label={lv.detail.registerName}>
+              {country.register.name ?? lv.countries.unknown}
+            </FormRow>
+            <FormRow label={lv.detail.registerFormat}>
+              {country.register.numberFormat ?? lv.countries.unknown}
+            </FormRow>
+            <FormRow label={lv.detail.registerUrl}>
+              {country.register.url ? (
+                <a
+                  href={country.register.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary underline decoration-dashed underline-offset-4"
+                >
+                  {country.register.url}
+                </a>
+              ) : (
+                lv.countries.none
+              )}
+            </FormRow>
+            {country.register.note ? (
+              <FormRow label="Piezīme">{country.register.note}</FormRow>
+            ) : null}
+          </div>
+        </Press>
+
+        {/* Layer 2 */}
+        <Press delay={0.08} className="mt-16">
+          <h2 className="text-2xl md:text-3xl">{lv.detail.proTitle}</h2>
+          {country.pro.length === 0 ? (
+            <p className="mt-4 text-sm text-muted-foreground">{lv.detail.noPro}</p>
+          ) : (
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {country.pro.map((scheme) => (
+                <div key={scheme.name} className="border border-border-strong bg-card p-4">
+                  <p className="data-value text-base font-bold">{scheme.name}</p>
+                  {scheme.url ? (
+                    <a
+                      href={scheme.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="data-value mt-1 block break-all text-xs text-primary underline decoration-dashed underline-offset-4"
+                    >
+                      {scheme.url}
+                    </a>
+                  ) : null}
+                  <FormRow label={lv.detail.membership}>
+                    {scheme.membershipRequired ? lv.detail.yes : lv.detail.no}
+                  </FormRow>
+                  <FormRow label={lv.detail.tariffYear}>
+                    {scheme.tariffYear ?? lv.countries.unknown}
+                  </FormRow>
+                  <div className="border-t border-dashed border-border py-3">
+                    <span className="form-label">{lv.detail.rates}</span>
+                    <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
+                      {MATERIALS.map((m) => (
+                        <li key={m} className="flex items-baseline justify-between gap-2">
+                          <span className="form-label truncate">{lv.materials[m]}</span>
+                          <span className="data-value text-sm">
+                            {scheme.rates?.[m] ?? "—"}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    {!country.verified ? (
+                      <span className="mt-3 block">
+                        <UnverifiedStamp short />
+                      </span>
+                    ) : null}
+                  </div>
+                  {scheme.note ? <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{scheme.note}</p> : null}
+                </div>
+              ))}
+            </div>
+          )}
+        </Press>
+
+        {/* Layer 3 */}
+        <Press delay={0.08} className="mt-16">
+          <h2 className="text-2xl md:text-3xl">{lv.detail.taxesTitle}</h2>
+          {country.extraTaxes.length === 0 ? (
+            <p className="mt-4 text-sm text-muted-foreground">{lv.detail.noTaxes}</p>
+          ) : (
+            <div className="mt-6 border-t-2 border-foreground">
+              {country.extraTaxes.map((tax) => (
+                <div key={tax.name} className="border-b border-dashed border-border py-4">
+                  <div className="flex flex-wrap items-baseline justify-between gap-3">
+                    <p className="data-value text-base">{tax.name}</p>
+                    <p className="data-value text-base">
+                      {tax.ratePerKg !== null ? `${tax.ratePerKg} €/kg` : lv.countries.unknown}
+                      {tax.material ? ` · ${lv.materials[tax.material]}` : ""}
+                    </p>
+                  </div>
+                  {tax.note ? (
+                    <p className="mt-2 max-w-[70ch] text-sm text-muted-foreground">{tax.note}</p>
+                  ) : null}
+                  {tax.url ? (
+                    <a
+                      href={tax.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="data-value mt-2 block break-all text-xs text-primary underline decoration-dashed underline-offset-4"
+                    >
+                      {tax.url}
+                    </a>
+                  ) : null}
+                </div>
+              ))}
+            </div>
+          )}
+        </Press>
+
+        {/* Sources */}
+        <Press delay={0.08} className="mt-16">
+          <h2 className="text-2xl md:text-3xl">{lv.detail.sourcesTitle}</h2>
+          {country.sources.length === 0 ? (
+            <p className="mt-4 text-sm text-muted-foreground">{lv.detail.noSources}</p>
+          ) : (
+            <ul className="mt-6 border-t-2 border-foreground">
+              {country.sources.map((source) => (
+                <li
+                  key={source.url}
+                  className="flex flex-wrap items-baseline justify-between gap-3 border-b border-dashed border-border py-3"
+                >
+                  <a
+                    href={source.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="data-value text-sm text-primary underline decoration-dashed underline-offset-4"
+                  >
+                    {source.title}
+                  </a>
+                  <span className="form-label">
+                    {lv.detail.checkedAt}: {source.checkedAt}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="mt-8 border border-dashed border-border-strong px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+            {lv.calculator.disclaimer}
+          </p>
+        </Press>
+      </main>
+      <Footer />
+    </>
+  );
+}

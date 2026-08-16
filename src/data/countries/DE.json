@@ -1,0 +1,43 @@
+{
+  "code": "DE",
+  "name": "Vācija",
+  "register": {
+    "exists": true,
+    "name": "LUCID (Verpackungsregister)",
+    "url": "https://lucid.verpackungsregister.org",
+    "numberFormat": "DE + 13 digits",
+    "note": "Reģistrācija obligāta pirms pirmās preču piegādes."
+  },
+  "pro": [
+    {
+      "name": "Duālā sistēma (dual system)",
+      "url": "https://www.verpackungsregister.org",
+      "rates": {
+        "paper": null,
+        "plastic": null,
+        "glass": null,
+        "metal": null,
+        "wood": null,
+        "composite": null
+      },
+      "tariffYear": null,
+      "membershipRequired": true,
+      "note": "Līgums ar duālo sistēmu ir obligāts papildus LUCID reģistrācijai."
+    }
+  ],
+  "extraTaxes": [],
+  "sources": [
+    {
+      "url": "https://lucid.verpackungsregister.org",
+      "title": "LUCID Verpackungsregister",
+      "checkedAt": "2026-08-01"
+    },
+    {
+      "url": "https://www.verpackungsregister.org/en/information-orientation/laws-and-guidelines",
+      "title": "ZSVR — Laws and guidelines",
+      "checkedAt": "2026-08-01"
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-01"
+}

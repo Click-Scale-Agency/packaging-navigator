@@ -103,7 +103,7 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
     if (t.collectedBy) noteParts.push(`Administrē: ${t.collectedBy}`);
     return {
       name: t.name,
-      ratePerKg: eur ? Number(eur[1].replace(",", ".")) : null,
+      ratePerKg: eur?.[1] ? Number(eur[1].replace(",", ".")) : null,
       material,
       url: t.url ?? null,
       note: noteParts.join(" — "),

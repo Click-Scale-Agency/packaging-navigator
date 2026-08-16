@@ -1,0 +1,170 @@
+/**
+ * Single source of UI copy. All strings in Latvian.
+ * Add src/i18n/en.ts with the same shape to introduce English later.
+ */
+export const lv = {
+  meta: {
+    title: "ES Iepakojuma Ceļvedis — PPWR un EPR maksu kalkulators",
+    description:
+      "Atvērts ceļvedis ES Iepakojuma regulai (PPWR 2025/40): ražotāju reģistri, PRO shēmas un papildu nodokļi 27 dalībvalstīs. Indikatīvs EPR maksu kalkulators.",
+  },
+  brand: {
+    name: "ES Iepakojuma Ceļvedis",
+    subtitle: "EU Packaging Hub",
+    tagline: "Atvērts ceļvedis PPWR prasībām",
+  },
+  nav: {
+    calculator: "Kalkulators",
+    countries: "Valstis",
+    timeline: "Laika līnija",
+    faq: "BUJ",
+    repo: "GitHub",
+  },
+  hero: {
+    headline: "Iepakojums tagad ir regulēts. Mēs to iztulkojam.",
+    sub: "Regula (ES) 2025/40 — piemēro no 2026. gada 12. augusta. Šis ir mierīgs galds birokrātijas vidū: viena lapa, trīs slāņi, nekādu pārsteigumu.",
+    senderLabel: "Nosūtītājs",
+    sender: "Tavs e-veikals, LV",
+    recipientLabel: "Saņēmējs",
+    recipient: "27 ES dalībvalstis",
+    stamp1: "PPWR",
+    stamp2: "2026-08-12",
+    stamp3: "PIEMĒRO",
+    refLabel: "Dokumenta Nr.",
+    ref: "PPWR/2025/40",
+    weightLabel: "Svars",
+    weight: "VAR MAINĪTIES",
+    classLabel: "Klase",
+    class: "EPR / REĢISTRS / PRO",
+    ctaPrimary: "Aprēķināt maksas",
+    ctaSecondary: "Skatīt valstis",
+    scrollHint: "Ritini — zīmogi tiek uzspiesti",
+  },
+  calculator: {
+    kicker: "Sadaļa 01",
+    title: "Kalkulators",
+    lead: "Ievadi iepakojuma svaru uz vienu sūtījumu un izvēlies galamērķa valstis. Rezultāts ir indikatīvs — publiskotās tarifu likmes vēl tiek apkopotas.",
+    materialsLabel: "Iepakojuma svars uz sūtījumu (g)",
+    countriesLabel: "Galamērķa valstis",
+    shipmentsLabel: "Sūtījumu skaits gadā",
+    totalWeightLabel: "Kopējais materiāla svars",
+    tableCountry: "Valsts",
+    tableRegister: "Reģistrs",
+    tableScheme: "Shēma",
+    tableRate: "Likme €/kg",
+    tableFee: "Indikatīvi €/gadā",
+    noCountries: "Izvēlies vismaz vienu valsti, lai redzētu aprēķinu.",
+    noRate: "nav likmes",
+    disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
+    grandTotal: "Kopā (indikatīvi)",
+    reset: "Notīrīt",
+    selectAll: "Visas 27",
+  },
+  materials: {
+    paper: "Papīrs / kartons",
+    plastic: "Plastmasa",
+    glass: "Stikls",
+    metal: "Metāls",
+    wood: "Koks",
+    composite: "Kompozīts",
+  },
+  countries: {
+    kicker: "Sadaļa 02",
+    title: "Valstu katalogs",
+    lead: "27 dalībvalstis. Katra kartīte rāda trīs atsevišķus slāņus — tie nekad nav viens un tas pats.",
+    layerRegister: "Reģistrs",
+    layerPro: "Shēma (PRO)",
+    layerTaxes: "Papildu nodokļi",
+    none: "nav",
+    noRegister: "nav reģistra",
+    unknown: "nav datu",
+    open: "Atvērt",
+    searchPlaceholder: "Meklēt valsti vai kodu",
+  },
+  detail: {
+    back: "Atpakaļ uz katalogu",
+    registerTitle: "Slānis 1 — Valsts ražotāju reģistrs",
+    proTitle: "Slānis 2 — Ražotāju atbildības organizācijas (PRO)",
+    taxesTitle: "Slānis 3 — Atsevišķi valsts nodokļi",
+    sourcesTitle: "Avoti",
+    registerName: "Nosaukums",
+    registerFormat: "Numura formāts",
+    registerUrl: "Saite",
+    exists: "Pastāv",
+    notExists: "Nepastāv",
+    membership: "Dalība obligāta",
+    tariffYear: "Tarifu gads",
+    rates: "Likmes €/kg",
+    yes: "jā",
+    no: "nē",
+    lastReviewed: "Pēdējoreiz pārskatīts",
+    checkedAt: "Pārbaudīts",
+    noSources: "Avoti vēl nav pievienoti.",
+    noPro: "PRO shēmas vēl nav apkopotas.",
+    noTaxes: "Nav zināmu papildu nodokļu.",
+    notFound: "Šāda valsts kods nav katalogā.",
+  },
+  timeline: {
+    kicker: "Sadaļa 03",
+    title: "Laika līnija",
+    lead: "Pieci datumi, kas maina pienākumus. Sarkanais zīmogs rāda, kur atrodamies šodien.",
+    now: "ŠODIEN",
+  },
+  functionNotCode: {
+    kicker: "Sadaļa 04",
+    title: "Funkcija, nevis kods",
+    lead: "EPR pienākumu iedarbina iepakojuma funkcija, nevis muitas CN kods.",
+    points: [
+      {
+        title: "Funkcija nosaka pienākumu",
+        body: "Ja materiāls aizsargā, satur vai pasniedz preci gala patērētājam, tas ir iepakojums — neatkarīgi no tā, kā tas ierakstīts muitas deklarācijā.",
+      },
+      {
+        title: "CN kodi ir muitai",
+        body: "CN kodi apraksta preci robežas šķērsošanai. Tie nav EPR klasifikators un nepiešķir un neatbrīvo no reģistrācijas pienākuma.",
+      },
+      {
+        title: "Kad CN kods tomēr svarīgs",
+        body: "Divos gadījumos: ievedot tukšu iepakojumu kā preci, un Spānijas plastmasas nodoklī, kur deklarācija balstās uz CN kodiem.",
+      },
+    ],
+  },
+  faq: {
+    kicker: "Sadaļa 05",
+    title: "BUJ",
+    items: [
+      {
+        q: "Vai man jāreģistrējas visās 27 valstīs?",
+        a: "Nē — tikai tajās, kur tu pirmais laid tirgū iepakotu preci gala patērētājam. Praksē tas ir katra valsts, uz kuru tu sūti pasūtījumus tieši pircējiem. Ja pārdod caur tirdzniecības vietu, kas uzņēmusies ražotāja pienākumus, pienākums var būt tai — pārbaudi līgumu.",
+      },
+      {
+        q: "Ar ko atšķiras reģistrs no PRO?",
+        a: "Reģistrs ir valsts uzturēts saraksts: tu iegūsti numuru, ko prasa tirdzniecības vietas. PRO ir privāts apsaimniekotājs, kam tu maksā par savākšanu un pārstrādi. Vācijā vajag abus: LUCID numuru un līgumu ar duālo sistēmu. Latvijā valsts reģistra vēl nav, bet līgums ar apsaimniekotāju darbojas jau šodien.",
+      },
+      {
+        q: "Cik tas maksās?",
+        a: "Maksa parasti ir €/kg par katru materiālu, tāpēc svarīgs ir faktiskais iepakojuma svars, nevis pasūtījumu skaits. Mazam e-veikalam pievienojas gada administrācijas maksa. Publicētās likmes mēs pievienojam pakāpeniski — kamēr ieraksts nav pārbaudīts, tas ir apzīmēts ar sarkanu zīmogu.",
+      },
+      {
+        q: "Vai Amazon tiešām bloķē?",
+        a: "Jā. Tirdzniecības vietām ir pienākums pārbaudīt ražotāja numurus, un bez derīga numura sarakstus var apturēt attiecīgajā valstī. Numurs jāievada pārdevēja kontā, ne tikai jāiegūst.",
+      },
+    ],
+  },
+  badge: {
+    unverified: "NAV PĀRBAUDĪTS — pārbaudiet oficiālo avotu",
+    unverifiedShort: "NAV PĀRBAUDĪTS",
+    verified: "PĀRBAUDĪTS",
+  },
+  footer: {
+    licence: "MIT licence",
+    dataProduct:
+      "Dati ir produkts. Katrs valsts fakts dzīvo JSON failā ar avotu un pārbaudes datumu — nevis kodā.",
+    repo: "Click-Scale-Agency/eu-packaging-hub",
+    credit: "Uztur Click Scale Agency",
+    disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
+  },
+} as const;
+
+export type Dict = typeof lv;
+export default lv;

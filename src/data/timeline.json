@@ -1,0 +1,27 @@
+[
+  {
+    "date": "2025-02-11",
+    "label": "Spēkā",
+    "detail": "Regula (ES) 2025/40 stājas spēkā."
+  },
+  {
+    "date": "2026-08-12",
+    "label": "Piemēro",
+    "detail": "PPWR prasības sāk piemērot visā ES."
+  },
+  {
+    "date": "2027-02-12",
+    "label": "Reģistri + sodi",
+    "detail": "Dalībvalstu ražotāju reģistri darbojas; sankcijas par nereģistrēšanos."
+  },
+  {
+    "date": "2028-08-12",
+    "label": "Marķējums",
+    "detail": "Saskaņots iepakojuma materiālu un šķirošanas marķējums."
+  },
+  {
+    "date": "2030-01-01",
+    "label": "Pārstrādājamības klases",
+    "detail": "Iepakojumam jāatbilst pārstrādājamības klasēm A–C."
+  }
+]

@@ -1,4 +1,4 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import lv from "@/i18n/lv";
 import { Barcode, CropMarks, PRESS_SPRING, Perforation } from "@/components/primitives";
@@ -10,8 +10,6 @@ const stamps = [
 ];
 
 export function Hero() {
-  const reduce = useReducedMotion();
-
   return (
     <section className="relative overflow-hidden border-b border-dashed border-border-strong">
       <div aria-hidden className="paper-grid pointer-events-none absolute inset-0 opacity-40" />
@@ -20,32 +18,32 @@ export function Hero() {
           <div className="flex flex-col justify-center">
             <motion.p
               className="form-label"
-              initial={reduce ? undefined : { opacity: 0, y: 8 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ ...PRESS_SPRING, delay: 0.05 }}
             >
               {lv.brand.tagline}
             </motion.p>
             <motion.h1
               className="mt-6 text-[13vw] leading-[0.92] tracking-[-0.04em] sm:text-6xl md:text-7xl lg:text-[5.2rem]"
-              initial={reduce ? undefined : { opacity: 0, scale: 1.02, y: 14 }}
-              animate={reduce ? undefined : { opacity: 1, scale: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 1.02, y: 14 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ ...PRESS_SPRING, delay: 0.12 }}
             >
               {lv.hero.headline}
             </motion.h1>
             <motion.p
               className="mt-8 max-w-[54ch] text-base leading-relaxed text-muted-foreground md:text-lg"
-              initial={reduce ? undefined : { opacity: 0, y: 12 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ ...PRESS_SPRING, delay: 0.22 }}
             >
               {lv.hero.sub}
             </motion.p>
             <motion.div
               className="mt-10 flex flex-wrap items-center gap-3"
-              initial={reduce ? undefined : { opacity: 0, y: 12 }}
-              animate={reduce ? undefined : { opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ ...PRESS_SPRING, delay: 0.3 }}
             >
               <a
@@ -67,8 +65,8 @@ export function Hero() {
           {/* The label */}
           <motion.div
             className="relative"
-            initial={reduce ? undefined : { opacity: 0, y: 24, rotate: -0.4 }}
-            animate={reduce ? undefined : { opacity: 1, y: 0, rotate: -0.4 }}
+            initial={{ opacity: 0, y: 24, rotate: -0.4 }}
+            animate={{ opacity: 1, y: 0, rotate: -0.4 }}
             transition={{ ...PRESS_SPRING, delay: 0.1 }}
           >
             <div className="relative border-2 border-foreground bg-card p-5 shadow-[10px_10px_0_0_var(--border)] md:p-7">
@@ -115,9 +113,9 @@ export function Hero() {
                   <motion.span
                     key={s.text}
                     className="inline-flex items-center border-2 border-dashed px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] stamp-ink"
-                    initial={reduce ? undefined : { opacity: 0, scale: 1.6, rotate: s.rotate * 2 }}
+                    initial={{ opacity: 0, scale: 1.6, rotate: s.rotate * 2 }}
                     whileInView={
-                      reduce ? undefined : { opacity: 1, scale: 1, rotate: s.rotate }
+                      { opacity: 1, scale: 1, rotate: s.rotate }
                     }
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{ type: "spring", stiffness: 210, damping: 24, delay: s.delay }}

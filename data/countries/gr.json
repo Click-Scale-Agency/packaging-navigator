@@ -9,17 +9,18 @@
     "exists": true,
     "name": "EMPA (National Producer Register)",
     "url": "https://www.eoan.gr",
-    "operator": "EOAN (Hellenic Recycling Agency)",
+    "operator": "EOAN (Hellenic Recycling Agency / HRA)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": ""
+    "notes": "Producers register in the national producer register held by EOAN and comply via a licensed collective system (HERRCO). HERRCO operates under Law 4819/2021 (ex 2939/2001)."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "HERRCO (Hellenic Recovery Recycling Corporation)",
-        "url": "https://www.herrco.gr"
+        "url": "https://www.herrco.gr",
+        "tariffUrl": "https://declarations.herrco.gr/"
       }
     ],
     "rates": {
@@ -35,19 +36,19 @@
     "ecoModulation": ""
   },
   "extraTaxes": [],
-  "notes": "Scheme name/URL from general knowledge — unverified, confirm in verification batch.",
+  "notes": "Rates intentionally null: HERRCO's monetary-contribution tables live in Annex C1 of its one-year Participation Contract, approved by the competent authorities but NOT published as a public per-material fee schedule (confirmed 2026-08-16 on herrco.gr/en/businesses). HERRCO is the licensed packaging PRO (Green Dot licensee); members declare via declarations.herrco.gr; 3,936 businesses under contract as of 31.12.2025. Covers paper, plastic, glass, aluminium and tinplate. Separate single-use-plastic environmental levy exists in Greece (not the packaging EPR fee).",
   "sources": [
     {
       "url": "https://www.eoan.gr",
-      "title": "EOAN — Hellenic Recycling Agency",
+      "title": "EOAN — Hellenic Recycling Agency (national producer register operator)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.herrco.gr/en/businesses/",
+      "title": "HERRCO — for businesses (licensed PRO, declarations, contract-based fees) (fetched)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
   "verified": false,

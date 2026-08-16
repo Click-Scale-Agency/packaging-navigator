@@ -77,3 +77,27 @@ export interface CountryData {
   /** Country-level caveats from the canonical data (not yet rendered everywhere). */
   notes?: string | null;
 }
+
+/* ---- Video briefings (public recordings + LV summaries) ---- */
+
+export interface BriefingTopic {
+  title: string;
+  body: string;
+}
+
+export interface Briefing {
+  id: string;
+  title: string;
+  source: {
+    name: string;
+    platform: string;
+    videoId: string;
+    url: string;
+    startSeconds: number;
+    publishedAt: string;
+  };
+  keyPoints: string[];
+  topics: BriefingTopic[];
+  disclaimer: string;
+  lastReviewed: string | null;
+}

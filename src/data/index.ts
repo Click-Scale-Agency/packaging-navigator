@@ -9,6 +9,8 @@
  * changing the canonical schema.
  */
 import type {
+  Briefing,
+  BriefingTopic,
   CountryData,
   ExtraTax,
   MaterialKey,
@@ -103,7 +105,7 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
     if (t.collectedBy) noteParts.push(`Administrē: ${t.collectedBy}`);
     return {
       name: t.name,
-      ratePerKg: eur ? Number(eur[1].replace(",", ".")) : null,
+      ratePerKg: eur?.[1] ? Number(eur[1].replace(",", ".")) : null,
       material,
       url: t.url ?? null,
       note: noteParts.join(" — "),
@@ -155,3 +157,32 @@ export const timeline: TimelineEntry[] = (
 ).map((t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }));
 
 export * from "./types";
+
+/* ---- video briefings (from canonical /data/briefings/*.json) ---- */
+
+interface CanonicalBriefing {
+  id: string;
+  title: { lv: string; en?: string };
+  source: Briefing["source"];
+  keyPoints: string[];
+  topics: BriefingTopic[];
+  disclaimer: string;
+  lastReviewed?: string;
+}
+
+const canonicalBriefings = import.meta.glob("/data/briefings/*.json", {
+  eager: true,
+  import: "default",
+}) as Record<string, CanonicalBriefing>;
+
+export const briefings: Briefing[] = Object.values(canonicalBriefings)
+  .map((b) => ({
+    id: b.id,
+    title: b.title.lv,
+    source: b.source,
+    keyPoints: b.keyPoints,
+    topics: b.topics,
+    disclaimer: b.disclaimer,
+    lastReviewed: b.lastReviewed ?? null,
+  }))
+  .sort((a, b) => b.source.publishedAt.localeCompare(a.source.publishedAt));

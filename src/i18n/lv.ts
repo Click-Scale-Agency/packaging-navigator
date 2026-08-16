@@ -17,6 +17,7 @@ export const lv = {
     calculator: "Kalkulators",
     countries: "Valstis",
     timeline: "Laika līnija",
+    video: "Video",
     faq: "BUJ",
     repo: "GitHub",
   },
@@ -110,8 +111,18 @@ export const lv = {
     lead: "Pieci datumi, kas maina pienākumus. Sarkanais zīmogs rāda, kur atrodamies šodien.",
     now: "ŠODIEN",
   },
-  functionNotCode: {
+  video: {
     kicker: "Sadaļa 04",
+    title: "Video un kopsavilkums",
+    lead: "Publisks Tveris.App sagatavots ieraksts par PPWR prasībām, kas sākas 12. augustā, un tā strukturēts kopsavilkums latviski.",
+    play: "Atskaņot",
+    openYoutube: "Atvērt YouTube",
+    keyPointsTitle: "Kopsavilkums",
+    topicsTitle: "Detalizēts pārskats par tēmām",
+    sourceLabel: "Avots — ieraksts",
+  },
+  functionNotCode: {
+    kicker: "Sadaļa 05",
     title: "Funkcija, nevis kods",
     lead: "EPR pienākumu iedarbina iepakojuma funkcija, nevis muitas CN kods.",
     points: [
@@ -130,7 +141,7 @@ export const lv = {
     ],
   },
   faq: {
-    kicker: "Sadaļa 05",
+    kicker: "Sadaļa 06",
     title: "BUJ",
     items: [
       {

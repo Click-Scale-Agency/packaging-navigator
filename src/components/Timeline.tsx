@@ -1,25 +1,29 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import lv from "@/i18n/lv";
 import { timeline } from "@/data";
 import { Press, SectionHead } from "@/components/primitives";
 import { cn } from "@/lib/utils";
 
-const TODAY = new Date();
-
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
+  // Computed after hydration only: the server render happens at build time and
+  // would otherwise disagree with the client about which date is "today".
+  const [today, setToday] = useState<Date | null>(null);
+  useEffect(() => setToday(new Date()), []);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 80%", "end 40%"],
   });
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  const currentIndex = timeline.reduce(
-    (acc, entry, i) => (new Date(entry.date) <= TODAY ? i : acc),
-    -1,
-  );
+  const currentIndex = today
+    ? timeline.reduce(
+        (acc, entry, i) => (new Date(entry.date) <= today ? i : acc),
+        -1,
+      )
+    : -1;
 
   return (
     <section className="border-b border-dashed border-border-strong">

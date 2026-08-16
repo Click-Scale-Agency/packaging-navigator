@@ -9,6 +9,7 @@ import { FunctionNotCode } from "@/components/FunctionNotCode";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Timeline } from "@/components/Timeline";
+import { VideoBriefing } from "@/components/VideoBriefing";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,6 +32,7 @@ function Index() {
         <Calculator />
         <CountryCatalog />
         <Timeline />
+        <VideoBriefing />
         <FunctionNotCode />
         <Faq />
       </main>

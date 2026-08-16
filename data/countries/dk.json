@@ -12,44 +12,45 @@
     "operator": "Dansk Producentansvar (DPA)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "Single register for all EPR streams; registration performed via virk.dk."
+    "notes": "Site fetched 2026-08-16: 'Companies that put products subject to producer responsibility for packaging on the market in Denmark, must register in the producer register.' Single register for all EPR streams; registration via virk.dk; annual DPA fees based on reported volumes (fee page not parsed). AR requirement for foreign sellers not stated on the fetched page."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "VANA (collective packaging scheme)",
-        "url": "https://vana.dk"
+        "url": "https://www.vana.dk",
+        "tariffUrl": "https://www.vana.dk/medlemskab/priser/vanas-grundpriser/"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.214,
+      "plastic": 0.681,
+      "glass": 0.605,
+      "metal": 1.022,
+      "wood": 1.691,
+      "composite": 0.829
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "Bonus/malus = 35% of operational costs by recyclability level: e.g. household plastic 4.68 (green) / 5.09 (base) / 6.75 (red) DKK/kg; yellow level billed at base price with any bonus refunded later."
   },
   "extraTaxes": [],
-  "notes": "Danish packaging EPR is new (phased in 2025) — verify current scheme landscape (VANA, Emballageretur, others) and tariffs. Scheme URL unverified.",
+  "notes": "Rates from VANA's official grundpriser tables valid from 01.08.2026 (fetched as images 2026-08-16), household (husholdning) base prices for producers >8 t/yr, converted at 7.48 DKK/EUR (2026-08-16): cardboard (pap) 1.60 DKK/kg → 0.214 ('paper'; paper 'papir' only 0.27 → 0.036), plastic 5.09 → 0.681, glass 4.52 → 0.605, metal (ferrous+alu) 7.64 → 1.022, wood 12.64 → 1.691, food & drink cartons (MDK) 6.20 → 0.829 ('composite'); textiles/porcelain/cork/ceramics/other 0.27 → 0.036. IMPORTANT for small sellers: producers under 8 t/yr pay a flat combined rate — household 3.81 DKK/kg ≈ 0.510 €/kg, commercial 3.40 ≈ 0.455 (quarterly invoicing). Commercial (erhverv) table differs strongly (e.g. metal only 1.22 DKK/kg). VANA invoices in DKK — EUR values are indicative conversions.",
   "sources": [
     {
       "url": "https://www.producentansvar.dk",
-      "title": "Dansk Producentansvar (DPA)",
+      "title": "Dansk Producentansvar (DPA) — producer register (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.vana.dk/medlemskab/priser/vanas-grundpriser/",
+      "title": "VANA — grundpriser from 01.08.2026 (official price tables, fetched)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

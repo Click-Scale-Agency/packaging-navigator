@@ -38,8 +38,14 @@
   "thresholds": {
     "deMinimis": "0 kg — no de-minimis threshold"
   },
-  "notes": "Multiple packaging schemes exist (Slopak, Dinos, Interzero…) — confirm current licensed list. Scheme URL unverified.",
+  "notes": "pro.rates left null: Slopak (site fetched live 2026-08-16, /odpadna-embalaza) and other schemes (Interzero, Dinos, Recikel…) price membership by contract with no public per-material tariff table. Slovenia has NO de-minimis threshold — obligations from the first unit. Foreign B2C distance sellers register via a local authorised representative; annual report to ARSO by 31 March.",
   "sources": [
+    {
+      "url": "https://www.slopak.si/odpadna-embalaza",
+      "title": "Slopak — Slovenian packaging scheme (site fetched; no public tariff)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
     {
       "url": "https://www.repax.io/epr-registers",
       "title": "EPR register overview (repax.io) — register name/coverage cross-check",

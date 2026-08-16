@@ -13,15 +13,16 @@
     "numberFormat": "IDU/UIN — unique identifier issued per EPR scheme",
     "numberOnInvoices": false,
     "arRequiredForForeignSellers": null,
-    "registrationCostEur": null,
-    "notes": "The UIN must be displayed on marketplaces / in general terms of sale. Registration happens through the PRO, which reports to SYDEREP and triggers issuance of the IDU."
+    "registrationCostEur": 0,
+    "notes": "Portal live (fetched 2026-08-16). The UIN must be displayed on marketplaces / in general terms of sale. Registration happens through the PRO (e.g. CITEO), which reports to SYDEREP and triggers issuance of the IDU; no separate state registration fee."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "CITEO",
-        "url": "https://www.citeo.com"
+        "url": "https://www.citeo.com",
+        "tariffUrl": "https://www.citeo.com/en/citeo-rates-for-household-packaging-and-paper/"
       },
       {
         "name": "Léko",
@@ -29,33 +30,39 @@
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.258,
+      "plastic": 0.77,
+      "glass": 0.02,
+      "metal": 0.243,
+      "wood": 0.258,
+      "composite": 0.468
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
-    "ecoModulation": "CITEO eco-modulation: bonuses ±15–20%, maluses up to 50–100% (assuro.io, unverified)."
+    "tariffYear": 2026,
+    "minAnnualFeeEur": 110,
+    "ecoModulation": "CITEO 2026: bonuses (e.g. −10% weight-based discount for >50% recycled fibre in paper-cardboard) and per-rate maluses; non-recyclable resins pay steeply more (PVC 2.10 €/kg vs PE/PP 0.77 €/kg)."
   },
   "extraTaxes": [],
-  "notes": "Indicative aluminium fee ~€186.5/t (netzerocompare, 2025) — unverified. Pull the current CITEO tariff PDF in the verification batch.",
+  "notes": "Rates are the weight-based part of CITEO's official 2026 Household Packaging Rate Guide (fetched 2026-08-16): steel 0.065, aluminium 0.243 ('metal' shows aluminium), paper-cardboard 0.258, beverage cartons 0.468 (used as 'composite'), glass 0.020, wood/cork 0.258 €/kg; plastics range 0.70 (clear PET bottles) – 0.77 (PE/PP) – 0.84 (rigid PET/flexible PP) – 1.40 (composite resins) – 2.10 (PVC) €/kg; 'plastic' shows the common PE/PP rate 0.77. IMPORTANT: total CITEO contribution = per-CSU (consumer sales unit) amount + this weight-based amount, so effective €/kg is higher for lightweight items. Shared minimum invoice fee €110/yr (covers packaging + graphic paper).",
   "sources": [
     {
       "url": "https://syderep.ademe.fr",
-      "title": "SYDEREP (ADEME) — French EPR register",
+      "title": "SYDEREP (ADEME) — French EPR register portal",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.citeo.com/en/citeo-rates-for-household-packaging-and-paper/",
+      "title": "CITEO — official rates download page (household packaging & paper)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
+    },
+    {
+      "url": "https://www.citeo.com/wp-content/uploads/2026/03/CITEO_HOUSEHOLD_PACKAGING_RATE_GUIDE_2026.7z",
+      "title": "CITEO Household Packaging Rate Guide 2026 (official PDF, fetched and parsed)",
+      "checkedAt": "2026-08-16",
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

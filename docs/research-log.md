@@ -134,3 +134,26 @@ Resolutions of §8 open questions:
 - New: ES RPP number format ENV/YYYY/XXXXXXXXX, on invoices; PL BDO fees 2026 raised to 200/800 PLN (Mazovia BIP); DK VANA has flat small-producer rate <8 t/yr: household 3.81 DKK/kg (~0.51 €/kg); FI light declaration form for <50 t/yr; SE fees jumped after municipal collection takeover (plastic 13.40 SEK/kg ≈ 1.22 €/kg).
 
 FX used for non-EUR tariffs (2026-08-16, open.er-api.com): 24.22 CZK, 11.01 SEK, 7.48 DKK per EUR — flagged as indicative conversions in country notes.
+
+## 12. Batch 3–5 — remaining 15 countries (2026-08-16, Claude Code, same session)
+
+All 27 files now processed. **verified:true (17):** AT, BE, BG, CY, CZ, DE, DK, EE, ES, FI, FR, HR, IT, LU, NL, PT, SE. **verified:false (10):** GR, HU, IE, LT, LV, MT, PL, RO, SI, SK — in every case because no official PER-MATERIAL PRO tariff is public (never guessed).
+
+New official rate sources fetched this session:
+- **HR** — FZOEU 'POPIS NAKNADA' fee list (eff. 20.05.2026) PDF: state-run collection-cost fees €/kg (gross incl. VAT), non-deposit packaging. verified:true.
+- **CY** — Green Dot Cyprus official fee table (household, tariffYear 2025; 2026 not yet published). State moa.gov.cy env portal 503 this session. verified:true.
+- **EE** — ETO 'teenustasud' 2026 (sales packaging €/t before VAT) + PAKIS register + EMTA pakendiaktsiis statutory rates (glass 0.60 / plastic·metal 2.50 / paper·wood 1.20 €/kg; PRO membership exempts). verified:true.
+- **BG** — Ecopack member prices eff. 01.01.2026 (EUR/kg) + MOEW packaging page. Corrected bogus nwms.eea register URL. verified:true.
+- **LU** — Valorlux 'Tarifs Point Vert 2026' PDF (household €/kg excl. VAT). verified:true.
+- **PT** — Sociedade Ponto Verde VPV table (tariffYear 2024, current published; 2026 revision in litigation) + SILiAmb register live. min €120/yr. verified:true.
+
+Documented-but-not-verified (rates recorded with caveat, or as extraTax):
+- **HU** — OKIRkapu register fetched + MOHU FAQ official, but 2026 EPR fee TABLE is a govt decree not fetchable this session (NAK 503). Corroborated rates recorded (plastic 0.603, paper 0.477, glass 0.295, metal 0.512, wood 0.061, composite 0.526 €/kg @362.95 HUF/EUR); verified:false pending official decree fetch.
+- **LT** — statutory packaging pollution-TAX rates recorded as extraTax (recyclable EUR/t, ×1.48 index for 2026); PRO management fees (tvarkymo įkainiai) not public.
+- **LV** (home market) — DRN law fetched from likumi.lv; confirmed SUP-item rates (plastic bags/fishing gear 4.80, wet wipes/balloons 12.20, tobacco filters 8.00 €/kg) + 2026 foam-plastic changes (foam PS 44.00, foam plastic 24.40). Full Annex 7 per-material base table served as a separate attachment — still to fetch. §8.7 partly advanced.
+- **RO** — only public figure is AFM 2 RON/kg penalty (already recorded); OIREP fees by contract.
+- **GR/IE/MT/SI/SK** — licensed-scheme sites confirmed live, but per-material fees are contract/members-only (HERRCO Annex C1; Repak; GreenPak; Slopak; ENVI-PAK/NATUR-PACK).
+
+FX added this session: 362.95 HUF/EUR (2026-08-16).
+
+New AR (authorised representative) confirmations for foreign sellers: ES, AT, PT, SI, SK require one (per fetched official pages); DE now mandatory from 12.08.2026 (from batch 1).

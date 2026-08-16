@@ -1,0 +1,50 @@
+{
+  "code": "IT",
+  "name": {
+    "lv": "Itālija",
+    "en": "Italy",
+    "native": "Italia"
+  },
+  "register": {
+    "exists": false,
+    "notes": "No state packaging register — RENAP covers only WEEE/batteries/tyres. CONAI (private-law consortium) membership is the compliance mechanism and issues the producer position used in practice."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "CONAI",
+        "url": "https://www.conai.org"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": "CONAI plastic contribution is banded by recyclability, ~€51–922/t (2025, unverified); glass ~€40/t."
+  },
+  "extraTaxes": [],
+  "notes": "Material consortia under CONAI: COREPLA (plastic), COMIECO (paper), RICREA (steel), CIAL (aluminium), COREVE (glass), RILEGNO (wood).",
+  "sources": [
+    {
+      "url": "https://www.conai.org",
+      "title": "CONAI — Consorzio Nazionale Imballaggi",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

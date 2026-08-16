@@ -1,0 +1,26 @@
+name: Validate country data
+
+on:
+  pull_request:
+    paths:
+      - "data/**"
+      - "scripts/validate-data.mjs"
+      - ".github/workflows/validate-data.yml"
+  push:
+    branches: [main]
+    paths:
+      - "data/**"
+      - "scripts/validate-data.mjs"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install validator deps
+        run: npm install --no-save --no-package-lock ajv ajv-formats
+      - name: Validate data against schema + project rules
+        run: node scripts/validate-data.mjs

@@ -1,0 +1,67 @@
+{
+  "code": "ES",
+  "name": {
+    "lv": "Spānija",
+    "en": "Spain",
+    "native": "España"
+  },
+  "register": {
+    "exists": true,
+    "name": "RPP (Registro de Productores de Producto) — packaging section",
+    "url": "https://www.miteco.gob.es",
+    "operator": "MITECO",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Registration in the RPP packaging section is what Amazon checks for ES (live since 2026-08 seller demands)."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Ecoembes",
+        "url": "https://www.ecoembes.com"
+      },
+      {
+        "name": "Procircular",
+        "url": "https://www.procircular.es"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [
+    {
+      "name": "Impuesto especial sobre los envases de plástico no reutilizables",
+      "summary": "Separate plastic excise (Law 7/2022, since 01.01.2023) on non-recycled plastic in non-reusable packaging, empty or filled. Applies to manufacture, import AND intra-EU acquisition; de-minimis ≤5 kg non-recycled plastic/month; special registry + Model 592 returns. OPEN QUESTION: exact applicability to a LV e-shop shipping B2C to Spain — verify with AEAT guidance before the ES calculator module claims anything.",
+      "rate": "€0.45/kg non-recycled plastic",
+      "collectedBy": "Agencia Tributaria (AEAT) — not the EPR scheme",
+      "url": "https://sede.agenciatributaria.gob.es"
+    }
+  ],
+  "notes": "Indicative Ecoembes paper rate 0.105–0.115 €/kg (compliancegate, 2025) — unverified. ECOTIC ENVASES is a third scheme option.",
+  "sources": [
+    {
+      "url": "https://www.miteco.gob.es",
+      "title": "MITECO — Registro de Productores de Producto",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

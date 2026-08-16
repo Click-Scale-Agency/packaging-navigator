@@ -1,0 +1,64 @@
+{
+  "code": "LV",
+  "name": {
+    "lv": "Latvija",
+    "en": "Latvia",
+    "native": "Latvija"
+  },
+  "register": {
+    "exists": false,
+    "notes": "No separate packaging register yet — Elektroregistrs covers WEEE/batteries only. The PPWR-mandated producer register is to be created by 12.02.2027 (KEM: registers within 24 months). Packaging compliance runs through the DRN system + contracts with licensed waste managers."
+  },
+  "pro": {
+    "membershipRequired": false,
+    "schemes": [
+      {
+        "name": "Latvijas Zaļais punkts",
+        "url": "https://www.zalais.lv"
+      },
+      {
+        "name": "Zaļā josta",
+        "url": "https://www.zalajosta.lv"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [
+    {
+      "name": "Dabas resursu nodoklis (DRN)",
+      "summary": "Natural resources tax on packaging placed on the Latvian market. A contract with a licensed recovery scheme (e.g. LZP, Zaļā josta) exempts from paying DRN at the full statutory rate — that exemption is why scheme membership is the standard route.",
+      "collectedBy": "VID (State Revenue Service)",
+      "url": "https://www.vid.gov.lv"
+    }
+  ],
+  "thresholds": {
+    "deMinimis": "0 kg — DRN liability starts with the first packaging placed on the market"
+  },
+  "notes": "membershipRequired false = the legal alternative is paying full DRN. Open question (research-log §8.7): current DRN rates vs scheme service fees; what changes when the PPWR register arrives.",
+  "sources": [
+    {
+      "url": "https://www.vvd.gov.lv",
+      "title": "VVD — State Environmental Service (current register landscape)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

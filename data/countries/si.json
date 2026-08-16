@@ -1,0 +1,52 @@
+{
+  "code": "SI",
+  "name": {
+    "lv": "Slovēnija",
+    "en": "Slovenia",
+    "native": "Slovenija"
+  },
+  "register": {
+    "exists": true,
+    "name": "Evidenca proizvajalcev — embalaža (ARSO)",
+    "url": "https://www.gov.si",
+    "operator": "ARSO (Slovenian Environment Agency)",
+    "arRequiredForForeignSellers": true,
+    "registrationCostEur": null,
+    "notes": "⚠ Exact evidenca page URL unverified (lives under gov.si). Foreign B2C distance sellers register via a local authorised representative; domestic producers are typically submitted by their PRO. Annual report to ARSO by 31 March."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Slopak",
+        "url": "https://www.slopak.si"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "thresholds": {
+    "deMinimis": "0 kg — no de-minimis threshold"
+  },
+  "notes": "Multiple packaging schemes exist (Slopak, Dinos, Interzero…) — confirm current licensed list. Scheme URL unverified.",
+  "sources": [
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

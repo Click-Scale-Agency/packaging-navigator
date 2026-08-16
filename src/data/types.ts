@@ -1,9 +1,10 @@
 /**
- * Shape of the country data files in src/data/countries/*.json.
+ * UI-facing types for country data.
  *
- * These JSON files mirror the canonical GitHub repository
- * Click-Scale-Agency/eu-packaging-hub and are OVERWRITTEN by repo syncs.
- * Never hardcode country facts in components — read them from here only.
+ * The canonical data lives in /data/countries/{cc}.json at the repo root
+ * (JSON-Schema-validated by CI) and is mapped into these types by ./index.ts.
+ * Never hardcode country facts in components — read them from here only,
+ * and never edit /data by hand inside Lovable.
  */
 
 export type MaterialKey =
@@ -73,4 +74,6 @@ export interface CountryData {
   verified: boolean;
   /** ISO date */
   lastReviewed: string | null;
+  /** Country-level caveats from the canonical data (not yet rendered everywhere). */
+  notes?: string | null;
 }

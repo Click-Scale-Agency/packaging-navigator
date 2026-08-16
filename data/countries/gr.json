@@ -1,0 +1,55 @@
+{
+  "code": "GR",
+  "name": {
+    "lv": "Grieķija",
+    "en": "Greece",
+    "native": "Ελλάδα"
+  },
+  "register": {
+    "exists": true,
+    "name": "EMPA (National Producer Register)",
+    "url": "https://www.eoan.gr",
+    "operator": "EOAN (Hellenic Recycling Agency)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": ""
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "HERRCO (Hellenic Recovery Recycling Corporation)",
+        "url": "https://www.herrco.gr"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "Scheme name/URL from general knowledge — unverified, confirm in verification batch.",
+  "sources": [
+    {
+      "url": "https://www.eoan.gr",
+      "title": "EOAN — Hellenic Recycling Agency",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

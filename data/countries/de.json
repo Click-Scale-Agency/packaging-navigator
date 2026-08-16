@@ -1,0 +1,75 @@
+{
+  "code": "DE",
+  "name": {
+    "lv": "Vācija",
+    "en": "Germany",
+    "native": "Deutschland"
+  },
+  "register": {
+    "exists": true,
+    "name": "LUCID Verpackungsregister",
+    "url": "https://lucid.verpackungsregister.org",
+    "operator": "Stiftung Zentrale Stelle Verpackungsregister (ZSVR)",
+    "numberFormat": "DE + 13 digits",
+    "numberOnInvoices": false,
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": 0,
+    "notes": "Registration is free and done directly in LUCID (no local establishment required historically under VerpackG). VerpackDG (national PPWR adaptation act) in force 12.08.2026 — re-verify whether an authorised representative becomes mandatory for foreign distance sellers. LUCID number is issued ~24h after registration and must be entered in Amazon/eBay seller accounts."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Lizenzero (Interzero)",
+        "url": "https://www.lizenzero.de",
+        "tariffUrl": "https://www.lizenzero.de/preise/"
+      },
+      {
+        "name": "Der Grüne Punkt (DSD)",
+        "url": "https://www.gruener-punkt.de"
+      },
+      {
+        "name": "Landbell",
+        "url": "https://www.landbell.de"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": "VerpackG §21 requires dual systems to set incentives for recyclability and recycled content; concrete bonus/malus differs per system."
+  },
+  "extraTaxes": [],
+  "thresholds": {
+    "deMinimis": "0 kg — first unit placed on the German market triggers registration and system participation"
+  },
+  "notes": "Dual-system (PRO) contract is MANDATORY before the first supply of household packaging; LUCID registration alone is not compliance. Rate data intentionally null: public sources conflict (€0.6–1.0/kg vs €1.6–2.1/kg for plastic) — resolve against a real dual-system price list (e.g. Lizenzero public calculator) before publishing rates.",
+  "sources": [
+    {
+      "url": "https://lucid.verpackungsregister.org",
+      "title": "LUCID — Verpackungsregister (ZSVR), official register portal",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.verpackungsregister.org",
+      "title": "Stiftung Zentrale Stelle Verpackungsregister — operator site",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (register name/coverage cross-check)",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

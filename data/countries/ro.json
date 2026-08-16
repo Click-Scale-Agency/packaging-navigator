@@ -1,0 +1,63 @@
+{
+  "code": "RO",
+  "name": {
+    "lv": "Rumānija",
+    "en": "Romania",
+    "native": "România"
+  },
+  "register": {
+    "exists": true,
+    "name": "AFM producer records (Environmental Fund)",
+    "url": "https://www.afm.ro",
+    "operator": "AFM (Administrația Fondului pentru Mediu)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Fund-and-declaration model: producers declare quantities to AFM."
+  },
+  "pro": {
+    "membershipRequired": false,
+    "schemes": [
+      {
+        "name": "OIREP options (e.g. FEPRA, GreenPoint) — licensed transfer-of-responsibility organisations",
+        "url": "https://www.afm.ro"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [
+    {
+      "name": "Environmental Fund contribution",
+      "summary": "Penalty contribution of 2 RON/kg for the shortfall when recycling targets are not met (directly or via an OIREP).",
+      "rate": "2 RON/kg unmet target",
+      "collectedBy": "AFM",
+      "url": "https://www.afm.ro"
+    }
+  ],
+  "notes": "membershipRequired false = targets can be met via a licensed OIREP or by paying the AFM contribution for the shortfall. OIREP examples unverified — confirm licensed list.",
+  "sources": [
+    {
+      "url": "https://www.afm.ro",
+      "title": "AFM — Environmental Fund Administration",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

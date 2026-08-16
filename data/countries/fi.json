@@ -1,0 +1,65 @@
+{
+  "code": "FI",
+  "name": {
+    "lv": "Somija",
+    "en": "Finland",
+    "native": "Suomi"
+  },
+  "register": {
+    "exists": true,
+    "name": "Tuottajarekisteri (single register, 8 streams)",
+    "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",
+    "operator": "Lupa- ja valvontavirasto (LVV, Finnish Supervisory Agency)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "From 01.01.2026 held by the new Finnish Supervisory Agency (LVV), which took over from the Pirkanmaa ELY Centre. URL above is LVV's EPR information page — locate the exact register/e-service entry point in the verification batch."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Suomen Pakkauskierrätys RINKI",
+        "url": "https://rinkiin.fi"
+      },
+      {
+        "name": "Suomen Pakkaustuottajat (Finnish Packaging Producers)",
+        "url": "https://suomenpakkaustuottajat.fi"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "",
+  "sources": [
+    {
+      "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",
+      "title": "LVV — information on extended producer responsibility",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://rinkiin.fi/en/producer-responsibility/whats-producer-responsibility/",
+      "title": "Rinki — producer responsibility overview",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

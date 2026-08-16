@@ -1,0 +1,105 @@
+{
+  "disclaimer": {
+    "lv": "EPR pienākumus nosaka iepakojuma FUNKCIJA (PPWR 2. un 3. pants, I pielikums), nevis CN/HS kodi. Kodi vajadzīgi tikai tukša iepakojuma importam/klasifikācijai, Spānijas plastmasas nodoklim un datu strukturēšanai.",
+    "en": "EPR obligations are triggered by packaging FUNCTION (PPWR Art. 2, Art. 3, Annex I), not by CN/HS codes. Codes matter only for importing/classifying empty packaging, the Spanish plastic tax, and data structuring."
+  },
+  "verifiedAgainstTaric": false,
+  "headings": [
+    {
+      "material": "plastic",
+      "heading": "3923",
+      "label": { "lv": "Plastmasas iepakojuma izstrādājumi", "en": "Plastic packaging articles" },
+      "subheadings": [
+        { "code": "3923.10", "note": "boxes, cases, crates" },
+        { "code": "3923.21", "note": "sacks and bags, polymers of ethylene" },
+        { "code": "3923.29", "note": "sacks and bags, other plastics" },
+        { "code": "3923.30", "note": "bottles, flasks, carboys" },
+        { "code": "3923.50", "note": "stoppers, lids, caps, closures" },
+        { "code": "3923.90", "note": "other" }
+      ]
+    },
+    {
+      "material": "plastic",
+      "heading": "3919",
+      "label": { "lv": "Pašlīmējošās plastmasas plēves", "en": "Self-adhesive plastic films" },
+      "subheadings": []
+    },
+    {
+      "material": "plastic",
+      "heading": "3920",
+      "label": { "lv": "Plastmasas plēves (bez pašlīmējuma, neporainas)", "en": "Plastic films, non-adhesive, non-cellular" },
+      "subheadings": []
+    },
+    {
+      "material": "plastic",
+      "heading": "3921",
+      "label": { "lv": "Citas plastmasas plēves (t.sk. burbuļplēve)", "en": "Other plastic films incl. bubble wrap (cellular)" },
+      "subheadings": []
+    },
+    {
+      "material": "paper",
+      "heading": "4819",
+      "label": { "lv": "Papīra/kartona kastes", "en": "Paper/board boxes" },
+      "subheadings": [
+        { "code": "4819.10", "note": "corrugated cartons" },
+        { "code": "4819.20", "note": "folding cartons, non-corrugated" }
+      ]
+    },
+    {
+      "material": "paper",
+      "heading": "4821",
+      "label": { "lv": "Papīra etiķetes", "en": "Paper labels" },
+      "subheadings": [
+        { "code": "4821.10", "note": "printed" }
+      ]
+    },
+    {
+      "material": "glass",
+      "heading": "7010",
+      "label": { "lv": "Stikla tara", "en": "Glass containers" },
+      "subheadings": [
+        { "code": "7010.90", "note": "bottles, jars" }
+      ]
+    },
+    {
+      "material": "metal",
+      "heading": "7310",
+      "label": { "lv": "Tērauda/skārda kannas un bundžas", "en": "Steel/tin cans and containers" },
+      "subheadings": [
+        { "code": "7310.10", "note": "food/beverage cans ≥50 l excluded; see TARIC splits" }
+      ]
+    },
+    {
+      "material": "metal",
+      "heading": "7612",
+      "label": { "lv": "Alumīnija tara", "en": "Aluminium containers" },
+      "subheadings": [
+        { "code": "7612.90", "note": "other than collapsible tubes" }
+      ]
+    },
+    {
+      "material": "wood",
+      "heading": "4415",
+      "label": { "lv": "Koka kastes, paletes, mucas", "en": "Wooden cases, pallets, drums" },
+      "subheadings": []
+    },
+    {
+      "material": "textile",
+      "heading": "6305",
+      "label": { "lv": "Tekstila maisi", "en": "Textile sacks and bags" },
+      "subheadings": [
+        { "code": "5608.90", "note": "plant-fibre bags/nets fall here" }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.tariffnumber.com/2026/3923",
+      "title": "CN heading 3923 overview",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "notes": "⚠ Exact CN 8-digit splits must be verified against TARIC before this file is surfaced in the UI (research-log §3).",
+  "lastReviewed": "2026-08-16"
+}

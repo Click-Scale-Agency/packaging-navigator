@@ -1,0 +1,50 @@
+{
+  "code": "IE",
+  "name": {
+    "lv": "Īrija",
+    "en": "Ireland",
+    "native": "Éire"
+  },
+  "register": {
+    "exists": false,
+    "notes": "No state packaging register — the PRL covers only WEEE/batteries/tyres (v1 error fixed). Packaging compliance = Repak membership (or self-compliance route via local authorities for large producers)."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Repak",
+        "url": "https://repak.ie"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "",
+  "sources": [
+    {
+      "url": "https://repak.ie",
+      "title": "Repak — Irish packaging compliance scheme",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

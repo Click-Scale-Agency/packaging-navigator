@@ -1,0 +1,56 @@
+{
+  "code": "MT",
+  "name": {
+    "lv": "Malta",
+    "en": "Malta",
+    "native": "Malta"
+  },
+  "register": {
+    "exists": true,
+    "name": "ERA producer register",
+    "url": "https://era.org.mt",
+    "operator": "Environment and Resources Authority (ERA)",
+    "numberOnInvoices": true,
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Registration number must appear on invoices; annual renewal by 31 March."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "GreenPak",
+        "url": "https://www.greenpak.com.mt"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "Scheme name/URL from general knowledge — unverified (Green MT is the other licensed scheme).",
+  "sources": [
+    {
+      "url": "https://era.org.mt",
+      "title": "ERA — Environment and Resources Authority",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

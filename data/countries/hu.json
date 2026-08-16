@@ -1,0 +1,56 @@
+{
+  "code": "HU",
+  "name": {
+    "lv": "Ungārija",
+    "en": "Hungary",
+    "native": "Magyarország"
+  },
+  "register": {
+    "exists": true,
+    "name": "OKIR / OKIRkapu",
+    "url": "https://okirkapu.hu",
+    "operator": "National environmental registry (reports feed the MOHU concession)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "⚠ Portal URL unverified. Dual registration in practice: OKIR (quarterly EPR filings) + MOHU service contract (producer ID, invoicing)."
+  },
+  "pro": {
+    "membershipRequired": "state-concession — MOHU is the single concession holder, service contract mandatory",
+    "schemes": [
+      {
+        "name": "MOHU (MOL Hulladékgazdálkodási)",
+        "url": "https://mohu.hu"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [
+    {
+      "name": "Környezetvédelmi termékdíj",
+      "summary": "Green product fee on defined product groups incl. packaging materials — separate from and partially offset against EPR fees.",
+      "collectedBy": "NAV (National Tax and Customs Administration)",
+      "url": "https://nav.gov.hu"
+    }
+  ],
+  "notes": "EPR fees invoiced quarterly by MOHU based on OKIR filings; one-off enrolment fee for the MOHU producer ID.",
+  "sources": [
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

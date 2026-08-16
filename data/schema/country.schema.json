@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Click-Scale-Agency/packaging-navigator/data/schema/country.schema.json",
+  "title": "EU Packaging Hub — Country EPR data",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "name", "register", "pro", "sources", "verified", "lastReviewed"],
+  "properties": {
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2"
+    },
+    "name": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["lv", "en"],
+      "properties": {
+        "lv": { "type": "string" },
+        "en": { "type": "string" },
+        "native": { "type": "string" }
+      }
+    },
+    "register": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exists"],
+      "properties": {
+        "exists": {
+          "type": "boolean",
+          "description": "Does a dedicated national PACKAGING producer register exist? (LV: false as of 2026; IE: false — Repak membership instead)"
+        },
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "operator": { "type": "string", "description": "Authority/body running the register" },
+        "numberFormat": { "type": "string", "description": "e.g. 'DE + 13 digits'" },
+        "numberOnInvoices": { "type": "boolean" },
+        "arRequiredForForeignSellers": {
+          "type": ["boolean", "null"],
+          "description": "Authorised representative required for sellers without local establishment; null = unverified"
+        },
+        "registrationCostEur": { "type": ["number", "null"] },
+        "notes": { "type": "string" }
+      },
+      "if": { "properties": { "exists": { "const": true } } },
+      "then": { "required": ["exists", "name", "url"] }
+    },
+    "pro": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["membershipRequired", "schemes"],
+      "properties": {
+        "membershipRequired": {
+          "type": ["boolean", "string"],
+          "description": "true / false / 'state-run' (e.g. HR pays Fund directly)"
+        },
+        "schemes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name", "url"],
+            "properties": {
+              "name": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "tariffUrl": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "rates": {
+          "type": "object",
+          "description": "Indicative household-packaging rates in EUR per kg. null = no reliable data.",
+          "additionalProperties": false,
+          "properties": {
+            "paper": { "type": ["number", "null"], "minimum": 0 },
+            "plastic": { "type": ["number", "null"], "minimum": 0 },
+            "glass": { "type": ["number", "null"], "minimum": 0 },
+            "metal": { "type": ["number", "null"], "minimum": 0 },
+            "wood": { "type": ["number", "null"], "minimum": 0 },
+            "composite": { "type": ["number", "null"], "minimum": 0 }
+          }
+        },
+        "tariffYear": { "type": ["integer", "null"], "minimum": 2024, "maximum": 2035 },
+        "minAnnualFeeEur": { "type": ["number", "null"], "minimum": 0 },
+        "ecoModulation": { "type": "string", "description": "Short note on bonus/malus system if notable" }
+      }
+    },
+    "extraTaxes": {
+      "type": "array",
+      "description": "Separate national taxes outside the EPR scheme (ES plastic excise, HU termékdíj, EE pakendiaktsiis...)",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "summary"],
+        "properties": {
+          "name": { "type": "string" },
+          "summary": { "type": "string" },
+          "rate": { "type": "string", "description": "Human-readable, e.g. '€0.45/kg non-recycled plastic'" },
+          "collectedBy": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "deMinimis": { "type": "string", "description": "e.g. '0 kg — first unit triggers duty' or 'full obligations from 50,000 kg/yr'" }
+      }
+    },
+    "notes": { "type": "string" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["url", "checkedAt"],
+        "properties": {
+          "url": { "type": "string", "format": "uri" },
+          "title": { "type": "string" },
+          "checkedAt": { "type": "string", "format": "date" },
+          "official": { "type": "boolean", "description": "true = government/register/PRO primary source" }
+        }
+      }
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "true only when register URL fetched AND rates come from an official tariff source. CI must reject verified:true without at least one sources[].official === true."
+    },
+    "lastReviewed": { "type": "string", "format": "date" }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "code": "CY",
+  "name": {
+    "lv": "Kipra",
+    "en": "Cyprus",
+    "native": "Κύπρος"
+  },
+  "register": {
+    "exists": true,
+    "name": "Producer registers of the Department of Environment",
+    "url": "https://www.moa.gov.cy",
+    "operator": "Department of Environment (MARDE)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "⚠ Exact register page URL unverified. No single register brand — producers register with the Department and comply via a licensed collective system."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Green Dot Cyprus",
+        "url": "https://greendot.com.cy"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "thresholds": {
+    "deMinimis": "2 t/year reported by repax.io — verify against the Packaging Law before relying on it"
+  },
+  "notes": "Green Dot Cyprus is the only licensed packaging PRO. Annual reporting mandatory.",
+  "sources": [
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

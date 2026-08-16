@@ -1,0 +1,55 @@
+{
+  "code": "CZ",
+  "name": {
+    "lv": "Čehija",
+    "en": "Czechia",
+    "native": "Česko"
+  },
+  "register": {
+    "exists": true,
+    "name": "Seznam osob (packaging) / VISOH2",
+    "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
+    "operator": "Ministry of the Environment (MŽP)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Registration fee 800 CZK (~€32). Application due within 60 days of the obligation arising. A joint-performance contract with the authorised packaging company (EKO-KOM) exempts from individual listing."
+  },
+  "pro": {
+    "membershipRequired": "de-facto — EKO-KOM contract is the standard route and exempts from individual listing",
+    "schemes": [
+      {
+        "name": "EKO-KOM",
+        "url": "https://www.ekokom.cz"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "Packaging Act č. 477/2001 Sb.",
+  "sources": [
+    {
+      "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
+      "title": "MŽP — Obaly (packaging agenda, Seznam osob)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

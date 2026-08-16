@@ -1,0 +1,66 @@
+{
+  "code": "EE",
+  "name": {
+    "lv": "Igaunija",
+    "en": "Estonia",
+    "native": "Eesti"
+  },
+  "register": {
+    "exists": true,
+    "name": "PAKIS (packaging register, separate from PROTO)",
+    "url": "https://pakis.envir.ee",
+    "operator": "Ministry of Climate / Environment Agency",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": ""
+  },
+  "pro": {
+    "membershipRequired": false,
+    "schemes": [
+      {
+        "name": "ETO (Eesti Taaskasutusorganisatsioon)",
+        "url": "https://www.eto.ee"
+      },
+      {
+        "name": "TVO (Tootjavastutusorganisatsioon)",
+        "url": "https://www.tvo.ee"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [
+    {
+      "name": "Pakendiaktsiis",
+      "summary": "Packaging excise duty — payable when recovery targets are not met via a recovery organisation; joining a PRO in practice exempts from the excise.",
+      "collectedBy": "EMTA (Estonian Tax and Customs Board)",
+      "url": "https://www.emta.ee"
+    }
+  ],
+  "notes": "membershipRequired false = excise alternative exists, but PRO membership is the economically sane route. Indicative aluminium fee ~€145/t (netzerocompare, 2025) — unverified. Scheme URLs unverified.",
+  "sources": [
+    {
+      "url": "https://pakis.envir.ee",
+      "title": "PAKIS — Estonian packaging register",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

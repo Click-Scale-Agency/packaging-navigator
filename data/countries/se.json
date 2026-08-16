@@ -1,0 +1,55 @@
+{
+  "code": "SE",
+  "name": {
+    "lv": "Zviedrija",
+    "en": "Sweden",
+    "native": "Sverige"
+  },
+  "register": {
+    "exists": true,
+    "name": "Producentansvarsregistret",
+    "url": "https://www.naturvardsverket.se",
+    "operator": "Naturvårdsverket (Swedish EPA)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Registration via the Naturvårdsverket e-service."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "NPA (Näringslivets Producentansvar)",
+        "url": "https://npa.se"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "High fees — indicative aluminium ~€1,090/t (netzerocompare, 2025), unverified. Scheme URL unverified.",
+  "sources": [
+    {
+      "url": "https://www.naturvardsverket.se",
+      "title": "Naturvårdsverket — producer responsibility register",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

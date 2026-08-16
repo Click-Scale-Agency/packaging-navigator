@@ -1,0 +1,57 @@
+{
+  "code": "PL",
+  "name": {
+    "lv": "Polija",
+    "en": "Poland",
+    "native": "Polska"
+  },
+  "register": {
+    "exists": true,
+    "name": "Rejestr-BDO",
+    "url": "https://bdo.mos.gov.pl",
+    "operator": "Ministry of Climate and Environment / marshal offices",
+    "numberFormat": "9-digit BDO number",
+    "numberOnInvoices": true,
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "BDO number must be obtained before trading and shown on invoices and waste documents."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Rekopol Organizacja Odzysku Opakowań",
+        "url": "https://www.rekopol.pl"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "Multiple competing organizacje odzysku exist; Rekopol listed as the largest (URL unverified). Polish packaging EPR reform (ROP) in progress — re-check scheme landscape.",
+  "sources": [
+    {
+      "url": "https://bdo.mos.gov.pl",
+      "title": "Rejestr-BDO — Polish waste database register",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

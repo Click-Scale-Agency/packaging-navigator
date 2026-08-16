@@ -1,0 +1,58 @@
+{
+  "code": "PT",
+  "name": {
+    "lv": "Portugāle",
+    "en": "Portugal",
+    "native": "Portugal"
+  },
+  "register": {
+    "exists": true,
+    "name": "SILiAmb",
+    "url": "https://siliamb.apambiente.pt",
+    "operator": "APA (Agência Portuguesa do Ambiente)",
+    "arRequiredForForeignSellers": true,
+    "registrationCostEur": null,
+    "notes": "Per-stream enrolment; registration number issued on certificate; annual declarations (correção for previous year + estimativa for current) due by 31 March. Producers without a Portuguese establishment, distance sellers included, must appoint a Portugal-established representative by written mandate."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Sociedade Ponto Verde (SPV)",
+        "url": "https://www.pontoverde.pt"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "thresholds": {
+    "deMinimis": "0 kg — no volume or turnover thresholds"
+  },
+  "notes": "Other licensed schemes exist (e.g. Novo Verde, Electrão for other streams) — confirm packaging scheme list in verification batch.",
+  "sources": [
+    {
+      "url": "https://siliamb.apambiente.pt",
+      "title": "SILiAmb — APA producer platform",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

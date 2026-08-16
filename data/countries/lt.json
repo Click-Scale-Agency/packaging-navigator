@@ -1,0 +1,58 @@
+{
+  "code": "LT",
+  "name": {
+    "lv": "Lietuva",
+    "en": "Lithuania",
+    "native": "Lietuva"
+  },
+  "register": {
+    "exists": true,
+    "name": "GPAIS (unified product/packaging register, 8 streams)",
+    "url": "https://www.gpais.eu",
+    "operator": "Environmental Protection Agency (AAA)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Registration and reporting in GPAIS are mandatory even at very small volumes."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Žaliasis taškas (Green Dot Lithuania)",
+        "url": "https://www.zaliasistaskas.lt"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "thresholds": {
+    "deMinimis": "0 kg — obligations from the first unit"
+  },
+  "notes": "Scheme URL unverified.",
+  "sources": [
+    {
+      "url": "https://www.gpais.eu",
+      "title": "GPAIS — Lithuanian unified producer register",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

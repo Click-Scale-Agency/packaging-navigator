@@ -1,0 +1,55 @@
+{
+  "code": "DK",
+  "name": {
+    "lv": "Dānija",
+    "en": "Denmark",
+    "native": "Danmark"
+  },
+  "register": {
+    "exists": true,
+    "name": "DPA producer register (all streams)",
+    "url": "https://www.producentansvar.dk",
+    "operator": "Dansk Producentansvar (DPA)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Single register for all EPR streams; registration performed via virk.dk."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "VANA (collective packaging scheme)",
+        "url": "https://vana.dk"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "Danish packaging EPR is new (phased in 2025) — verify current scheme landscape (VANA, Emballageretur, others) and tariffs. Scheme URL unverified.",
+  "sources": [
+    {
+      "url": "https://www.producentansvar.dk",
+      "title": "Dansk Producentansvar (DPA)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

@@ -1,0 +1,70 @@
+{
+  "regulation": {
+    "id": "PPWR",
+    "celex": "32025R0040",
+    "title": {
+      "lv": "Regula (ES) 2025/40 par iepakojumu un izlietoto iepakojumu (PPWR)",
+      "en": "Regulation (EU) 2025/40 on packaging and packaging waste (PPWR)"
+    },
+    "replaces": "Directive 94/62/EC",
+    "publishedOj": "2025-01-22",
+    "inForce": "2025-02-11",
+    "applies": "2026-08-12",
+    "directlyApplicable": true,
+    "links": {
+      "eurLex": "https://eur-lex.europa.eu/eli/reg/2025/40/oj"
+    }
+  },
+  "timeline": [
+    {
+      "date": "2025-02-11",
+      "title": { "lv": "Regula stājas spēkā", "en": "Regulation enters into force" },
+      "summary": {
+        "lv": "PPWR stājas spēkā 20 dienas pēc publicēšanas Oficiālajā Vēstnesī.",
+        "en": "PPWR enters into force 20 days after publication in the Official Journal."
+      }
+    },
+    {
+      "date": "2026-08-12",
+      "title": { "lv": "Regulu sāk piemērot", "en": "Regulation applies" },
+      "summary": {
+        "lv": "EPR reģistrācija katrā dalībvalstī, atbilstības deklarācija, pilnvarotais pārstāvis, 40% tukšās telpas ierobežojums e-komercijā, PFAS limiti pārtikas iepakojumam.",
+        "en": "EPR registration in every member state, declaration of conformity, authorised representative, 40% empty-space cap for e-commerce, PFAS limits for food-contact packaging."
+      }
+    },
+    {
+      "date": "2027-02-12",
+      "title": { "lv": "Nacionālie reģistri un sodi", "en": "National registers and penalties" },
+      "summary": {
+        "lv": "Dalībvalstīm jāizveido ražotāju reģistri un jānosaka sodu režīmi.",
+        "en": "Member states must have producer registers set up and penalty regimes defined."
+      }
+    },
+    {
+      "date": "2028-08-12",
+      "title": { "lv": "Harmonizētais marķējums", "en": "Harmonised labelling" },
+      "summary": {
+        "lv": "Vienots ES iepakojuma marķējums šķirošanai.",
+        "en": "Harmonised EU packaging labelling for sorting."
+      }
+    },
+    {
+      "date": "2030-01-01",
+      "title": { "lv": "Pārstrādājamības klases un mērķi", "en": "Recyclability grades and targets" },
+      "summary": {
+        "lv": "Pārstrādājamības klases (A/B/C), obligātais pārstrādātā materiāla saturs, atkārtotas izmantošanas mērķi, 40% tukšās telpas aprēķina piemērošana.",
+        "en": "Recyclability grades (A/B/C), recycled-content minimums, reuse targets, 40% empty-space calculation applies."
+      }
+    }
+  ],
+  "notes": "Environmental Omnibus (COM(2025) 982) relief for micro/small enterprises and the AR suspension were NOT in force as of 2026-08-16 — assume obligations apply. EC guidance (Mar 2026) + FAQ (updated Aug 2026) official links still to be located (see docs/research-log.md §8).",
+  "sources": [
+    {
+      "url": "https://eur-lex.europa.eu/eli/reg/2025/40/oj",
+      "title": "Regulation (EU) 2025/40 — EUR-Lex",
+      "checkedAt": "2026-08-16",
+      "official": true
+    }
+  ],
+  "lastReviewed": "2026-08-16"
+}

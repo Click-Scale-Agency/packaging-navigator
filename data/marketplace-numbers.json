@@ -1,0 +1,50 @@
+{
+  "disclaimer": {
+    "lv": "Marketplace prasības mainās — pirms paļaušanās pārbaudiet Amazon/eBay/Etsy oficiālo dokumentāciju. Formāti šeit ir apkopoti no publiskiem avotiem un vēl NAV pārbaudīti pret marketplace dokumentiem.",
+    "en": "Marketplace requirements change — verify against official Amazon/eBay/Etsy seller documentation before relying on this. Formats below are compiled from public sources and NOT yet verified against marketplace docs."
+  },
+  "verified": false,
+  "formats": [
+    {
+      "country": "DE",
+      "register": "LUCID",
+      "numberFormat": "DE + 13 digits",
+      "issuedBy": "ZSVR, ~24h after registration",
+      "whereRequired": "Amazon and eBay seller accounts (Amazon enforcement live since 2026-08)",
+      "notes": "Dual-system contract must also exist — the LUCID number alone is not compliance."
+    },
+    {
+      "country": "FR",
+      "register": "SYDEREP",
+      "numberFormat": "IDU/UIN — unique identifier per EPR scheme",
+      "issuedBy": "ADEME via the producer's PRO (CITEO, Léko)",
+      "whereRequired": "Must be displayed on marketplaces / general terms of sale",
+      "notes": "One IDU per scheme joined, not one per company."
+    },
+    {
+      "country": "PL",
+      "register": "Rejestr-BDO",
+      "numberFormat": "9-digit BDO number",
+      "issuedBy": "Marshal office via BDO system",
+      "whereRequired": "Invoices and waste documents; required before trading",
+      "notes": ""
+    },
+    {
+      "country": "ES",
+      "register": "RPP (MITECO)",
+      "numberFormat": "RPP registration number (format to confirm)",
+      "issuedBy": "MITECO",
+      "whereRequired": "Amazon ES seller verification (enforcement live since 2026-08)",
+      "notes": "Format not yet confirmed — LSM 12.08.2026 reports Amazon demanding ES registration proof."
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://www.zmart.de/en/blog/the-epr-number-in-eu-countries",
+      "title": "EPR numbers in EU countries (zmart.de overview)",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "lastReviewed": "2026-08-16"
+}

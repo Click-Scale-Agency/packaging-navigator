@@ -1,43 +1,142 @@
-import type { CountryData } from "./types";
+/**
+ * Adapter between the CANONICAL data layer and the UI types.
+ *
+ * Canonical source of truth: /data/countries/{cc}.json at the repo root
+ * (validated against /data/schema/country.schema.json by CI). Those files
+ * are edited by data-collection sessions and must NEVER be duplicated into
+ * src/. This module maps the canonical shape into the UI-facing types in
+ * ./types — if the UI needs a new field, extend the mapping here instead of
+ * changing the canonical schema.
+ */
+import type {
+  CountryData,
+  ExtraTax,
+  MaterialKey,
+  ProScheme,
+  RegisterLayer,
+  SourceRef,
+} from "./types";
+import { MATERIALS } from "./types";
+import regulation from "../../data/regulation.json";
 
-import AT from "./countries/AT.json";
-import BE from "./countries/BE.json";
-import BG from "./countries/BG.json";
-import HR from "./countries/HR.json";
-import CY from "./countries/CY.json";
-import CZ from "./countries/CZ.json";
-import DK from "./countries/DK.json";
-import EE from "./countries/EE.json";
-import FI from "./countries/FI.json";
-import FR from "./countries/FR.json";
-import DE from "./countries/DE.json";
-import GR from "./countries/GR.json";
-import HU from "./countries/HU.json";
-import IE from "./countries/IE.json";
-import IT from "./countries/IT.json";
-import LV from "./countries/LV.json";
-import LT from "./countries/LT.json";
-import LU from "./countries/LU.json";
-import MT from "./countries/MT.json";
-import NL from "./countries/NL.json";
-import PL from "./countries/PL.json";
-import PT from "./countries/PT.json";
-import RO from "./countries/RO.json";
-import SK from "./countries/SK.json";
-import SI from "./countries/SI.json";
-import ES from "./countries/ES.json";
-import SE from "./countries/SE.json";
+/* ---- canonical shapes (subset we consume; see /data/schema) ---- */
 
-import timelineJson from "./timeline.json";
+interface CanonicalCountry {
+  code: string;
+  name: { lv: string; en: string; native?: string };
+  register: {
+    exists: boolean;
+    name?: string;
+    url?: string;
+    numberFormat?: string;
+    notes?: string;
+  };
+  pro: {
+    membershipRequired: boolean | string;
+    schemes: { name: string; url: string; tariffUrl?: string }[];
+    rates?: Partial<Record<MaterialKey, number | null>>;
+    tariffYear?: number | null;
+    ecoModulation?: string;
+  };
+  extraTaxes?: {
+    name: string;
+    summary: string;
+    rate?: string;
+    collectedBy?: string;
+    url?: string;
+  }[];
+  notes?: string;
+  sources: { url: string; title?: string; checkedAt: string }[];
+  verified: boolean;
+  lastReviewed: string;
+}
 
-export const countries = [
-  AT, BE, BG, HR, CY, CZ, DK, EE, FI, FR, DE, GR, HU, IE, IT, LV, LT, LU,
-  MT, NL, PL, PT, RO, SK, SI, ES, SE,
-].map((c) => c as unknown as CountryData)
+const canonical = import.meta.glob("/data/countries/*.json", {
+  eager: true,
+  import: "default",
+}) as Record<string, CanonicalCountry>;
+
+/* ---- mapping ---- */
+
+const emptyRates = (): Record<MaterialKey, number | null> =>
+  Object.fromEntries(MATERIALS.map((m) => [m, null])) as Record<
+    MaterialKey,
+    number | null
+  >;
+
+function mapRegister(c: CanonicalCountry): RegisterLayer {
+  return {
+    exists: c.register.exists,
+    name: c.register.name ?? null,
+    url: c.register.url ?? null,
+    numberFormat: c.register.numberFormat ?? null,
+    note: c.register.notes ?? null,
+  };
+}
+
+function mapPro(c: CanonicalCountry): ProScheme[] {
+  const rates = { ...emptyRates(), ...(c.pro.rates ?? {}) };
+  // Canonical membershipRequired may be a string ("state-run", "de-facto…");
+  // for the UI boolean, anything except an explicit false counts as required.
+  const membershipRequired = c.pro.membershipRequired !== false;
+  return c.pro.schemes.map((s) => ({
+    name: s.name,
+    url: s.url ?? null,
+    rates,
+    tariffYear: c.pro.tariffYear ?? null,
+    membershipRequired,
+    note:
+      typeof c.pro.membershipRequired === "string"
+        ? c.pro.membershipRequired
+        : null,
+  }));
+}
+
+function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
+  return (c.extraTaxes ?? []).map((t) => {
+    // Parse "€0.45/kg …" style rates; non-EUR rates (e.g. "2 RON/kg") stay null.
+    const eur = t.rate?.match(/€\s*(\d+(?:[.,]\d+)?)\s*\/\s*kg/);
+    const blob = `${t.name} ${t.summary} ${t.rate ?? ""}`.toLowerCase();
+    const material = MATERIALS.find((m) => blob.includes(m)) ?? null;
+    const noteParts = [t.summary];
+    if (t.rate) noteParts.push(t.rate);
+    if (t.collectedBy) noteParts.push(`Administrē: ${t.collectedBy}`);
+    return {
+      name: t.name,
+      ratePerKg: eur ? Number(eur[1].replace(",", ".")) : null,
+      material,
+      url: t.url ?? null,
+      note: noteParts.join(" — "),
+    };
+  });
+}
+
+function mapSources(c: CanonicalCountry): SourceRef[] {
+  return c.sources.map((s) => ({
+    url: s.url,
+    title: s.title ?? s.url,
+    checkedAt: s.checkedAt,
+  }));
+}
+
+export const countries: CountryData[] = Object.values(canonical)
+  .map((c) => ({
+    code: c.code,
+    name: c.name.lv,
+    register: mapRegister(c),
+    pro: mapPro(c),
+    extraTaxes: mapExtraTaxes(c),
+    sources: mapSources(c),
+    verified: c.verified,
+    lastReviewed: c.lastReviewed ?? null,
+    notes: c.notes ?? null,
+  }))
   .sort((a, b) => a.code.localeCompare(b.code));
 
 export const countryByCode = (code: string): CountryData | undefined =>
   countries.find((c) => c.code.toUpperCase() === code.toUpperCase());
+
+/* ---- timeline (from canonical /data/regulation.json) ---- */
 
 export interface TimelineEntry {
   date: string;
@@ -45,6 +144,14 @@ export interface TimelineEntry {
   detail: string;
 }
 
-export const timeline = timelineJson as TimelineEntry[];
+interface CanonicalTimelineEntry {
+  date: string;
+  title: { lv: string; en: string };
+  summary: { lv: string; en: string };
+}
+
+export const timeline: TimelineEntry[] = (
+  regulation.timeline as CanonicalTimelineEntry[]
+).map((t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }));
 
 export * from "./types";

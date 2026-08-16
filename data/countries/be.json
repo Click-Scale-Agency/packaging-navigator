@@ -1,0 +1,59 @@
+{
+  "code": "BE",
+  "name": {
+    "lv": "Beļģija",
+    "en": "Belgium",
+    "native": "België / Belgique"
+  },
+  "register": {
+    "exists": true,
+    "name": "IVC/CIE (Interregional Packaging Commission)",
+    "url": "https://www.ivcie.be",
+    "operator": "Interregional Packaging Commission (three regions jointly)",
+    "arRequiredForForeignSellers": null,
+    "registrationCostEur": null,
+    "notes": "Members of an accredited scheme declare via Fost Plus (household) / Valipac (industrial); non-members declare directly to the Commission."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Fost Plus (household packaging)",
+        "url": "https://www.fostplus.be"
+      },
+      {
+        "name": "Valipac (industrial packaging)",
+        "url": "https://www.valipac.be"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": "Fost Plus uses banded plastic tariffs (band 1 base ~€65/t, 2025, unverified)."
+  },
+  "extraTaxes": [],
+  "notes": "Indicative aluminium fee ~€48/t (netzerocompare, 2025) — unverified. Pull the current Fost Plus tariff PDF in the verification batch.",
+  "sources": [
+    {
+      "url": "https://www.ivcie.be",
+      "title": "IVC/CIE — Interregional Packaging Commission",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

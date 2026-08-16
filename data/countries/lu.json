@@ -1,0 +1,50 @@
+{
+  "code": "LU",
+  "name": {
+    "lv": "Luksemburga",
+    "en": "Luxembourg",
+    "native": "Lëtzebuerg"
+  },
+  "register": {
+    "exists": false,
+    "notes": "e-RA register covers only WEEE/batteries — packaging compliance runs through Valorlux membership in practice."
+  },
+  "pro": {
+    "membershipRequired": true,
+    "schemes": [
+      {
+        "name": "Valorlux",
+        "url": "https://www.valorlux.lu"
+      }
+    ],
+    "rates": {
+      "paper": null,
+      "plastic": null,
+      "glass": null,
+      "metal": null,
+      "wood": null,
+      "composite": null
+    },
+    "tariffYear": null,
+    "minAnnualFeeEur": null,
+    "ecoModulation": ""
+  },
+  "extraTaxes": [],
+  "notes": "",
+  "sources": [
+    {
+      "url": "https://www.valorlux.lu",
+      "title": "Valorlux — Luxembourg packaging scheme",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.repax.io/epr-registers",
+      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "checkedAt": "2026-08-16",
+      "official": false
+    }
+  ],
+  "verified": false,
+  "lastReviewed": "2026-08-16"
+}

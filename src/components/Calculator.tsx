@@ -65,6 +65,7 @@ export function Calculator() {
     composite: "",
   });
   const [shipments, setShipments] = useState("2000");
+  const [arFee, setArFee] = useState("400");
   const [selected, setSelected] = useState<string[]>(DEFAULT_SELECTION);
 
   const kgPerYear = useMemo(() => {
@@ -123,6 +124,9 @@ export function Calculator() {
   );
 
   const grandTotal = rows.reduce((sum, r) => sum + r.fee, 0);
+  const arCount = rows.filter((r) => r.arRequired).length;
+  const estTotal = (Number(arFee) || 0) * arCount;
+  const fullTotal = grandTotal + estTotal;
 
   const toggle = (code: string) =>
     setSelected((prev) =>
@@ -172,6 +176,20 @@ export function Calculator() {
                 className="data-value mt-2 w-full border-b-2 border-foreground bg-transparent pb-2 text-3xl outline-none focus:border-primary focus:text-primary"
                 aria-label={lv.calculator.shipmentsLabel}
               />
+            </div>
+
+            <div>
+              <span className="form-label">{lv.calculator.arFeeLabel}</span>
+              <input
+                inputMode="numeric"
+                value={arFee}
+                onChange={(e) => setArFee(e.target.value.replace(/[^\d]/g, ""))}
+                className="data-value mt-2 w-full border-b-2 border-foreground bg-transparent pb-2 text-3xl outline-none focus:border-primary focus:text-primary"
+                aria-label={lv.calculator.arFeeLabel}
+              />
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                {lv.calculator.arFeeHint}
+              </p>
             </div>
 
             <div className="border-t border-dashed border-border-strong pt-4">
@@ -314,11 +332,28 @@ export function Calculator() {
                 </ul>
               )}
 
-              <div className="flex flex-wrap items-baseline justify-between gap-3 px-4 py-4">
-                <span className="form-label">{lv.calculator.grandTotal}</span>
-                <span className="data-value text-2xl font-bold md:text-3xl">
-                  <Money value={grandTotal} /> €
-                </span>
+              <div className="border-t-2 border-foreground px-4 py-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <span className="form-label">{lv.calculator.safeTotal}</span>
+                  <span className="data-value text-xl font-bold md:text-2xl">
+                    <Money value={grandTotal} /> €
+                  </span>
+                </div>
+                <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
+                  <span className="form-label text-muted-foreground">
+                    {lv.calculator.estTotalLabel}
+                    {arCount > 0 ? ` · ${lv.calculator.estCountriesNote(arCount)}` : ""}
+                  </span>
+                  <span className="data-value text-lg text-muted-foreground">
+                    + <Money value={estTotal} /> €
+                  </span>
+                </div>
+                <div className="mt-3 flex flex-wrap items-baseline justify-between gap-3 border-t border-dashed border-border pt-3">
+                  <span className="form-label">{lv.calculator.fullTotal}</span>
+                  <span className="data-value text-2xl font-bold md:text-3xl">
+                    <Money value={fullTotal} /> €
+                  </span>
+                </div>
               </div>
             </div>
             <p className="mt-4 border border-dashed border-border-strong px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">

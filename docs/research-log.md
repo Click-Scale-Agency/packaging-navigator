@@ -209,3 +209,7 @@ Upgraded the calculator (src/components/Calculator.tsx) beyond the bare material
 ## 18. DRS borderline verification (2026-08-16, Claude Code)
 
 Point 3: verified the "planned/not-live" DRS cases. Confirmed none is live in 2026: **ES** — no universal DRS; conditional/targets-based under Ley 7/2022 (kept). **GR** — operator DRS Hellas SA established by producers/retailers, full operation expected 2026 but not yet live (note refined). **CZ** — planned for PET bottles + cans (~1.8bn bottles/yr), initially targeted mid-2025 but operator not yet appointed, not live (note refined). No `drs.active` values changed; only GR/CZ notes refined. Active-DRS list stays 17 (sources vary 17–18 EU; difference is counting of in-transition schemes).
+
+## 19. Calculator — estimated additional costs (2026-08-16, Claude Code)
+
+Added the §16 "estimate" layer without presenting guesses as facts: a user-adjustable "authorised-representative annual fee" input (default €400/country, clearly labelled an estimate the user tunes). The output now shows three tiers: **Safe costs** (PRO fee incl. minimum + registration), **Estimated additional** (AR fee × number of selected countries that require one), and **Full picture** (sum). Keeps the honest separation the spec demands (estimates never folded into the safe total). AR-fee amount is the user's assumption, not our claimed per-country data.

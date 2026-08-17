@@ -33,6 +33,12 @@
   },
   "extraTaxes": [],
   "notes": "pro.rates left null: Repak sets membership fees on a pay-as-you-produce (tonnage × material) basis, but its per-material fee schedule is members-only and not published on the public site (checked 2026-08-16 — public pages show the Single-Use-Plastic producer list, not rate tables). Compliance = Repak membership OR self-compliance with local authorities for large producers. Ireland also runs a separate deposit-return scheme (Re-turn) for drinks containers, distinct from Repak packaging EPR.",
+  "drs": {
+    "active": true,
+    "operator": "Re-turn",
+    "deposit": "€0.15–€0.25",
+    "note": "Kopš 2024. gada februāra."
+  },
   "sources": [
     {
       "url": "https://repak.ie",

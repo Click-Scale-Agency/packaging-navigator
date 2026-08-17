@@ -43,6 +43,12 @@
   },
   "extraTaxes": [],
   "notes": "Rates from the official ARA 'List of tariff rates 2026' PDF (fetched 2026-08-16, €/kg excl. VAT, household scheme from 01.01.2026): paper 0.208, glass 0.108, ferrous metal 0.450 (shown as 'metal'; aluminium 0.480), plastic 1.040, beverage cartons 1.020 ('composite'; other composites 1.140), ceramics 0.140, wood 0.020, textile fibres 0.200, biodegradable 0.550. ARA minimum fee €90/yr excl. VAT; flat fee €150/yr; standard fee €3,000 (see ARA T&C). Commercial packaging has its own, much lower rate card (paper 0.070, foils 0.180).",
+  "drs": {
+    "active": true,
+    "operator": "EWP Recycling Pfand Österreich",
+    "deposit": "€0.25/vienība",
+    "note": "Kopš 2025. gada 1. janvāra."
+  },
   "sources": [
     {
       "url": "https://www.edm.gv.at",

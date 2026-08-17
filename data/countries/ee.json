@@ -51,6 +51,11 @@
     }
   ],
   "notes": "Rates from ETO's official 'teenustasud' (service fees) page (fetched 2026-08-16), müügipakend (sales packaging) service fee €/t → €/kg (before 24% VAT): glass 120 → 0.120, paper/cardboard mono 115 → 0.115, plastic mono & bottles 460 → 0.460 (composite plastic 570 → 0.570), ferrous metal 260 → 0.260 (shown as 'metal'; aluminium 290 → 0.290), beverage carton 115 → 0.115 ('composite'), wood 44 → 0.044. ETO's page also shows a lower 'actual cost' column per material. membershipRequired=false because the pakendiaktsiis excise is the legal alternative, but PRO membership both fulfils EPR and grants excise exemption. Excise rates are ~5–10× the PRO fee, so almost everyone joins a PRO.",
+  "drs": {
+    "active": true,
+    "operator": "Eesti Pandipakend (EPP)",
+    "deposit": "€0.10/vienība"
+  },
   "sources": [
     {
       "url": "https://pakis.envir.ee",

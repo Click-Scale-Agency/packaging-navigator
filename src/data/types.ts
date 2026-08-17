@@ -31,6 +31,14 @@ export interface RegisterLayer {
   url: string | null;
   /** e.g. "DE + 13 digits" */
   numberFormat: string | null;
+  /** State/register registration fee in EUR. null = unknown / not published. */
+  registrationCostEur: number | null;
+  /** Authorised representative required for foreign sellers without local establishment. null = unverified. */
+  arRequired: boolean | null;
+  /** Must the register number appear on invoices/commercial docs? */
+  numberOnInvoices: boolean | null;
+  /** De-minimis / threshold text, e.g. "0 kg — first unit triggers duty". */
+  deMinimis: string | null;
   note?: string | null;
 }
 
@@ -42,6 +50,8 @@ export interface ProScheme {
   rates: Record<MaterialKey, number | null>;
   tariffYear: number | null;
   membershipRequired: boolean;
+  /** Minimum annual / minimum declaration fee in EUR. null = not published. */
+  minAnnualFeeEur: number | null;
   note?: string | null;
 }
 
@@ -62,6 +72,15 @@ export interface SourceRef {
   checkedAt: string;
 }
 
+/** Deposit-return system for beverage containers (separate from packaging EPR). */
+export interface Drs {
+  active: boolean | null;
+  operator: string | null;
+  deposit: string | null;
+  url: string | null;
+  note: string | null;
+}
+
 export interface CountryData {
   /** ISO 3166-1 alpha-2 */
   code: string;
@@ -71,6 +90,8 @@ export interface CountryData {
   competentAuthority?: string | null;
   /** National legal basis for packaging EPR. */
   legalBasis?: string | null;
+  /** Deposit-return system (beverages). */
+  drs?: Drs | null;
   register: RegisterLayer;
   pro: ProScheme[];
   extraTaxes: ExtraTax[];

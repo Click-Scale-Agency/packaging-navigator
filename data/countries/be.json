@@ -44,6 +44,10 @@
   },
   "extraTaxes": [],
   "notes": "Rates from the official Fost Plus 'Green Dot rates 2026 per material' PDF (fetched 2026-08-16, EUR/kg excl. VAT): glass 0.105, paper-cardboard 0.150, steel 0.186 (shown as 'metal'; alu ≥50µm 0.049, alu <50µm 0.451), beverage cartons 0.808 ('composite'), wood 4.419. Plastics range 0.360 (clear PET bottles) – 0.802 (rigid PE, shown as 'plastic') – 1.016 (rigid PP) – 1.080 (PE films) – 2.210 (PP/other films) – 4.419 (PVC, laminates, compostables) €/kg. Fost Plus membership/admin fees not in the tariff PDF — minAnnualFeeEur left null.",
+  "drs": {
+    "active": false,
+    "note": "Vēl nav nacionālas DRS (notiek reģionālas debates)."
+  },
   "sources": [
     {
       "url": "https://www.ivcie.be",

@@ -37,6 +37,11 @@
     "deMinimis": "Waste-management contribution applies above 50,000 kg packaging per calendar year (Verpact rates page references the 50,000 kg threshold for exemptions) — but registration/reporting duties can still apply below it"
   },
   "notes": "Rates from the official Verpact 2026 rates page (fetched 2026-08-16, €/kg excl. VAT): paper/cardboard 0.017, glass 0.100, aluminium 0.340 (shown as 'metal'; other metals 0.360), wood 0.015, beverage cartons 0.920 ('composite'), plastic rigid 1.220 (shown as 'plastic'; flexible 1.320). High plastic rate is deliberate steering. Reusable packaging system fee 0.015 €/kg.",
+  "drs": {
+    "active": true,
+    "operator": "Statiegeld Nederland (Verpact)",
+    "deposit": "€0.25 pudeles / €0.15 bundžas"
+  },
   "sources": [
     {
       "url": "https://www.verpact.nl/en/rates",

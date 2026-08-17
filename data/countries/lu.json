@@ -34,6 +34,10 @@
   },
   "extraTaxes": [],
   "notes": "Rates from the official Valorlux 'Tarifs Point Vert 2026 (déclaration détaillée)' PDF (fetched and parsed 2026-08-16, €/kg excl. VAT, household): glass (PV01) 0.0203, paper/cardboard >85% (PV02) 0.0389, beverage cartons (PV03) 0.2810 ('composite'), steel (PV04) 0.0396 (shown as 'metal'; aluminium PV05 0.0151), plastics PV06–PV15 range 0.2094 (EPS) – 1.4830 ('plastic' shows HDPE rigid PV10 0.3058). Household wood not a separate row (cork PV14b 0.2238); non-household packaging has flat rates PV16–PV19 (paper/wood 0.0145, plastic/metal 0.0395 €/kg).",
+  "drs": {
+    "active": false,
+    "note": "Nav nacionālas DRS."
+  },
   "sources": [
     {
       "url": "https://www.valorlux.lu/media/133fdc6c-0dbb-4dc3-9ec2-b86cce1a06ac/tarifs-pv-2026-detaille.pdf",

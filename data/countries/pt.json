@@ -46,6 +46,12 @@
     "deMinimis": "0 kg — no volume or turnover thresholds"
   },
   "notes": "Rates from Sociedade Ponto Verde's official 'Tabela de Valores Ponto Verde (VPV)' annual table (fetched and parsed 2026-08-16, €/kg excl. VAT, sales/primary packaging): glass 0.0258, plastic 0.2960, paper/cardboard 0.1477, ECAL beverage cartons 0.2784 ('composite'), steel 0.1985 (shown as 'metal'; aluminium 0.0658), wood 0.0996, other materials 0.2679. Minimum annual declaration €120 (excl. VAT). tariffYear 2024: this is the currently-published approved table (re-uploaded Aug 2025); revised values for 2026 were under authority review/litigation as of early 2025 — re-check for a newer VPV table. Novo Verde is a competing licensed packaging scheme.",
+  "drs": {
+    "active": true,
+    "operator": "SDR Portugal (Volta)",
+    "deposit": "€0.10/vienība",
+    "note": "Palaista 2026. gada 10. aprīlī; no 09.08.2026 atļauts tikai SDR marķēts iepakojums."
+  },
   "sources": [
     {
       "url": "https://siliamb.apambiente.pt",

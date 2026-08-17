@@ -116,6 +116,18 @@
         "deMinimis": { "type": "string", "description": "e.g. '0 kg — first unit triggers duty' or 'full obligations from 50,000 kg/yr'" }
       }
     },
+    "drs": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Deposit-return system for beverage containers (separate from packaging EPR).",
+      "properties": {
+        "active": { "type": ["boolean", "null"], "description": "true = live beverage DRS in 2026; false = none/planned; null = unknown" },
+        "operator": { "type": "string" },
+        "deposit": { "type": "string", "description": "Human-readable deposit, e.g. '€0.10/container'" },
+        "url": { "type": "string", "format": "uri" },
+        "note": { "type": "string" }
+      }
+    },
     "notes": { "type": "string" },
     "sources": {
       "type": "array",

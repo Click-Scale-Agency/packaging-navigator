@@ -49,6 +49,12 @@
     "deMinimis": "0 kg — obligations from the first unit"
   },
   "notes": "pro.rates left null: the figures above are the statutory pollution-TAX rates (the penalty/alternative to PRO compliance), not a PRO's own per-material management fee (tvarkymo įkainiai), which PROs price by contract. Compliance route: register in GPAIS (mandatory even at tiny volumes) and contract a licensed PRO (Gamtos ateitis, Žaliasis taškas) to recycle and thereby gain the tax exemption. From 2025 obligations can only be met by recycling (incineration no longer counts).",
+  "drs": {
+    "active": true,
+    "operator": "Užstato sistemos administratorius (USAD)",
+    "deposit": "€0.10/vienība",
+    "note": "Kopš 2016."
+  },
   "sources": [
     {
       "url": "https://www.gpais.eu",

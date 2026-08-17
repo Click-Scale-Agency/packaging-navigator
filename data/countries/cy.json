@@ -9,12 +9,12 @@
   "legalBasis": "Atkritumu likums; Iepakojuma un iepakojuma atkritumu noteikumi (N32(I)/2002)",
   "register": {
     "exists": true,
-    "name": "Producer registers of the Department of Environment",
+    "name": "Vides departamenta ražotāju reģistri",
     "url": "https://www.moa.gov.cy",
     "operator": "Department of Environment (MARDE)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "No single register brand — producers register with the Department of Environment and comply via a licensed collective system. Producers register regardless of volume. The state Department page (moa.gov.cy environment portal) returned HTTP 503 on 2026-08-16 and could not be fetched this session; Green Dot Cyprus (the licensed system) registration pages were fetched instead and are the practical registration/compliance route."
+    "notes": "Nav vienota reģistra zīmola — ražotāji reģistrējas Vides departamentā un izpilda pienākumus caur licencētu kolektīvo sistēmu. Ražotāji reģistrējas neatkarīgi no apjoma. Valsts departamenta lapa (moa.gov.cy vides portāls) 2026-08-16 atgrieza HTTP 503 un šajā sesijā nebija iegūstama; tā vietā iegūtas Green Dot Cyprus (licencētās sistēmas) reģistrācijas lapas, kas ir praktiskais reģistrācijas/izpildes ceļš."
   },
   "pro": {
     "membershipRequired": true,
@@ -39,7 +39,7 @@
   },
   "extraTaxes": [],
   "thresholds": {
-    "deMinimis": "No volume threshold — all producers must register (per Cyprus EPR guidance); the '2 t/year' figure previously noted from repax.io is not confirmed against the Packaging Law N32(I)/2002"
+    "deMinimis": "Nav apjoma sliekšņa — visiem ražotājiem jāreģistrējas (pēc Kipras EPR vadlīnijām); iepriekš no repax.io minētais '2 t/gadā' nav apstiprināts pret Iepakojuma likumu N32(I)/2002"
   },
   "notes": "Green Dot Cyprus is the first and licensed packaging PRO (licensed 01.08.2006 under Packaging Law N32(I)/2002). Rates from its official approved fee table (fetched 2026-08-16), household packaging, €/t → €/kg: glass 27.61 → 0.028, carton/paper 44.78 → 0.045, metal/tinplate 90.62 → 0.091 (aluminium 20.31 → 0.020), PET & HDPE 100.60 → 0.101 ('plastic'), cardboard liquid containers 116.61 → 0.117 ('composite'). tariffYear 2025: the published table covers 2017–2025; a 2026 update was not yet public. Minimum fee €100/yr (0–1 t tier). Packaging Declarations 2026 due annually.",
   "drs": {
@@ -49,13 +49,13 @@
   "sources": [
     {
       "url": "https://greendot.com.cy/en/packaging-definition-and-fees/packaging-fees/",
-      "title": "Green Dot Cyprus — approved packaging fees table (fetched and parsed)",
+      "title": "Green Dot Cyprus — apstiprinātā iepakojuma maksu tabula (iegūta un apstrādāta)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://greendot.com.cy/en/",
-      "title": "Green Dot Cyprus — licensed packaging compliance system (fetched)",
+      "title": "Green Dot Cyprus — licencētā iepakojuma izpildes sistēma (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

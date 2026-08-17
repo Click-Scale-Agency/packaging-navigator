@@ -10,7 +10,7 @@
   "register": {
     "exists": false,
     "arRequiredForForeignSellers": true,
-    "notes": "No state packaging register — RENAP covers only WEEE/batteries/tyres. CONAI (private-law consortium) membership is the compliance mechanism and issues the producer position used in practice."
+    "notes": "Nav valsts iepakojuma reģistra — RENAP aptver tikai EEIA/baterijas/riepas. CONAI (privāttiesību konsorcijs) dalība ir atbilstības mehānisms un praksē nodrošina izmantoto ražotāja statusu."
   },
   "pro": {
     "membershipRequired": true,
@@ -42,7 +42,7 @@
   "sources": [
     {
       "url": "https://www.conai.org/imprese/servizi-gestione-adempimenti-consortili-e-opportunita-imprese/contributo-ambientale/",
-      "title": "CONAI — Contributo ambientale (CAC) rates from 01.01.2026 (fetched)",
+      "title": "CONAI — Contributo ambientale (CAC) likmes no 01.01.2026 (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },

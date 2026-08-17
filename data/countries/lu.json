@@ -10,7 +10,7 @@
   "register": {
     "exists": false,
     "arRequiredForForeignSellers": true,
-    "notes": "e-RA register covers only WEEE/batteries — packaging compliance runs through Valorlux membership (Point Vert / Green Dot) in practice. No separate state packaging producer register."
+    "notes": "e-RA reģistrs aptver tikai EEIA/baterijas — iepakojuma atbilstība praksē notiek caur Valorlux dalību (Point Vert / Green Dot). Atsevišķa valsts iepakojuma ražotāju reģistra nav."
   },
   "pro": {
     "membershipRequired": true,
@@ -42,13 +42,13 @@
   "sources": [
     {
       "url": "https://www.valorlux.lu/media/133fdc6c-0dbb-4dc3-9ec2-b86cce1a06ac/tarifs-pv-2026-detaille.pdf",
-      "title": "Valorlux — Tarifs Point Vert 2026 (déclaration détaillée), official PDF (fetched and parsed)",
+      "title": "Valorlux — Tarifs Point Vert 2026 (déclaration détaillée), oficiāls PDF (iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.valorlux.lu",
-      "title": "Valorlux — Luxembourg packaging scheme",
+      "title": "Valorlux — Luksemburgas iepakojuma shēma",
       "checkedAt": "2026-08-16",
       "official": true
     }

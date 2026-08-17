@@ -12,17 +12,17 @@
     "name": "LUCID Verpackungsregister",
     "url": "https://lucid.verpackungsregister.org",
     "operator": "Stiftung Zentrale Stelle Verpackungsregister (ZSVR)",
-    "numberFormat": "DE + 13 digits",
+    "numberFormat": "DE + 13 cipari",
     "numberOnInvoices": false,
     "arRequiredForForeignSellers": true,
     "registrationCostEur": 0,
-    "notes": "Registration is free and done directly in LUCID; it remains a personal duty of the producer. NEW from 12.08.2026 (PPWR + VerpackDG): companies based abroad without a German branch that sell packaging or packaged products directly to end users in Germany MUST appoint an authorised representative and enter them in LUCID before first supply (ZSVR knowledge base, fetched 2026-08-16). LUCID number must be entered in Amazon/eBay seller accounts."
+    "notes": "Reģistrācija ir bez maksas un veicama tieši LUCID; tas paliek ražotāja personisks pienākums. JAUNS no 12.08.2026 (PPWR + VerpackDG): ārvalstu uzņēmumiem bez filiāles Vācijā, kas pārdod iepakojumu vai iepakotus produktus tieši gala patērētājiem Vācijā, OBLIGĀTI jāieceļ pilnvarotais pārstāvis un jāievada tas LUCID pirms pirmās piegādes (ZSVR zināšanu bāze, iegūts 2026-08-16). LUCID numurs jāievada Amazon/eBay pārdevēja kontos."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "Lizenzero (Interzero dual system shop)",
+        "name": "Lizenzero (Interzero duālās sistēmas veikals)",
         "url": "https://www.lizenzero.de",
         "tariffUrl": "https://www.lizenzero.de/verpackungsmengen-kalkulator/"
       },
@@ -49,7 +49,7 @@
   },
   "extraTaxes": [],
   "thresholds": {
-    "deMinimis": "0 kg — first unit placed on the German market triggers registration and system participation"
+    "deMinimis": "0 kg — pirmā Vācijas tirgū laistā vienība iedarbina reģistrāciju un dalību sistēmā"
   },
   "notes": "Dual-system (PRO) contract is MANDATORY before the first supply of household packaging; LUCID registration alone is not compliance. Rates are Lizenzero's public 2026 price list (active list 'A', fetched from their calculator API 2026-08-16): glass 0.069, paper/board 0.288, tinplate 1.15, aluminium 1.15, beverage cartons 1.15, other composites 1.15, plastic 1.25, natural materials/wood 0.085 €/kg; minimum €14 licence + €25 basic charge (≈€39/yr minimum). An alternative 2026 list ('C') is lower (plastic 0.955 €/kg). 'metal' = tinplate/aluminium (both 1.15). This resolves the earlier €0.6–1.0 vs €1.6–2.1/kg plastic conflict: actual Lizenzero 2026 plastic rate is 0.955–1.25 €/kg. Other dual systems price differently.",
   "drs": {
@@ -61,25 +61,25 @@
   "sources": [
     {
       "url": "https://lucid.verpackungsregister.org",
-      "title": "LUCID — Verpackungsregister (ZSVR), official register portal",
+      "title": "LUCID — Verpackungsregister (ZSVR), oficiālais reģistra portāls",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.verpackungsregister.org/en/knowledge-bases/authorising-a-representative",
-      "title": "ZSVR knowledge base — authorised representative mandatory for foreign sellers from 12.08.2026",
+      "title": "ZSVR zināšanu bāze — pilnvarotais pārstāvis obligāts ārvalstu pārdevējiem no 12.08.2026",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.lizenzero.de/ajaxInterserohApi/fetchActivePriceList?respectEffectiveDate=0",
-      "title": "Lizenzero calculator API — active 2026 price list (€/kg by fraction)",
+      "title": "Lizenzero kalkulatora API — aktīvais 2026. gada cenrādis (€/kg pa frakcijām)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.lizenzero.de/verpackungsmengen-kalkulator/",
-      "title": "Lizenzero public packaging-volume calculator",
+      "title": "Lizenzero publiskais iepakojuma apjoma kalkulators",
       "checkedAt": "2026-08-16",
       "official": true
     }

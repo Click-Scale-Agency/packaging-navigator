@@ -14,10 +14,10 @@
     "operator": "Ministry of the Environment (MŽP)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": 33,
-    "notes": "Page fetched 2026-08-16 — confirms the Seznam osob under §14 of Packaging Act 477/2001 Sb. and that a joint-performance contract with the authorised packaging company (EKO-KOM) exempts from individual listing. Registration fee 800 CZK (~€33) and 60-day application deadline per earlier search-level research (not on the fetched page — reconfirm)."
+    "notes": "Lapa iegūta 2026-08-16 — apstiprina Seznam osob saskaņā ar Iepakojuma likuma 477/2001 Sb. §14 un ka kopīgas izpildes līgums ar pilnvaroto iepakojuma sabiedrību (EKO-KOM) atbrīvo no individuālas iekļaušanas sarakstā. Reģistrācijas maksa 800 CZK (~€33) un 60 dienu pieteikuma termiņš pēc agrākas meklēšanas līmeņa izpētes (nav iegūtajā lapā — jāpārbauda atkārtoti)."
   },
   "pro": {
-    "membershipRequired": "de-facto — EKO-KOM contract is the standard route and exempts from individual listing",
+    "membershipRequired": "de-facto — EKO-KOM līgums ir standarta ceļš un atbrīvo no individuālas iekļaušanas sarakstā",
     "schemes": [
       {
         "name": "EKO-KOM",
@@ -46,19 +46,19 @@
   "sources": [
     {
       "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
-      "title": "MŽP — Obaly (packaging agenda, Seznam osob §14) (fetched)",
+      "title": "MŽP — Obaly (iepakojuma sadaļa, Seznam osob §14) (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.ekokom.cz/wp-content/uploads/2025/11/Price_list_valid_from_1_1_2026.pdf",
-      "title": "EKO-KOM — Price list valid from 01.01.2026 (official PDF, fetched and parsed)",
+      "title": "EKO-KOM — cenrādis spēkā no 01.01.2026 (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.ekokom.cz/en/industry-and-business/fees/",
-      "title": "EKO-KOM — client fees page",
+      "title": "EKO-KOM — klientu maksu lapa",
       "checkedAt": "2026-08-16",
       "official": true
     }

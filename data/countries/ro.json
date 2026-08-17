@@ -9,18 +9,18 @@
   "legalBasis": "Likums 249/2015; Ārkārtas rīkojums (OUG) 196/2005",
   "register": {
     "exists": true,
-    "name": "AFM producer records (Environmental Fund)",
+    "name": "AFM ražotāju uzskaite (Vides fonds)",
     "url": "https://www.afm.ro",
     "operator": "AFM (Administrația Fondului pentru Mediu)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Fund-and-declaration model: producers declare quantities to AFM."
+    "notes": "Fonda un deklarāciju modelis: ražotāji deklarē apjomus AFM."
   },
   "pro": {
     "membershipRequired": false,
     "schemes": [
       {
-        "name": "OIREP options (e.g. FEPRA, GreenPoint) — licensed transfer-of-responsibility organisations",
+        "name": "OIREP iespējas (piem., FEPRA, GreenPoint) — licencētas atbildības nodošanas organizācijas",
         "url": "https://www.afm.ro"
       }
     ],
@@ -38,9 +38,9 @@
   },
   "extraTaxes": [
     {
-      "name": "Environmental Fund contribution",
-      "summary": "Penalty contribution of 2 RON/kg for the shortfall when recycling targets are not met (directly or via an OIREP).",
-      "rate": "2 RON/kg unmet target",
+      "name": "Vides fonda iemaksa",
+      "summary": "Soda iemaksa 2 RON/kg par iztrūkumu, ja pārstrādes mērķi nav sasniegti (tieši vai caur OIREP).",
+      "rate": "2 RON/kg par nesasniegto mērķi",
       "collectedBy": "AFM",
       "url": "https://www.afm.ro"
     }
@@ -55,13 +55,13 @@
   "sources": [
     {
       "url": "https://www.afm.ro",
-      "title": "AFM — Environmental Fund Administration",
+      "title": "AFM — Vides fonda administrācija",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "title": "EPR reģistru pārskats (repax.io) — reģistra nosaukuma/tvēruma pārbaudei",
       "checkedAt": "2026-08-16",
       "official": false
     }

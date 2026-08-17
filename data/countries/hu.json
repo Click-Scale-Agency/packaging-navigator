@@ -14,10 +14,10 @@
     "operator": "National environmental registry (reports feed the MOHU concession)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "OKIRkapu portal fetched live 2026-08-16 ('OKIRKAPU – út az OKIR felé'). Dual registration in practice: OKIR/OKIRkapu (quarterly EPR filings) + MOHU service contract (producer ID, invoicing). Note (MOHU FAQ): foreign-made packaging finally separated from its product counts as own-use of packaging (EPR reg. §17) — so registration, reporting and fee liability arise."
+    "notes": "OKIRkapu portāls iegūts tiešsaistē 2026-08-16 ('OKIRKAPU – út az OKIR felé'). Praksē dubulta reģistrācija: OKIR/OKIRkapu (ceturkšņa EPR deklarācijas) + MOHU pakalpojuma līgums (ražotāja ID, rēķini). Piezīme (MOHU BUJ): ārvalstīs ražots iepakojums, kas galīgi atdalīts no sava produkta, uzskatāms par iepakojuma pašpatēriņu (EPR reg. §17) — tādēļ rodas reģistrācijas, ziņošanas un maksas pienākums."
   },
   "pro": {
-    "membershipRequired": "state-concession — MOHU is the single concession holder, service contract mandatory",
+    "membershipRequired": "valsts koncesija — MOHU ir vienīgais koncesijas turētājs, pakalpojuma līgums obligāts",
     "schemes": [
       {
         "name": "MOHU (MOL Hulladékgazdálkodási)",
@@ -40,8 +40,8 @@
   "extraTaxes": [
     {
       "name": "Környezetvédelmi termékdíj",
-      "summary": "Green product fee on defined product groups incl. packaging materials — separate from and partially offset against EPR fees.",
-      "collectedBy": "NAV (National Tax and Customs Administration)",
+      "summary": "Zaļā produkta maksa noteiktām produktu grupām, tostarp iepakojuma materiāliem — atsevišķa no EPR maksām un daļēji ar tām ieskaitāma.",
+      "collectedBy": "NAV (Nacionālā nodokļu un muitas administrācija)",
       "url": "https://nav.gov.hu"
     }
   ],
@@ -55,19 +55,19 @@
   "sources": [
     {
       "url": "https://okirkapu.hu",
-      "title": "OKIRkapu — Hungarian environmental registry portal (fetched)",
+      "title": "OKIRkapu — Ungārijas vides reģistra portāls (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://net.jogtar.hu/jogszabaly?docid=a2500033.enm",
-      "title": "Decree 33/2025. (XI. 28.) EM — official EPR fee table (Nemzeti Jogszabálytár, fetched and parsed)",
+      "title": "Dekrēts 33/2025. (XI. 28.) EM — oficiālā EPR maksu tabula (Nemzeti Jogszabálytár, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://mohu.hu/hu/file/documents/0/0088/gyakran_ismetelt_kerdesek.pdf",
-      "title": "MOHU — EPR FAQ (official, system + KF material codes) (fetched and parsed)",
+      "title": "MOHU — EPR BUJ (oficiāls, sistēma + KF materiālu kodi) (iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

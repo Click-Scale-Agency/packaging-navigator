@@ -9,13 +9,13 @@
   "legalBasis": "Waste Management (Packaging and Packaging Waste) Regulations",
   "register": {
     "exists": true,
-    "name": "ERA producer register",
+    "name": "ERA ražotāju reģistrs",
     "url": "https://era.org.mt",
     "operator": "Environment and Resources Authority (ERA)",
     "numberOnInvoices": true,
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Registration number must appear on invoices; annual renewal by 31 March."
+    "notes": "Reģistrācijas numuram jāparādās uz rēķiniem; ikgadēja atjaunošana līdz 31. martam."
   },
   "pro": {
     "membershipRequired": true,
@@ -48,19 +48,19 @@
   "sources": [
     {
       "url": "https://era.org.mt",
-      "title": "ERA — Environment and Resources Authority",
+      "title": "ERA — Vides un resursu iestāde",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.greenpak.com.mt/",
-      "title": "GreenPak — licensed Maltese packaging scheme (site fetched; no public tariff)",
+      "title": "GreenPak — licencēta Maltas iepakojuma shēma (vietne iegūta; nav publiska tarifa)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "title": "EPR reģistru pārskats (repax.io) — reģistra nosaukuma/tvēruma pārbaudei",
       "checkedAt": "2026-08-16",
       "official": false
     }

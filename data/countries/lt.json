@@ -9,18 +9,18 @@
   "legalBasis": "Iepakojuma un iepakojuma atkritumu apsaimniekošanas likums; Mokesčio už aplinkos teršimą likums",
   "register": {
     "exists": true,
-    "name": "GPAIS (unified product/packaging register, 8 streams)",
+    "name": "GPAIS (vienots produktu/iepakojuma reģistrs, 8 plūsmas)",
     "url": "https://www.gpais.eu",
     "operator": "Environmental Protection Agency (AAA)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Registration and reporting in GPAIS are mandatory even at very small volumes."
+    "notes": "Reģistrācija un ziņošana GPAIS ir obligāta pat ļoti maziem apjomiem."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "Žaliasis taškas (Green Dot Lithuania)",
+        "name": "Žaliasis taškas (Green Dot Lietuva)",
         "url": "https://www.zaliasistaskas.lt"
       }
     ],
@@ -39,14 +39,14 @@
   "extraTaxes": [
     {
       "name": "Mokestis už aplinkos teršimą pakuočių atliekomis",
-      "summary": "Environmental pollution tax on packaging waste. Producers/importers are EXEMPT for the share of packaging that is actually recycled (in practice via a PRO such as Gamtos ateitis or Žaliasis taškas); the tax is effectively the penalty on the unmanaged share. Statutory rates (from 2025, reusable + recyclable single-use packaging, EUR/t): glass 279, plastic/PET 520, paper/cardboard 133, metal 186, wood 189, composite 520. Non-recyclable single-use is higher: glass 395, plastic 875, paper 188, metal 263, wood 225, composite 1200 EUR/t. The base rate is multiplied by an annual indexing coefficient (1.48 for 2026). Fetched from Gamtos ateitis legal-info page 2026-08-16.",
-      "rate": "recyclable packaging EUR/t (×1.48 index for 2026): plastic 520, glass 279, paper 133, metal 186, wood 189, composite 520",
-      "collectedBy": "VMI (State Tax Inspectorate) / Aplinkos ministerija",
+      "summary": "Vides piesārņojuma nodoklis par iepakojuma atkritumiem. Ražotāji/importētāji ir ATBRĪVOTI par to iepakojuma daļu, kas faktiski pārstrādāta (praksē caur PRO, piem., Gamtos ateitis vai Žaliasis taškas); nodoklis būtībā ir sods par neapsaimniekoto daļu. Likumā noteiktās likmes (no 2025, atkārtoti lietojamam + pārstrādājamam vienreizlietojamam iepakojumam, EUR/t): stikls 279, plastmasa/PET 520, papīrs/kartons 133, metāls 186, koks 189, kompozīts 520. Nepārstrādājamam vienreizlietojamam augstāk: stikls 395, plastmasa 875, papīrs 188, metāls 263, koks 225, kompozīts 1200 EUR/t. Pamatlikmi reizina ar ikgadēju indeksācijas koeficientu (1,48 2026. gadam). Iegūts no Gamtos ateitis juridiskās informācijas lapas 2026-08-16.",
+      "rate": "pārstrādājamam iepakojumam EUR/t (×1,48 indekss 2026): plastmasa 520, stikls 279, papīrs 133, metāls 186, koks 189, kompozīts 520",
+      "collectedBy": "VMI (Valsts nodokļu inspekcija) / Aplinkos ministerija",
       "url": "https://gamtosateitis.lt/teisine-informacija/apmokestinamosios-pakuotes-rusys-ir-mokescio-tarifai/"
     }
   ],
   "thresholds": {
-    "deMinimis": "0 kg — obligations from the first unit"
+    "deMinimis": "0 kg — pienākumi no pirmās vienības"
   },
   "notes": "pro.rates left null: the figures above are the statutory pollution-TAX rates (the penalty/alternative to PRO compliance), not a PRO's own per-material management fee (tvarkymo įkainiai), which PROs price by contract. Compliance route: register in GPAIS (mandatory even at tiny volumes) and contract a licensed PRO (Gamtos ateitis, Žaliasis taškas) to recycle and thereby gain the tax exemption. From 2025 obligations can only be met by recycling (incineration no longer counts).",
   "drs": {
@@ -58,19 +58,19 @@
   "sources": [
     {
       "url": "https://www.gpais.eu",
-      "title": "GPAIS — Lithuanian unified producer register",
+      "title": "GPAIS — Lietuvas vienotais ražotāju reģistrs",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://gamtosateitis.lt/teisine-informacija/apmokestinamosios-pakuotes-rusys-ir-mokescio-tarifai/",
-      "title": "Gamtos ateitis — taxable packaging types & pollution-tax tariffs (fetched)",
+      "title": "Gamtos ateitis — ar nodokli apliekamie iepakojuma veidi un piesārņojuma nodokļa likmes (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "title": "EPR reģistru pārskats (repax.io) — reģistra nosaukuma/tvēruma pārbaudei",
       "checkedAt": "2026-08-16",
       "official": false
     }

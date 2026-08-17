@@ -14,13 +14,13 @@
     "operator": "FZOEU (Environmental Protection and Energy Efficiency Fund)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "State-run fee model: producers pay the Fund (FZOEU) directly, no private PROs. Fees prescribed by the Uredba o gospodarenju otpadnom ambalažom and published as an official fee list (popis naknada)."
+    "notes": "Valsts pārvaldīts maksu modelis: ražotāji maksā tieši Fondam (FZOEU), privātu PRO nav. Maksas nosaka Uredba o gospodarenju otpadnom ambalažom un publicē kā oficiālu maksu sarakstu (popis naknada)."
   },
   "pro": {
-    "membershipRequired": "state-run",
+    "membershipRequired": "valsts pārvaldīts",
     "schemes": [
       {
-        "name": "FZOEU (state Fund — no private PRO)",
+        "name": "FZOEU (valsts Fonds — nav privātu PRO)",
         "url": "https://www.fzoeu.hr",
         "tariffUrl": "https://www.fzoeu.hr/hr/naknade-9323/9323"
       }
@@ -40,7 +40,7 @@
   "extraTaxes": [
     {
       "name": "Poticajna naknada",
-      "summary": "Incentive fee on packaging placed on the market, paid to FZOEU alongside the regular packaging management fee (naknada gospodarenja).",
+      "summary": "Veicināšanas maksa par tirgū laisto iepakojumu, ko maksā FZOEU līdzās parastajai iepakojuma apsaimniekošanas maksai (naknada gospodarenja).",
       "collectedBy": "FZOEU",
       "url": "https://www.fzoeu.hr"
     }
@@ -55,13 +55,13 @@
   "sources": [
     {
       "url": "https://www.fzoeu.hr/hr/naknade-9323/9323",
-      "title": "FZOEU — packaging waste management fees page (fetched)",
+      "title": "FZOEU — iepakojuma atkritumu apsaimniekošanas maksu lapa (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.fzoeu.hr/UserDocsImages/datoteke/POPIS%20NAKNADA%20gospodarenja%20OA%20u%20sustavu%20Fonda_20.5.2026_.pdf",
-      "title": "FZOEU — POPIS NAKNADA fee list effective 20.05.2026 (official PDF, fetched and parsed)",
+      "title": "FZOEU — POPIS NAKNADA maksu saraksts spēkā no 20.05.2026 (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

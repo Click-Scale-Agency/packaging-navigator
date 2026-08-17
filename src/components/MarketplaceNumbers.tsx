@@ -2,15 +2,12 @@ import { Link } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 import { countries } from "@/data";
-import { Press, SectionHead } from "@/components/primitives";
+import { Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
 
 /** Countries whose register issues a producer number relevant to marketplaces:
  * either a known number format or a number that must appear on invoices. */
 const rows = countries
-  .filter(
-    (c) =>
-      c.register.numberFormat !== null || c.register.numberOnInvoices === true,
-  )
+  .filter((c) => c.register.numberFormat !== null || c.register.numberOnInvoices === true)
   .sort((a, b) => {
     // countries with a concrete format first, then by code
     const af = a.register.numberFormat ? 0 : 1;
@@ -39,13 +36,9 @@ export function MarketplaceNumbers() {
           <div className="border-2 border-foreground bg-card">
             <div className="grid grid-cols-[3rem_minmax(0,1fr)_5rem] gap-3 border-b-2 border-foreground px-4 py-3 md:grid-cols-[4rem_minmax(0,14rem)_minmax(0,1fr)_6rem]">
               <span className="form-label">{lv.marketplace.colCountry}</span>
-              <span className="form-label hidden md:block">
-                {lv.marketplace.colRegister}
-              </span>
+              <span className="form-label hidden md:block">{lv.marketplace.colRegister}</span>
               <span className="form-label">{lv.marketplace.colFormat}</span>
-              <span className="form-label text-right">
-                {lv.marketplace.colInvoice}
-              </span>
+              <span className="form-label text-right">{lv.marketplace.colInvoice}</span>
             </div>
 
             <ul>
@@ -66,10 +59,13 @@ export function MarketplaceNumbers() {
                   </span>
                   <span className="data-value text-sm">
                     {c.register.numberFormat ?? (
-                      <span className="text-muted-foreground">
-                        {lv.marketplace.none}
-                      </span>
+                      <span className="text-muted-foreground">{lv.marketplace.none}</span>
                     )}
+                    {!c.verified ? (
+                      <span className="mt-1 block">
+                        <UnverifiedStamp short />
+                      </span>
+                    ) : null}
                   </span>
                   <span className="form-label text-right">
                     {invoiceLabel(c.register.numberOnInvoices)}

@@ -200,8 +200,7 @@ export const lv = {
       "Nosaka, kur jānorāda reģistrācijas numurs un kurš var uzņemties ražotāja pienākumus.",
     step3Label: "3. solis",
     step3Title: "Kurš pirmais laiž iepakojumu tirgū?",
-    step3Hint:
-      "PPWR pienākums ir tam, kurš iepakoto preci pirmais laiž konkrētās valsts tirgū.",
+    step3Hint: "PPWR pienākums ir tam, kurš iepakoto preci pirmais laiž konkrētās valsts tirgū.",
     channelOwn: "Savs e-veikals",
     channelOwnDesc: "Tu pārdod tieši pircējiem no sava interneta veikala (tālpārdošana).",
     channelMarketplace: "Tirdzniecības platforma",
@@ -211,7 +210,8 @@ export const lv = {
     whoYou: "Es pats (ārvalstu pārdevējs)",
     whoYouDesc: "Tu sūti no citas valsts tieši uz šo tirgu, un tev nav vietējas pārstāvniecības.",
     whoImporter: "Vietējais importētājs / izplatītājs",
-    whoImporterDesc: "Vietējais uzņēmums ieved preci un pārdod to tālāk — tātad tas pirmais laiž preci tirgū.",
+    whoImporterDesc:
+      "Vietējais uzņēmums ieved preci un pārdod to tālāk — tātad tas pirmais laiž preci tirgū.",
     whoPlatform: "Tirdzniecības platforma",
     whoPlatformDesc: "Platforma darbojas kā reģistrēts ražotājs šai precei un valstij.",
     resultTitle: "Tavs rīcības plāns",
@@ -275,7 +275,8 @@ export const lv = {
     printPlan: "Drukāt / saglabāt PDF",
     step4Label: "4. solis",
     step4Title: "Kāds ir tavs iepakojums?",
-    step4Hint: "Nosaka, kuras likmes un nodokļi attiecas un cik aptuveni tas izmaksās katrā valstī.",
+    step4Hint:
+      "Nosaka, kuras likmes un nodokļi attiecas un cik aptuveni tas izmaksās katrā valstī.",
     classMaterialsTitle: "Materiāli un svars uz sūtījumu (g)",
     classShipmentsLabel: "Sūtījumu skaits gadā",
     classLevelsTitle: "Iepakojuma līmenis",
@@ -308,7 +309,8 @@ export const lv = {
     notePlastic:
       "Izvēlēta plastmasa: dažās valstīs (piemēram, Spānijā) papildus PRO maksai ir atsevišķs nodoklis par nepārstrādātu plastmasu.",
     scenariosTitle: "Sāc no gatava scenārija",
-    scenariosHint: "Izvēlies tipisku situāciju — mēs aizpildīsim visus soļus, un tu varēsi tos labot.",
+    scenariosHint:
+      "Izvēlies tipisku situāciju — mēs aizpildīsim visus soļus, un tu varēsi tos labot.",
     copyPlan: "Kopēt plānu",
     copied: "Nokopēts!",
     printPlanBtn: "Drukāt / saglabāt PDF",
@@ -353,6 +355,9 @@ export const lv = {
     membership: "Dalība obligāta",
     tariffYear: "Tarifu gads",
     rates: "Likmes €/kg",
+    ratesRefScheme: (name: string) => `Likmes €/kg — atsauces shēma: ${name}`,
+    ratesRefNote:
+      "Citas šīs valsts shēmas var cenot atšķirīgi. Šī tabula atspoguļo atsauces (galvenās) shēmas publiskotās likmes, nevis katras shēmas atsevišķās.",
     yes: "jā",
     no: "nē",
     regContextTitle: "Regulējums un reģistrācija",
@@ -511,8 +516,7 @@ export const lv = {
   },
   footer: {
     licence: "MIT licence",
-    dataProduct:
-      "Katrs fakts par valsti glabājas atklātā JSON failā ar avotu un pārbaudes datumu.",
+    dataProduct: "Katrs fakts par valsti glabājas atklātā JSON failā ar avotu un pārbaudes datumu.",
     repo: "Click-Scale-Agency/packaging-navigator",
     credit: "Uztur Click Scale Agency",
     resourcesLabel: "Resursi",

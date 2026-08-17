@@ -13,13 +13,19 @@
  */
 import { MATERIALS, type CountryData, type MaterialKey } from "@/data";
 
-/** Average of a scheme's published rates for a material, or null. */
+/**
+ * Published rate for a material from the country's reference (first) scheme,
+ * or null. Canonical data attaches the same country-level rate table to every
+ * scheme, so the reference scheme is representative; we deliberately do NOT
+ * average across schemes — that would silently blend distinct schemes if real
+ * per-scheme rates were ever added.
+ */
 export function rateFor(country: CountryData, material: MaterialKey): number | null {
-  const values = country.pro
-    .map((scheme) => scheme.rates?.[material])
-    .filter((v): v is number => typeof v === "number");
-  if (!values.length) return null;
-  return values.reduce((a, b) => a + b, 0) / values.length;
+  for (const scheme of country.pro) {
+    const v = scheme.rates?.[material];
+    if (typeof v === "number") return v;
+  }
+  return null;
 }
 
 /**

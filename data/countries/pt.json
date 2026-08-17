@@ -30,12 +30,12 @@
       }
     ],
     "rates": {
-      "paper": 0.1477,
+      "paper": 0.148,
       "plastic": 0.296,
-      "glass": 0.0258,
-      "metal": 0.1985,
-      "wood": 0.0996,
-      "composite": 0.2784
+      "glass": 0.026,
+      "metal": 0.199,
+      "wood": 0.1,
+      "composite": 0.278
     },
     "tariffYear": 2024,
     "minAnnualFeeEur": 120,

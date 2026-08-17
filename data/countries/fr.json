@@ -44,7 +44,7 @@
     "ecoModulation": "CITEO 2026: bonuses (e.g. −10% weight-based discount for >50% recycled fibre in paper-cardboard) and per-rate maluses; non-recyclable resins pay steeply more (PVC 2.10 €/kg vs PE/PP 0.77 €/kg)."
   },
   "extraTaxes": [],
-  "notes": "Rates are the weight-based part of CITEO's official 2026 Household Packaging Rate Guide (fetched 2026-08-16): steel 0.065, aluminium 0.243 ('metal' shows aluminium), paper-cardboard 0.258, beverage cartons 0.468 (used as 'composite'), glass 0.020, wood/cork 0.258 €/kg; plastics range 0.70 (clear PET bottles) – 0.77 (PE/PP) – 0.84 (rigid PET/flexible PP) – 1.40 (composite resins) – 2.10 (PVC) €/kg; 'plastic' shows the common PE/PP rate 0.77. IMPORTANT: total CITEO contribution = per-CSU (consumer sales unit) amount + this weight-based amount, so effective €/kg is higher for lightweight items. Shared minimum invoice fee €110/yr (covers packaging + graphic paper).",
+  "notes": "⚠ Likmes NAV neatkarīgi apstiprinātas pret oficiālu, mašīnlasāmu avotu. CITEO oficiālais 2026. gada tarifu ceļvedis tiek izplatīts kā .7z arhīvs, ko nevar atvērt/pārbaudīt, bet CITEO tarifu lapa nesatur skaitlisku tabulu (skaitļi aiz lejupielādes formas). Publiskie trešo pušu kopsavilkumi savstarpēji atšķiras (piem., tērauds 27–199 €/t, stikls 8–39 €/t), un CITEO iemaksa = maksa par vienību (CSU) + maksa par svaru + eko-modulācija, tāpēc viena €/kg likme uz materiālu ir tikai aptuvena. Zemāk esošie skaitļi ir indikatīvi un jāpārbauda pret oficiālo CITEO barème, pirms tos uzskata par apstiprinātiem. Iepriekšējā piezīme (indikatīvie skaitļi): tērauds 0.065, alumīnijs 0.243 ('metal'), papīrs-kartons 0.258, dzērienu kartons 0.468 ('composite'), stikls 0.020, koks 0.258 €/kg; plastmasa 0.70–0.77–2.10 €/kg diapazonā; 'plastic' rāda PE/PP 0.77. Kopējā iemaksa = par vienību + par svaru, tāpēc efektīvā €/kg vieglām precēm ir augstāka. Kopīga minimālā rēķina maksa €110/gadā.",
   "drs": {
     "active": false,
     "note": "Nav nacionālas DRS uz 2026. gadu (notiek debates)."
@@ -64,11 +64,11 @@
     },
     {
       "url": "https://www.citeo.com/wp-content/uploads/2026/03/CITEO_HOUSEHOLD_PACKAGING_RATE_GUIDE_2026.7z",
-      "title": "CITEO Mājsaimniecību iepakojuma tarifu ceļvedis 2026 (oficiāls PDF, iegūts un apstrādāts)",
+      "title": "CITEO Mājsaimniecību iepakojuma tarifu ceļvedis 2026 — oficiāls, BET izplatīts kā .7z arhīvs (nav mašīnlasāms / nav pārbaudāms)",
       "checkedAt": "2026-08-16",
-      "official": true
+      "official": false
     }
   ],
-  "verified": true,
+  "verified": false,
   "lastReviewed": "2026-08-16"
 }

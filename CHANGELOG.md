@@ -2,6 +2,15 @@
 
 Būtiskās datu un metodoloģijas izmaiņas. Formāts seko [Keep a Changelog](https://keepachangelog.com/) principam; datumi ISO (YYYY-MM-DD).
 
+## [Nepubliskots] — validācijas partijas glābšana (no PR #9)
+
+Pārceltas vēl vērtīgās daļas no agrākas validācijas partijas (PR #9), kas bija novecojusi un konfliktēja ar `main`; dublētās daļas (LV DRN, ES tags) atmestas, jo tās jau ir izdarītas citādi.
+
+- **Francija → nepārbaudīts:** CITEO oficiālais 2026. tarifu ceļvedis ir `.7z` arhīvs, ko nevar atvērt/pārbaudīt; trešo pušu skaitļi atšķiras. `verified:false`, `.7z` avots `official:false`, caurspīdīga piezīme.
+- **Likmju attiecinājums:** valsts lapā €/kg tabula tiek rādīta vienreiz, piesaistīta atsauces shēmai (nevis katrā shēmas kartītē); `rateFor` izmanto atsauces shēmu, ne vidējo — novērš latento shēmu sajaukšanu.
+- **Datu korekcijas:** BG kompozīts 0,174 (Ecopack); CZ nepārbaudītā €33 reģ. maksa → null; PT likmes noapaļotas uz 3 zīmēm.
+- **UI godīgums:** Hero PPWR datums lasīts no `regulation.json` (ne hardcode); ceļveža plastmasas piezīme tikai valstīm ar plastmasas-tagotu nodokli; MarketplaceNumbers rāda nepārbaudīts-zīmogu `verified:false` rindām.
+
 ## [Nepubliskots] — audita atbilde
 
 Atbilde uz pilnu repozitorija auditu (2026-08-17). Galvenā doma: skaidri nodalīt **zināmu / daļēji zināmu / interpretētu / nezināmu** informāciju, nevis pasniegt visu kā vienu drošu skaitli.

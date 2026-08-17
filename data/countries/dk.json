@@ -39,6 +39,11 @@
   },
   "extraTaxes": [],
   "notes": "Rates from VANA's official grundpriser tables valid from 01.08.2026 (fetched as images 2026-08-16), household (husholdning) base prices for producers >8 t/yr, converted at 7.48 DKK/EUR (2026-08-16): cardboard (pap) 1.60 DKK/kg → 0.214 ('paper'; paper 'papir' only 0.27 → 0.036), plastic 5.09 → 0.681, glass 4.52 → 0.605, metal (ferrous+alu) 7.64 → 1.022, wood 12.64 → 1.691, food & drink cartons (MDK) 6.20 → 0.829 ('composite'); textiles/porcelain/cork/ceramics/other 0.27 → 0.036. IMPORTANT for small sellers: producers under 8 t/yr pay a flat combined rate — household 3.81 DKK/kg ≈ 0.510 €/kg, commercial 3.40 ≈ 0.455 (quarterly invoicing). Commercial (erhverv) table differs strongly (e.g. metal only 1.22 DKK/kg). VANA invoices in DKK — EUR values are indicative conversions.",
+  "drs": {
+    "active": true,
+    "operator": "Dansk Retursystem",
+    "note": "Sen izveidota depozīta sistēma pudelēm un bundžām."
+  },
   "sources": [
     {
       "url": "https://www.producentansvar.dk",

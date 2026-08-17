@@ -46,6 +46,12 @@
     }
   ],
   "notes": "Rates from the official FZOEU 'POPIS NAKNADA u sustavu gospodarenja otpadnom ambalažom' fee list effective 20.05.2026 (fetched and parsed 2026-08-16), packaging outside the deposit-return system, collection-cost fee €/t → €/kg: paper/cardboard 119 → 0.119, polymer/plastic 302 → 0.302, glass (non-deposit) 25 → 0.025, steel (Fe) 112 → 0.112 (shown as 'metal'; aluminium 296 → 0.296), wood 36 → 0.036, multilayer/composite (mostly paper-card) 160 → 0.160, textile 100 → 0.100. NOTE: amounts are gross incl. Croatian VAT (per the fee list's own note), so net rates are lower. Transport costs (€/t·km) are billed separately.",
+  "drs": {
+    "active": true,
+    "operator": "FZOEU (povratna naknada)",
+    "deposit": "€0.07/vienība",
+    "note": "Dzērienu PET, stikls un metāla bundžas."
+  },
   "sources": [
     {
       "url": "https://www.fzoeu.hr/hr/naknade-9323/9323",

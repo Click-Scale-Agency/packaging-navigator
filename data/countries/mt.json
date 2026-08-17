@@ -39,6 +39,12 @@
   },
   "extraTaxes": [],
   "notes": "pro.rates left null: GreenPak (site fetched live 2026-08-16) is a licensed packaging PRO but publishes no public per-material tariff table — member fees are quoted on application. Green MT is the other licensed scheme. Producers register with ERA and comply via a licensed scheme; ERA number on invoices, annual renewal by 31 March.",
+  "drs": {
+    "active": true,
+    "operator": "BCRS Malta",
+    "deposit": "€0.10/vienība",
+    "note": "Kopš 2022."
+  },
   "sources": [
     {
       "url": "https://era.org.mt",

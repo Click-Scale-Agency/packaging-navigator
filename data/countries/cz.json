@@ -13,7 +13,7 @@
     "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
     "operator": "Ministry of the Environment (MŽP)",
     "arRequiredForForeignSellers": null,
-    "registrationCostEur": null,
+    "registrationCostEur": 33,
     "notes": "Page fetched 2026-08-16 — confirms the Seznam osob under §14 of Packaging Act 477/2001 Sb. and that a joint-performance contract with the authorised packaging company (EKO-KOM) exempts from individual listing. Registration fee 800 CZK (~€33) and 60-day application deadline per earlier search-level research (not on the fetched page — reconfirm)."
   },
   "pro": {
@@ -39,6 +39,10 @@
   },
   "extraTaxes": [],
   "notes": "Rates from the official EKO-KOM 'Price list valid from 1.1.2026' PDF (fetched 2026-08-16), one-way sales (household) packaging, converted from CZK/t at 24.22 CZK/EUR (ECB-derived rate, 2026-08-16): paper 7,152 CZK/t → 0.295; rigid plastics 15,839 → 0.654 (soft/flexible 15,546 → 0.642); glass 1,852 → 0.076; steel (Fe) 2,611 → 0.108 (shown as 'metal'; rigid aluminium 5,220 → 0.216, flexible Al 18,032 → 0.745); wood 3,754 → 0.155; beverage cartons 10,967 → 0.453 ('composite'). Annual contract fee 1,600 CZK/yr ≈ €66. Invoices issued in CZK only — EUR values are indicative conversions.",
+  "drs": {
+    "active": false,
+    "note": "Plānota; nacionālā DRS gaidāma ~2026.–2027., vēl nav palaista."
+  },
   "sources": [
     {
       "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",

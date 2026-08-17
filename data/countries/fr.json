@@ -45,6 +45,10 @@
   },
   "extraTaxes": [],
   "notes": "Rates are the weight-based part of CITEO's official 2026 Household Packaging Rate Guide (fetched 2026-08-16): steel 0.065, aluminium 0.243 ('metal' shows aluminium), paper-cardboard 0.258, beverage cartons 0.468 (used as 'composite'), glass 0.020, wood/cork 0.258 €/kg; plastics range 0.70 (clear PET bottles) – 0.77 (PE/PP) – 0.84 (rigid PET/flexible PP) – 1.40 (composite resins) – 2.10 (PVC) €/kg; 'plastic' shows the common PE/PP rate 0.77. IMPORTANT: total CITEO contribution = per-CSU (consumer sales unit) amount + this weight-based amount, so effective €/kg is higher for lightweight items. Shared minimum invoice fee €110/yr (covers packaging + graphic paper).",
+  "drs": {
+    "active": false,
+    "note": "Nav nacionālas DRS uz 2026. gadu (notiek debates)."
+  },
   "sources": [
     {
       "url": "https://syderep.ademe.fr",

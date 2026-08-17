@@ -43,6 +43,11 @@
   },
   "extraTaxes": [],
   "notes": "Rates from the official Finnish Packaging Producers Ltd (SPT) 'Price list 2026' PDF on rinkiin.fi (fetched 2026-08-16), consumer packaging, detailed declaration, Class A (recyclable): paper fibre 0.079, plastic 0.214, glass 0.076, metal 0.029, wood 0.002, liquid carton (fibre class B) 0.162 €/kg ('composite'). B2B packaging is far cheaper (paper 0.003, plastic 0.065). Companies placing <50,000 kg/yr may use the light declaration form (flat: paper 0.102, plastic 0.238, metal 0.030, glass 0.076 €/kg consumer). Rinki business service fee 0.00199 €/kg, min €74/yr, max €3,890/yr; SPT registration fee €0. 2026 SUP fee list published later.",
+  "drs": {
+    "active": true,
+    "operator": "Suomen Palautuspakkaus Oy (Palpa)",
+    "note": "Sen izveidota depozīta sistēma."
+  },
   "sources": [
     {
       "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",

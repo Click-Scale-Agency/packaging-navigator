@@ -42,6 +42,12 @@
   },
   "extraTaxes": [],
   "notes": "pro.rates left null: ENVI-PAK and NATUR-PACK (the two main OZV / producer-responsibility organisations) set recycling fees (recyklačné poplatky) individually per producer contract; NATUR-PACK notes fees must be non-discriminatory but publishes no public per-material sadzobník. Producers register in RVVV (via ISOH) before placing products on the market and contract an OZV; foreign producers need a Slovakia-based authorised representative.",
+  "drs": {
+    "active": true,
+    "operator": "Správca zálohového systému",
+    "deposit": "€0.15/vienība",
+    "note": "Kopš 2022."
+  },
   "sources": [
     {
       "url": "https://envipak.sk/en/companies",

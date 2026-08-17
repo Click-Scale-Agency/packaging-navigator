@@ -39,6 +39,10 @@
   },
   "extraTaxes": [],
   "notes": "Rates intentionally null: HERRCO's monetary-contribution tables live in Annex C1 of its one-year Participation Contract, approved by the competent authorities but NOT published as a public per-material fee schedule (confirmed 2026-08-16 on herrco.gr/en/businesses). HERRCO is the licensed packaging PRO (Green Dot licensee); members declare via declarations.herrco.gr; 3,936 businesses under contract as of 31.12.2025. Covers paper, plastic, glass, aluminium and tinplate. Separate single-use-plastic environmental levy exists in Greece (not the packaging EPR fee).",
+  "drs": {
+    "active": false,
+    "note": "Sagatavošanā; nacionālā DRS gaidāma ap 2026., vēl nav apstiprināta kā aktīva."
+  },
   "sources": [
     {
       "url": "https://www.eoan.gr",

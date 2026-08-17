@@ -42,6 +42,10 @@
     "deMinimis": "No volume threshold — all producers must register (per Cyprus EPR guidance); the '2 t/year' figure previously noted from repax.io is not confirmed against the Packaging Law N32(I)/2002"
   },
   "notes": "Green Dot Cyprus is the first and licensed packaging PRO (licensed 01.08.2006 under Packaging Law N32(I)/2002). Rates from its official approved fee table (fetched 2026-08-16), household packaging, €/t → €/kg: glass 27.61 → 0.028, carton/paper 44.78 → 0.045, metal/tinplate 90.62 → 0.091 (aluminium 20.31 → 0.020), PET & HDPE 100.60 → 0.101 ('plastic'), cardboard liquid containers 116.61 → 0.117 ('composite'). tariffYear 2025: the published table covers 2017–2025; a 2026 update was not yet public. Minimum fee €100/yr (0–1 t tier). Packaging Declarations 2026 due annually.",
+  "drs": {
+    "active": false,
+    "note": "Nav nacionālas DRS."
+  },
   "sources": [
     {
       "url": "https://greendot.com.cy/en/packaging-definition-and-fees/packaging-fees/",

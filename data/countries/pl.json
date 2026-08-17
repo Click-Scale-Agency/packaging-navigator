@@ -48,6 +48,11 @@
     }
   ],
   "notes": "pro.rates left null: Polish recovery organisations (organizacje odzysku, e.g. Rekopol) price by individual contract and publish no official per-material tariff (Rekopol site fetched 2026-08-16 lists a 'dopłaty' service but no rates). The one set of official per-material figures is the statutory opłata produktowa (see extraTaxes), fetched from the official Dziennik Ustaw. Polish packaging EPR reform (ROP / new packaging act, draft UC100) still in progress as of Aug 2026 — re-check scheme landscape and the new opłata opakowaniowa when the act passes. PLN/EUR ≈ 4.31 (2026-08-16): opłata produktowa plastic ≈0.627, composite ≈0.395, paper ≈0.163, glass ≈0.070 €/kg.",
+  "drs": {
+    "active": true,
+    "operator": "Kaucijas sistēmas operatori",
+    "note": "Nacionālā kaucijas sistēma darbojas no 2025. gada 1. oktobra."
+  },
   "sources": [
     {
       "url": "https://bdo.mos.gov.pl",

@@ -49,6 +49,10 @@
     "deMinimis": "0 kg — no de-minimis threshold"
   },
   "notes": "pro.rates left null: Slopak (site fetched live 2026-08-16, /odpadna-embalaza) and other schemes (Interzero, Dinos, Recikel…) price membership by contract with no public per-material tariff table. Slovenia has NO de-minimis threshold — obligations from the first unit. Foreign B2C distance sellers register via a local authorised representative; annual report to ARSO by 31 March.",
+  "drs": {
+    "active": false,
+    "note": "Plānota; vēl nav palaista."
+  },
   "sources": [
     {
       "url": "https://www.slopak.si/odpadna-embalaza",

@@ -48,6 +48,12 @@
     "deMinimis": "0 kg — DRN liability starts with the first packaging placed on the market"
   },
   "notes": "pro.rates left null: Latvian recovery schemes (Latvijas Zaļais punkts, Zaļā josta) price their service by contract and publish no public per-material tariff; membershipRequired=false because the legal alternative is paying full DRN (see extraTaxes — the complete official per-material DRN table is now confirmed from likumi.lv). No dedicated packaging producer register exists yet (PPWR-mandated register due by 12.02.2027). verified stays false because there is neither a packaging register to confirm a producer number against nor a public PRO tariff — but the DRN statutory rates that drive the actual cost ARE confirmed from the primary law. Open (research-log §8.7): scheme service fees vs DRN; what changes when the PPWR register arrives.",
+  "drs": {
+    "active": true,
+    "operator": "Depozīta Iepakojuma Operators (DIO)",
+    "deposit": "€0.10/vienība",
+    "note": "Kopš 2022. gada 1. februāra."
+  },
   "sources": [
     {
       "url": "https://www.vvd.gov.lv",

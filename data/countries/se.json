@@ -39,6 +39,11 @@
   },
   "extraTaxes": [],
   "notes": "Rates from the official NPA 'Förpackningsavgifter' list decided 24.11.2025, valid from 01.01.2026 (fetched 2026-08-16), household (privat bruk) recyclable-compatible categories, converted at 11.01 SEK/EUR (2026-08-16): paper 6.67 SEK/kg → 0.606; plastic 13.40 → 1.217; glass 2.80 → 0.254; aluminium 12.59 → 1.143 (shown as 'metal'; steel 21.49 → 1.951); wood single-use 13.70 → 1.244 (rises to 15.70 → ≈1.43 from 01.04.2026). No separate beverage-carton row — liquid cartons fall under the paper 'limited/not recyclable' band 9.65 SEK/kg ≈ 0.876 ('composite' left null). Swedish fees jumped sharply in 2025–2026 after municipalities took over collection. NPA invoices in SEK — EUR values are indicative conversions.",
+  "drs": {
+    "active": true,
+    "operator": "Returpack (Pantamera)",
+    "note": "Sen izveidota depozīta sistēma."
+  },
   "sources": [
     {
       "url": "https://www.naturvardsverket.se/vagledning-och-stod/producentansvar/producentansvar-for-forpackningar/",

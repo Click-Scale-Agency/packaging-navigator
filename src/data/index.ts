@@ -33,6 +33,9 @@ interface CanonicalCountry {
     name?: string;
     url?: string;
     numberFormat?: string;
+    numberOnInvoices?: boolean;
+    arRequiredForForeignSellers?: boolean | null;
+    registrationCostEur?: number | null;
     notes?: string;
   };
   pro: {
@@ -40,8 +43,10 @@ interface CanonicalCountry {
     schemes: { name: string; url: string; tariffUrl?: string }[];
     rates?: Partial<Record<MaterialKey, number | null>>;
     tariffYear?: number | null;
+    minAnnualFeeEur?: number | null;
     ecoModulation?: string;
   };
+  thresholds?: { deMinimis?: string };
   extraTaxes?: {
     name: string;
     summary: string;
@@ -49,6 +54,13 @@ interface CanonicalCountry {
     collectedBy?: string;
     url?: string;
   }[];
+  drs?: {
+    active?: boolean | null;
+    operator?: string;
+    deposit?: string;
+    url?: string;
+    note?: string;
+  };
   notes?: string;
   sources: { url: string; title?: string; checkedAt: string }[];
   verified: boolean;
@@ -74,6 +86,10 @@ function mapRegister(c: CanonicalCountry): RegisterLayer {
     name: c.register.name ?? null,
     url: c.register.url ?? null,
     numberFormat: c.register.numberFormat ?? null,
+    registrationCostEur: c.register.registrationCostEur ?? null,
+    arRequired: c.register.arRequiredForForeignSellers ?? null,
+    numberOnInvoices: c.register.numberOnInvoices ?? null,
+    deMinimis: c.thresholds?.deMinimis ?? null,
     note: c.register.notes ?? null,
   };
 }
@@ -89,6 +105,7 @@ function mapPro(c: CanonicalCountry): ProScheme[] {
     rates,
     tariffYear: c.pro.tariffYear ?? null,
     membershipRequired,
+    minAnnualFeeEur: c.pro.minAnnualFeeEur ?? null,
     note:
       typeof c.pro.membershipRequired === "string"
         ? c.pro.membershipRequired
@@ -129,6 +146,15 @@ export const countries: CountryData[] = Object.values(canonical)
     name: c.name.lv,
     competentAuthority: c.competentAuthority ?? null,
     legalBasis: c.legalBasis ?? null,
+    drs: c.drs
+      ? {
+          active: c.drs.active ?? null,
+          operator: c.drs.operator ?? null,
+          deposit: c.drs.deposit ?? null,
+          url: c.drs.url ?? null,
+          note: c.drs.note ?? null,
+        }
+      : null,
     register: mapRegister(c),
     pro: mapPro(c),
     extraTaxes: mapExtraTaxes(c),

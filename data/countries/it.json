@@ -34,6 +34,10 @@
   },
   "extraTaxes": [],
   "notes": "Rates are the CONAI contributo ambientale (CAC) from 01.01.2026, fetched from conai.org 2026-08-16, converted €/t → €/kg: steel 0.005, aluminium 0.012 ('metal' shows aluminium), paper mono-material 0.045, wood 0.010, glass 0.040, paper-based beverage cartons (CPL) 0.115 ('composite'), plastic bands 0.040–0.790 ('plastic' shows common household band B1.1 0.219). CAC is far lower than northern-EU PRO fees because Italian municipal collection is financed separately. Material consortia under CONAI: COREPLA (plastic), COMIECO (paper), RICREA (steel), CIAL (aluminium), COREVE (glass), RILEGNO (wood). One-off CONAI membership quota applies (based on turnover) — not in the rate table.",
+  "drs": {
+    "active": false,
+    "note": "Nav nacionālas DRS uz 2026. gadu."
+  },
   "sources": [
     {
       "url": "https://www.conai.org/imprese/servizi-gestione-adempimenti-consortili-e-opportunita-imprese/contributo-ambientale/",

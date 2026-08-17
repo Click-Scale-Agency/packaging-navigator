@@ -183,3 +183,13 @@ Cross-checked NEW register claims against primary sources before adopting (never
 - Other legalBasis/authority citations (DE VerpackG/VerpackDG, ES RD 1055/2022, IT D.Lgs 152/2006, FR Code de l'environnement/AGEC, etc.) match earlier verified research; adopted as context.
 
 No `verified` flags changed by this enrichment (it adds context, not rates). DRS (deposit-return) structured field intentionally deferred — accurate 27-country DRS status needs its own verification pass.
+
+## 15. UI surfacing + DRS round (2026-08-16, Claude Code)
+
+Driven by the "useful catalog" goal — users need to see not just packaging €/kg but the *registration* picture (cost, annual fee, whether a foreign seller needs an authorised representative).
+
+**Surfaced existing-but-hidden fields** through src/data (types + index bridge) into the country page: `register.registrationCostEur`, `arRequiredForForeignSellers`, `numberOnInvoices`, `pro.minAnnualFeeEur`, `thresholds.deMinimis`, plus `competentAuthority` + `legalBasis`. New "Regulējums un reģistrācija" section on /valstis/$code renders them, with a plain-language note that foreign distance sellers without a local establishment must appoint an authorised representative (PPWR Art. 45).
+
+**DRS (deposit-return) round** — new optional `drs` field {active, operator, deposit, note, url} on schema + all 27 files, plus a UI section. 2026 status anchored to primary/consolidated sources (Zero Waste Europe, TOMRA, Sensoneo): **active (17):** DE, DK, SE, FI, EE, LT, LV, HR, NL, SK, IE, MT, RO, AT (01.01.2025), HU (2024), PL (01.10.2025), PT (10.04.2026). **not yet / none (10):** BG, CY, CZ, ES (conditional, targets-based), FR, GR (in preparation ~2026), IE n/a, IT, LU, SI. DRS is contextual (not a fee claim); `verified` flags unchanged.
+
+**Registration cost backfill:** set CZ €33 (800 CZK). Most others are €0 (DE, FR) or tiered/non-EUR (PL 200/800 PLN) — kept in notes rather than forcing a single misleading number. The doc's §16 "full cost model" (registration + PRO entry + per-material + min annual + AR setup/maintenance + DRS + audit) is the reference for a future cost calculator.

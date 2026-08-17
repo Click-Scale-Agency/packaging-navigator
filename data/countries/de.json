@@ -52,6 +52,12 @@
     "deMinimis": "0 kg — first unit placed on the German market triggers registration and system participation"
   },
   "notes": "Dual-system (PRO) contract is MANDATORY before the first supply of household packaging; LUCID registration alone is not compliance. Rates are Lizenzero's public 2026 price list (active list 'A', fetched from their calculator API 2026-08-16): glass 0.069, paper/board 0.288, tinplate 1.15, aluminium 1.15, beverage cartons 1.15, other composites 1.15, plastic 1.25, natural materials/wood 0.085 €/kg; minimum €14 licence + €25 basic charge (≈€39/yr minimum). An alternative 2026 list ('C') is lower (plastic 0.955 €/kg). 'metal' = tinplate/aluminium (both 1.15). This resolves the earlier €0.6–1.0 vs €1.6–2.1/kg plastic conflict: actual Lizenzero 2026 plastic rate is 0.955–1.25 €/kg. Other dual systems price differently.",
+  "drs": {
+    "active": true,
+    "operator": "Deutsche Pfandsystem GmbH (DPG)",
+    "deposit": "€0.25 (vienreizlietojamie)",
+    "note": "Kopš 2003; vienreizlietojamām plastmasas pudelēm un skārda bundžām €0.25."
+  },
   "sources": [
     {
       "url": "https://lucid.verpackungsregister.org",

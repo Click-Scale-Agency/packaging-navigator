@@ -38,6 +38,10 @@ function CountryDetail() {
   const { code } = Route.useParams();
   const country = countryByCode(code);
 
+  const annualMin =
+    country?.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ?? null;
+  const regCost = country?.register.registrationCostEur ?? null;
+
   if (!country) {
     return (
       <>
@@ -84,6 +88,51 @@ function CountryDetail() {
             </div>
           </div>
           <Perforation className="mt-6 opacity-70" />
+        </Press>
+
+        {/* Regulējums un reģistrācija */}
+        <Press delay={0.06} className="mt-14">
+          <h2 className="text-2xl md:text-3xl">{lv.detail.regContextTitle}</h2>
+          <div className="mt-6 border-t-2 border-foreground">
+            <FormRow label={lv.detail.competentAuthority}>
+              {country.competentAuthority ?? lv.countries.unknown}
+            </FormRow>
+            <FormRow label={lv.detail.legalBasis}>
+              {country.legalBasis ?? lv.countries.unknown}
+            </FormRow>
+            <FormRow label={lv.detail.registrationCost}>
+              {regCost === 0
+                ? lv.detail.free
+                : regCost !== null
+                  ? `€${regCost}`
+                  : lv.countries.unknown}
+            </FormRow>
+            <FormRow label={lv.detail.annualMinFee}>
+              {annualMin !== null ? `€${annualMin}` : lv.countries.unknown}
+            </FormRow>
+            <FormRow label={lv.detail.arRequired}>
+              {country.register.arRequired === true
+                ? lv.detail.yes
+                : country.register.arRequired === false
+                  ? lv.detail.no
+                  : lv.countries.unknown}
+            </FormRow>
+            {country.register.numberOnInvoices !== null ? (
+              <FormRow label={lv.detail.numberOnInvoices}>
+                {country.register.numberOnInvoices ? lv.detail.yes : lv.detail.no}
+              </FormRow>
+            ) : null}
+            {country.register.deMinimis ? (
+              <FormRow label={lv.detail.deMinimis}>
+                {country.register.deMinimis}
+              </FormRow>
+            ) : null}
+          </div>
+          {country.register.arRequired === true ? (
+            <p className="mt-3 max-w-[70ch] text-xs leading-relaxed text-muted-foreground">
+              {lv.detail.arHint}
+            </p>
+          ) : null}
         </Press>
 
         {/* Layer 1 */}
@@ -204,6 +253,41 @@ function CountryDetail() {
             </div>
           )}
         </Press>
+
+        {/* Deposit-return system */}
+        {country.drs ? (
+          <Press delay={0.08} className="mt-16">
+            <h2 className="text-2xl md:text-3xl">{lv.detail.depositTitle}</h2>
+            <div className="mt-6 border-t-2 border-foreground">
+              <FormRow label={lv.detail.depositActive}>
+                {country.drs.active === true
+                  ? lv.detail.yes
+                  : country.drs.active === false
+                    ? lv.detail.no
+                    : lv.countries.unknown}
+              </FormRow>
+              {country.drs.operator ? (
+                <FormRow label="Operators">{country.drs.operator}</FormRow>
+              ) : null}
+              {country.drs.deposit ? (
+                <FormRow label="Depozīts">{country.drs.deposit}</FormRow>
+              ) : null}
+              {country.drs.note ? (
+                <FormRow label="Piezīme">{country.drs.note}</FormRow>
+              ) : null}
+            </div>
+            {country.drs.url ? (
+              <a
+                href={country.drs.url}
+                target="_blank"
+                rel="noreferrer"
+                className="data-value mt-3 block break-all text-xs text-primary underline decoration-dashed underline-offset-4"
+              >
+                {country.drs.url}
+              </a>
+            ) : null}
+          </Press>
+        ) : null}
 
         {/* Sources */}
         <Press delay={0.08} className="mt-16">

@@ -219,39 +219,61 @@ function CountryDetail() {
           {country.pro.length === 0 ? (
             <p className="mt-4 text-sm text-muted-foreground">{lv.detail.noPro}</p>
           ) : (
-            <div className="mt-6 grid gap-4 md:grid-cols-2">
-              {country.pro.map((scheme) => (
-                <div key={scheme.name} className="border border-border-strong bg-card p-4">
-                  <p className="data-value text-base font-bold">{scheme.name}</p>
-                  {scheme.url ? (
-                    <a
-                      href={scheme.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="data-value mt-1 block break-all text-xs text-primary underline decoration-dashed underline-offset-4"
-                    >
-                      {scheme.url}
-                    </a>
-                  ) : null}
-                  <FormRow label={lv.detail.membership}>
-                    {scheme.membershipRequired ? lv.detail.yes : lv.detail.no}
-                  </FormRow>
-                  <FormRow label={lv.detail.tariffYear}>
-                    {scheme.tariffYear ?? lv.countries.unknown}
-                  </FormRow>
-                  <div className="border-t border-dashed border-border py-3">
-                    <span className="form-label">{lv.detail.rates}</span>
-                    <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
+            <>
+              <div className="mt-6 grid gap-4 md:grid-cols-2">
+                {country.pro.map((scheme) => (
+                  <div key={scheme.name} className="border border-border-strong bg-card p-4">
+                    <p className="data-value text-base font-bold">{scheme.name}</p>
+                    {scheme.url ? (
+                      <a
+                        href={scheme.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="data-value mt-1 block break-all text-xs text-primary underline decoration-dashed underline-offset-4"
+                      >
+                        {scheme.url}
+                      </a>
+                    ) : null}
+                    <FormRow label={lv.detail.membership}>
+                      {scheme.membershipRequired ? lv.detail.yes : lv.detail.no}
+                    </FormRow>
+                    <FormRow label={lv.detail.tariffYear}>
+                      {scheme.tariffYear ?? lv.countries.unknown}
+                    </FormRow>
+                    {scheme.note ? (
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                        {scheme.note}
+                      </p>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+
+              {/* Rates belong to the country's reference scheme, not to every
+                  scheme — render them once, clearly attributed. */}
+              {(() => {
+                const ref = country.pro[0];
+                const hasAnyRate = MATERIALS.some((m) => typeof ref?.rates?.[m] === "number");
+                if (!ref || !hasAnyRate) return null;
+                return (
+                  <div className="mt-4 border border-border-strong bg-card p-4">
+                    <span className="form-label">{lv.detail.ratesRefScheme(ref.name)}</span>
+                    <ul className="mt-2 grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-3">
                       {MATERIALS.map((m) => (
                         <li key={m} className="flex items-baseline justify-between gap-2">
                           <span className="form-label truncate">{lv.materials[m]}</span>
-                          <span className="data-value text-sm">{scheme.rates?.[m] ?? "—"}</span>
+                          <span className="data-value text-sm">{ref.rates?.[m] ?? "—"}</span>
                         </li>
                       ))}
                     </ul>
-                    {scheme.ratesProvenance ? (
+                    {country.pro.length > 1 ? (
+                      <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
+                        {lv.detail.ratesRefNote}
+                      </p>
+                    ) : null}
+                    {ref.ratesProvenance ? (
                       <span className="mt-3 block">
-                        <ProvenanceLine provenance={scheme.ratesProvenance} />
+                        <ProvenanceLine provenance={ref.ratesProvenance} />
                       </span>
                     ) : !country.verified ? (
                       <span className="mt-3 block">
@@ -259,14 +281,9 @@ function CountryDetail() {
                       </span>
                     ) : null}
                   </div>
-                  {scheme.note ? (
-                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-                      {scheme.note}
-                    </p>
-                  ) : null}
-                </div>
-              ))}
-            </div>
+                );
+              })()}
+            </>
           )}
         </Press>
 

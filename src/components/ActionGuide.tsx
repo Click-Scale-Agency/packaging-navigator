@@ -288,7 +288,9 @@ function buildPlan(
     notes.push(lv.guide.noteEcom);
   if (cls.audience === "commercial") notes.push(lv.guide.noteCommercial);
   if (cls.reuse === "reusable") notes.push(lv.guide.noteReusable);
-  if (cls.hasPlastic) notes.push(lv.guide.notePlastic);
+  // Only when this country actually levies a plastic-specific tax (e.g. ES).
+  if (cls.hasPlastic && country.extraTaxes.some((t) => t.material === "plastic"))
+    notes.push(lv.guide.notePlastic);
 
   // Indicative annual cost from the shared fee engine (same as the calculator).
   const cost = computeCountryCost(country, cls.kgPerYear, cls.totalKg);

@@ -273,6 +273,10 @@ export const timeline: TimelineEntry[] = (regulation.timeline as CanonicalTimeli
   (t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }),
 );
 
+/** Canonical PPWR application date (ISO), single source for UI copy. */
+export const regulationApplies: string = (regulation as { regulation: { applies: string } })
+  .regulation.applies;
+
 export * from "./types";
 
 /* ---- video briefings (from canonical /data/briefings/*.json) ---- */

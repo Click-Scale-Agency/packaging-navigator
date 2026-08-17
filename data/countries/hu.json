@@ -20,7 +20,7 @@
       {
         "name": "MOHU (MOL Hulladékgazdálkodási)",
         "url": "https://mohu.hu",
-        "tariffUrl": "https://mohu.hu/hu/epr"
+        "tariffUrl": "https://net.jogtar.hu/jogszabaly?docid=a2500033.enm"
       }
     ],
     "rates": {
@@ -33,7 +33,7 @@
     },
     "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": "EPR fees set per material-flow (anyagáram) by government decree; unchanged for 2026 from the 01.10.2025 levels. Advertising paper (R01) 94 Ft/kg; textile packaging 148 Ft/kg."
+    "ecoModulation": "EPR fees set per material-flow (anyagáram) by decree 33/2025. (XI. 28.) EM; each rate = base + modulation component (e.g. plastic 213+6=219, glass 93+14=107 Ft/kg). Unchanged for 2026 from the 01.10.2025 levels. Also: other packaging (X01) 129, textile (C01) 148 Ft/kg."
   },
   "extraTaxes": [
     {
@@ -43,11 +43,17 @@
       "url": "https://nav.gov.hu"
     }
   ],
-  "notes": "verified:false: OKIRkapu register was fetched and the MOHU FAQ (official) confirms the system, but the 2026 fee TABLE itself is set by a government decree (Magyar Közlöny) that could not be fetched from an official primary this session (NAK notice returned HTTP 503; MOHU pages carry no inline table). Rates shown are the widely-corroborated 2026 EPR díjtételek (Ft/kg, unchanged from 01.10.2025), converted at 362.95 HUF/EUR (2026-08-16): plastic 219 → 0.603, paper 173 → 0.477, glass 107 → 0.295, metal 186 → 0.512, wood 22 → 0.061, composite 191 → 0.526. Flip to verified:true once the decree/MOHU official rate table is fetched. EPR fees invoiced quarterly by MOHU based on OKIR filings; one-off enrolment fee for the MOHU producer ID.",
+  "notes": "Rates from the official decree 33/2025. (XI. 28.) EM (a hulladékgazdálkodási intézményi résztevékenység díjai), fetched and parsed from net.jogtar.hu 2026-08-16, packaging EPR díjtételek (Ft/kg, base+modulation totals): plastic (M01) 219, paper/cardboard (P01) 173, metal (V01) 186, glass (U01) 107, wood (F01) 22, composite/társított (K01) 191, textile (C01) 148, other (X01) 129. Converted at 362.95 HUF/EUR (2026-08-16): plastic 0.603, paper 0.477, glass 0.295, metal 0.512, wood 0.061, composite 0.526 €/kg. Unchanged for 2026 from 01.10.2025. Invoices in HUF — EUR values are indicative. EPR fees invoiced quarterly by MOHU based on OKIR filings; one-off enrolment fee for the MOHU producer ID.",
   "sources": [
     {
       "url": "https://okirkapu.hu",
       "title": "OKIRkapu — Hungarian environmental registry portal (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://net.jogtar.hu/jogszabaly?docid=a2500033.enm",
+      "title": "Decree 33/2025. (XI. 28.) EM — official EPR fee table (Nemzeti Jogszabálytár, fetched and parsed)",
       "checkedAt": "2026-08-16",
       "official": true
     },
@@ -58,6 +64,6 @@
       "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

@@ -238,6 +238,9 @@ export const lv = {
     membership: "Dalība obligāta",
     tariffYear: "Tarifu gads",
     rates: "Likmes €/kg",
+    ratesRefScheme: (name: string) => `Likmes €/kg — atsauces shēma: ${name}`,
+    ratesRefNote:
+      "Citas šīs valsts shēmas var cenot atšķirīgi. Šī tabula atspoguļo atsauces (galvenās) shēmas publiskotās likmes, nevis katras shēmas atsevišķās.",
     yes: "jā",
     no: "nē",
     regContextTitle: "Regulējums un reģistrācija",

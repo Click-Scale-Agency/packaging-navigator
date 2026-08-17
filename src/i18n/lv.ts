@@ -21,6 +21,9 @@ export const lv = {
     errorBody: "Radās kļūda mūsu pusē. Mēģini pārlādēt lapu vai atgriezties sākumlapā.",
     tryAgain: "Mēģināt vēlreiz",
   },
+  a11y: {
+    backToTop: "Atpakaļ uz augšu",
+  },
   status: {
     official: "oficiāls",
     operator_published: "operatora publicēts",

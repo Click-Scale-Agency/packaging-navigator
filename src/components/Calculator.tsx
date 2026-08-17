@@ -214,12 +214,12 @@ export function Calculator() {
     );
     const totals = [
       `"KOPĀ aprēķinātā daļa (PRO+reģ)";;;;;;"${eur(grandTotal)}";;;;;`,
-      `"Iespējamās pārstāvja izmaksas (${arConfirmedCount} atzīmētas)";;;;;;"${eur(estTotal)}";;;;;`,
+      `"Iespējamās pārstāvja izmaksas (atzīmētas ${arConfirmedCount})";;;;;;"${eur(estTotal)}";;;;;`,
       `"APTUVENĀS ZINĀMĀS IZMAKSAS 1. gadā";;;;;;"${eur(fullTotal)}";;;;;`,
     ];
     if (partialCount > 0) {
       totals.push(
-        `"Piezīme: ${partialCount} valstij(-īm) segums ir daļējs — summa ir zināmā daļa (no €X), ne pilnas izmaksas.";;;;;;;;;;;`,
+        `"Piezīme: ${partialCount === 1 ? "vienai valstij" : `${partialCount} valstīm`} segums ir daļējs — summa ir zināmā daļa (no €X), nevis pilnās izmaksas.";;;;;;;;;;;`,
       );
     }
     totals.push(
@@ -248,13 +248,13 @@ export function Calculator() {
       `Aprēķinātā daļa kopā: ${eur(grandTotal)} €`,
       ...(partialCount > 0
         ? [
-            `(${partialCount} valstij(-īm) segums daļējs — summa ir zināmā daļa "no €X", ne pilnas izmaksas)`,
+            `(${partialCount === 1 ? "vienai valstij" : `${partialCount} valstīm`} segums ir daļējs — summa ir zināmā daļa "no €X", nevis pilnās izmaksas)`,
           ]
         : []),
-      `Iespējamās pilnvarotā pārstāvja izmaksas (${arConfirmedCount} atzīmētas): ${eur(estTotal)} €`,
+      `Iespējamās pilnvarotā pārstāvja izmaksas (atzīmētas ${arConfirmedCount}): ${eur(estTotal)} €`,
       `Aptuvenās zināmās izmaksas 1. gadā: ${eur(fullTotal)} €`,
       "",
-      "Indikatīvi. Nav juridiska konsultācija. Trūkstošās likmes nav pieņemtas par nulli. Daļa tarifu un administratīvo izmaksu var nebūt publiski pieejama.",
+      "Indikatīvi. Nav juridiska konsultācija. Trūkstošās likmes netiek pieņemtas par nulli. Daļa tarifu un administratīvo izmaksu var nebūt publiski pieejama.",
     ].join("\n");
 
   const handleCopy = async () => {

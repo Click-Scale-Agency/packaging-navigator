@@ -7,44 +7,45 @@
   },
   "register": {
     "exists": false,
-    "notes": "e-RA register covers only WEEE/batteries — packaging compliance runs through Valorlux membership in practice."
+    "notes": "e-RA register covers only WEEE/batteries — packaging compliance runs through Valorlux membership (Point Vert / Green Dot) in practice. No separate state packaging producer register."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "Valorlux",
-        "url": "https://www.valorlux.lu"
+        "url": "https://www.valorlux.lu",
+        "tariffUrl": "https://www.valorlux.lu/media/133fdc6c-0dbb-4dc3-9ec2-b86cce1a06ac/tarifs-pv-2026-detaille.pdf"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
+      "paper": 0.039,
+      "plastic": 0.306,
+      "glass": 0.02,
+      "metal": 0.04,
       "wood": null,
-      "composite": null
+      "composite": 0.281
     },
-    "tariffYear": null,
+    "tariffYear": 2026,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "Point Vert 2026 tariffs differentiate plastics heavily: PET clear bottles 0.2498, HDPE rigid 0.3058, PP rigid 0.4279, PS 0.4372, PE films 0.7120, other non-recoverable 1.4830 €/kg; steel (0.0396) dearer than aluminium (0.0151)."
   },
   "extraTaxes": [],
-  "notes": "",
+  "notes": "Rates from the official Valorlux 'Tarifs Point Vert 2026 (déclaration détaillée)' PDF (fetched and parsed 2026-08-16, €/kg excl. VAT, household): glass (PV01) 0.0203, paper/cardboard >85% (PV02) 0.0389, beverage cartons (PV03) 0.2810 ('composite'), steel (PV04) 0.0396 (shown as 'metal'; aluminium PV05 0.0151), plastics PV06–PV15 range 0.2094 (EPS) – 1.4830 ('plastic' shows HDPE rigid PV10 0.3058). Household wood not a separate row (cork PV14b 0.2238); non-household packaging has flat rates PV16–PV19 (paper/wood 0.0145, plastic/metal 0.0395 €/kg).",
   "sources": [
+    {
+      "url": "https://www.valorlux.lu/media/133fdc6c-0dbb-4dc3-9ec2-b86cce1a06ac/tarifs-pv-2026-detaille.pdf",
+      "title": "Valorlux — Tarifs Point Vert 2026 (déclaration détaillée), official PDF (fetched and parsed)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
     {
       "url": "https://www.valorlux.lu",
       "title": "Valorlux — Luxembourg packaging scheme",
       "checkedAt": "2026-08-16",
       "official": true
-    },
-    {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
-      "checkedAt": "2026-08-16",
-      "official": false
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

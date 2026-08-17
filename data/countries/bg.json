@@ -7,43 +7,61 @@
   },
   "register": {
     "exists": true,
-    "name": "NISO / Register of persons placing packaged goods on the market",
-    "url": "https://nwms.eea.government.bg",
-    "operator": "Executive Environment Agency (ExEA)",
+    "name": "Register of persons placing packaged goods on the market (MOEW / ExEA)",
+    "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/",
+    "operator": "Ministry of Environment and Water (MOEW) / Executive Environment Agency (ExEA)",
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "⚠ Portal URL unverified. Qualified electronic signature required for registration."
+    "notes": "MOEW packaging page fetched 2026-08-16 (Bulgarian): producers comply either by joining a recovery organisation (Ecopack, Bulecopack) or fulfilling obligations individually (product fee to the state/PUDOOS). Public registers of recovery organisations and obligated persons exist under MOEW. The earlier candidate portal nwms.eea.government.bg returned only an 'IIS Windows Server' placeholder — not the register; corrected here. Qualified e-signature is required for e-registration."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "Ecopack Bulgaria",
-        "url": "https://www.ecopack.bg"
+        "url": "https://www.ecopack.bg",
+        "tariffUrl": "https://www.ecopack.bg/bg/za-chlenove/ceni-i-tyrgovska-politika"
+      },
+      {
+        "name": "Bulecopack",
+        "url": "https://www.bulecopack.com"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
+      "paper": 0.118,
+      "plastic": 0.125,
+      "glass": 0.144,
+      "metal": 0.066,
+      "wood": 0.069,
       "composite": null
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "tariffYear": 2026,
+    "minAnnualFeeEur": 80,
+    "ecoModulation": "Aluminium (0.152) and PET bottles ≤3L (0.151) dearest; steel cheapest metal (0.066). Volume discounts for annual quantities over 10 tonnes."
   },
-  "extraTaxes": [],
-  "notes": "Alternative to a recovery organisation is paying a product fee to the state (PUDOOS) — verify current rules. Scheme URL unverified.",
-  "sources": [
+  "extraTaxes": [
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
-      "checkedAt": "2026-08-16",
-      "official": false
+      "name": "Продуктова такса (product fee to PUDOOS)",
+      "summary": "Companies that do NOT join a recovery organisation must instead pay a product fee to the state enterprise PUDOOS. Joining a recovery organisation (Ecopack/Bulecopack) is the alternative that fulfils EPR without the state fee.",
+      "collectedBy": "PUDOOS (state environmental fund) / MOEW",
+      "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/"
     }
   ],
-  "verified": false,
+  "notes": "Rates from Ecopack Bulgaria's official member prices page, base rates effective 01.01.2026 (fetched 2026-08-16, EUR/kg excl. VAT): paper/cardboard 0.118, other plastics 0.125 (PET bottles ≤3L 0.151), glass 0.144, steel 0.066 (shown as 'metal'; aluminium 0.152), wood 0.069. Minimum annual fee €80 per obligated party. Composite left null (no separate row). Bulecopack is the second recovery organisation.",
+  "sources": [
+    {
+      "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/",
+      "title": "MOEW — packaging waste page (compliance routes, registers) (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.ecopack.bg/bg/za-chlenove/ceni-i-tyrgovska-politika",
+      "title": "Ecopack Bulgaria — member prices & commercial policy, rates from 01.01.2026 (fetched)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    }
+  ],
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

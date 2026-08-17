@@ -12,47 +12,52 @@
     "operator": "APA (Agência Portuguesa do Ambiente)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Per-stream enrolment; registration number issued on certificate; annual declarations (correção for previous year + estimativa for current) due by 31 March. Producers without a Portuguese establishment, distance sellers included, must appoint a Portugal-established representative by written mandate."
+    "notes": "SILiAmb platform fetched live 2026-08-16. Per-stream enrolment; registration number issued on certificate; annual declarations (correção for previous year + estimativa for current) due by 31 March. Producers without a Portuguese establishment, distance sellers included, must appoint a Portugal-established representative by written mandate."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
         "name": "Sociedade Ponto Verde (SPV)",
-        "url": "https://www.pontoverde.pt"
+        "url": "https://www.pontoverde.pt",
+        "tariffUrl": "https://www.pontoverde.pt/wp-content/uploads/2025/08/Tabela-VPV-2024.pdf"
+      },
+      {
+        "name": "Novo Verde",
+        "url": "https://www.novoverde.pt"
       }
     ],
     "rates": {
-      "paper": null,
-      "plastic": null,
-      "glass": null,
-      "metal": null,
-      "wood": null,
-      "composite": null
+      "paper": 0.1477,
+      "plastic": 0.296,
+      "glass": 0.0258,
+      "metal": 0.1985,
+      "wood": 0.0996,
+      "composite": 0.2784
     },
-    "tariffYear": null,
-    "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "tariffYear": 2024,
+    "minAnnualFeeEur": 120,
+    "ecoModulation": "ECAL (beverage cartons) 0.2784 and 'other materials' 0.2679 dear; steel (0.1985) much higher than aluminium (0.0658). Same €/kg applies across sales/service/secondary/transport packaging."
   },
   "extraTaxes": [],
   "thresholds": {
     "deMinimis": "0 kg — no volume or turnover thresholds"
   },
-  "notes": "Other licensed schemes exist (e.g. Novo Verde, Electrão for other streams) — confirm packaging scheme list in verification batch.",
+  "notes": "Rates from Sociedade Ponto Verde's official 'Tabela de Valores Ponto Verde (VPV)' annual table (fetched and parsed 2026-08-16, €/kg excl. VAT, sales/primary packaging): glass 0.0258, plastic 0.2960, paper/cardboard 0.1477, ECAL beverage cartons 0.2784 ('composite'), steel 0.1985 (shown as 'metal'; aluminium 0.0658), wood 0.0996, other materials 0.2679. Minimum annual declaration €120 (excl. VAT). tariffYear 2024: this is the currently-published approved table (re-uploaded Aug 2025); revised values for 2026 were under authority review/litigation as of early 2025 — re-check for a newer VPV table. Novo Verde is a competing licensed packaging scheme.",
   "sources": [
     {
       "url": "https://siliamb.apambiente.pt",
-      "title": "SILiAmb — APA producer platform",
+      "title": "SILiAmb — APA producer platform (fetched, live)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
-      "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "url": "https://www.pontoverde.pt/wp-content/uploads/2025/08/Tabela-VPV-2024.pdf",
+      "title": "Sociedade Ponto Verde — Tabela de Valores Ponto Verde (official PDF, fetched and parsed)",
       "checkedAt": "2026-08-16",
-      "official": false
+      "official": true
     }
   ],
-  "verified": false,
+  "verified": true,
   "lastReviewed": "2026-08-16"
 }

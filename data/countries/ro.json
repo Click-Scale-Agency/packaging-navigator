@@ -43,7 +43,7 @@
       "url": "https://www.afm.ro"
     }
   ],
-  "notes": "membershipRequired false = targets can be met via a licensed OIREP or by paying the AFM contribution for the shortfall. OIREP examples unverified — confirm licensed list.",
+  "notes": "pro.rates left null: OIREP transfer-of-responsibility organisations (FEPRA, GreenPoint Management, Eco-Rom Ambalaje, SIGUREC, etc.) price by contract and publish no common public per-material tariff; the one public statutory figure is the AFM penalty contribution of 2 RON/kg on the recycling-target shortfall (recorded under extraTaxes). membershipRequired false = targets can be met via a licensed OIREP or by paying the AFM contribution for the shortfall.",
   "sources": [
     {
       "url": "https://www.afm.ro",

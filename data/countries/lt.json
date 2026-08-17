@@ -34,15 +34,29 @@
     "minAnnualFeeEur": null,
     "ecoModulation": ""
   },
-  "extraTaxes": [],
+  "extraTaxes": [
+    {
+      "name": "Mokestis už aplinkos teršimą pakuočių atliekomis",
+      "summary": "Environmental pollution tax on packaging waste. Producers/importers are EXEMPT for the share of packaging that is actually recycled (in practice via a PRO such as Gamtos ateitis or Žaliasis taškas); the tax is effectively the penalty on the unmanaged share. Statutory rates (from 2025, reusable + recyclable single-use packaging, EUR/t): glass 279, plastic/PET 520, paper/cardboard 133, metal 186, wood 189, composite 520. Non-recyclable single-use is higher: glass 395, plastic 875, paper 188, metal 263, wood 225, composite 1200 EUR/t. The base rate is multiplied by an annual indexing coefficient (1.48 for 2026). Fetched from Gamtos ateitis legal-info page 2026-08-16.",
+      "rate": "recyclable packaging EUR/t (×1.48 index for 2026): plastic 520, glass 279, paper 133, metal 186, wood 189, composite 520",
+      "collectedBy": "VMI (State Tax Inspectorate) / Aplinkos ministerija",
+      "url": "https://gamtosateitis.lt/teisine-informacija/apmokestinamosios-pakuotes-rusys-ir-mokescio-tarifai/"
+    }
+  ],
   "thresholds": {
     "deMinimis": "0 kg — obligations from the first unit"
   },
-  "notes": "Scheme URL unverified.",
+  "notes": "pro.rates left null: the figures above are the statutory pollution-TAX rates (the penalty/alternative to PRO compliance), not a PRO's own per-material management fee (tvarkymo įkainiai), which PROs price by contract. Compliance route: register in GPAIS (mandatory even at tiny volumes) and contract a licensed PRO (Gamtos ateitis, Žaliasis taškas) to recycle and thereby gain the tax exemption. From 2025 obligations can only be met by recycling (incineration no longer counts).",
   "sources": [
     {
       "url": "https://www.gpais.eu",
       "title": "GPAIS — Lithuanian unified producer register",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://gamtosateitis.lt/teisine-informacija/apmokestinamosios-pakuotes-rusys-ir-mokescio-tarifai/",
+      "title": "Gamtos ateitis — taxable packaging types & pollution-tax tariffs (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },

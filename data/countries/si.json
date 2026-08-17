@@ -34,12 +34,26 @@
     "minAnnualFeeEur": null,
     "ecoModulation": ""
   },
-  "extraTaxes": [],
+  "extraTaxes": [
+    {
+      "name": "Okoljska dajatev za onesnaževanje okolja zaradi nastajanja odpadne embalaže",
+      "summary": "National environmental tax on packaging waste (Uradni list RS 32/06 ff.; FU.gov.si, fetched 2026-08-16). Levied as a unit environmental charge of €0.0017/kg of packaging (per material, via 'enota obremenitve' factors in Annex 1) plus a €33.38/year administrative fee (4× €8.35 quarterly). This is a small national levy — the substantive cost is the PRO packaging fee, which is set by scheme contract and not public.",
+      "rate": "€0.0017/kg + €33.38/yr admin",
+      "collectedBy": "FURS (Financial Administration of Slovenia)",
+      "url": "https://www.fu.gov.si/davki_in_druge_dajatve/podrocja/okoljske_dajatve"
+    }
+  ],
   "thresholds": {
     "deMinimis": "0 kg — no de-minimis threshold"
   },
-  "notes": "Multiple packaging schemes exist (Slopak, Dinos, Interzero…) — confirm current licensed list. Scheme URL unverified.",
+  "notes": "pro.rates left null: Slopak (site fetched live 2026-08-16, /odpadna-embalaza) and other schemes (Interzero, Dinos, Recikel…) price membership by contract with no public per-material tariff table. Slovenia has NO de-minimis threshold — obligations from the first unit. Foreign B2C distance sellers register via a local authorised representative; annual report to ARSO by 31 March.",
   "sources": [
+    {
+      "url": "https://www.slopak.si/odpadna-embalaza",
+      "title": "Slopak — Slovenian packaging scheme (site fetched; no public tariff)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
     {
       "url": "https://www.repax.io/epr-registers",
       "title": "EPR register overview (repax.io) — register name/coverage cross-check",

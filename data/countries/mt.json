@@ -36,11 +36,17 @@
     "ecoModulation": ""
   },
   "extraTaxes": [],
-  "notes": "Scheme name/URL from general knowledge — unverified (Green MT is the other licensed scheme).",
+  "notes": "pro.rates left null: GreenPak (site fetched live 2026-08-16) is a licensed packaging PRO but publishes no public per-material tariff table — member fees are quoted on application. Green MT is the other licensed scheme. Producers register with ERA and comply via a licensed scheme; ERA number on invoices, annual renewal by 31 March.",
   "sources": [
     {
       "url": "https://era.org.mt",
       "title": "ERA — Environment and Resources Authority",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.greenpak.com.mt/",
+      "title": "GreenPak — licensed Maltese packaging scheme (site fetched; no public tariff)",
       "checkedAt": "2026-08-16",
       "official": true
     },

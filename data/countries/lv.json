@@ -35,20 +35,27 @@
   },
   "extraTaxes": [
     {
-      "name": "Dabas resursu nodoklis (DRN)",
-      "summary": "Natural resources tax on packaging placed on the Latvian market. A contract with a licensed recovery scheme (e.g. LZP, Zaļā josta) exempts from paying DRN at the full statutory rate — that exemption is why scheme membership is the standard route.",
+      "name": "Dabas resursu nodoklis (DRN) — iepakojums (Annex 7)",
+      "summary": "Natural resources tax on packaging placed on the Latvian market (Dabas resursu nodokļa likums, Annex 7 / 7. pielikums, fetched and parsed from likumi.lv 2026-08-16; version in force 15.07.2026). Full official per-material rates (EUR/kg): glass 0.44; wood/paper/cardboard/other natural fibres 0.24; metal 1.10; bioplastic 0.24; plastic (polymer) 1.25; composite carton 1.25; polystyrene 2.20; foam plastic/foam polymer 24.40; foam polystyrene (EPS) 44.00. Composite/laminated packaging is taxed by its predominant material. A contract with a licensed recovery scheme (e.g. LZP, Zaļā josta) exempts the producer from paying DRN at these full statutory rates — that exemption is why scheme membership is the standard route. (Separately in the law body: plastic shopping bags & plastic-containing fishing gear €4.80/kg, wet wipes & balloons €12.20/kg, tobacco filters €8.00/kg — these are plastic-product items, not general packaging.)",
+      "rate": "EUR/kg: glass 0.44, wood/paper/cardboard 0.24, metal 1.10, plastic 1.25, composite carton 1.25, polystyrene 2.20, foam plastic 24.40, foam polystyrene 44.00",
       "collectedBy": "VID (State Revenue Service)",
-      "url": "https://www.vid.gov.lv"
+      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums"
     }
   ],
   "thresholds": {
     "deMinimis": "0 kg — DRN liability starts with the first packaging placed on the market"
   },
-  "notes": "membershipRequired false = the legal alternative is paying full DRN. Open question (research-log §8.7): current DRN rates vs scheme service fees; what changes when the PPWR register arrives.",
+  "notes": "pro.rates left null: Latvian recovery schemes (Latvijas Zaļais punkts, Zaļā josta) price their service by contract and publish no public per-material tariff; membershipRequired=false because the legal alternative is paying full DRN (see extraTaxes — the complete official per-material DRN table is now confirmed from likumi.lv). No dedicated packaging producer register exists yet (PPWR-mandated register due by 12.02.2027). verified stays false because there is neither a packaging register to confirm a producer number against nor a public PRO tariff — but the DRN statutory rates that drive the actual cost ARE confirmed from the primary law. Open (research-log §8.7): scheme service fees vs DRN; what changes when the PPWR register arrives.",
   "sources": [
     {
       "url": "https://www.vvd.gov.lv",
       "title": "VVD — State Environmental Service (current register landscape)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums",
+      "title": "Dabas resursu nodokļa likums — official law text (fetched; DRN rates, Annex 7)",
       "checkedAt": "2026-08-16",
       "official": true
     },

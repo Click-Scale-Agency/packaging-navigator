@@ -5,6 +5,8 @@
     "en": "Austria",
     "native": "Österreich"
   },
+  "competentAuthority": "BMK / atbildīgā federālā vides pārvalde (Umweltbundesamt)",
+  "legalBasis": "Verpackungsverordnung 2014 (ar grozījumiem); PPWR (ES) 2025/40",
   "register": {
     "exists": true,
     "name": "EDM (Elektronisches Datenmanagement)",

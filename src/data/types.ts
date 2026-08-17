@@ -67,6 +67,10 @@ export interface CountryData {
   code: string;
   /** Latvian country name */
   name: string;
+  /** National competent authority / regulator (regulatory context). */
+  competentAuthority?: string | null;
+  /** National legal basis for packaging EPR. */
+  legalBasis?: string | null;
   register: RegisterLayer;
   pro: ProScheme[];
   extraTaxes: ExtraTax[];

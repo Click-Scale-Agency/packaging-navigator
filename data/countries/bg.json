@@ -5,6 +5,8 @@
     "en": "Bulgaria",
     "native": "България"
   },
+  "competentAuthority": "Vides un ūdeņu ministrija (MOEW) / Izpildu vides aģentūra (ExEA)",
+  "legalBasis": "Atkritumu apsaimniekošanas likums; Iepakojuma un iepakojuma atkritumu noteikumi",
   "register": {
     "exists": true,
     "name": "Register of persons placing packaged goods on the market (MOEW / ExEA)",

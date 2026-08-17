@@ -5,6 +5,8 @@
     "en": "Denmark",
     "native": "Danmark"
   },
+  "competentAuthority": "Dānijas Vides aizsardzības aģentūra; Dansk Producentansvar (DPA)",
+  "legalBasis": "Bekendtgørelse (rīkojums) Nr. 1146/2025 par iepakojumu un EPR",
   "register": {
     "exists": true,
     "name": "DPA producer register (all streams)",

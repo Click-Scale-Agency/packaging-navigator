@@ -5,6 +5,8 @@
     "en": "Germany",
     "native": "Deutschland"
   },
+  "competentAuthority": "Zentrale Stelle Verpackungsregister (ZSVR); UBA",
+  "legalBasis": "VerpackG; no 12.08.2026 VerpackDG (PPWR pielāgošanas akts)",
   "register": {
     "exists": true,
     "name": "LUCID Verpackungsregister",

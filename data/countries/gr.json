@@ -5,6 +5,8 @@
     "en": "Greece",
     "native": "Ελλάδα"
   },
+  "competentAuthority": "Grieķijas Pārstrādes aģentūra (EOAN / HRA)",
+  "legalBasis": "Likums 4819/2021 un īstenošanas akti",
   "register": {
     "exists": true,
     "name": "EMPA (National Producer Register)",

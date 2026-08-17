@@ -5,6 +5,8 @@
     "en": "Sweden",
     "native": "Sverige"
   },
+  "competentAuthority": "Naturvårdsverket (Zviedrijas Vides aizsardzības aģentūra)",
+  "legalBasis": "Rīkojums (2022:1274) par ražotāja atbildību par iepakojumu",
   "register": {
     "exists": true,
     "name": "Producentansvarsregistret",

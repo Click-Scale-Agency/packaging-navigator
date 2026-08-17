@@ -5,6 +5,8 @@
     "en": "Netherlands",
     "native": "Nederland"
   },
+  "competentAuthority": "Infrastruktūras un ūdens apsaimniekošanas ministrija; ILT",
+  "legalBasis": "Besluit beheer verpakkingen (Iepakojuma apsaimniekošanas dekrēts)",
   "register": {
     "exists": false,
     "notes": "No state packaging register — RWS UPV registers cover other streams. Packaging obligations (registration, declaration, fees) are handled entirely through Verpact (formerly Afvalfonds Verpakkingen)."

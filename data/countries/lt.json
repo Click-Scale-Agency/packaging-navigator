@@ -5,6 +5,8 @@
     "en": "Lithuania",
     "native": "Lietuva"
   },
+  "competentAuthority": "Vides aizsardzības aģentūra (AAA)",
+  "legalBasis": "Iepakojuma un iepakojuma atkritumu apsaimniekošanas likums; Mokesčio už aplinkos teršimą likums",
   "register": {
     "exists": true,
     "name": "GPAIS (unified product/packaging register, 8 streams)",

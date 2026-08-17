@@ -169,3 +169,17 @@ New AR (authorised representative) confirmations for foreign sellers: ES, AT, PT
 - **GR, IE, MT, SK** — confirmed no public per-material figure exists: HERRCO fees in contract Annex C1; Repak members-only; Malta packaging eco-contribution waived for scheme members (GreenPak/GreenMT fees on application); SK OZV recycling fees per-contract.
 
 Net: all 9 unverified countries whose statute sets a per-material figure (LT, LV, PL, RO, SI) now carry it as an official extraTax; the remaining 4 (GR, IE, MT, SK) have genuinely no public per-material rate. FX: PLN/EUR 4.31, HUF/EUR 362.95 (2026-08-16).
+
+## 14. Enrichment from project spec doc (2026-08-16, Claude Code)
+
+Input: PPWR_EPR_ES27_specifikācija (ChatGPT-compiled, v1.0, 2026-08-16) — a system-design spec with per-country regulatory context. NOTE: the doc contains NO per-material tariffs (fees are modelled as "external tariff"), so our verified PRO/state rate data stays the authority on prices; the doc adds regulatory *context*.
+
+Added to schema + all 27 files: `competentAuthority` and `legalBasis` (optional string fields, analogous to `register.operator` — regulatory context, not fee claims). Wired through src/data/types.ts + src/data/index.ts so the UI can render them. `vite build` green.
+
+Cross-checked NEW register claims against primary sources before adopting (never trusted the doc blindly):
+- **PT** — CONFIRMED the register is **SIRER** (Sistema Integrado de Registo Electrónico de Resíduos), declared via the SILiAmb platform (siliambfe.apambiente.pt), APA, DL 152-D/2017 art. 19 (apambiente.pt fetched). Updated register name + added SIRER source.
+- **FI** — CONFIRMED the producer register is **TURRe** (public search jatehuoltokompassi.fi/haetietoja/turre/). Legal basis corrected to Waste Act 646/2011 + Decree 518/2014 (doc said 1029/2021 — cross-check caught the discrepancy).
+- **BE** — **EPRIBEL** is a real IVC/CIE national-register initiative (reported ~12.08.2026) but epribel.be is still under construction (points to ivcie.be). Recorded as the emerging register; IVC/CIE stays the current channel. verified status unchanged.
+- Other legalBasis/authority citations (DE VerpackG/VerpackDG, ES RD 1055/2022, IT D.Lgs 152/2006, FR Code de l'environnement/AGEC, etc.) match earlier verified research; adopted as context.
+
+No `verified` flags changed by this enrichment (it adds context, not rates). DRS (deposit-return) structured field intentionally deferred — accurate 27-country DRS status needs its own verification pass.

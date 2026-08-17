@@ -244,3 +244,13 @@ Extends §22's guide with the packaging-classification step and connects it to t
 - **Indicative cost per country** shown as a chip in each plan card (same engine as the calculator; PRO fee incl. minimum + registration; AR excluded, as in §16), or "nav publiskotas likmes" when no rates exist.
 - **Deep-link to the full calculator**: a button builds `/?w=paper:120,plastic:35&ship=2000&cc=DE,FR,ES#kalkulators`; the index route gained `validateSearch` (optional `w`/`ship`/`cc`) and the Calculator seeds its initial weights/shipments/selection from those params. Plain `<Link to="/">` links stay valid (search keys optional).
 - tsc clean (strict `exactOptionalPropertyTypes` + `noPropertyAccessFromIndexSignature`); `vite build` + `validate-data.mjs` green.
+
+## 24. Action guide scope C — scenario library + exportable plan (2026-08-17, Claude Code)
+
+Completes the guide (spec §14 + exportable output).
+
+- **Scenario library**: 5 ready-made Baltic/LV-first profiles (`SCENARIOS` in `ActionGuide.tsx`) that pre-fill every step and let the user tweak: "LV e-veikals → DE + FR", "LV pārdevējs Amazon → DE", "Baltijas e-veikals → LV + LT + EE", "Populārākie ES tirgi (DE/FR/ES/IT/NL/BE)", "Ievešana caur vietējo importētāju (B2B)". Rendered as a card row above step 1.
+- **Exportable plan**: "Kopēt plānu" builds a full plain-text plan (per-country obligation holder, task checklist with levels + URLs, classification notes, evidence, human-review flags, indicative cost, plus the disclaimer) to the clipboard; "Drukāt / saglabāt PDF" calls `window.print()`. The four input steps + scenario bar + action buttons carry `print:hidden`, so a print/PDF shows only the plan cards.
+- tsc clean; `vite build` + `validate-data.mjs` green. Scenario titles/descriptions are LV content strings co-located with their state config (whole app is LV-only).
+
+Guide is now feature-complete across A/B/C: guided who-must-do-what flow, packaging classification, per-country cost via the shared engine, calculator deep-link, ready-made scenarios, and a copy/print action plan — all derived from canonical /data, nothing hardcoded.

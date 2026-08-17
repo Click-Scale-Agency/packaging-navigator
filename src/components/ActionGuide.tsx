@@ -45,6 +45,107 @@ interface Plan {
 
 const DEFAULT_SELECTION = ["DE", "FR", "ES"];
 
+interface ScenarioState {
+  selected: string[];
+  channel: Channel;
+  who: WhoFirst;
+  weights: Record<MaterialKey, string>;
+  shipments: string;
+  levels: PackLevel[];
+  audience: Audience;
+  reuse: Reuse;
+}
+
+interface Scenario {
+  id: string;
+  title: string;
+  desc: string;
+  state: ScenarioState;
+}
+
+const W = (paper = "", plastic = "", glass = "", metal = "", wood = "", composite = "") =>
+  ({ paper, plastic, glass, metal, wood, composite }) as Record<MaterialKey, string>;
+
+/** Ready-made profiles for the Baltic / LV-first target audience (spec §14).
+ * Each pre-fills every step; the user then tweaks. */
+const SCENARIOS: Scenario[] = [
+  {
+    id: "lv-de-fr",
+    title: "LV e-veikals → DE + FR",
+    desc: "Savs interneta veikals, sūta tieši pircējiem uz Vāciju un Franciju.",
+    state: {
+      selected: ["DE", "FR"],
+      channel: "own",
+      who: "you",
+      weights: W("120", "35"),
+      shipments: "2000",
+      levels: ["sales", "ecom"],
+      audience: "household",
+      reuse: "single",
+    },
+  },
+  {
+    id: "amazon-de",
+    title: "LV pārdevējs Amazon → DE",
+    desc: "Pārdošana caur tirdzniecības platformu Vācijas tirgū.",
+    state: {
+      selected: ["DE"],
+      channel: "marketplace",
+      who: "you",
+      weights: W("80", "40"),
+      shipments: "3000",
+      levels: ["sales", "ecom"],
+      audience: "household",
+      reuse: "single",
+    },
+  },
+  {
+    id: "baltics",
+    title: "Baltijas e-veikals → LV + LT + EE",
+    desc: "Reģionāls e-veikals, kas sūta pa visām trim Baltijas valstīm.",
+    state: {
+      selected: ["LV", "LT", "EE"],
+      channel: "own",
+      who: "you",
+      weights: W("100", "30"),
+      shipments: "1500",
+      levels: ["sales", "ecom"],
+      audience: "household",
+      reuse: "single",
+    },
+  },
+  {
+    id: "eu-top",
+    title: "Populārākie ES tirgi",
+    desc: "Lielāks e-veikals: DE, FR, ES, IT, NL, BE.",
+    state: {
+      selected: ["DE", "FR", "ES", "IT", "NL", "BE"],
+      channel: "own",
+      who: "you",
+      weights: W("140", "45", "", "", "20"),
+      shipments: "5000",
+      levels: ["sales", "grouped", "ecom"],
+      audience: "household",
+      reuse: "single",
+    },
+  },
+  {
+    id: "importer",
+    title: "Ievešana caur vietējo importētāju",
+    desc: "Pārdod vietējam izplatītājam, kas preci laiž tirgū tālāk (DE).",
+    state: {
+      selected: ["DE"],
+      channel: "b2b",
+      who: "importer",
+      weights: W("120", "35"),
+      shipments: "2000",
+      levels: ["sales", "grouped", "transport"],
+      audience: "commercial",
+      reuse: "single",
+    },
+  },
+];
+
 function proNames(country: CountryData): string {
   const names = country.pro.map((p) => p.name);
   return names.length ? names.join(", ") : "";
@@ -289,6 +390,18 @@ export function ActionGuide() {
   const [levels, setLevels] = useState<PackLevel[]>(["sales", "ecom"]);
   const [audience, setAudience] = useState<Audience>("household");
   const [reuse, setReuse] = useState<Reuse>("single");
+  const [copied, setCopied] = useState(false);
+
+  const applyScenario = (s: Scenario) => {
+    setSelected(s.state.selected);
+    setChannel(s.state.channel);
+    setWho(s.state.who);
+    setWeights(s.state.weights);
+    setShipments(s.state.shipments);
+    setLevels(s.state.levels);
+    setAudience(s.state.audience);
+    setReuse(s.state.reuse);
+  };
 
   const toggle = (code: string) =>
     setSelected((prev) =>
@@ -320,6 +433,59 @@ export function ActionGuide() {
     .map((m) => `${m}:${weights[m]}`)
     .join(",");
 
+  const channelLabel =
+    channel === "own"
+      ? lv.guide.channelOwn
+      : channel === "marketplace"
+        ? lv.guide.channelMarketplace
+        : lv.guide.channelB2b;
+  const whoLabel =
+    who === "you" ? lv.guide.whoYou : who === "importer" ? lv.guide.whoImporter : lv.guide.whoPlatform;
+
+  const buildPlanText = () => {
+    const lines: string[] = [
+      lv.guide.planHeader,
+      lv.guide.planSummaryLine(plans.length, totalKg.toFixed(1)),
+      `${lv.guide.planChannelLabel}: ${channelLabel} · ${lv.guide.planWhoLabel}: ${whoLabel}`,
+      "",
+    ];
+    for (const p of plans) {
+      lines.push(`=== ${p.country.code} ${p.country.name} — ${p.costLabel ?? lv.guide.costUnknown}`);
+      lines.push(`${p.obligationYou ? lv.guide.obligationYou : lv.guide.obligationOther}: ${p.obligationNote}`);
+      lines.push(`${lv.guide.tasksTitle}:`);
+      for (const t of p.tasks) {
+        lines.push(`  [ ] (${levelText(t.level)}) ${t.label}${t.detail ? ` — ${t.detail}` : ""}${t.url ? ` ${t.url}` : ""}`);
+      }
+      if (p.notes.length) {
+        for (const n of p.notes) lines.push(`  • ${n}`);
+      }
+      if (p.evidence.length) {
+        lines.push(`${lv.guide.evidenceTitle}: ${p.evidence.join("; ")}`);
+      }
+      if (p.flags.length) {
+        lines.push(`${lv.guide.flagsTitle}:`);
+        for (const f of p.flags) lines.push(`  ! ${f}`);
+      }
+      lines.push("");
+    }
+    lines.push(lv.guide.disclaimer);
+    return lines.join("\n");
+  };
+
+  const handleCopyPlan = async () => {
+    try {
+      await navigator.clipboard.writeText(buildPlanText());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  const handlePrint = () => {
+    if (typeof window !== "undefined") window.print();
+  };
+
   return (
     <section className="border-b border-dashed border-border-strong">
       <div className="mx-auto max-w-[1400px] px-5 py-20 md:px-10 md:py-28">
@@ -330,8 +496,32 @@ export function ActionGuide() {
           lead={lv.guide.lead}
         />
 
+        {/* Scenario library */}
+        <Press delay={0.04} className="mt-14 print:hidden">
+          <StepHead
+            label={lv.guide.scenariosTitle}
+            title={lv.guide.scenariosTitle}
+            hint={lv.guide.scenariosHint}
+          />
+          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {SCENARIOS.map((s) => (
+              <button
+                key={s.id}
+                type="button"
+                onClick={() => applyScenario(s)}
+                className="block border-2 border-dashed border-border-strong px-4 py-3 text-left transition-all hover:border-primary active:scale-[0.98]"
+              >
+                <span className="data-value block text-sm font-bold">{s.title}</span>
+                <span className="mt-1 block text-xs leading-snug text-muted-foreground">
+                  {s.desc}
+                </span>
+              </button>
+            ))}
+          </div>
+        </Press>
+
         {/* Step 1 — countries */}
-        <Press delay={0.05} className="mt-14">
+        <Press delay={0.05} className="mt-14 print:hidden">
           <StepHead
             label={lv.guide.step1Label}
             title={lv.guide.step1Title}
@@ -361,7 +551,7 @@ export function ActionGuide() {
         </Press>
 
         {/* Step 2 — channel */}
-        <Press delay={0.06} className="mt-14">
+        <Press delay={0.06} className="mt-14 print:hidden">
           <StepHead
             label={lv.guide.step2Label}
             title={lv.guide.step2Title}
@@ -390,7 +580,7 @@ export function ActionGuide() {
         </Press>
 
         {/* Step 3 — who first */}
-        <Press delay={0.07} className="mt-14">
+        <Press delay={0.07} className="mt-14 print:hidden">
           <StepHead
             label={lv.guide.step3Label}
             title={lv.guide.step3Title}
@@ -419,7 +609,7 @@ export function ActionGuide() {
         </Press>
 
         {/* Step 4 — packaging classification */}
-        <Press delay={0.08} className="mt-14">
+        <Press delay={0.08} className="mt-14 print:hidden">
           <StepHead
             label={lv.guide.step4Label}
             title={lv.guide.step4Title}
@@ -508,6 +698,22 @@ export function ActionGuide() {
               <p className="mt-3 max-w-[70ch] text-sm text-muted-foreground">
                 {lv.guide.resultLead(plans.length)}
               </p>
+              <div className="mt-6 flex flex-wrap gap-3 print:hidden">
+                <button
+                  type="button"
+                  onClick={handleCopyPlan}
+                  className="form-label border border-border-strong px-3 py-2 transition-colors hover:border-primary hover:text-primary"
+                >
+                  {copied ? lv.guide.copied : lv.guide.copyPlan}
+                </button>
+                <button
+                  type="button"
+                  onClick={handlePrint}
+                  className="form-label border border-border-strong px-3 py-2 transition-colors hover:border-primary hover:text-primary"
+                >
+                  {lv.guide.printPlanBtn}
+                </button>
+              </div>
               <div className="mt-8 grid gap-6 lg:grid-cols-2">
                 {plans.map((plan, i) => (
                   <motion.div
@@ -660,7 +866,7 @@ export function ActionGuide() {
                   ship: shipments || undefined,
                   cc: selected.join(",") || undefined,
                 }}
-                className="data-value mt-8 inline-flex items-center border-2 border-foreground px-5 py-3 text-sm font-bold uppercase tracking-[0.06em] transition-colors hover:border-primary hover:text-primary"
+                className="data-value mt-8 inline-flex items-center border-2 border-foreground px-5 py-3 text-sm font-bold uppercase tracking-[0.06em] transition-colors hover:border-primary hover:text-primary print:hidden"
               >
                 {lv.guide.openCalculator} →
               </Link>

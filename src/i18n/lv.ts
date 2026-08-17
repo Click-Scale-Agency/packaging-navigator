@@ -192,6 +192,16 @@ export const lv = {
     noteCommercial: "Komerciālam/rūpnieciskam iepakojumam var būt cita ziņošanas plūsma nekā mājsaimniecības iepakojumam — apstiprini ar apsaimniekotāju.",
     noteReusable: "Atkārtoti lietojamam iepakojumam piemēro atkārtotas lietošanas mērķu režīmu; standarta uz-vienību EPR maksa var neattiekties tāpat — pārbaudi.",
     notePlastic: "Izvēlēta plastmasa: dažās valstīs (piem., ES) ir atsevišķs nodoklis par nepārstrādātu plastmasu papildus PRO maksai.",
+    scenariosTitle: "Sāc no gatava scenārija",
+    scenariosHint: "Izvēlies tipisku situāciju — mēs aizpildīsim visus soļus, un tu vari koriģēt.",
+    copyPlan: "Kopēt plānu",
+    copied: "Nokopēts!",
+    printPlanBtn: "Drukāt / saglabāt PDF",
+    planHeader: "PPWR rīcības plāns",
+    planChannelLabel: "Kanāls",
+    planWhoLabel: "Iepakojumu pirmais laiž tirgū",
+    planSummaryLine: (n: number, kg: string) =>
+      `${n} valstis · kopējais iepakojums ${kg} kg/gadā`,
   },
   materials: {
     paper: "Papīrs / kartons",

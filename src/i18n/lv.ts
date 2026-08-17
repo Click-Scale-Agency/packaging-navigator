@@ -408,7 +408,7 @@ export const lv = {
   faq: {
     kicker: "Sadaļa 06",
     title: "Bieži uzdotie jautājumi",
-    lead: "Sešpadsmit jautājumi, ko e-veikali uzdod visbiežāk. Atbildes balstās uz šajā lapā apkopotajiem datiem un regulas tekstu.",
+    lead: "Astoņpadsmit jautājumi, ko e-veikali uzdod visbiežāk. Atbildes balstās uz šajā lapā apkopotajiem datiem un regulas tekstu.",
     groups: [
       {
         title: "Pamati",

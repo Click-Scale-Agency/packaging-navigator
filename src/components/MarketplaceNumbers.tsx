@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 import { countries } from "@/data";
-import { Press, SectionHead } from "@/components/primitives";
+import { Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
 
 /** Countries whose register issues a producer number relevant to marketplaces:
  * either a known number format or a number that must appear on invoices. */
@@ -70,6 +70,11 @@ export function MarketplaceNumbers() {
                         {lv.marketplace.none}
                       </span>
                     )}
+                    {!c.verified ? (
+                      <span className="mt-1 block">
+                        <UnverifiedStamp short />
+                      </span>
+                    ) : null}
                   </span>
                   <span className="form-label text-right">
                     {invoiceLabel(c.register.numberOnInvoices)}

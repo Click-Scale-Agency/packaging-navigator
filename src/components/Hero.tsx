@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 
 import lv from "@/i18n/lv";
+import { regulationApplies } from "@/data";
 import { Barcode, CropMarks, PRESS_SPRING, Perforation } from "@/components/primitives";
+
+// The application date is canonical (data/regulation.json), not hardcoded here.
+const appliesDigits = regulationApplies.replace(/-/g, "").split("").join(" ");
 
 const stamps = [
   { text: lv.hero.stamp1, rotate: -8, delay: 0.15 },
-  { text: lv.hero.stamp2, rotate: 5, delay: 0.3 },
+  { text: regulationApplies, rotate: 5, delay: 0.3 },
   { text: lv.hero.stamp3, rotate: -3, delay: 0.45 },
 ];
 
@@ -129,7 +133,7 @@ export function Hero() {
                 <Barcode seed="PPWR2026LV" className="h-full" />
               </div>
               <p className="data-value mt-2 text-center text-[10px] tracking-[0.4em] text-muted-foreground">
-                2 0 2 6 0 8 1 2
+                {appliesDigits}
               </p>
             </div>
             <p className="form-label mt-4 text-center">{lv.hero.scrollHint}</p>

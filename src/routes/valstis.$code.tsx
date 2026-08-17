@@ -263,6 +263,23 @@ function CountryDetail() {
                       {tax.material ? ` · ${lv.materials[tax.material]}` : ""}
                     </p>
                   </div>
+                  {tax.materialRatesEur ? (
+                    <div className="mt-3 border border-dashed border-border p-3">
+                      <span className="form-label">{lv.detail.rates}</span>
+                      <ul className="mt-2 grid grid-cols-2 gap-x-6 gap-y-1 md:grid-cols-3">
+                        {MATERIALS.map((m) =>
+                          typeof tax.materialRatesEur?.[m] === "number" ? (
+                            <li key={m} className="flex items-baseline justify-between gap-2">
+                              <span className="form-label truncate">{lv.materials[m]}</span>
+                              <span className="data-value text-sm">
+                                {tax.materialRatesEur[m]}
+                              </span>
+                            </li>
+                          ) : null,
+                        )}
+                      </ul>
+                    </div>
+                  ) : null}
                   {tax.note ? (
                     <p className="mt-2 max-w-[70ch] text-sm text-muted-foreground">{tax.note}</p>
                   ) : null}

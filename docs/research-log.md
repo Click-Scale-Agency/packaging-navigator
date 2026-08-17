@@ -268,3 +268,25 @@ Independent re-verification of the whole project (3 parallel auditors + a determ
 **UI-faithfulness audit:** fee engine (§16), Calculator, and ActionGuide plan-builder confirmed faithful — never assert a fact absent from data, honest null/`—` fallbacks, unverified stamps present, AR excluded from the safe total.
 - **Fixed — per-scheme rate misattribution (was high):** the country detail page rendered the country-level rate table inside *every* scheme card, implying secondary schemes (e.g. BE Valipac industrial, DE Landbell, FR Léko) charge the reference scheme's household rates. Now the €/kg table renders once, attributed to the reference scheme, with a note that other schemes price differently. `rateFor` in `src/lib/fees.ts` also changed from cross-scheme averaging to the reference scheme's rate (no numeric change today since all schemes share one table; removes latent blending fragility).
 - Reported, not changed (architecture/scope decisions): material-linked statutory taxes don't reach the calculator because the material detector matches English keywords against now-Latvian tax prose (safe omission for LV/PL/RO/ES excise, nothing fabricated); a few hardcoded country facts in i18n copy (FAQ DE/LV, guide plastic-note ES, FunctionNotCode Spain/CN, hero application date) that are correct today but duplicate canonical data; MarketplaceNumbers shows unverified-country formats without a per-row stamp; `data/cn-codes.json` and `data/marketplace-numbers.json` unused.
+
+## 26. Post-validation cleanup (2026-08-17, Claude Code)
+
+Actioned the follow-up items from §25.
+
+**Material-linked statutory taxes now reach the calculator (correctly, not fabricated).** Added optional `material` (single-tag) and `materialRatesEur` (per-material €/kg table) to the extraTaxes schema. The fee engine (`src/lib/fees.ts` `extraTaxFor`) now sums **only** `materialRatesEur`, so:
+- **LV** — the confirmed DRN Annex-7 per-material table (paper/wood 0.24, glass 0.44, metal 1.10, plastic/composite 1.25 €/kg) now drives an indicative LV cost in the calculator (previously "—", since LV has no PRO tariff). Shown with the unverified stamp, and rendered as a per-material table on the LV country page.
+- **ES** — the plastic excise is tagged `material:"plastic"` for display + the guide's plastic note, but is deliberately NOT summed into the cost (its applicability to foreign distance sellers is the §6 open question). The keyword-based material detector is kept only as a fallback; explicit tags win.
+
+**Data corrections:**
+- **BG** — composite backfilled to 0.174 €/kg (re-fetched the Ecopack member-prices page; "Композитни" row confirmed).
+- **CZ** — `registrationCostEur` €33 was self-flagged as not-on-the-fetched-page; nulled it (only the ~€66 EKO-KOM annual fee is confirmed), note updated.
+- **PT** — rates rounded to the 3-decimal convention (numbers unchanged in substance; confirmed correct). The 2025 VPV PDF is 403-blocked, so tariffYear stays 2024 with the existing "re-check" note.
+
+**UI de-duplication / honesty:**
+- Hero PPWR application date + barcode caption now read from `regulation.json` (`regulationApplies`) instead of a hardcoded "2026-08-12" string.
+- Guide plastic note is now per-country and data-driven (fires only for a selected country whose data carries a plastic-tagged tax), fixing the "shows regardless of ES" behaviour.
+- MarketplaceNumbers rows now show the unverified stamp for `verified:false` countries (e.g. PL) instead of only the footer disclaimer.
+
+**Deliberately left as editorial copy (not data facts):** the FAQ (DE LUCID + dual-system, LV no-register-yet) and the "Funkcija, nevis kods" explainer (Spain plastic tax / CN codes). These are stable explanatory prose, not calculator/catalog data; data-driving them would degrade the copy. Flagged for the owner to decide. `data/cn-codes.json` and `data/marketplace-numbers.json` remain unused (carry their own verify-before-surfacing caveats).
+
+All checks green: `validate-data.mjs`, `tsc --noEmit` (0), `vite build`.

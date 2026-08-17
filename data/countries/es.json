@@ -49,7 +49,8 @@
       "summary": "Atsevišķa plastmasas akcīze (Likums 7/2022, 67.–83. p., no 01.01.2023) par nepārstrādātu plastmasu vienreizlietojamā iepakojumā, tukšā vai pildītā — apstiprināts AEAT sede electrónica (iegūts 2026-08-16). Ar nodokli apliekamie notikumi: ražošana, imports UN iegāde ES iekšienē; de-minimis ≤5 kg nepārstrādātas plastmasas mēnesī; teritoriālais reģistrs + Model 592 deklarācijas (Orden HFP/1314/2022). ATVĒRTS JAUTĀJUMS (neatrisināts, nav atrastas primāras AEAT vadlīnijas): vai ārvalstu B2C tālpārdevējs, kas sūta pakas Spānijas patērētājiem, uzskatāms par ES iekšienes iegādes veicēju — neapgalvot piemērojamību ārvalstu pārdevējiem, kamēr nav atrastas AEAT vadlīnijas.",
       "rate": "€0,45/kg nepārstrādātas plastmasas",
       "collectedBy": "Agencia Tributaria (AEAT) — nevis EPR shēma",
-      "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-especiales-medioambientales/impuesto-especial-sobre-envases-plastico-reutilizables/informacion-general.html"
+      "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-especiales-medioambientales/impuesto-especial-sobre-envases-plastico-reutilizables/informacion-general.html",
+      "material": "plastic"
     }
   ],
   "notes": "Rates from the official Ecoembes 'Precios 2026' PDF (fetched 2026-08-16, €/kg): steel 0.197 (shown as 'metal'; aluminium 0.040), PET bottles 0.260–0.271, PET trays 0.659, HDPE rigid 0.285, other rigid plastics 0.748 (shown as 'plastic'), film/flexibles 1.243–1.254, UNE bags 0.586, compostable 0.205, beverage/food cartons (brik) 0.533 ('composite'), paper-cardboard 0.115 (SUP 0.126), ceramics 0.013, wood & cork 0.030, other materials 1.243. Glass via weight+unit factors: 0.03515 €/kg + 0.00498 €/unit ('glass' shows the weight factor only). ECOTIC ENVASES is a third scheme option.",

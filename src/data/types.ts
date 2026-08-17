@@ -61,6 +61,9 @@ export interface ExtraTax {
   /** €/kg where applicable. */
   ratePerKg: number | null;
   material: MaterialKey | null;
+  /** Per-material statutory rate table in €/kg (e.g. LV DRN). Feeds the
+   * indicative cost calculator when a country has no PRO rates. */
+  materialRatesEur?: Partial<Record<MaterialKey, number>> | null;
   url: string | null;
   note?: string | null;
 }

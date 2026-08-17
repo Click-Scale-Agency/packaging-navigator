@@ -35,7 +35,7 @@
       "glass": 0.144,
       "metal": 0.066,
       "wood": 0.069,
-      "composite": null
+      "composite": 0.174
     },
     "tariffYear": 2026,
     "minAnnualFeeEur": 80,
@@ -49,7 +49,7 @@
       "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/"
     }
   ],
-  "notes": "Rates from Ecopack Bulgaria's official member prices page, base rates effective 01.01.2026 (fetched 2026-08-16, EUR/kg excl. VAT): paper/cardboard 0.118, other plastics 0.125 (PET bottles ≤3L 0.151), glass 0.144, steel 0.066 (shown as 'metal'; aluminium 0.152), wood 0.069. Minimum annual fee €80 per obligated party. Composite left null (no separate row). Bulecopack is the second recovery organisation.",
+  "notes": "Rates from Ecopack Bulgaria's official member prices page, base rates effective 01.01.2026 (fetched 2026-08-16, EUR/kg excl. VAT): paper/cardboard 0.118, other plastics 0.125 (PET bottles ≤3L 0.151), glass 0.144, steel 0.066 (shown as 'metal'; aluminium 0.152), wood 0.069. Minimum annual fee €80 per obligated party. Composite ('Композитни') 0.174 €/kg (backfilled 2026-08-17 from the same Ecopack member-prices page). Bulecopack is the second recovery organisation.",
   "drs": {
     "active": false,
     "note": "Plānota; vēl nav palaista."

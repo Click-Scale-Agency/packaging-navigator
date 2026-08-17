@@ -13,8 +13,8 @@
     "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
     "operator": "Ministry of the Environment (MŽP)",
     "arRequiredForForeignSellers": true,
-    "registrationCostEur": 33,
-    "notes": "Lapa iegūta 2026-08-16 — apstiprina Seznam osob saskaņā ar Iepakojuma likuma 477/2001 Sb. §14 un ka kopīgas izpildes līgums ar pilnvaroto iepakojuma sabiedrību (EKO-KOM) atbrīvo no individuālas iekļaušanas sarakstā. Reģistrācijas maksa 800 CZK (~€33) un 60 dienu pieteikuma termiņš pēc agrākas meklēšanas līmeņa izpētes (nav iegūtajā lapā — jāpārbauda atkārtoti)."
+    "registrationCostEur": null,
+    "notes": "Lapa iegūta 2026-08-16 — apstiprina Seznam osob saskaņā ar Iepakojuma likuma 477/2001 Sb. §14 un ka kopīgas izpildes līgums ar pilnvaroto iepakojuma sabiedrību (EKO-KOM) atbrīvo no individuālas iekļaušanas sarakstā. Iespējama reģistrācijas maksa 800 CZK (~€33) un 60 dienu pieteikuma termiņš minēti agrākā izpētē, BET nav apstiprināti iegūtajā MŽP lapā — tāpēc registrationCostEur atstāts null (netiek uzrādīts kā fakts). Apstiprināta ir tikai EKO-KOM gada līguma maksa ~€66."
   },
   "pro": {
     "membershipRequired": "de-facto — EKO-KOM līgums ir standarta ceļš un atbrīvo no individuālas iekļaušanas sarakstā",

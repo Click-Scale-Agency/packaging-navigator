@@ -19,13 +19,26 @@ export function rateFor(country: CountryData, material: MaterialKey): number | n
   return null;
 }
 
-/** Sum of material-linked extra taxes (€/kg) for a material, or null. */
+/**
+ * Statutory per-material tax rate (€/kg) for a material, or null.
+ *
+ * Uses only the explicit `materialRatesEur` table (e.g. LV DRN) — these are
+ * confirmed per-material statutory rates that stand in for a missing PRO
+ * tariff. A single-material `material` tag alone (e.g. the ES plastic excise,
+ * whose applicability to foreign distance sellers is an open question, see
+ * CLAUDE.md §6) is deliberately NOT summed into the indicative cost.
+ */
 export function extraTaxFor(country: CountryData, material: MaterialKey): number | null {
-  const values = country.extraTaxes
-    .filter((t) => t.material === material && typeof t.ratePerKg === "number")
-    .map((t) => t.ratePerKg as number);
-  if (!values.length) return null;
-  return values.reduce((a, b) => a + b, 0);
+  let sum = 0;
+  let found = false;
+  for (const t of country.extraTaxes) {
+    const v = t.materialRatesEur?.[material];
+    if (typeof v === "number") {
+      sum += v;
+      found = true;
+    }
+  }
+  return found ? sum : null;
 }
 
 export interface CountryCost {

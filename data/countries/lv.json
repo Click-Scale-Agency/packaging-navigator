@@ -42,7 +42,15 @@
       "summary": "Dabas resursu nodoklis par Latvijas tirgū laisto iepakojumu (Dabas resursu nodokļa likums, 7. pielikums, iegūts un apstrādāts no likumi.lv 2026-08-16; redakcija spēkā 15.07.2026). Pilnās oficiālās likmes pa materiāliem (EUR/kg): stikls 0,44; koks/papīrs/kartons/citas dabiskās šķiedras 0,24; metāls 1,10; bioplastmasa 0,24; plastmasa (polimēru) 1,25; kompozīta kartons 1,25; polistirols 2,20; putu plastmasa/putu polimēri 24,40; putu polistirols (EPS) 44,00. Kompozīta/laminēto iepakojumu apliek pēc pārsvarā esošā materiāla. Līgums ar licencētu apsaimniekošanas sistēmu (piem., LZP, Zaļā josta) atbrīvo ražotāju no DRN maksāšanas pilnajās likmēs — tāpēc dalība sistēmā ir standarta ceļš. (Atsevišķi likuma tekstā: plastmasas iepirkumu maisiņi un plastmasu saturoši zvejas rīki €4,80/kg, mitrās salvetes un baloni €12,20/kg, tabakas filtri €8,00/kg — tie ir plastmasas izstrādājumi, ne vispārīgs iepakojums.)",
       "rate": "EUR/kg: stikls 0,44, koks/papīrs/kartons 0,24, metāls 1,10, plastmasa 1,25, kompozīta kartons 1,25, polistirols 2,20, putu plastmasa 24,40, putu polistirols 44,00",
       "collectedBy": "VID (Valsts ieņēmumu dienests)",
-      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums"
+      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums",
+      "materialRatesEur": {
+        "paper": 0.24,
+        "plastic": 1.25,
+        "glass": 0.44,
+        "metal": 1.1,
+        "wood": 0.24,
+        "composite": 1.25
+      }
     }
   ],
   "thresholds": {

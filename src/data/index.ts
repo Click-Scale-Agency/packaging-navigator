@@ -51,6 +51,8 @@ interface CanonicalCountry {
     name: string;
     summary: string;
     rate?: string;
+    material?: MaterialKey;
+    materialRatesEur?: Partial<Record<MaterialKey, number>>;
     collectedBy?: string;
     url?: string;
   }[];
@@ -117,8 +119,11 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
   return (c.extraTaxes ?? []).map((t) => {
     // Parse "€0.45/kg …" style rates; non-EUR rates (e.g. "2 RON/kg") stay null.
     const eur = t.rate?.match(/€\s*(\d+(?:[.,]\d+)?)\s*\/\s*kg/);
+    // Prefer the explicit canonical material tag; fall back to keyword
+    // detection (best-effort, may be null once text is translated).
     const blob = `${t.name} ${t.summary} ${t.rate ?? ""}`.toLowerCase();
-    const material = MATERIALS.find((m) => blob.includes(m)) ?? null;
+    const material =
+      t.material ?? MATERIALS.find((m) => blob.includes(m)) ?? null;
     const noteParts = [t.summary];
     if (t.rate) noteParts.push(t.rate);
     if (t.collectedBy) noteParts.push(`Administrē: ${t.collectedBy}`);
@@ -126,6 +131,7 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
       name: t.name,
       ratePerKg: eur?.[1] ? Number(eur[1].replace(",", ".")) : null,
       material,
+      materialRatesEur: t.materialRatesEur ?? null,
       url: t.url ?? null,
       note: noteParts.join(" — "),
     };
@@ -185,6 +191,11 @@ interface CanonicalTimelineEntry {
 export const timeline: TimelineEntry[] = (
   regulation.timeline as CanonicalTimelineEntry[]
 ).map((t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }));
+
+/** Canonical PPWR application date (ISO), single source for UI copy. */
+export const regulationApplies: string = (
+  regulation as { regulation: { applies: string } }
+).regulation.applies;
 
 export * from "./types";
 

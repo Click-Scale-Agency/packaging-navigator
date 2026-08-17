@@ -104,6 +104,24 @@
           "name": { "type": "string" },
           "summary": { "type": "string" },
           "rate": { "type": "string", "description": "Human-readable, e.g. '€0.45/kg non-recycled plastic'" },
+          "material": {
+            "type": "string",
+            "enum": ["paper", "plastic", "glass", "metal", "wood", "composite"],
+            "description": "Explicit single-material tag for display/notes (e.g. ES plastic excise). Does NOT by itself feed the cost calculator."
+          },
+          "materialRatesEur": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Per-material statutory rate in EUR/kg for a multi-material tax table (e.g. LV DRN). These DO feed the indicative cost calculator when no PRO rates exist.",
+            "properties": {
+              "paper": { "type": "number", "minimum": 0 },
+              "plastic": { "type": "number", "minimum": 0 },
+              "glass": { "type": "number", "minimum": 0 },
+              "metal": { "type": "number", "minimum": 0 },
+              "wood": { "type": "number", "minimum": 0 },
+              "composite": { "type": "number", "minimum": 0 }
+            }
+          },
           "collectedBy": { "type": "string" },
           "url": { "type": "string", "format": "uri" }
         }

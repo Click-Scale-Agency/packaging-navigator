@@ -290,3 +290,9 @@ Actioned the follow-up items from §25.
 **Deliberately left as editorial copy (not data facts):** the FAQ (DE LUCID + dual-system, LV no-register-yet) and the "Funkcija, nevis kods" explainer (Spain plastic tax / CN codes). These are stable explanatory prose, not calculator/catalog data; data-driving them would degrade the copy. Flagged for the owner to decide. `data/cn-codes.json` and `data/marketplace-numbers.json` remain unused (carry their own verify-before-surfacing caveats).
 
 All checks green: `validate-data.mjs`, `tsc --noEmit` (0), `vite build`.
+
+## 27. FAQ de-drift (2026-08-17, Claude Code)
+
+Closed the last hardcoded-fact item from §25/§26. The FAQ "register vs PRO" answer hard-asserted "Latvijā valsts reģistra vēl nav" (drifts once LV's PPWR register lands, due 2027-02) and stated DE facts as bald claims. Reworded: DE is now an explicit illustrative example, the LV point is time-anchored to 2026, and the answer points users to the country catalog for precise, current per-country register facts rather than restating them in copy.
+
+The "Funkcija, nevis kods" explainer was reviewed and left as-is: it conveys the function-vs-CN-code concept without surfacing any specific (unverified) CN code or volatile per-country figure, so it does not bypass `cn-codes.json`'s verify-before-surfacing caveat. `cn-codes.json` correctly stays unused until TARIC-verified.

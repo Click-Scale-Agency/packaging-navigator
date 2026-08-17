@@ -308,7 +308,7 @@ export const lv = {
       },
       {
         q: "Ar ko atšķiras reģistrs no PRO?",
-        a: "Reģistrs ir valsts uzturēts saraksts: tu iegūsti numuru, ko prasa tirdzniecības vietas. PRO ir privāts apsaimniekotājs, kam tu maksā par savākšanu un pārstrādi. Vācijā vajag abus: LUCID numuru un līgumu ar duālo sistēmu. Latvijā valsts reģistra vēl nav, bet līgums ar apsaimniekotāju darbojas jau šodien.",
+        a: "Reģistrs ir valsts uzturēts saraksts: tu iegūsti numuru, ko prasa tirdzniecības vietas. PRO ir privāts apsaimniekotājs, kam tu maksā par savākšanu un pārstrādi. Piemēram, Vācijā praksē vajag abus: LUCID reģistrācijas numuru un līgumu ar duālo sistēmu. Konkrētie nosaukumi, numuru formāti un vai reģistrs vispār pastāv, atšķiras pa valstīm — precīzos, atjaunotos datus katrai valstij skaties valstu katalogā (dažviet, piem., Latvijā, atsevišķa valsts iepakojuma reģistra 2026. gadā vēl nav, bet līgums ar apsaimniekotāju darbojas jau tagad).",
       },
       {
         q: "Cik tas maksās?",

@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CelvedisRouteImport } from './routes/celvedis'
 import { Route as ValstisCodeRouteImport } from './routes/valstis.$code'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CelvedisRoute = CelvedisRouteImport.update({
+  id: '/celvedis',
+  path: '/celvedis',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ValstisCodeRoute = ValstisCodeRouteImport.update({
@@ -25,27 +31,31 @@ const ValstisCodeRoute = ValstisCodeRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/celvedis': typeof CelvedisRoute
   '/valstis/$code': typeof ValstisCodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/celvedis': typeof CelvedisRoute
   '/valstis/$code': typeof ValstisCodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/celvedis': typeof CelvedisRoute
   '/valstis/$code': typeof ValstisCodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/valstis/$code'
+  fullPaths: '/' | '/celvedis' | '/valstis/$code'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/valstis/$code'
-  id: '__root__' | '/' | '/valstis/$code'
+  to: '/' | '/celvedis' | '/valstis/$code'
+  id: '__root__' | '/' | '/celvedis' | '/valstis/$code'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CelvedisRoute: typeof CelvedisRoute
   ValstisCodeRoute: typeof ValstisCodeRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/celvedis': {
+      id: '/celvedis'
+      path: '/celvedis'
+      fullPath: '/celvedis'
+      preLoaderRoute: typeof CelvedisRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/valstis/$code': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CelvedisRoute: CelvedisRoute,
   ValstisCodeRoute: ValstisCodeRoute,
 }
 export const routeTree = rootRouteImport

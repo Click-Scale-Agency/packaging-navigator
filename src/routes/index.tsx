@@ -7,6 +7,7 @@ import { CountryCatalog } from "@/components/CountryCatalog";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { FunctionNotCode } from "@/components/FunctionNotCode";
+import { GuidePromo } from "@/components/GuidePromo";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { MarketplaceNumbers } from "@/components/MarketplaceNumbers";
@@ -66,6 +67,7 @@ function Index() {
       <Header />
       <main>
         <Hero />
+        <GuidePromo />
         <Calculator />
         <CountryCatalog />
         <MarketplaceNumbers />

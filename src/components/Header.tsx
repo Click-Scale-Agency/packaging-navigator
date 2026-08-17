@@ -15,6 +15,12 @@ export function Header() {
           <span className="form-label hidden md:inline">{lv.brand.subtitle}</span>
         </Link>
         <nav className="ml-auto flex items-center gap-4 md:gap-6">
+          <Link
+            to="/celvedis"
+            className="form-label hidden transition-colors hover:text-primary sm:inline"
+          >
+            {lv.nav.guide}
+          </Link>
           {[
             { href: "#kalkulators", label: lv.nav.calculator },
             { href: "#valstis", label: lv.nav.countries },

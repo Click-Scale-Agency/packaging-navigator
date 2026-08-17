@@ -71,6 +71,19 @@
   "thresholds": {
     "deMinimis": "0 kg — DRN saistības sākas ar pirmo tirgū laisto iepakojumu"
   },
+  "reporting": {
+    "frequency": "DRN deklarācija reizi ceturksnī VID; ja ražotājs slēdzis līgumu ar licencētu apsaimniekotāju, ziņošana notiek apsaimniekotāja noteiktajā kārtībā (biežums var atšķirties).",
+    "deadlines": [
+      "Ceturkšņa DRN deklarācija VID (parasti līdz nākamā mēneša 20. datumam pēc ceturkšņa — precīzs termiņš jāpārbauda VID avotā)"
+    ],
+    "zeroDeclaration": null,
+    "note": "PPWR ražotāju reģistra ieviešana var mainīt ziņošanas plūsmu — jāseko līdzi izmaiņām.",
+    "provenance": {
+      "status": "secondary_source",
+      "checkedAt": "2026-08-16",
+      "note": "Vispārīga DRN ziņošanas kārtība; precīzi termiņi, nulles un labojumu deklarāciju noteikumi jāapstiprina VID vai apsaimniekotāja primārajā avotā."
+    }
+  },
   "notes": "pro.rates left null: Latvian recovery schemes (Latvijas Zaļais punkts, Zaļā josta) price their service by contract and publish no public per-material tariff; membershipRequired=false because the legal alternative is paying full DRN (see extraTaxes — the complete official per-material DRN table is now confirmed from likumi.lv). No dedicated packaging producer register exists yet (PPWR-mandated register due by 12.02.2027). verified stays false because there is neither a packaging register to confirm a producer number against nor a public PRO tariff — but the DRN statutory rates that drive the actual cost ARE confirmed from the primary law. Open (research-log §8.7): scheme service fees vs DRN; what changes when the PPWR register arrives.",
   "drs": {
     "active": true,

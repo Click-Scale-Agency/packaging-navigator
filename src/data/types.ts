@@ -98,6 +98,17 @@ export interface SourceRef {
   checkedAt: string;
 }
 
+/** How and when packaging volumes must be declared in a country. */
+export interface Reporting {
+  frequency: string | null;
+  deadlines: string[];
+  /** Must a nil return be filed even with zero volume? null = unknown. */
+  zeroDeclaration: boolean | null;
+  correction: string | null;
+  note: string | null;
+  provenance?: Provenance | null;
+}
+
 /** Deposit-return system for beverage containers (separate from packaging EPR). */
 export interface Drs {
   active: boolean | null;
@@ -119,6 +130,8 @@ export interface CountryData {
   legalBasis?: string | null;
   /** Deposit-return system (beverages). */
   drs?: Drs | null;
+  /** Reporting cadence + deadlines. */
+  reporting?: Reporting | null;
   register: RegisterLayer;
   pro: ProScheme[];
   extraTaxes: ExtraTax[];

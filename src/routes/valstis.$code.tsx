@@ -138,6 +138,45 @@ function CountryDetail() {
           ) : null}
         </Press>
 
+        {/* Reporting */}
+        {country.reporting ? (
+          <Press delay={0.07} className="mt-14">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-2xl md:text-3xl">{lv.detail.reportingTitle}</h2>
+              <ProvenanceLine provenance={country.reporting.provenance ?? null} />
+            </div>
+            <div className="mt-6 border-t-2 border-foreground">
+              {country.reporting.frequency ? (
+                <FormRow label={lv.detail.reportingFrequency}>
+                  {country.reporting.frequency}
+                </FormRow>
+              ) : null}
+              {country.reporting.deadlines.length ? (
+                <FormRow label={lv.detail.reportingDeadlines}>
+                  <ul className="space-y-1">
+                    {country.reporting.deadlines.map((d) => (
+                      <li key={d}>· {d}</li>
+                    ))}
+                  </ul>
+                </FormRow>
+              ) : null}
+              {country.reporting.zeroDeclaration !== null ? (
+                <FormRow label={lv.detail.reportingZero}>
+                  {country.reporting.zeroDeclaration ? lv.detail.yes : lv.detail.no}
+                </FormRow>
+              ) : null}
+              {country.reporting.correction ? (
+                <FormRow label={lv.detail.reportingCorrection}>
+                  {country.reporting.correction}
+                </FormRow>
+              ) : null}
+              {country.reporting.note ? (
+                <FormRow label="Piezīme">{country.reporting.note}</FormRow>
+              ) : null}
+            </div>
+          </Press>
+        ) : null}
+
         {/* Layer 1 */}
         <Press delay={0.08} className="mt-14">
           <div className="flex flex-wrap items-center justify-between gap-3">

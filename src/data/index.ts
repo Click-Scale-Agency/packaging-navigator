@@ -18,6 +18,7 @@ import type {
   Provenance,
   ProScheme,
   RegisterLayer,
+  Reporting,
   SourceRef,
 } from "./types";
 import { MATERIALS } from "./types";
@@ -78,6 +79,14 @@ interface CanonicalCountry {
     operator?: string;
     deposit?: string;
     url?: string;
+    note?: string;
+    provenance?: CanonicalProvenance;
+  };
+  reporting?: {
+    frequency?: string;
+    deadlines?: string[];
+    zeroDeclaration?: boolean | null;
+    correction?: string;
     note?: string;
     provenance?: CanonicalProvenance;
   };
@@ -169,6 +178,18 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
   });
 }
 
+function mapReporting(c: CanonicalCountry): Reporting | null {
+  if (!c.reporting) return null;
+  return {
+    frequency: c.reporting.frequency ?? null,
+    deadlines: c.reporting.deadlines ?? [],
+    zeroDeclaration: c.reporting.zeroDeclaration ?? null,
+    correction: c.reporting.correction ?? null,
+    note: c.reporting.note ?? null,
+    provenance: mapProvenance(c.reporting.provenance),
+  };
+}
+
 function mapSources(c: CanonicalCountry): SourceRef[] {
   return c.sources.map((s) => ({
     url: s.url,
@@ -193,6 +214,7 @@ export const countries: CountryData[] = Object.values(canonical)
           provenance: mapProvenance(c.drs.provenance),
         }
       : null,
+    reporting: mapReporting(c),
     register: mapRegister(c),
     pro: mapPro(c),
     extraTaxes: mapExtraTaxes(c),

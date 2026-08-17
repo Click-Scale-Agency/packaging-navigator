@@ -157,6 +157,23 @@
         "deMinimis": { "type": "string", "description": "e.g. '0 kg — first unit triggers duty' or 'full obligations from 50,000 kg/yr'" }
       }
     },
+    "reporting": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "How and when packaging volumes must be declared in this country.",
+      "properties": {
+        "frequency": { "type": "string", "description": "e.g. 'annual', 'quarterly', 'annual + monthly plastic-tax return'" },
+        "deadlines": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Human-readable filing deadlines, e.g. 'Annual declaration by 31 March for the previous year'."
+        },
+        "zeroDeclaration": { "type": ["boolean", "null"], "description": "Must a nil return be filed even with zero volume? null = unknown." },
+        "correction": { "type": "string", "description": "Correction/amendment procedure for past periods." },
+        "note": { "type": "string" },
+        "provenance": { "$ref": "#/$defs/provenance" }
+      }
+    },
     "drs": {
       "type": "object",
       "additionalProperties": false,

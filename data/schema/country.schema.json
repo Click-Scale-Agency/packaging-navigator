@@ -104,6 +104,15 @@
           "name": { "type": "string" },
           "summary": { "type": "string" },
           "rate": { "type": "string", "description": "Human-readable, e.g. '€0.45/kg non-recycled plastic'" },
+          "material": {
+            "type": ["string", "null"],
+            "enum": ["paper", "plastic", "glass", "metal", "wood", "composite", null],
+            "description": "Material this tax targets, used by the calculator. Explicit is preferred over guessing from the summary text."
+          },
+          "appliesConditionally": {
+            "type": "boolean",
+            "description": "true = liability is unresolved for a foreign B2C distance seller (e.g. ES plastic excise). The calculator surfaces it as a 'verify' caveat and never auto-adds it to a total."
+          },
           "collectedBy": { "type": "string" },
           "url": { "type": "string", "format": "uri" }
         }

@@ -41,6 +41,7 @@ interface Plan {
   notes: string[];
   flags: string[];
   costLabel: string | null;
+  costPartial: boolean;
 }
 
 const DEFAULT_SELECTION = ["DE", "FR", "ES"];
@@ -272,15 +273,33 @@ function buildPlan(
 
   // Indicative annual cost from the shared fee engine (same as the calculator).
   const cost = computeCountryCost(country, cls.kgPerYear, cls.totalKg);
-  const costLabel = cost.known ? lv.guide.costChip(cost.total.toFixed(0)) : null;
+  const costPartial =
+    cost.coverage === "partial" || (cost.coverage === "none" && cost.unpricedMaterials.length > 0);
+  const costLabel = !cost.known
+    ? null
+    : costPartial
+      ? lv.guide.costPartialChip(cost.total.toFixed(0))
+      : lv.guide.costChip(cost.total.toFixed(0));
 
   // Flags — always honest about verification + channel nuance.
   if (!country.verified) flags.push(lv.guide.flagUnverified(country.code));
+  if (cost.conditionalTaxes.length)
+    flags.push(lv.guide.condTaxNote(cost.conditionalTaxes.join(", ")));
   if (channel === "marketplace") flags.push(lv.guide.flagMarketplace);
   if (channel === "b2b") flags.push(lv.guide.flagB2b);
   flags.push(lv.guide.flagWhoFirst);
 
-  return { country, obligationYou, obligationNote, tasks, evidence, notes, flags, costLabel };
+  return {
+    country,
+    obligationYou,
+    obligationNote,
+    tasks,
+    evidence,
+    notes,
+    flags,
+    costLabel,
+    costPartial,
+  };
 }
 
 const LEVEL_STYLE: Record<Level, string> = {
@@ -333,15 +352,7 @@ function OptionCard({
   );
 }
 
-function Chip({
-  active,
-  label,
-  onClick,
-}: {
-  active: boolean;
-  label: string;
-  onClick: () => void;
-}) {
+function Chip({ active, label, onClick }: { active: boolean; label: string; onClick: () => void }) {
   return (
     <button
       type="button"
@@ -404,9 +415,7 @@ export function ActionGuide() {
   };
 
   const toggle = (code: string) =>
-    setSelected((prev) =>
-      prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code],
-    );
+    setSelected((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code]));
 
   const toggleLevel = (l: PackLevel) =>
     setLevels((prev) => (prev.includes(l) ? prev.filter((x) => x !== l) : [...prev, l]));
@@ -440,7 +449,11 @@ export function ActionGuide() {
         ? lv.guide.channelMarketplace
         : lv.guide.channelB2b;
   const whoLabel =
-    who === "you" ? lv.guide.whoYou : who === "importer" ? lv.guide.whoImporter : lv.guide.whoPlatform;
+    who === "you"
+      ? lv.guide.whoYou
+      : who === "importer"
+        ? lv.guide.whoImporter
+        : lv.guide.whoPlatform;
 
   const buildPlanText = () => {
     const lines: string[] = [
@@ -450,11 +463,17 @@ export function ActionGuide() {
       "",
     ];
     for (const p of plans) {
-      lines.push(`=== ${p.country.code} ${p.country.name} — ${p.costLabel ?? lv.guide.costUnknown}`);
-      lines.push(`${p.obligationYou ? lv.guide.obligationYou : lv.guide.obligationOther}: ${p.obligationNote}`);
+      lines.push(
+        `=== ${p.country.code} ${p.country.name} — ${p.costLabel ?? lv.guide.costUnknown}`,
+      );
+      lines.push(
+        `${p.obligationYou ? lv.guide.obligationYou : lv.guide.obligationOther}: ${p.obligationNote}`,
+      );
       lines.push(`${lv.guide.tasksTitle}:`);
       for (const t of p.tasks) {
-        lines.push(`  [ ] (${levelText(t.level)}) ${t.label}${t.detail ? ` — ${t.detail}` : ""}${t.url ? ` ${t.url}` : ""}`);
+        lines.push(
+          `  [ ] (${levelText(t.level)}) ${t.label}${t.detail ? ` — ${t.detail}` : ""}${t.url ? ` ${t.url}` : ""}`,
+        );
       }
       if (p.notes.length) {
         for (const n of p.notes) lines.push(`  • ${n}`);
@@ -654,24 +673,56 @@ export function ActionGuide() {
               <div>
                 <span className="form-label">{lv.guide.classLevelsTitle}</span>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <Chip active={levels.includes("sales")} label={lv.guide.levelSales} onClick={() => toggleLevel("sales")} />
-                  <Chip active={levels.includes("grouped")} label={lv.guide.levelGrouped} onClick={() => toggleLevel("grouped")} />
-                  <Chip active={levels.includes("transport")} label={lv.guide.levelTransport} onClick={() => toggleLevel("transport")} />
-                  <Chip active={levels.includes("ecom")} label={lv.guide.levelEcom} onClick={() => toggleLevel("ecom")} />
+                  <Chip
+                    active={levels.includes("sales")}
+                    label={lv.guide.levelSales}
+                    onClick={() => toggleLevel("sales")}
+                  />
+                  <Chip
+                    active={levels.includes("grouped")}
+                    label={lv.guide.levelGrouped}
+                    onClick={() => toggleLevel("grouped")}
+                  />
+                  <Chip
+                    active={levels.includes("transport")}
+                    label={lv.guide.levelTransport}
+                    onClick={() => toggleLevel("transport")}
+                  />
+                  <Chip
+                    active={levels.includes("ecom")}
+                    label={lv.guide.levelEcom}
+                    onClick={() => toggleLevel("ecom")}
+                  />
                 </div>
               </div>
               <div>
                 <span className="form-label">{lv.guide.classAudienceTitle}</span>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <Chip active={audience === "household"} label={lv.guide.audienceHousehold} onClick={() => setAudience("household")} />
-                  <Chip active={audience === "commercial"} label={lv.guide.audienceCommercial} onClick={() => setAudience("commercial")} />
+                  <Chip
+                    active={audience === "household"}
+                    label={lv.guide.audienceHousehold}
+                    onClick={() => setAudience("household")}
+                  />
+                  <Chip
+                    active={audience === "commercial"}
+                    label={lv.guide.audienceCommercial}
+                    onClick={() => setAudience("commercial")}
+                  />
                 </div>
               </div>
               <div>
                 <span className="form-label">{lv.guide.classReuseTitle}</span>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  <Chip active={reuse === "single"} label={lv.guide.reuseSingle} onClick={() => setReuse("single")} />
-                  <Chip active={reuse === "reusable"} label={lv.guide.reuseReusable} onClick={() => setReuse("reusable")} />
+                  <Chip
+                    active={reuse === "single"}
+                    label={lv.guide.reuseSingle}
+                    onClick={() => setReuse("single")}
+                  />
+                  <Chip
+                    active={reuse === "reusable"}
+                    label={lv.guide.reuseReusable}
+                    onClick={() => setReuse("reusable")}
+                  />
                 </div>
               </div>
               <div className="border-t border-dashed border-border-strong pt-4">
@@ -736,8 +787,15 @@ export function ActionGuide() {
 
                     <div className="mt-3 flex flex-wrap items-center gap-2">
                       <span
-                        title={lv.guide.costChipTitle}
-                        className="border border-border-strong px-2 py-1 font-mono text-[11px] text-foreground"
+                        title={
+                          plan.costPartial ? lv.guide.costPartialTitle : lv.guide.costChipTitle
+                        }
+                        className={cn(
+                          "border px-2 py-1 font-mono text-[11px]",
+                          plan.costPartial
+                            ? "border-primary text-primary"
+                            : "border-border-strong text-foreground",
+                        )}
                       >
                         {plan.costLabel ?? lv.guide.costUnknown}
                       </span>
@@ -752,9 +810,7 @@ export function ActionGuide() {
                       )}
                     >
                       <span className="form-label block">
-                        {plan.obligationYou
-                          ? lv.guide.obligationYou
-                          : lv.guide.obligationOther}
+                        {plan.obligationYou ? lv.guide.obligationYou : lv.guide.obligationOther}
                       </span>
                       <span className="mt-1 block">{plan.obligationNote}</span>
                     </div>

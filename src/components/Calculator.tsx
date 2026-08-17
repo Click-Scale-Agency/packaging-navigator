@@ -5,12 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import lv from "@/i18n/lv";
 import { countries, MATERIALS, type MaterialKey } from "@/data";
 import { computeCountryCost, kgPerYearFrom } from "@/lib/fees";
-import {
-  PRESS_SPRING,
-  Press,
-  SectionHead,
-  UnverifiedStamp,
-} from "@/components/primitives";
+import { PRESS_SPRING, Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
 import { cn } from "@/lib/utils";
 
 const DEFAULT_SELECTION = ["DE", "LV", "ES"];
@@ -90,10 +85,7 @@ export function Calculator() {
   );
   const [copied, setCopied] = useState(false);
 
-  const kgPerYear = useMemo(
-    () => kgPerYearFrom(weights, shipments),
-    [weights, shipments],
-  );
+  const kgPerYear = useMemo(() => kgPerYearFrom(weights, shipments), [weights, shipments]);
 
   const totalKg = MATERIALS.reduce((sum, m) => sum + kgPerYear[m], 0);
 
@@ -113,6 +105,9 @@ export function Calculator() {
             regCost: cost.regCost,
             hasRate: cost.known,
             blended: cost.blended,
+            coverage: cost.coverage,
+            unpricedMaterials: cost.unpricedMaterials,
+            conditionalTaxes: cost.conditionalTaxes,
             arRequired: country.register.arRequired === true,
             drsActive: country.drs?.active === true,
           };
@@ -124,13 +119,24 @@ export function Calculator() {
   const arCount = rows.filter((r) => r.arRequired).length;
   const estTotal = (Number(arFee) || 0) * arCount;
   const fullTotal = grandTotal + estTotal;
+  // Countries where the material mix is only partially (or not) priced, so the
+  // grand total is a FLOOR, not a complete figure.
+  const partialCount = rows.filter(
+    (r) => r.coverage === "partial" || (r.coverage === "none" && r.unpricedMaterials.length > 0),
+  ).length;
 
   const toggle = (code: string) =>
-    setSelected((prev) =>
-      prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code],
-    );
+    setSelected((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code]));
 
   const eur = (n: number) => n.toFixed(2);
+  const coverageLabel = (r: (typeof rows)[number]) =>
+    r.coverage === "full"
+      ? "pilns"
+      : r.coverage === "partial"
+        ? "daļējs"
+        : r.unpricedMaterials.length > 0
+          ? "nav aprēķināms"
+          : "—";
   const exportRows = () =>
     rows.map((r) => ({
       code: r.country.code,
@@ -140,6 +146,8 @@ export function Calculator() {
       minFee: r.minApplied && r.minFee !== null ? eur(r.minFee) : "",
       reg: r.regCost > 0 ? eur(r.regCost) : "",
       total: eur(r.fee),
+      coverage: coverageLabel(r),
+      condTax: r.conditionalTaxes.join(" / "),
       ar: r.arRequired ? "jā" : "nē",
       drs: r.drsActive ? "jā" : "nē",
     }));
@@ -153,19 +161,38 @@ export function Calculator() {
       "Min. gada maksa EUR",
       "Reģistrācija EUR",
       "PRO+reģistrācija EUR/gadā",
+      "Seguma statuss",
+      "Iespējams papildu nodoklis",
       "Pārstāvis vajadzīgs",
       "Depozīta sistēma",
     ];
     const body = exportRows().map((r) =>
-      [r.name, r.code, r.scheme, r.variable, r.minFee, r.reg, r.total, r.ar, r.drs]
+      [
+        r.name,
+        r.code,
+        r.scheme,
+        r.variable,
+        r.minFee,
+        r.reg,
+        r.total,
+        r.coverage,
+        r.condTax,
+        r.ar,
+        r.drs,
+      ]
         .map((v) => `"${String(v).replace(/"/g, '""')}"`)
         .join(";"),
     );
     const totals = [
-      `"KOPĀ drošās (PRO+reģ)";;;;;;"${eur(grandTotal)}";;`,
-      `"Aplēstās (pārstāvis, ${arCount} valstīs)";;;;;;"${eur(estTotal)}";;`,
-      `"PILNĀ AINA 1. gadā";;;;;;"${eur(fullTotal)}";;`,
+      `"KOPĀ aprēķinātā daļa (PRO+reģ)";;;;;;"${eur(grandTotal)}";;;;`,
+      `"Aplēstās (pārstāvis, ${arCount} valstīs)";;;;;;"${eur(estTotal)}";;;;`,
+      `"PILNĀ AINA 1. gadā";;;;;;"${eur(fullTotal)}";;;;`,
     ];
+    if (partialCount > 0) {
+      totals.push(
+        `"Piezīme: ${partialCount} valstij(-īm) segums ir daļējs — summa ir zināmā daļa, ne pilnas izmaksas.";;;;;;;;;;`,
+      );
+    }
     return [head.join(";"), ...body, "", ...totals].join("\r\n");
   };
 
@@ -177,17 +204,24 @@ export function Calculator() {
       ...exportRows().map(
         (r) =>
           `${r.code} ${r.name}: ${r.total} €/gadā (${r.scheme})` +
+          `${r.coverage !== "pilns" ? ` · segums: ${r.coverage}` : ""}` +
           `${r.minFee ? ` · min. maksa ${r.minFee} €` : ""}` +
           `${r.reg ? ` · reģistrācija ${r.reg} €` : ""}` +
+          `${r.condTax ? ` · iespējams nodoklis: ${r.condTax} (jāpārbauda)` : ""}` +
           `${r.ar === "jā" ? " · + pārstāvis" : ""}` +
           `${r.drs === "jā" ? " · depozīts" : ""}`,
       ),
       "",
-      `Drošās izmaksas kopā: ${eur(grandTotal)} €`,
+      `Aprēķinātā daļa kopā: ${eur(grandTotal)} €`,
+      ...(partialCount > 0
+        ? [
+            `(${partialCount} valstij(-īm) segums daļējs — summa ir zināmā daļa, ne pilnas izmaksas)`,
+          ]
+        : []),
       `Aplēstās papildu (pārstāvis, ${arCount} valstīs): ${eur(estTotal)} €`,
       `Pilnā aina 1. gadā: ${eur(fullTotal)} €`,
       "",
-      "Indikatīvi. Nav juridiska konsultācija.",
+      "Indikatīvi. Nav juridiska konsultācija. Trūkstošās likmes nav pieņemtas par nulli.",
     ].join("\n");
 
   const handleCopy = async () => {
@@ -398,6 +432,38 @@ export function Calculator() {
                             ) : null}
                           </span>
                         ) : null}
+                        {row.coverage === "partial" ||
+                        (row.coverage === "none" && row.unpricedMaterials.length > 0) ||
+                        row.conditionalTaxes.length > 0 ? (
+                          <span className="mt-2 flex flex-wrap gap-1.5">
+                            {row.coverage === "partial" ? (
+                              <span
+                                title={lv.calculator.partialTitle(
+                                  row.unpricedMaterials.map((m) => lv.materials[m]).join(", "),
+                                )}
+                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
+                              >
+                                {lv.calculator.partialBadge}
+                              </span>
+                            ) : null}
+                            {row.coverage === "none" && row.unpricedMaterials.length > 0 ? (
+                              <span
+                                title={lv.calculator.noneTitle}
+                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
+                              >
+                                {lv.calculator.noneBadge}
+                              </span>
+                            ) : null}
+                            {row.conditionalTaxes.length > 0 ? (
+                              <span
+                                title={lv.calculator.condTaxTitle(row.conditionalTaxes.join(", "))}
+                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
+                              >
+                                {lv.calculator.condTaxChip}
+                              </span>
+                            ) : null}
+                          </span>
+                        ) : null}
                         {!row.country.verified ? (
                           <span className="mt-2 block">
                             <UnverifiedStamp short />
@@ -405,9 +471,7 @@ export function Calculator() {
                         ) : null}
                       </span>
                       <span className="data-value hidden text-sm md:block">
-                        {row.blended !== null
-                          ? row.blended.toFixed(3)
-                          : lv.calculator.noRate}
+                        {row.blended !== null ? row.blended.toFixed(3) : lv.calculator.noRate}
                       </span>
                       <span className="data-value text-right text-base md:text-lg">
                         {row.hasRate ? (
@@ -430,6 +494,11 @@ export function Calculator() {
                     <Money value={grandTotal} /> €
                   </span>
                 </div>
+                {partialCount > 0 ? (
+                  <p className="mt-2 border-l-2 border-primary pl-2 text-xs leading-snug text-primary">
+                    {lv.calculator.partialSelectedNote(partialCount)}
+                  </p>
+                ) : null}
                 <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
                   <span className="form-label text-muted-foreground">
                     {lv.calculator.estTotalLabel}

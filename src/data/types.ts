@@ -7,22 +7,9 @@
  * and never edit /data by hand inside Lovable.
  */
 
-export type MaterialKey =
-  | "paper"
-  | "plastic"
-  | "glass"
-  | "metal"
-  | "wood"
-  | "composite";
+export type MaterialKey = "paper" | "plastic" | "glass" | "metal" | "wood" | "composite";
 
-export const MATERIALS: MaterialKey[] = [
-  "paper",
-  "plastic",
-  "glass",
-  "metal",
-  "wood",
-  "composite",
-];
+export const MATERIALS: MaterialKey[] = ["paper", "plastic", "glass", "metal", "wood", "composite"];
 
 /** Layer 1 — the state producer register. */
 export interface RegisterLayer {
@@ -61,6 +48,12 @@ export interface ExtraTax {
   /** €/kg where applicable. */
   ratePerKg: number | null;
   material: MaterialKey | null;
+  /**
+   * True when liability is unresolved for this portal's target user (e.g. the
+   * Spanish plastic excise for a foreign B2C distance seller). Conditional
+   * taxes are surfaced as a "verify" caveat and NEVER auto-added to a total.
+   */
+  conditional: boolean;
   url: string | null;
   note?: string | null;
 }

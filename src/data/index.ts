@@ -51,6 +51,10 @@ interface CanonicalCountry {
     name: string;
     summary: string;
     rate?: string;
+    /** Explicit material the tax targets — preferred over text-guessing. */
+    material?: MaterialKey | null;
+    /** True = liability unresolved for the target user; never auto-summed. */
+    appliesConditionally?: boolean;
     collectedBy?: string;
     url?: string;
   }[];
@@ -75,10 +79,7 @@ const canonical = import.meta.glob("/data/countries/*.json", {
 /* ---- mapping ---- */
 
 const emptyRates = (): Record<MaterialKey, number | null> =>
-  Object.fromEntries(MATERIALS.map((m) => [m, null])) as Record<
-    MaterialKey,
-    number | null
-  >;
+  Object.fromEntries(MATERIALS.map((m) => [m, null])) as Record<MaterialKey, number | null>;
 
 function mapRegister(c: CanonicalCountry): RegisterLayer {
   return {
@@ -106,10 +107,7 @@ function mapPro(c: CanonicalCountry): ProScheme[] {
     tariffYear: c.pro.tariffYear ?? null,
     membershipRequired,
     minAnnualFeeEur: c.pro.minAnnualFeeEur ?? null,
-    note:
-      typeof c.pro.membershipRequired === "string"
-        ? c.pro.membershipRequired
-        : null,
+    note: typeof c.pro.membershipRequired === "string" ? c.pro.membershipRequired : null,
   }));
 }
 
@@ -117,8 +115,13 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
   return (c.extraTaxes ?? []).map((t) => {
     // Parse "€0.45/kg …" style rates; non-EUR rates (e.g. "2 RON/kg") stay null.
     const eur = t.rate?.match(/€\s*(\d+(?:[.,]\d+)?)\s*\/\s*kg/);
-    const blob = `${t.name} ${t.summary} ${t.rate ?? ""}`.toLowerCase();
-    const material = MATERIALS.find((m) => blob.includes(m)) ?? null;
+    // Prefer an explicit `material`; only fall back to a text guess when absent.
+    // Text-guessing is fragile (English keys vs. LV/native summaries), so an
+    // explicit field is the reliable path and avoids accidental (mis)matches.
+    const material =
+      t.material ??
+      MATERIALS.find((m) => `${t.name} ${t.summary} ${t.rate ?? ""}`.toLowerCase().includes(m)) ??
+      null;
     const noteParts = [t.summary];
     if (t.rate) noteParts.push(t.rate);
     if (t.collectedBy) noteParts.push(`Administrē: ${t.collectedBy}`);
@@ -126,6 +129,7 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
       name: t.name,
       ratePerKg: eur?.[1] ? Number(eur[1].replace(",", ".")) : null,
       material,
+      conditional: t.appliesConditionally === true,
       url: t.url ?? null,
       note: noteParts.join(" — "),
     };
@@ -182,9 +186,9 @@ interface CanonicalTimelineEntry {
   summary: { lv: string; en: string };
 }
 
-export const timeline: TimelineEntry[] = (
-  regulation.timeline as CanonicalTimelineEntry[]
-).map((t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }));
+export const timeline: TimelineEntry[] = (regulation.timeline as CanonicalTimelineEntry[]).map(
+  (t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }),
+);
 
 export * from "./types";
 

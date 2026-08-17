@@ -9,23 +9,23 @@
   "legalBasis": "Atkritumu likums 646/2011; Valdības dekrēts par iepakojumu 518/2014",
   "register": {
     "exists": true,
-    "name": "Tuottajarekisteri (single register, 8 streams)",
+    "name": "Tuottajarekisteri (viens reģistrs, 8 plūsmas)",
     "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",
     "operator": "Lupa- ja valvontavirasto (LVV, Finnish Supervisory Agency)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "The producer register is commonly called TURRe; its public membership search is at jatehuoltokompassi.fi/haetietoja/turre/ (confirmed 2026-08-16). LVV EPR page fetched 2026-08-16 (LVV took over from Pirkanmaa ELY 01.01.2026): EPR explicitly applies to distance sellers, who without a Finnish branch must appoint an authorised representative; LVV recommends joining a producer organisation, which carries the legal obligations on behalf of the company. Exact register e-service entry point and possible state fees still to locate on LVV subpages."
+    "notes": "Ražotāju reģistru parasti sauc par TURRe; tā publiskā dalībnieku meklēšana ir jatehuoltokompassi.fi/haetietoja/turre/ (apstiprināts 2026-08-16). LVV EPR lapa iegūta 2026-08-16 (LVV pārņēma no Pirkanmaa ELY 01.01.2026): EPR skaidri attiecas uz tālpārdevējiem, kuriem bez filiāles Somijā jāieceļ pilnvarotais pārstāvis; LVV iesaka iestāties ražotāju organizācijā, kas uzņemas juridiskos pienākumus uzņēmuma vārdā. Precīzs reģistra e-pakalpojuma ieejas punkts un iespējamās valsts maksas vēl jāatrod LVV apakšlapās."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "Suomen Pakkauskierrätys RINKI (service company)",
+        "name": "Suomen Pakkauskierrätys RINKI (pakalpojumu sabiedrība)",
         "url": "https://rinkiin.fi",
         "tariffUrl": "https://rinkiin.fi/app/uploads/2025/10/2026-Price-List-SPT-ENG.pdf"
       },
       {
-        "name": "Suomen Pakkaustuottajat (Finnish Packaging Producers Ltd)",
+        "name": "Suomen Pakkaustuottajat (Somijas iepakojuma ražotāji)",
         "url": "https://suomenpakkaustuottajat.fi"
       }
     ],
@@ -51,25 +51,25 @@
   "sources": [
     {
       "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",
-      "title": "LVV — information on extended producer responsibility (fetched)",
+      "title": "LVV — informācija par ražotāja paplašināto atbildību (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://rinkiin.fi/app/uploads/2025/10/2026-Price-List-SPT-ENG.pdf",
-      "title": "Suomen Pakkaustuottajat — Price list 2026 (official PDF, fetched and parsed)",
+      "title": "Suomen Pakkaustuottajat — cenrādis 2026 (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://rinkiin.fi/en/producer-responsibility/price-lists/",
-      "title": "Rinki — price lists page",
+      "title": "Rinki — cenrāžu lapa",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://jatehuoltokompassi.fi/haetietoja/turre/",
-      "title": "TURRe — public producer-register (Tuottajarekisteri) search",
+      "title": "TURRe — publiskā ražotāju reģistra (Tuottajarekisteri) meklēšana",
       "checkedAt": "2026-08-16",
       "official": true
     }

@@ -12,11 +12,11 @@
     "name": "Rejestr-BDO",
     "url": "https://bdo.mos.gov.pl",
     "operator": "Ministry of Climate and Environment / marshal offices",
-    "numberFormat": "9-digit BDO number",
+    "numberFormat": "9 ciparu BDO numurs",
     "numberOnInvoices": true,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Portal fetched live 2026-08-16 (blocks some bots; reachable). BDO number must be obtained before trading and shown on invoices and waste documents. 2026 registration/annual fee: 200 PLN for micro-enterprises, 800 PLN for others (raised from 100/300 PLN; annual fee due by 28 February, non-payment leads to removal — confirmed on the Mazovia marshal office BIP notice). Annual fee is waived in the year the registration fee is paid."
+    "notes": "Portāls iegūts tiešsaistē 2026-08-16 (bloķē dažus botus; sasniedzams). BDO numurs jāiegūst pirms tirdzniecības un jānorāda uz rēķiniem un atkritumu dokumentiem. 2026. gada reģistrācijas/gada maksa: 200 PLN mikrouzņēmumiem, 800 PLN citiem (paaugstināta no 100/300 PLN; gada maksa līdz 28. februārim, nemaksāšana noved pie izslēgšanas — apstiprināts Mazovijas maršala biroja BIP paziņojumā). Gada maksa netiek prasīta gadā, kad samaksāta reģistrācijas maksa."
   },
   "pro": {
     "membershipRequired": true,
@@ -40,10 +40,10 @@
   },
   "extraTaxes": [
     {
-      "name": "Opłata produktowa (packaging)",
-      "summary": "Statutory product fee paid on the shortfall when recycling/recovery targets are not met (directly or via a recovery organisation). Official per-material rates from the Rozporządzenie MKiŚ of 09.12.2023 (Dz.U. 2023 poz. 2683), zł/kg: plastic 2.70, aluminium 1.40, ferrous metal 0.80, paper/cardboard 0.70, glass 0.30, wood 0.30, composite/multi-material 1.70, hazardous-substance packaging 2.00, other 1.00. Joining a recovery organisation (Rekopol etc.) that meets targets avoids this fee — which is why it functions as a ceiling/penalty, not the typical cost. A separate 'opłata opakowaniowa' (~8% of the opłata produktowa rate) is reported to arrive with the ROP reform — confirm when the new packaging act passes.",
-      "rate": "zł/kg (Dz.U. 2023 poz. 2683): plastic 2.70, aluminium 1.40, steel 0.80, paper 0.70, glass 0.30, wood 0.30, composite 1.70",
-      "collectedBy": "Marshal offices / BDO",
+      "name": "Opłata produktowa (iepakojums)",
+      "summary": "Likumā noteikta produkta maksa (opłata produktowa), ko maksā par iztrūkumu, ja pārstrādes/reģenerācijas mērķi nav sasniegti (tieši vai caur reģenerācijas organizāciju). Oficiālās likmes pa materiāliem no Rozporządzenie MKiŚ 09.12.2023 (Dz.U. 2023 poz. 2683), zł/kg: plastmasa 2,70, alumīnijs 1,40, melnie metāli 0,80, papīrs/kartons 0,70, stikls 0,30, koks 0,30, kompozīts/daudzmateriālu 1,70, bīstamu vielu iepakojums 2,00, cits 1,00. Iestāšanās reģenerācijas organizācijā (Rekopol u.c.), kas sasniedz mērķus, ļauj no tās izvairīties — tāpēc tā darbojas kā griesti/sods, ne parastā izmaksa. Atsevišķa 'opłata opakowaniowa' (~8% no opłata produktowa likmes) tiek plānota ar ROP reformu — jāpārbauda, kad pieņems jauno iepakojuma likumu.",
+      "rate": "zł/kg (Dz.U. 2023 poz. 2683): plastmasa 2,70, alumīnijs 1,40, tērauds 0,80, papīrs 0,70, stikls 0,30, koks 0,30, kompozīts 1,70",
+      "collectedBy": "Maršala biroji / BDO",
       "url": "https://dziennikustaw.gov.pl/D2023000268301.pdf"
     }
   ],
@@ -56,19 +56,19 @@
   "sources": [
     {
       "url": "https://bdo.mos.gov.pl",
-      "title": "Rejestr-BDO — Polish waste database register (fetched live)",
+      "title": "Rejestr-BDO — Polijas atkritumu datubāzes reģistrs (iegūts tiešsaistē)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://bip.mazovia.pl/pl/bip/komunikaty/przedsiebiorco-pamietaj-o-oplacie-rocznej-za-wpis-w-rejestrze-bdo-za-2026-rok.html",
-      "title": "Mazovia marshal office BIP — BDO annual fee 2026 (200/800 PLN, deadline 28.02)",
+      "title": "Mazovijas maršala biroja BIP — BDO gada maksa 2026 (200/800 PLN, termiņš 28.02)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.rekopol.pl",
-      "title": "Rekopol — recovery organisation (no public tariff table)",
+      "title": "Rekopol — reģenerācijas organizācija (nav publiskas tarifu tabulas)",
       "checkedAt": "2026-08-16",
       "official": true
     }

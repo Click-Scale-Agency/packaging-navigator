@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import { FunctionNotCode } from "@/components/FunctionNotCode";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { MarketplaceNumbers } from "@/components/MarketplaceNumbers";
 import { Timeline } from "@/components/Timeline";
 import { VideoBriefing } from "@/components/VideoBriefing";
 
@@ -67,6 +68,7 @@ function Index() {
         <Hero />
         <Calculator />
         <CountryCatalog />
+        <MarketplaceNumbers />
         <Timeline />
         <VideoBriefing />
         <FunctionNotCode />

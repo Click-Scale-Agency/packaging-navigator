@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 
-const REPO = "https://github.com/Click-Scale-Agency/eu-packaging-hub";
+const REPO = "https://github.com/Click-Scale-Agency/packaging-navigator";
 
 export function Header() {
   return (
@@ -18,6 +18,7 @@ export function Header() {
           {[
             { href: "#kalkulators", label: lv.nav.calculator },
             { href: "#valstis", label: lv.nav.countries },
+            { href: "#numuri", label: lv.nav.numbers },
             { href: "#laika-linija", label: lv.nav.timeline },
             { href: "#video", label: lv.nav.video },
             { href: "#buj", label: lv.nav.faq },

@@ -12,9 +12,9 @@
     "name": "Producentansvarsregistret",
     "url": "https://www.naturvardsverket.se/vagledning-och-stod/producentansvar/producentansvar-for-forpackningar/",
     "operator": "Naturvårdsverket (Swedish EPA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Guidance page fetched 2026-08-16 (last reviewed 11.08.2026, already reflects PPWR changes from 12.08.2026). Registration and reporting via the Naturvårdsverket e-service; producers pay the packaging fee to their producentansvarsorganisation (PRO). Under the PPWR-driven rules, actors covered by the EU producer definition must register and report annually by 31 March (first deadline 31.03.2027 for the period 12.08–31.12.2026)."
+    "notes": "Vadlīniju lapa iegūta 2026-08-16 (pēdējoreiz pārskatīta 11.08.2026, jau atspoguļo PPWR izmaiņas no 12.08.2026). Reģistrācija un ziņošana caur Naturvårdsverket e-pakalpojumu; ražotāji maksā iepakojuma maksu savai producentansvarsorganisation (PRO). Saskaņā ar PPWR noteikumiem personām, uz kurām attiecas ES ražotāja definīcija, jāreģistrējas un jāziņo katru gadu līdz 31. martam (pirmais termiņš 31.03.2027 par periodu 12.08.–31.12.2026)."
   },
   "pro": {
     "membershipRequired": true,
@@ -47,13 +47,13 @@
   "sources": [
     {
       "url": "https://www.naturvardsverket.se/vagledning-och-stod/producentansvar/producentansvar-for-forpackningar/",
-      "title": "Naturvårdsverket — producentansvar för förpackningar (fetched, reviewed 11.08.2026)",
+      "title": "Naturvårdsverket — producentansvar för förpackningar (iegūts, pārskatīts 11.08.2026)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://admin.npa.se/wp-content/uploads/2025/12/Forpackningsavgifter-20260101-version-20251124-01.pdf",
-      "title": "NPA — Förpackningsavgifter from 01.01.2026 (official PDF, fetched and parsed)",
+      "title": "NPA — Förpackningsavgifter no 01.01.2026 (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

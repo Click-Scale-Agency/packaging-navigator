@@ -9,18 +9,18 @@
   "legalBasis": "Bekendtgørelse (rīkojums) Nr. 1146/2025 par iepakojumu un EPR",
   "register": {
     "exists": true,
-    "name": "DPA producer register (all streams)",
+    "name": "DPA ražotāju reģistrs (visas plūsmas)",
     "url": "https://www.producentansvar.dk",
     "operator": "Dansk Producentansvar (DPA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Site fetched 2026-08-16: 'Companies that put products subject to producer responsibility for packaging on the market in Denmark, must register in the producer register.' Single register for all EPR streams; registration via virk.dk; annual DPA fees based on reported volumes (fee page not parsed). AR requirement for foreign sellers not stated on the fetched page."
+    "notes": "Vietne iegūta 2026-08-16: 'Uzņēmumiem, kas Dānijas tirgū laiž produktus, uz kuriem attiecas iepakojuma ražotāja atbildība, jāreģistrējas ražotāju reģistrā.' Viens reģistrs visām EPR plūsmām; reģistrācija caur virk.dk; DPA gada maksas balstās uz ziņotajiem apjomiem (maksu lapa nav apstrādāta). Pārstāvis ārvalstu (nereģistrētiem) pārdevējiem ir obligāts saskaņā ar PPWR 45. pantu no 12.08.2026 (DPA lapā atsevišķi nav atkārtots)."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "VANA (collective packaging scheme)",
+        "name": "VANA (kolektīvā iepakojuma shēma)",
         "url": "https://www.vana.dk",
         "tariffUrl": "https://www.vana.dk/medlemskab/priser/vanas-grundpriser/"
       }
@@ -47,13 +47,13 @@
   "sources": [
     {
       "url": "https://www.producentansvar.dk",
-      "title": "Dansk Producentansvar (DPA) — producer register (fetched)",
+      "title": "Dansk Producentansvar (DPA) — ražotāju reģistrs (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.vana.dk/medlemskab/priser/vanas-grundpriser/",
-      "title": "VANA — grundpriser from 01.08.2026 (official price tables, fetched)",
+      "title": "VANA — grundpriser (pamatcenas) no 01.08.2026 (oficiālas cenu tabulas, iegūtas)",
       "checkedAt": "2026-08-16",
       "official": true
     }

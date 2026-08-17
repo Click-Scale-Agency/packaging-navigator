@@ -12,11 +12,11 @@
     "name": "RPP (Registro de Productores de Producto) — sección envases",
     "url": "https://www.miteco.gob.es/en/calidad-y-evaluacion-ambiental/temas/prevencion-y-gestion-residuos/prevencion-y-gestion-residuos/registro-productores-producto-seccion-envases.html",
     "operator": "MITECO (registration via sede electrónica, procedure 1523222)",
-    "numberFormat": "ENV/YYYY/XXXXXXXXX (year + 9 digits)",
+    "numberFormat": "ENV/GGGG/XXXXXXXXX (gads + 9 cipari)",
     "numberOnInvoices": true,
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Fetched 2026-08-16: producers under RD 1055/2022 (and, subsidiarily, e-commerce platforms) must register; from 12.08.2026 PPWR extends this to transport, service and primary-production packaging. Foreign producers without Spanish establishment supplying end users directly MUST designate a representante autorizado, who handles registration and annual reporting. The ENV number must appear on invoices and commercial documentation. Annual report by 31 March (2026 data: 02.01–31.03.2027). No fee information published on the register page."
+    "notes": "Iegūts 2026-08-16: ražotājiem saskaņā ar RD 1055/2022 (un pakārtoti e-komercijas platformām) jāreģistrējas; no 12.08.2026 PPWR to attiecina arī uz transporta, servisa un primārās ražošanas iepakojumu. Ārvalstu ražotājiem bez pārstāvniecības Spānijā, kas piegādā tieši gala patērētājiem, OBLIGĀTI jāieceļ representante autorizado (pilnvarotais pārstāvis), kas kārto reģistrāciju un gada ziņošanu. ENV numuram jāparādās uz rēķiniem un komercdokumentiem. Gada pārskats līdz 31. martam (2026. gada dati: 02.01.–31.03.2027). Reģistra lapā nav publicēta informācija par maksu."
   },
   "pro": {
     "membershipRequired": true,
@@ -46,9 +46,9 @@
   "extraTaxes": [
     {
       "name": "Impuesto especial sobre los envases de plástico no reutilizables",
-      "summary": "Separate plastic excise (Law 7/2022, arts. 67–83, since 01.01.2023) on non-recycled plastic in non-reusable packaging, empty or filled — confirmed on AEAT sede electrónica (fetched 2026-08-16). Taxable events: manufacture, import AND intra-EU acquisition; de-minimis ≤5 kg non-recycled plastic/month; territorial registry + Model 592 returns (Orden HFP/1314/2022). OPEN QUESTION (unresolved, no primary AEAT guidance found): whether a foreign B2C distance seller shipping parcels to Spanish consumers counts as making an intra-Community acquisition — do NOT claim applicability to foreign sellers until AEAT guidance is located.",
-      "rate": "€0.45/kg non-recycled plastic",
-      "collectedBy": "Agencia Tributaria (AEAT) — not the EPR scheme",
+      "summary": "Atsevišķa plastmasas akcīze (Likums 7/2022, 67.–83. p., no 01.01.2023) par nepārstrādātu plastmasu vienreizlietojamā iepakojumā, tukšā vai pildītā — apstiprināts AEAT sede electrónica (iegūts 2026-08-16). Ar nodokli apliekamie notikumi: ražošana, imports UN iegāde ES iekšienē; de-minimis ≤5 kg nepārstrādātas plastmasas mēnesī; teritoriālais reģistrs + Model 592 deklarācijas (Orden HFP/1314/2022). ATVĒRTS JAUTĀJUMS (neatrisināts, nav atrastas primāras AEAT vadlīnijas): vai ārvalstu B2C tālpārdevējs, kas sūta pakas Spānijas patērētājiem, uzskatāms par ES iekšienes iegādes veicēju — neapgalvot piemērojamību ārvalstu pārdevējiem, kamēr nav atrastas AEAT vadlīnijas.",
+      "rate": "€0,45/kg nepārstrādātas plastmasas",
+      "collectedBy": "Agencia Tributaria (AEAT) — nevis EPR shēma",
       "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-especiales-medioambientales/impuesto-especial-sobre-envases-plastico-reutilizables/informacion-general.html"
     }
   ],
@@ -60,19 +60,19 @@
   "sources": [
     {
       "url": "https://www.miteco.gob.es/en/calidad-y-evaluacion-ambiental/temas/prevencion-y-gestion-residuos/prevencion-y-gestion-residuos/registro-productores-producto-seccion-envases.html",
-      "title": "MITECO — Registro de Productores de Producto, sección envases (fetched)",
+      "title": "MITECO — Registro de Productores de Producto, sección envases (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://ecoembesempresas.com/app/uploads/2025/06/Ecoembes_Precios2026.pdf",
-      "title": "Ecoembes — Precios 2026, envases domésticos (official PDF, fetched and parsed)",
+      "title": "Ecoembes — Precios 2026, envases domésticos (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://sede.agenciatributaria.gob.es/Sede/impuestos-especiales-medioambientales/impuesto-especial-sobre-envases-plastico-reutilizables/informacion-general.html",
-      "title": "AEAT sede electrónica — plastic packaging excise, general information (fetched)",
+      "title": "AEAT sede electrónica — plastmasas iepakojuma akcīze, vispārīga informācija (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

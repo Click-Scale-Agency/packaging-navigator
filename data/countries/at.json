@@ -14,7 +14,7 @@
     "operator": "Umweltbundesamt (for BMLUK)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Portal fetched 2026-08-16 — confirms packaging under 'Bevollmächtigungen (EAG, BAT, Verpackung)'. NOT VKS (v1 error). Registration via EDM portal (erasreg registration form) or USP business portal. Foreign distance sellers (EU and third-country) selling directly to Austrian end customers must appoint an authorised representative."
+    "notes": "Portāls iegūts 2026-08-16 — apstiprina iepakojumu sadaļā 'Bevollmächtigungen (EAG, BAT, Verpackung)'. NAV VKS (v1 kļūda). Reģistrācija caur EDM portālu (erasreg reģistrācijas forma) vai USP uzņēmumu portālu. Ārvalstu tālpārdevējiem (ES un trešo valstu), kas pārdod tieši Austrijas gala klientiem, jāieceļ pilnvarotais pārstāvis."
   },
   "pro": {
     "membershipRequired": true,
@@ -52,19 +52,19 @@
   "sources": [
     {
       "url": "https://www.edm.gv.at",
-      "title": "EDM portal — Austrian electronic data management (fetched; packaging covered)",
+      "title": "EDM portāls — Austrijas elektroniskā datu pārvaldība (iegūts; aptver iepakojumu)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.ara.at/uploads/Dokumente/Tarifbl%C3%A4tter/ARA-tariff-rates-2026.pdf",
-      "title": "ARA — List of tariff rates 2026 (official PDF, fetched and parsed)",
+      "title": "ARA — 2026. gada tarifu saraksts (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.ara.at/en/tariffs",
-      "title": "ARA — tariffs page",
+      "title": "ARA — tarifu lapa",
       "checkedAt": "2026-08-16",
       "official": true
     }

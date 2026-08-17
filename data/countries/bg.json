@@ -9,12 +9,12 @@
   "legalBasis": "Atkritumu apsaimniekošanas likums; Iepakojuma un iepakojuma atkritumu noteikumi",
   "register": {
     "exists": true,
-    "name": "Register of persons placing packaged goods on the market (MOEW / ExEA)",
+    "name": "Iepakotu preču tirgū laidēju reģistrs (MOEW / ExEA)",
     "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/",
     "operator": "Ministry of Environment and Water (MOEW) / Executive Environment Agency (ExEA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "MOEW packaging page fetched 2026-08-16 (Bulgarian): producers comply either by joining a recovery organisation (Ecopack, Bulecopack) or fulfilling obligations individually (product fee to the state/PUDOOS). Public registers of recovery organisations and obligated persons exist under MOEW. The earlier candidate portal nwms.eea.government.bg returned only an 'IIS Windows Server' placeholder — not the register; corrected here. Qualified e-signature is required for e-registration."
+    "notes": "MOEW iepakojuma lapa iegūta 2026-08-16 (bulgāru val.): ražotāji izpilda pienākumus vai nu iestājoties reģenerācijas organizācijā (Ecopack, Bulecopack), vai pildot pienākumus individuāli (produkta maksa valstij/PUDOOS). MOEW pārziņā ir publiski reģenerācijas organizāciju un atbildīgo personu reģistri. Iepriekšējais kandidāta portāls nwms.eea.government.bg atgrieza tikai 'IIS Windows Server' vietturi — nav reģistrs; šeit izlabots. E-reģistrācijai nepieciešams kvalificēts e-paraksts."
   },
   "pro": {
     "membershipRequired": true,
@@ -43,9 +43,9 @@
   },
   "extraTaxes": [
     {
-      "name": "Продуктова такса (product fee to PUDOOS)",
-      "summary": "Companies that do NOT join a recovery organisation must instead pay a product fee to the state enterprise PUDOOS. Joining a recovery organisation (Ecopack/Bulecopack) is the alternative that fulfils EPR without the state fee.",
-      "collectedBy": "PUDOOS (state environmental fund) / MOEW",
+      "name": "Продуктова такса (produkta maksa PUDOOS)",
+      "summary": "Uzņēmumiem, kas NEiestājas reģenerācijas organizācijā, jāmaksā produkta maksa valsts uzņēmumam PUDOOS. Iestāšanās reģenerācijas organizācijā (Ecopack/Bulecopack) ir alternatīva, kas izpilda EPR bez valsts maksas.",
+      "collectedBy": "PUDOOS (valsts vides fonds) / MOEW",
       "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/"
     }
   ],
@@ -57,13 +57,13 @@
   "sources": [
     {
       "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/",
-      "title": "MOEW — packaging waste page (compliance routes, registers) (fetched)",
+      "title": "MOEW — iepakojuma atkritumu lapa (izpildes ceļi, reģistri) (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.ecopack.bg/bg/za-chlenove/ceni-i-tyrgovska-politika",
-      "title": "Ecopack Bulgaria — member prices & commercial policy, rates from 01.01.2026 (fetched)",
+      "title": "Ecopack Bulgaria — dalībnieku cenas un komercpolitika, likmes no 01.01.2026 (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

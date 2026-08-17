@@ -9,12 +9,12 @@
   "legalBasis": "Dekrēts-likums 152-D/2017 (ar grozījumiem)",
   "register": {
     "exists": true,
-    "name": "SIRER (via SILiAmb platform)",
+    "name": "SIRER (caur SILiAmb platformu)",
     "url": "https://siliamb.apambiente.pt",
     "operator": "APA (Agência Portuguesa do Ambiente)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "The producer register is SIRER (Sistema Integrado de Registo Electrónico de Resíduos), accessed and declared through the SILiAmb platform (front-end siliambfe.apambiente.pt); operated by APA under Decree-Law 152-D/2017 art. 19 (confirmed on apambiente.pt 2026-08-16). Per-stream enrolment; registration number issued on certificate; annual declarations (correção for previous year + estimativa for current) due by 31 March. Producers without a Portuguese establishment, distance sellers included, must appoint a Portugal-established representative by written mandate."
+    "notes": "Ražotāju reģistrs ir SIRER (Sistema Integrado de Registo Electrónico de Resíduos), kam piekļūst un deklarē caur SILiAmb platformu (priekšpuse siliambfe.apambiente.pt); uztur APA saskaņā ar Dekrētu-likumu 152-D/2017 19. p. (apstiprināts apambiente.pt 2026-08-16). Reģistrācija pa plūsmām; reģistrācijas numurs izsniegts sertifikātā; gada deklarācijas (correção par iepriekšējo gadu + estimativa par kārtējo) līdz 31. martam. Ražotājiem bez pārstāvniecības Portugālē, tostarp tālpārdevējiem, ar rakstisku pilnvaru jāieceļ Portugālē reģistrēts pārstāvis."
   },
   "pro": {
     "membershipRequired": true,
@@ -43,7 +43,7 @@
   },
   "extraTaxes": [],
   "thresholds": {
-    "deMinimis": "0 kg — no volume or turnover thresholds"
+    "deMinimis": "0 kg — nav apjoma vai apgrozījuma sliekšņu"
   },
   "notes": "Rates from Sociedade Ponto Verde's official 'Tabela de Valores Ponto Verde (VPV)' annual table (fetched and parsed 2026-08-16, €/kg excl. VAT, sales/primary packaging): glass 0.0258, plastic 0.2960, paper/cardboard 0.1477, ECAL beverage cartons 0.2784 ('composite'), steel 0.1985 (shown as 'metal'; aluminium 0.0658), wood 0.0996, other materials 0.2679. Minimum annual declaration €120 (excl. VAT). tariffYear 2024: this is the currently-published approved table (re-uploaded Aug 2025); revised values for 2026 were under authority review/litigation as of early 2025 — re-check for a newer VPV table. Novo Verde is a competing licensed packaging scheme.",
   "drs": {
@@ -55,19 +55,19 @@
   "sources": [
     {
       "url": "https://siliamb.apambiente.pt",
-      "title": "SILiAmb — APA producer platform (fetched, live)",
+      "title": "SILiAmb — APA ražotāju platforma (iegūta, tiešsaistē)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://apambiente.pt/residuos/registo-de-produtores-de-produtos",
-      "title": "APA — Registo de produtores de produtos (SIRER via SILiAmb; DL 152-D/2017) (fetched)",
+      "title": "APA — Registo de produtores de produtos (SIRER caur SILiAmb; DL 152-D/2017) (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.pontoverde.pt/wp-content/uploads/2025/08/Tabela-VPV-2024.pdf",
-      "title": "Sociedade Ponto Verde — Tabela de Valores Ponto Verde (official PDF, fetched and parsed)",
+      "title": "Sociedade Ponto Verde — Tabela de Valores Ponto Verde (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

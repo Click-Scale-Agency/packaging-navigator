@@ -9,24 +9,24 @@
   "legalBasis": "Starpreģionu sadarbības nolīgums par iepakojuma atkritumiem; PPWR (ES) 2025/40",
   "register": {
     "exists": true,
-    "name": "IVC/CIE (Interregional Packaging Commission)",
+    "name": "IVC/CIE (Starpreģionu iepakojuma komisija)",
     "url": "https://www.ivcie.be",
     "operator": "Interregional Packaging Commission (three regions jointly)",
     "numberOnInvoices": false,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Site fetched 2026-08-16: IVC/CIE is the government authority for packaging EPR; recognised schemes are Fost Plus (household, recognition 02.02.2024) and Valipac (industrial, 02.12.2021). Members declare via their scheme; non-members declare directly via forma.ivcie.be (a 'Dossierkost' file cost applies to direct declarants — amount at ivcie.be/dossierkost/, not yet fetched). No AR statement found on the fetched page. NEW: IVC/CIE is rolling out a national producer register branded EPRIBEL (epribel.be), reported to start around 12.08.2026; as of 2026-08-16 the epribel.be site is still under construction and points back to ivcie.be — treat EPRIBEL as the emerging register, IVC/CIE the current channel."
+    "notes": "Vietne iegūta 2026-08-16: IVC/CIE ir valsts iestāde iepakojuma EPR jomā; atzītās shēmas ir Fost Plus (mājsaimniecību, atzīta 02.02.2024) un Valipac (rūpnieciskā/komerciālā, 02.12.2021). Dalībnieki deklarē caur savu shēmu; nedalībnieki deklarē tieši caur forma.ivcie.be (tiešajiem deklarētājiem piemēro 'Dossierkost' lietas maksu — apmērs ivcie.be/dossierkost/, vēl nav iegūts). Valsts lapā nebija skaidra pārstāvja apgalvojuma, taču PPWR 45. pants padara vietējo pilnvaroto pārstāvi obligātu ārvalstu (nereģistrētiem) ražotājiem no 12.08.2026. JAUNS: IVC/CIE ievieš nacionālu ražotāju reģistru ar zīmolu EPRIBEL (epribel.be), kura darbība tiek plānota ap 12.08.2026; uz 2026-08-16 epribel.be vietne joprojām top un novirza uz ivcie.be — EPRIBEL uzskatām par topošo reģistru, IVC/CIE — par pašreizējo kanālu."
   },
   "pro": {
     "membershipRequired": true,
     "schemes": [
       {
-        "name": "Fost Plus (household packaging)",
+        "name": "Fost Plus (mājsaimniecību iepakojums)",
         "url": "https://www.fostplus.be",
         "tariffUrl": "https://www.fostplus.be/en/media/1930/download"
       },
       {
-        "name": "Valipac (industrial packaging)",
+        "name": "Valipac (rūpnieciskais iepakojums)",
         "url": "https://www.valipac.be"
       }
     ],
@@ -51,19 +51,19 @@
   "sources": [
     {
       "url": "https://www.ivcie.be",
-      "title": "IVC/CIE — Interregional Packaging Commission (authority site)",
+      "title": "IVC/CIE — Starpreģionu iepakojuma komisija (iestādes vietne)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.epribel.be/",
-      "title": "EPRIBEL — emerging IVC/CIE national producer register (under construction 2026-08-16)",
+      "title": "EPRIBEL — topošais IVC/CIE nacionālais ražotāju reģistrs (top, 2026-08-16)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.fostplus.be/en/media/1930/download",
-      "title": "Fost Plus — Green Dot rates 2026 per material (official PDF, fetched and parsed)",
+      "title": "Fost Plus — Zaļā punkta 2026. gada likmes pa materiāliem (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

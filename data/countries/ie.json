@@ -9,7 +9,8 @@
   "legalBasis": "Waste Management (Packaging) Regulations, S.I. 282/2014 (ar grozījumiem)",
   "register": {
     "exists": false,
-    "notes": "No state packaging register — the PRL covers only WEEE/batteries/tyres (v1 error fixed). Packaging compliance = Repak membership (or self-compliance route via local authorities for large producers)."
+    "arRequiredForForeignSellers": true,
+    "notes": "Nav valsts iepakojuma reģistra — PRL aptver tikai EEIA/baterijas/riepas (v1 kļūda izlabota). Iepakojuma atbilstība = Repak dalība (vai pašatbilstības ceļš caur pašvaldībām lieliem ražotājiem)."
   },
   "pro": {
     "membershipRequired": true,
@@ -42,13 +43,13 @@
   "sources": [
     {
       "url": "https://repak.ie",
-      "title": "Repak — Irish packaging compliance scheme",
+      "title": "Repak — Īrijas iepakojuma atbilstības shēma",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "title": "EPR reģistru pārskats (repax.io) — reģistra nosaukuma/tvēruma pārbaudei",
       "checkedAt": "2026-08-16",
       "official": false
     }

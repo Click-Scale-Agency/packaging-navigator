@@ -14,7 +14,7 @@
     "operator": "Ministry of Environment of the Slovak Republic",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "One register, seven streams; application filed before placing products on the market, electronically via the ISOH system (⚠ exact ISOH entry URL to be confirmed). Foreign producers must nominate a Slovakia-based authorised representative."
+    "notes": "Viens reģistrs, septiņas plūsmas; pieteikums iesniedzams pirms produktu laišanas tirgū, elektroniski caur ISOH sistēmu (⚠ precīzs ISOH ieejas URL vēl jāapstiprina). Ārvalstu ražotājiem jāizvirza Slovākijā reģistrēts pilnvarotais pārstāvis."
   },
   "pro": {
     "membershipRequired": true,
@@ -51,13 +51,13 @@
   "sources": [
     {
       "url": "https://envipak.sk/en/companies",
-      "title": "ENVI-PAK — producer obligations overview",
+      "title": "ENVI-PAK — ražotāju pienākumu pārskats",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.repax.io/epr-registers",
-      "title": "EPR register overview (repax.io) — register name/coverage cross-check",
+      "title": "EPR reģistru pārskats (repax.io) — reģistra nosaukuma/tvēruma pārbaudei",
       "checkedAt": "2026-08-16",
       "official": false
     }

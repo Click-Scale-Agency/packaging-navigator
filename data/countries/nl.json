@@ -9,7 +9,8 @@
   "legalBasis": "Besluit beheer verpakkingen (Iepakojuma apsaimniekošanas dekrēts)",
   "register": {
     "exists": false,
-    "notes": "No state packaging register — RWS UPV registers cover other streams. Packaging obligations (registration, declaration, fees) are handled entirely through Verpact (formerly Afvalfonds Verpakkingen)."
+    "arRequiredForForeignSellers": true,
+    "notes": "Nav valsts iepakojuma reģistra — RWS UPV reģistri aptver citas plūsmas. Iepakojuma pienākumus (reģistrācija, deklarēšana, maksas) pilnībā kārto caur Verpact (agrāk Afvalfonds Verpakkingen)."
   },
   "pro": {
     "membershipRequired": true,
@@ -34,7 +35,7 @@
   },
   "extraTaxes": [],
   "thresholds": {
-    "deMinimis": "Waste-management contribution applies above 50,000 kg packaging per calendar year (Verpact rates page references the 50,000 kg threshold for exemptions) — but registration/reporting duties can still apply below it"
+    "deMinimis": "Atkritumu apsaimniekošanas iemaksa attiecas virs 50 000 kg iepakojuma kalendārajā gadā (Verpact tarifu lapa atsaucas uz 50 000 kg slieksni izņēmumiem) — taču reģistrācijas/ziņošanas pienākumi var attiekties arī zem tā"
   },
   "notes": "Rates from the official Verpact 2026 rates page (fetched 2026-08-16, €/kg excl. VAT): paper/cardboard 0.017, glass 0.100, aluminium 0.340 (shown as 'metal'; other metals 0.360), wood 0.015, beverage cartons 0.920 ('composite'), plastic rigid 1.220 (shown as 'plastic'; flexible 1.320). High plastic rate is deliberate steering. Reusable packaging system fee 0.015 €/kg.",
   "drs": {
@@ -45,13 +46,13 @@
   "sources": [
     {
       "url": "https://www.verpact.nl/en/rates",
-      "title": "Verpact — official 2026 rates page (fetched)",
+      "title": "Verpact — oficiālā 2026. gada tarifu lapa (iegūta)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.verpact.nl",
-      "title": "Verpact — Dutch packaging producer organisation",
+      "title": "Verpact — Nīderlandes iepakojuma ražotāju organizācija",
       "checkedAt": "2026-08-16",
       "official": true
     }

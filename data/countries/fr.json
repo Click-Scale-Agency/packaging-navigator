@@ -12,11 +12,11 @@
     "name": "SYDEREP",
     "url": "https://syderep.ademe.fr",
     "operator": "ADEME",
-    "numberFormat": "IDU/UIN — unique identifier issued per EPR scheme",
+    "numberFormat": "IDU/UIN — unikāls identifikators, ko izsniedz katra EPR shēma",
     "numberOnInvoices": false,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": 0,
-    "notes": "Portal live (fetched 2026-08-16). The UIN must be displayed on marketplaces / in general terms of sale. Registration happens through the PRO (e.g. CITEO), which reports to SYDEREP and triggers issuance of the IDU; no separate state registration fee."
+    "notes": "Portāls darbojas (iegūts 2026-08-16). UIN jānorāda tirdzniecības vietās / vispārīgajos pārdošanas noteikumos. Reģistrācija notiek caur PRO (piem., CITEO), kas ziņo SYDEREP un iedarbina IDU izsniegšanu; atsevišķas valsts reģistrācijas maksas nav."
   },
   "pro": {
     "membershipRequired": true,
@@ -52,19 +52,19 @@
   "sources": [
     {
       "url": "https://syderep.ademe.fr",
-      "title": "SYDEREP (ADEME) — French EPR register portal",
+      "title": "SYDEREP (ADEME) — Francijas EPR reģistra portāls",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.citeo.com/en/citeo-rates-for-household-packaging-and-paper/",
-      "title": "CITEO — official rates download page (household packaging & paper)",
+      "title": "CITEO — oficiālā tarifu lejupielādes lapa (mājsaimniecību iepakojums un papīrs)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.citeo.com/wp-content/uploads/2026/03/CITEO_HOUSEHOLD_PACKAGING_RATE_GUIDE_2026.7z",
-      "title": "CITEO Household Packaging Rate Guide 2026 (official PDF, fetched and parsed)",
+      "title": "CITEO Mājsaimniecību iepakojuma tarifu ceļvedis 2026 (oficiāls PDF, iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

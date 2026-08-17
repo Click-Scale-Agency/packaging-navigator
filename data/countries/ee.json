@@ -9,12 +9,12 @@
   "legalBasis": "Iepakojuma likums (Pakendiseadus); Iepakojuma akcīzes likums",
   "register": {
     "exists": true,
-    "name": "PAKIS (packaging register, separate from PROTO)",
+    "name": "PAKIS (iepakojuma reģistrs, atsevišķs no PROTO)",
     "url": "https://pakis.envir.ee",
     "operator": "Kliimaministeerium (Climate Ministry) / Keskkonnaagentuur (Environment Agency)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "PAKIS fetched 2026-08-16 (Estonian, English option): board members get accounts from business-registry data, authenticate via ID-card/Mobile-ID/Smart-ID, and report packaging placed on market. Records feed both packaging and excise-tax reporting."
+    "notes": "PAKIS iegūts 2026-08-16 (igauņu val., ar angļu valodas opciju): valdes locekļi saņem kontus no uzņēmumu reģistra datiem, autentificējas ar ID-karti/Mobile-ID/Smart-ID un ziņo tirgū laisto iepakojumu. Ieraksti baro gan iepakojuma, gan akcīzes nodokļa ziņošanu."
   },
   "pro": {
     "membershipRequired": false,
@@ -44,9 +44,9 @@
   "extraTaxes": [
     {
       "name": "Pakendiaktsiis",
-      "summary": "Packaging excise duty (EMTA, confirmed 2026-08-16). Applies when packaged goods are first placed on the Estonian market. A packaging company that transfers its obligations by written contract to a licensed recovery organisation (ETO/TVO), or meets recovery targets itself, is EXEMPT — so joining a PRO is the economically sane route and avoids the excise.",
-      "rate": "glass €0.60/kg, plastic €2.50/kg, metal €2.50/kg, paper/cardboard €1.20/kg, wood €1.20/kg",
-      "collectedBy": "EMTA (Estonian Tax and Customs Board)",
+      "summary": "Iepakojuma akcīzes nodoklis (EMTA, apstiprināts 2026-08-16). Attiecas, kad iepakotas preces pirmoreiz laiž Igaunijas tirgū. Iepakojuma uzņēmums, kas ar rakstisku līgumu nodod savus pienākumus licencētai reģenerācijas organizācijai (ETO/TVO) vai pats sasniedz reģenerācijas mērķus, ir ATBRĪVOTS — tāpēc iestāšanās PRO ir ekonomiski saprātīgais ceļš un ļauj izvairīties no akcīzes.",
+      "rate": "stikls €0,60/kg, plastmasa €2,50/kg, metāls €2,50/kg, papīrs/kartons €1,20/kg, koks €1,20/kg",
+      "collectedBy": "EMTA (Igaunijas Nodokļu un muitas pārvalde)",
       "url": "https://www.emta.ee/ariklient/maksud-ja-tasumine/aktsiisid/pakend"
     }
   ],
@@ -59,19 +59,19 @@
   "sources": [
     {
       "url": "https://pakis.envir.ee",
-      "title": "PAKIS — Estonian packaging register (fetched)",
+      "title": "PAKIS — Igaunijas iepakojuma reģistrs (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.eto.ee/pakendiettevotjale/teenustasud/",
-      "title": "ETO — teenustasud (service fees) 2026 (fetched and parsed)",
+      "title": "ETO — teenustasud (pakalpojumu maksas) 2026 (iegūts un apstrādāts)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.emta.ee/ariklient/maksud-ja-tasumine/aktsiisid/pakend",
-      "title": "EMTA — pakendiaktsiis (packaging excise) statutory rates (fetched)",
+      "title": "EMTA — pakendiaktsiis (iepakojuma akcīze) likumā noteiktās likmes (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

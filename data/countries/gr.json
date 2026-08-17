@@ -9,12 +9,12 @@
   "legalBasis": "Likums 4819/2021 un īstenošanas akti",
   "register": {
     "exists": true,
-    "name": "EMPA (National Producer Register)",
+    "name": "EMPA (Nacionālais ražotāju reģistrs)",
     "url": "https://www.eoan.gr",
     "operator": "EOAN (Hellenic Recycling Agency / HRA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Producers register in the national producer register held by EOAN and comply via a licensed collective system (HERRCO). HERRCO operates under Law 4819/2021 (ex 2939/2001)."
+    "notes": "Ražotāji reģistrējas nacionālajā ražotāju reģistrā, ko uztur EOAN, un izpilda pienākumus caur licencētu kolektīvo sistēmu (HERRCO). HERRCO darbojas saskaņā ar Likumu 4819/2021 (agrāk 2939/2001)."
   },
   "pro": {
     "membershipRequired": true,
@@ -41,18 +41,19 @@
   "notes": "Rates intentionally null: HERRCO's monetary-contribution tables live in Annex C1 of its one-year Participation Contract, approved by the competent authorities but NOT published as a public per-material fee schedule (confirmed 2026-08-16 on herrco.gr/en/businesses). HERRCO is the licensed packaging PRO (Green Dot licensee); members declare via declarations.herrco.gr; 3,936 businesses under contract as of 31.12.2025. Covers paper, plastic, glass, aluminium and tinplate. Separate single-use-plastic environmental levy exists in Greece (not the packaging EPR fee).",
   "drs": {
     "active": false,
-    "note": "Sagatavošanā; nacionālā DRS gaidāma ap 2026., vēl nav apstiprināta kā aktīva."
+    "operator": "DRS Hellas SA (izveidots)",
+    "note": "Sagatavošanā: operatoru DRS Hellas SA izveidojuši dzērienu ražotāji un mazumtirgotāji; pilna darbība gaidāma 2026., bet uz 2026-08-16 vēl nav apstiprināta kā aktīva."
   },
   "sources": [
     {
       "url": "https://www.eoan.gr",
-      "title": "EOAN — Hellenic Recycling Agency (national producer register operator)",
+      "title": "EOAN — Grieķijas Pārstrādes aģentūra (nacionālā ražotāju reģistra operators)",
       "checkedAt": "2026-08-16",
       "official": true
     },
     {
       "url": "https://www.herrco.gr/en/businesses/",
-      "title": "HERRCO — for businesses (licensed PRO, declarations, contract-based fees) (fetched)",
+      "title": "HERRCO — uzņēmumiem (licencēts PRO, deklarācijas, līgumā balstītas maksas) (iegūts)",
       "checkedAt": "2026-08-16",
       "official": true
     }

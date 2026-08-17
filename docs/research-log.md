@@ -193,3 +193,34 @@ Driven by the "useful catalog" goal — users need to see not just packaging €
 **DRS (deposit-return) round** — new optional `drs` field {active, operator, deposit, note, url} on schema + all 27 files, plus a UI section. 2026 status anchored to primary/consolidated sources (Zero Waste Europe, TOMRA, Sensoneo): **active (17):** DE, DK, SE, FI, EE, LT, LV, HR, NL, SK, IE, MT, RO, AT (01.01.2025), HU (2024), PL (01.10.2025), PT (10.04.2026). **not yet / none (10):** BG, CY, CZ, ES (conditional, targets-based), FR, GR (in preparation ~2026), IE n/a, IT, LU, SI. DRS is contextual (not a fee claim); `verified` flags unchanged.
 
 **Registration cost backfill:** set CZ €33 (800 CZK). Most others are €0 (DE, FR) or tiered/non-EUR (PL 200/800 PLN) — kept in notes rather than forcing a single misleading number. The doc's §16 "full cost model" (registration + PRO entry + per-material + min annual + AR setup/maintenance + DRS + audit) is the reference for a future cost calculator.
+
+## 16. Authorised representative — PPWR Art. 45 (2026-08-16, Claude Code)
+
+Confirmed (EUR-Lex + consolidated compliance sources): PPWR Art. 45 requires a producer NOT established in a Member State to appoint, in each such Member State where it first makes packaging/packaged products available, a local authorised representative for EPR — mandatory from 12.08.2026, direct effect, no national transposition, cannot be relaxed. This squarely covers the site's audience (a Latvian e-shop shipping B2C into other Member States).
+
+Action: set `register.arRequiredForForeignSellers = true` for all 27 (was already true for DE/ES/AT/PT/SI/SK from national confirmation; the other 21 now derive from Art. 45). BE and DK notes reconciled (they previously said "no AR statement on the page" — now clarified that the EU-level Art. 45 obligation applies regardless). The country page shows this per country with a plain-language Art. 45 hint. NOTE: the AR is a paid private service (market-priced, typically a few hundred to ~€1,500/yr per country) — not a fixed state fee, so it is not encoded in `registrationCostEur`.
+
+Registration cost (`registrationCostEur`): state registration itself is typically free (the real recurring cost is the PRO fee + AR service). Confirmed values: DE €0, FR €0, CZ ≈€33 (800 CZK). PL is tiered (200/800 PLN, in notes). Others left null rather than assume.
+
+## 17. Cost calculator — §16 full-cost model (2026-08-16, Claude Code)
+
+Upgraded the calculator (src/components/Calculator.tsx) beyond the bare material €/kg. Per selected country it now computes: variable packaging fee (Σ rate×kg + material-linked extra tax) → **PRO fee = max(variable, minimum annual fee)** → **+ state registration cost** = first-year total; and **flags the authorised-representative requirement** as a separate, unpriced item (PPWR Art. 45; market-priced, not a fixed cost). Row shows a breakdown (iepakojums / min. gada maksa piemērota / reģistrācija / +pārstāvis). This surfaces the key SME insight: for small volumes the minimum annual fee dominates, not the per-kg rate. Not yet modelled (deferred, per §16's "estimate/variable" bucket): AR service fee amount, consulting/audit, DRS logistics, penalty risk.
+
+## 18. DRS borderline verification (2026-08-16, Claude Code)
+
+Point 3: verified the "planned/not-live" DRS cases. Confirmed none is live in 2026: **ES** — no universal DRS; conditional/targets-based under Ley 7/2022 (kept). **GR** — operator DRS Hellas SA established by producers/retailers, full operation expected 2026 but not yet live (note refined). **CZ** — planned for PET bottles + cans (~1.8bn bottles/yr), initially targeted mid-2025 but operator not yet appointed, not live (note refined). No `drs.active` values changed; only GR/CZ notes refined. Active-DRS list stays 17 (sources vary 17–18 EU; difference is counting of in-transition schemes).
+
+## 19. Calculator — estimated additional costs (2026-08-16, Claude Code)
+
+Added the §16 "estimate" layer without presenting guesses as facts: a user-adjustable "authorised-representative annual fee" input (default €400/country, clearly labelled an estimate the user tunes). The output now shows three tiers: **Safe costs** (PRO fee incl. minimum + registration), **Estimated additional** (AR fee × number of selected countries that require one), and **Full picture** (sum). Keeps the honest separation the spec demands (estimates never folded into the safe total). AR-fee amount is the user's assumption, not our claimed per-country data.
+
+## 20. Calculator export + DRS flag + marketplace-numbers section (2026-08-16, Claude Code)
+
+Points 1/3/4 from the UX plan:
+- **Export (P1):** "Kopēt kopsavilkumu" (clipboard text) and "Lejupielādēt CSV" (blob download) of the per-country breakdown + the three totals. Client-side only; honest labels.
+- **DRS flag (P3):** calculator rows show a "depozīts" chip when the country has an active beverage DRS (separate from EPR).
+- **Marketplace numbers (P4):** new home section + nav link (#numuri) listing countries whose register issues a marketplace-relevant producer number — filtered to those with a confirmed number format (DE +13, ES ENV/YYYY/9, FR IDU/UIN, PL 9-digit BDO) or a number-on-invoices requirement (e.g. MT). Honest scope: only confirmed formats shown; grows as more are verified. Also fixed the stale header GitHub link (eu-packaging-hub → packaging-navigator).
+
+## 21. Latvian translation of user-facing country text (2026-08-16, Claude Code)
+
+The catalog is LV-first, but country data prose was English (with native terms). Translated every UI-RENDERED field to Latvian via a patch script (sets fields by path — numbers/rates/URLs/dates never touched; JSON round-trip is byte-identical so diffs stay clean): register.name descriptors, register.notes, thresholds.deMinimis, numberFormat, pro.membershipRequired (string variants), pro.schemes[].name descriptors, extraTaxes[].name/summary/collectedBy/rate, and sources[].title. Proper nouns kept in original/native (LUCID, PAKIS, GPAIS, Seznam osob, SIRER, RVVV, scheme names, law citations, portal URLs). Internal-only fields NOT rendered in the UI (country-level `notes`, `pro.ecoModulation`) were left as English documentation; the English audit trail also lives in this research log. Verified via a leftover-English scan (only remaining hit is SK's official Slovak register name, correctly kept).

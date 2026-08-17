@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -65,7 +66,9 @@ export function Calculator() {
     composite: "",
   });
   const [shipments, setShipments] = useState("2000");
+  const [arFee, setArFee] = useState("400");
   const [selected, setSelected] = useState<string[]>(DEFAULT_SELECTION);
+  const [copied, setCopied] = useState(false);
 
   const kgPerYear = useMemo(() => {
     const n = Number(shipments) || 0;
@@ -81,32 +84,140 @@ export function Calculator() {
       countries
         .filter((c) => selected.includes(c.code))
         .map((country) => {
-          let fee = 0;
+          let variable = 0;
           let hasRate = false;
           for (const m of MATERIALS) {
             const rate = rateFor(country, m);
             const tax = extraTaxFor(country, m);
             if (rate !== null) {
-              fee += rate * kgPerYear[m];
+              variable += rate * kgPerYear[m];
               hasRate = true;
             }
             if (tax !== null) {
-              fee += tax * kgPerYear[m];
+              variable += tax * kgPerYear[m];
               hasRate = true;
             }
           }
-          const blended = hasRate && totalKg > 0 ? fee / totalKg : null;
-          return { country, fee, hasRate, blended };
+          // §16 full-cost model: the PRO fee is the greater of the variable
+          // packaging fee and the minimum annual fee; add the state
+          // registration cost; flag (but don't price) the authorised rep.
+          const minFee =
+            country.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ??
+            null;
+          const proFee = Math.max(variable, minFee ?? 0);
+          const minApplied = minFee !== null && minFee > variable;
+          const regCost = country.register.registrationCostEur ?? 0;
+          const fee = proFee + regCost;
+          const known = hasRate || minFee !== null || regCost > 0;
+          const blended = hasRate && totalKg > 0 ? variable / totalKg : null;
+          return {
+            country,
+            fee,
+            variable,
+            proFee,
+            minFee,
+            minApplied,
+            regCost,
+            hasRate: known,
+            blended,
+            arRequired: country.register.arRequired === true,
+            drsActive: country.drs?.active === true,
+          };
         }),
     [selected, kgPerYear, totalKg],
   );
 
   const grandTotal = rows.reduce((sum, r) => sum + r.fee, 0);
+  const arCount = rows.filter((r) => r.arRequired).length;
+  const estTotal = (Number(arFee) || 0) * arCount;
+  const fullTotal = grandTotal + estTotal;
 
   const toggle = (code: string) =>
     setSelected((prev) =>
       prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code],
     );
+
+  const eur = (n: number) => n.toFixed(2);
+  const exportRows = () =>
+    rows.map((r) => ({
+      code: r.country.code,
+      name: r.country.name,
+      scheme: r.country.pro[0]?.name ?? "—",
+      variable: eur(r.variable),
+      minFee: r.minApplied && r.minFee !== null ? eur(r.minFee) : "",
+      reg: r.regCost > 0 ? eur(r.regCost) : "",
+      total: eur(r.fee),
+      ar: r.arRequired ? "jā" : "nē",
+      drs: r.drsActive ? "jā" : "nē",
+    }));
+
+  const buildCsv = () => {
+    const head = [
+      "Valsts",
+      "Kods",
+      "Shēma",
+      "Iepakojuma maksa EUR/gadā",
+      "Min. gada maksa EUR",
+      "Reģistrācija EUR",
+      "PRO+reģistrācija EUR/gadā",
+      "Pārstāvis vajadzīgs",
+      "Depozīta sistēma",
+    ];
+    const body = exportRows().map((r) =>
+      [r.name, r.code, r.scheme, r.variable, r.minFee, r.reg, r.total, r.ar, r.drs]
+        .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+        .join(";"),
+    );
+    const totals = [
+      `"KOPĀ drošās (PRO+reģ)";;;;;;"${eur(grandTotal)}";;`,
+      `"Aplēstās (pārstāvis, ${arCount} valstīs)";;;;;;"${eur(estTotal)}";;`,
+      `"PILNĀ AINA 1. gadā";;;;;;"${eur(fullTotal)}";;`,
+    ];
+    return [head.join(";"), ...body, "", ...totals].join("\r\n");
+  };
+
+  const buildSummary = () =>
+    [
+      "PPWR iepakojuma EPR — indikatīvs izmaksu aprēķins",
+      `Sūtījumi gadā: ${shipments} · kopējais materiāls: ${totalKg.toFixed(1)} kg`,
+      "",
+      ...exportRows().map(
+        (r) =>
+          `${r.code} ${r.name}: ${r.total} €/gadā (${r.scheme})` +
+          `${r.minFee ? ` · min. maksa ${r.minFee} €` : ""}` +
+          `${r.reg ? ` · reģistrācija ${r.reg} €` : ""}` +
+          `${r.ar === "jā" ? " · + pārstāvis" : ""}` +
+          `${r.drs === "jā" ? " · depozīts" : ""}`,
+      ),
+      "",
+      `Drošās izmaksas kopā: ${eur(grandTotal)} €`,
+      `Aplēstās papildu (pārstāvis, ${arCount} valstīs): ${eur(estTotal)} €`,
+      `Pilnā aina 1. gadā: ${eur(fullTotal)} €`,
+      "",
+      "Indikatīvi. Nav juridiska konsultācija.",
+    ].join("\n");
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(buildSummary());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  const handleCsv = () => {
+    const blob = new Blob([buildCsv()], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ppwr-izmaksu-aprekins.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <section className="border-b border-dashed border-border-strong">
@@ -151,6 +262,20 @@ export function Calculator() {
                 className="data-value mt-2 w-full border-b-2 border-foreground bg-transparent pb-2 text-3xl outline-none focus:border-primary focus:text-primary"
                 aria-label={lv.calculator.shipmentsLabel}
               />
+            </div>
+
+            <div>
+              <span className="form-label">{lv.calculator.arFeeLabel}</span>
+              <input
+                inputMode="numeric"
+                value={arFee}
+                onChange={(e) => setArFee(e.target.value.replace(/[^\d]/g, ""))}
+                className="data-value mt-2 w-full border-b-2 border-foreground bg-transparent pb-2 text-3xl outline-none focus:border-primary focus:text-primary"
+                aria-label={lv.calculator.arFeeLabel}
+              />
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                {lv.calculator.arFeeHint}
+              </p>
             </div>
 
             <div className="border-t border-dashed border-border-strong pt-4">
@@ -229,9 +354,13 @@ export function Calculator() {
                       transition={{ ...PRESS_SPRING, delay: Math.min(i * 0.03, 0.3) }}
                       className="grid grid-cols-[3.2rem_minmax(0,1fr)_auto] items-start gap-3 border-b border-dashed border-border px-4 py-3 md:grid-cols-[4rem_minmax(0,1fr)_7rem_9rem]"
                     >
-                      <span className="data-value text-lg font-bold leading-none md:text-xl">
+                      <Link
+                        to="/valstis/$code"
+                        params={{ code: row.country.code }}
+                        className="data-value text-lg font-bold leading-none text-primary underline decoration-dashed underline-offset-4 transition-opacity hover:opacity-70 md:text-xl"
+                      >
                         {row.country.code}
-                      </span>
+                      </Link>
                       <span className="min-w-0">
                         <span className="data-value block truncate text-sm">
                           {row.country.pro[0]?.name ?? lv.countries.unknown}
@@ -241,6 +370,41 @@ export function Calculator() {
                             ? (row.country.register.name ?? lv.countries.unknown)
                             : lv.countries.noRegister}
                         </span>
+                        {row.hasRate ? (
+                          <span className="mt-2 flex flex-wrap gap-1.5">
+                            {row.variable > 0 ? (
+                              <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                {lv.calculator.breakdownVariable} €{row.variable.toFixed(0)}
+                              </span>
+                            ) : null}
+                            {row.minApplied ? (
+                              <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                {lv.calculator.breakdownMinApplied} €{row.minFee}
+                              </span>
+                            ) : null}
+                            {row.regCost > 0 ? (
+                              <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                {lv.calculator.breakdownReg} €{row.regCost}
+                              </span>
+                            ) : null}
+                            {row.arRequired ? (
+                              <span
+                                title={lv.calculator.plusArTitle}
+                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
+                              >
+                                {lv.calculator.plusAr}
+                              </span>
+                            ) : null}
+                            {row.drsActive ? (
+                              <span
+                                title={lv.calculator.drsChipTitle}
+                                className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                              >
+                                {lv.calculator.drsChip}
+                              </span>
+                            ) : null}
+                          </span>
+                        ) : null}
                         {!row.country.verified ? (
                           <span className="mt-2 block">
                             <UnverifiedStamp short />
@@ -266,13 +430,48 @@ export function Calculator() {
                 </ul>
               )}
 
-              <div className="flex flex-wrap items-baseline justify-between gap-3 px-4 py-4">
-                <span className="form-label">{lv.calculator.grandTotal}</span>
-                <span className="data-value text-2xl font-bold md:text-3xl">
-                  <Money value={grandTotal} /> €
-                </span>
+              <div className="border-t-2 border-foreground px-4 py-4">
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <span className="form-label">{lv.calculator.safeTotal}</span>
+                  <span className="data-value text-xl font-bold md:text-2xl">
+                    <Money value={grandTotal} /> €
+                  </span>
+                </div>
+                <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
+                  <span className="form-label text-muted-foreground">
+                    {lv.calculator.estTotalLabel}
+                    {arCount > 0 ? ` · ${lv.calculator.estCountriesNote(arCount)}` : ""}
+                  </span>
+                  <span className="data-value text-lg text-muted-foreground">
+                    + <Money value={estTotal} /> €
+                  </span>
+                </div>
+                <div className="mt-3 flex flex-wrap items-baseline justify-between gap-3 border-t border-dashed border-border pt-3">
+                  <span className="form-label">{lv.calculator.fullTotal}</span>
+                  <span className="data-value text-2xl font-bold md:text-3xl">
+                    <Money value={fullTotal} /> €
+                  </span>
+                </div>
               </div>
             </div>
+            {rows.length > 0 ? (
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="form-label border border-border-strong px-3 py-2 transition-colors hover:border-primary hover:text-primary"
+                >
+                  {copied ? lv.calculator.copied : lv.calculator.copySummary}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCsv}
+                  className="form-label border border-border-strong px-3 py-2 transition-colors hover:border-primary hover:text-primary"
+                >
+                  {lv.calculator.downloadCsv}
+                </button>
+              </div>
+            ) : null}
             <p className="mt-4 border border-dashed border-border-strong px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
               {lv.calculator.disclaimer}
             </p>

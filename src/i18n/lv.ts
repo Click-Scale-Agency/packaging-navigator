@@ -326,7 +326,7 @@ export const lv = {
     licence: "MIT licence",
     dataProduct:
       "Dati ir produkts. Katrs valsts fakts dzīvo JSON failā ar avotu un pārbaudes datumu — nevis kodā.",
-    repo: "Click-Scale-Agency/eu-packaging-hub",
+    repo: "Click-Scale-Agency/packaging-navigator",
     credit: "Uztur Click Scale Agency",
     disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
   },

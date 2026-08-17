@@ -213,3 +213,10 @@ Point 3: verified the "planned/not-live" DRS cases. Confirmed none is live in 20
 ## 19. Calculator — estimated additional costs (2026-08-16, Claude Code)
 
 Added the §16 "estimate" layer without presenting guesses as facts: a user-adjustable "authorised-representative annual fee" input (default €400/country, clearly labelled an estimate the user tunes). The output now shows three tiers: **Safe costs** (PRO fee incl. minimum + registration), **Estimated additional** (AR fee × number of selected countries that require one), and **Full picture** (sum). Keeps the honest separation the spec demands (estimates never folded into the safe total). AR-fee amount is the user's assumption, not our claimed per-country data.
+
+## 20. Calculator export + DRS flag + marketplace-numbers section (2026-08-16, Claude Code)
+
+Points 1/3/4 from the UX plan:
+- **Export (P1):** "Kopēt kopsavilkumu" (clipboard text) and "Lejupielādēt CSV" (blob download) of the per-country breakdown + the three totals. Client-side only; honest labels.
+- **DRS flag (P3):** calculator rows show a "depozīts" chip when the country has an active beverage DRS (separate from EPR).
+- **Marketplace numbers (P4):** new home section + nav link (#numuri) listing countries whose register issues a marketplace-relevant producer number — filtered to those with a confirmed number format (DE +13, ES ENV/YYYY/9, FR IDU/UIN, PL 9-digit BDO) or a number-on-invoices requirement (e.g. MT). Honest scope: only confirmed formats shown; grows as more are verified. Also fixed the stale header GitHub link (eu-packaging-hub → packaging-navigator).

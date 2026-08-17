@@ -68,6 +68,7 @@ export function Calculator() {
   const [shipments, setShipments] = useState("2000");
   const [arFee, setArFee] = useState("400");
   const [selected, setSelected] = useState<string[]>(DEFAULT_SELECTION);
+  const [copied, setCopied] = useState(false);
 
   const kgPerYear = useMemo(() => {
     const n = Number(shipments) || 0;
@@ -120,6 +121,7 @@ export function Calculator() {
             hasRate: known,
             blended,
             arRequired: country.register.arRequired === true,
+            drsActive: country.drs?.active === true,
           };
         }),
     [selected, kgPerYear, totalKg],
@@ -134,6 +136,88 @@ export function Calculator() {
     setSelected((prev) =>
       prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code],
     );
+
+  const eur = (n: number) => n.toFixed(2);
+  const exportRows = () =>
+    rows.map((r) => ({
+      code: r.country.code,
+      name: r.country.name,
+      scheme: r.country.pro[0]?.name ?? "—",
+      variable: eur(r.variable),
+      minFee: r.minApplied && r.minFee !== null ? eur(r.minFee) : "",
+      reg: r.regCost > 0 ? eur(r.regCost) : "",
+      total: eur(r.fee),
+      ar: r.arRequired ? "jā" : "nē",
+      drs: r.drsActive ? "jā" : "nē",
+    }));
+
+  const buildCsv = () => {
+    const head = [
+      "Valsts",
+      "Kods",
+      "Shēma",
+      "Iepakojuma maksa EUR/gadā",
+      "Min. gada maksa EUR",
+      "Reģistrācija EUR",
+      "PRO+reģistrācija EUR/gadā",
+      "Pārstāvis vajadzīgs",
+      "Depozīta sistēma",
+    ];
+    const body = exportRows().map((r) =>
+      [r.name, r.code, r.scheme, r.variable, r.minFee, r.reg, r.total, r.ar, r.drs]
+        .map((v) => `"${String(v).replace(/"/g, '""')}"`)
+        .join(";"),
+    );
+    const totals = [
+      `"KOPĀ drošās (PRO+reģ)";;;;;;"${eur(grandTotal)}";;`,
+      `"Aplēstās (pārstāvis, ${arCount} valstīs)";;;;;;"${eur(estTotal)}";;`,
+      `"PILNĀ AINA 1. gadā";;;;;;"${eur(fullTotal)}";;`,
+    ];
+    return [head.join(";"), ...body, "", ...totals].join("\r\n");
+  };
+
+  const buildSummary = () =>
+    [
+      "PPWR iepakojuma EPR — indikatīvs izmaksu aprēķins",
+      `Sūtījumi gadā: ${shipments} · kopējais materiāls: ${totalKg.toFixed(1)} kg`,
+      "",
+      ...exportRows().map(
+        (r) =>
+          `${r.code} ${r.name}: ${r.total} €/gadā (${r.scheme})` +
+          `${r.minFee ? ` · min. maksa ${r.minFee} €` : ""}` +
+          `${r.reg ? ` · reģistrācija ${r.reg} €` : ""}` +
+          `${r.ar === "jā" ? " · + pārstāvis" : ""}` +
+          `${r.drs === "jā" ? " · depozīts" : ""}`,
+      ),
+      "",
+      `Drošās izmaksas kopā: ${eur(grandTotal)} €`,
+      `Aplēstās papildu (pārstāvis, ${arCount} valstīs): ${eur(estTotal)} €`,
+      `Pilnā aina 1. gadā: ${eur(fullTotal)} €`,
+      "",
+      "Indikatīvi. Nav juridiska konsultācija.",
+    ].join("\n");
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(buildSummary());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    } catch {
+      /* clipboard unavailable */
+    }
+  };
+
+  const handleCsv = () => {
+    const blob = new Blob([buildCsv()], { type: "text/csv;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "ppwr-izmaksu-aprekins.csv";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  };
 
   return (
     <section className="border-b border-dashed border-border-strong">
@@ -311,6 +395,14 @@ export function Calculator() {
                                 {lv.calculator.plusAr}
                               </span>
                             ) : null}
+                            {row.drsActive ? (
+                              <span
+                                title={lv.calculator.drsChipTitle}
+                                className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground"
+                              >
+                                {lv.calculator.drsChip}
+                              </span>
+                            ) : null}
                           </span>
                         ) : null}
                         {!row.country.verified ? (
@@ -362,6 +454,24 @@ export function Calculator() {
                 </div>
               </div>
             </div>
+            {rows.length > 0 ? (
+              <div className="mt-4 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={handleCopy}
+                  className="form-label border border-border-strong px-3 py-2 transition-colors hover:border-primary hover:text-primary"
+                >
+                  {copied ? lv.calculator.copied : lv.calculator.copySummary}
+                </button>
+                <button
+                  type="button"
+                  onClick={handleCsv}
+                  className="form-label border border-border-strong px-3 py-2 transition-colors hover:border-primary hover:text-primary"
+                >
+                  {lv.calculator.downloadCsv}
+                </button>
+              </div>
+            ) : null}
             <p className="mt-4 border border-dashed border-border-strong px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
               {lv.calculator.disclaimer}
             </p>

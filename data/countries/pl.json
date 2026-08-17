@@ -36,8 +36,16 @@
     "minAnnualFeeEur": null,
     "ecoModulation": ""
   },
-  "extraTaxes": [],
-  "notes": "Rates intentionally null: Polish recovery organisations (organizacje odzysku) price by individual contract and publish no official tariff table; Rekopol site (fetched 2026-08-16) lists a 'dopłaty' service but no rates. Polish packaging EPR reform (ROP / new packaging act, draft UC100) still in progress as of Aug 2026 — re-check scheme landscape when the act passes.",
+  "extraTaxes": [
+    {
+      "name": "Opłata produktowa (packaging)",
+      "summary": "Statutory product fee paid on the shortfall when recycling/recovery targets are not met (directly or via a recovery organisation). Official per-material rates from the Rozporządzenie MKiŚ of 09.12.2023 (Dz.U. 2023 poz. 2683), zł/kg: plastic 2.70, aluminium 1.40, ferrous metal 0.80, paper/cardboard 0.70, glass 0.30, wood 0.30, composite/multi-material 1.70, hazardous-substance packaging 2.00, other 1.00. Joining a recovery organisation (Rekopol etc.) that meets targets avoids this fee — which is why it functions as a ceiling/penalty, not the typical cost. A separate 'opłata opakowaniowa' (~8% of the opłata produktowa rate) is reported to arrive with the ROP reform — confirm when the new packaging act passes.",
+      "rate": "zł/kg (Dz.U. 2023 poz. 2683): plastic 2.70, aluminium 1.40, steel 0.80, paper 0.70, glass 0.30, wood 0.30, composite 1.70",
+      "collectedBy": "Marshal offices / BDO",
+      "url": "https://dziennikustaw.gov.pl/D2023000268301.pdf"
+    }
+  ],
+  "notes": "pro.rates left null: Polish recovery organisations (organizacje odzysku, e.g. Rekopol) price by individual contract and publish no official per-material tariff (Rekopol site fetched 2026-08-16 lists a 'dopłaty' service but no rates). The one set of official per-material figures is the statutory opłata produktowa (see extraTaxes), fetched from the official Dziennik Ustaw. Polish packaging EPR reform (ROP / new packaging act, draft UC100) still in progress as of Aug 2026 — re-check scheme landscape and the new opłata opakowaniowa when the act passes. PLN/EUR ≈ 4.31 (2026-08-16): opłata produktowa plastic ≈0.627, composite ≈0.395, paper ≈0.163, glass ≈0.070 €/kg.",
   "sources": [
     {
       "url": "https://bdo.mos.gov.pl",

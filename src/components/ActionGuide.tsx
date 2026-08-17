@@ -73,7 +73,7 @@ const SCENARIOS: Scenario[] = [
   {
     id: "lv-de-fr",
     title: "LV e-veikals → DE + FR",
-    desc: "Savs interneta veikals, sūta tieši pircējiem uz Vāciju un Franciju.",
+    desc: "Savs interneta veikals, kas sūta tieši pircējiem uz Vāciju un Franciju.",
     state: {
       selected: ["DE", "FR"],
       channel: "own",
@@ -103,7 +103,7 @@ const SCENARIOS: Scenario[] = [
   {
     id: "baltics",
     title: "Baltijas e-veikals → LV + LT + EE",
-    desc: "Reģionāls e-veikals, kas sūta pa visām trim Baltijas valstīm.",
+    desc: "Reģionāls e-veikals, kas sūta uz visām trim Baltijas valstīm.",
     state: {
       selected: ["LV", "LT", "EE"],
       channel: "own",

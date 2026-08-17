@@ -5,6 +5,8 @@
     "en": "Belgium",
     "native": "België / Belgique"
   },
+  "competentAuthority": "Starpreģionu iepakojuma komisija (IVC/CIE)",
+  "legalBasis": "Starpreģionu sadarbības nolīgums par iepakojuma atkritumiem; PPWR (ES) 2025/40",
   "register": {
     "exists": true,
     "name": "IVC/CIE (Interregional Packaging Commission)",
@@ -13,7 +15,7 @@
     "numberOnInvoices": false,
     "arRequiredForForeignSellers": null,
     "registrationCostEur": null,
-    "notes": "Site fetched 2026-08-16: IVC/CIE is the government authority for packaging EPR; recognised schemes are Fost Plus (household, recognition 02.02.2024) and Valipac (industrial, 02.12.2021). Members declare via their scheme; non-members declare directly via forma.ivcie.be (a 'Dossierkost' file cost applies to direct declarants — amount at ivcie.be/dossierkost/, not yet fetched). No AR statement found on the fetched page."
+    "notes": "Site fetched 2026-08-16: IVC/CIE is the government authority for packaging EPR; recognised schemes are Fost Plus (household, recognition 02.02.2024) and Valipac (industrial, 02.12.2021). Members declare via their scheme; non-members declare directly via forma.ivcie.be (a 'Dossierkost' file cost applies to direct declarants — amount at ivcie.be/dossierkost/, not yet fetched). No AR statement found on the fetched page. NEW: IVC/CIE is rolling out a national producer register branded EPRIBEL (epribel.be), reported to start around 12.08.2026; as of 2026-08-16 the epribel.be site is still under construction and points back to ivcie.be — treat EPRIBEL as the emerging register, IVC/CIE the current channel."
   },
   "pro": {
     "membershipRequired": true,
@@ -46,6 +48,12 @@
     {
       "url": "https://www.ivcie.be",
       "title": "IVC/CIE — Interregional Packaging Commission (authority site)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://www.epribel.be/",
+      "title": "EPRIBEL — emerging IVC/CIE national producer register (under construction 2026-08-16)",
       "checkedAt": "2026-08-16",
       "official": true
     },

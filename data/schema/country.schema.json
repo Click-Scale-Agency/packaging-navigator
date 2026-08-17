@@ -21,6 +21,14 @@
         "native": { "type": "string" }
       }
     },
+    "competentAuthority": {
+      "type": "string",
+      "description": "National competent authority/regulator (analogous to register.operator; regulatory context, not a fee claim)"
+    },
+    "legalBasis": {
+      "type": "string",
+      "description": "National legal basis for packaging EPR (e.g. 'VerpackG; VerpackDG from 12.08.2026'). Compiled from project research + cross-checks."
+    },
     "register": {
       "type": "object",
       "additionalProperties": false,

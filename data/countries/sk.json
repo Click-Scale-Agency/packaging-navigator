@@ -5,6 +5,8 @@
     "en": "Slovakia",
     "native": "Slovensko"
   },
+  "competentAuthority": "Vides ministrija; Slovākijas Vides aģentūra",
+  "legalBasis": "Likums Nr. 79/2015 Sb. par atkritumiem",
   "register": {
     "exists": true,
     "name": "RVVV (Register výrobcov vyhradených výrobkov)",

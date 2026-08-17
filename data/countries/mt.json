@@ -5,6 +5,8 @@
     "en": "Malta",
     "native": "Malta"
   },
+  "competentAuthority": "Vides un resursu iestāde (ERA)",
+  "legalBasis": "Waste Management (Packaging and Packaging Waste) Regulations",
   "register": {
     "exists": true,
     "name": "ERA producer register",

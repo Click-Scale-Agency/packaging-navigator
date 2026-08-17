@@ -26,6 +26,8 @@ import regulation from "../../data/regulation.json";
 interface CanonicalCountry {
   code: string;
   name: { lv: string; en: string; native?: string };
+  competentAuthority?: string;
+  legalBasis?: string;
   register: {
     exists: boolean;
     name?: string;
@@ -125,6 +127,8 @@ export const countries: CountryData[] = Object.values(canonical)
   .map((c) => ({
     code: c.code,
     name: c.name.lv,
+    competentAuthority: c.competentAuthority ?? null,
+    legalBasis: c.legalBasis ?? null,
     register: mapRegister(c),
     pro: mapPro(c),
     extraTaxes: mapExtraTaxes(c),

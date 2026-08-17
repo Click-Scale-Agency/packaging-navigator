@@ -5,6 +5,8 @@
     "en": "Ireland",
     "native": "Éire"
   },
+  "competentAuthority": "Vides aizsardzības aģentūra (EPA); pašvaldības",
+  "legalBasis": "Waste Management (Packaging) Regulations, S.I. 282/2014 (ar grozījumiem)",
   "register": {
     "exists": false,
     "notes": "No state packaging register — the PRL covers only WEEE/batteries/tyres (v1 error fixed). Packaging compliance = Repak membership (or self-compliance route via local authorities for large producers)."

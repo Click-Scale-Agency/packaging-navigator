@@ -5,6 +5,8 @@
     "en": "France",
     "native": "France"
   },
+  "competentAuthority": "ADEME; Ekoloģiskās pārkārtošanās ministrija",
+  "legalBasis": "Vides kodekss (Code de l'environnement); AGEC likums",
   "register": {
     "exists": true,
     "name": "SYDEREP",

@@ -5,6 +5,8 @@
     "en": "Romania",
     "native": "România"
   },
+  "competentAuthority": "Valsts Vides aizsardzības aģentūra (ANPM); Vides fonda administrācija (AFM)",
+  "legalBasis": "Likums 249/2015; Ārkārtas rīkojums (OUG) 196/2005",
   "register": {
     "exists": true,
     "name": "AFM producer records (Environmental Fund)",

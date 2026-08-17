@@ -5,6 +5,8 @@
     "en": "Estonia",
     "native": "Eesti"
   },
+  "competentAuthority": "Klimata ministrija; Keskkonnaagentuur (Vides aģentūra)",
+  "legalBasis": "Iepakojuma likums (Pakendiseadus); Iepakojuma akcīzes likums",
   "register": {
     "exists": true,
     "name": "PAKIS (packaging register, separate from PROTO)",

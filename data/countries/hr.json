@@ -5,6 +5,8 @@
     "en": "Croatia",
     "native": "Hrvatska"
   },
+  "competentAuthority": "Vides aizsardzības un zaļās pārkārtošanās ministrija; Vides aizsardzības un energoefektivitātes fonds (FZOEU)",
+  "legalBasis": "Atkritumu apsaimniekošanas likums; Uredba/Pravilnik par iepakojuma atkritumiem",
   "register": {
     "exists": true,
     "name": "RPPO (Registar proizvođača s proširenom odgovornošću)",

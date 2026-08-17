@@ -5,14 +5,16 @@
     "en": "Portugal",
     "native": "Portugal"
   },
+  "competentAuthority": "Portugāles Vides aģentūra (APA)",
+  "legalBasis": "Dekrēts-likums 152-D/2017 (ar grozījumiem)",
   "register": {
     "exists": true,
-    "name": "SILiAmb",
+    "name": "SIRER (via SILiAmb platform)",
     "url": "https://siliamb.apambiente.pt",
     "operator": "APA (Agência Portuguesa do Ambiente)",
     "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "SILiAmb platform fetched live 2026-08-16. Per-stream enrolment; registration number issued on certificate; annual declarations (correção for previous year + estimativa for current) due by 31 March. Producers without a Portuguese establishment, distance sellers included, must appoint a Portugal-established representative by written mandate."
+    "notes": "The producer register is SIRER (Sistema Integrado de Registo Electrónico de Resíduos), accessed and declared through the SILiAmb platform (front-end siliambfe.apambiente.pt); operated by APA under Decree-Law 152-D/2017 art. 19 (confirmed on apambiente.pt 2026-08-16). Per-stream enrolment; registration number issued on certificate; annual declarations (correção for previous year + estimativa for current) due by 31 March. Producers without a Portuguese establishment, distance sellers included, must appoint a Portugal-established representative by written mandate."
   },
   "pro": {
     "membershipRequired": true,
@@ -48,6 +50,12 @@
     {
       "url": "https://siliamb.apambiente.pt",
       "title": "SILiAmb — APA producer platform (fetched, live)",
+      "checkedAt": "2026-08-16",
+      "official": true
+    },
+    {
+      "url": "https://apambiente.pt/residuos/registo-de-produtores-de-produtos",
+      "title": "APA — Registo de produtores de produtos (SIRER via SILiAmb; DL 152-D/2017) (fetched)",
       "checkedAt": "2026-08-16",
       "official": true
     },

@@ -9,6 +9,7 @@ import {
   FormRow,
   Perforation,
   Press,
+  ProvenanceLine,
   UnverifiedStamp,
 } from "@/components/primitives";
 
@@ -38,8 +39,7 @@ function CountryDetail() {
   const { code } = Route.useParams();
   const country = countryByCode(code);
 
-  const annualMin =
-    country?.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ?? null;
+  const annualMin = country?.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ?? null;
   const regCost = country?.register.registrationCostEur ?? null;
 
   if (!country) {
@@ -111,11 +111,16 @@ function CountryDetail() {
               {annualMin !== null ? `€${annualMin}` : lv.countries.unknown}
             </FormRow>
             <FormRow label={lv.detail.arRequired}>
-              {country.register.arRequired === true
-                ? lv.detail.yes
-                : country.register.arRequired === false
-                  ? lv.detail.no
-                  : lv.countries.unknown}
+              <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span>
+                  {country.register.arRequired === true
+                    ? lv.detail.yes
+                    : country.register.arRequired === false
+                      ? lv.detail.no
+                      : lv.countries.unknown}
+                </span>
+                <ProvenanceLine provenance={country.register.arProvenance ?? null} />
+              </span>
             </FormRow>
             {country.register.numberOnInvoices !== null ? (
               <FormRow label={lv.detail.numberOnInvoices}>
@@ -123,9 +128,7 @@ function CountryDetail() {
               </FormRow>
             ) : null}
             {country.register.deMinimis ? (
-              <FormRow label={lv.detail.deMinimis}>
-                {country.register.deMinimis}
-              </FormRow>
+              <FormRow label={lv.detail.deMinimis}>{country.register.deMinimis}</FormRow>
             ) : null}
           </div>
           {country.register.arRequired === true ? (
@@ -137,7 +140,10 @@ function CountryDetail() {
 
         {/* Layer 1 */}
         <Press delay={0.08} className="mt-14">
-          <h2 className="text-2xl md:text-3xl">{lv.detail.registerTitle}</h2>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="text-2xl md:text-3xl">{lv.detail.registerTitle}</h2>
+            <ProvenanceLine provenance={country.register.provenance ?? null} />
+          </div>
           <div className="mt-6 border-t-2 border-foreground">
             <FormRow label={lv.detail.exists}>
               {country.register.exists ? lv.detail.yes : lv.detail.no}
@@ -200,19 +206,25 @@ function CountryDetail() {
                       {MATERIALS.map((m) => (
                         <li key={m} className="flex items-baseline justify-between gap-2">
                           <span className="form-label truncate">{lv.materials[m]}</span>
-                          <span className="data-value text-sm">
-                            {scheme.rates?.[m] ?? "—"}
-                          </span>
+                          <span className="data-value text-sm">{scheme.rates?.[m] ?? "—"}</span>
                         </li>
                       ))}
                     </ul>
-                    {!country.verified ? (
+                    {scheme.ratesProvenance ? (
+                      <span className="mt-3 block">
+                        <ProvenanceLine provenance={scheme.ratesProvenance} />
+                      </span>
+                    ) : !country.verified ? (
                       <span className="mt-3 block">
                         <UnverifiedStamp short />
                       </span>
                     ) : null}
                   </div>
-                  {scheme.note ? <p className="mt-2 text-xs leading-relaxed text-muted-foreground">{scheme.note}</p> : null}
+                  {scheme.note ? (
+                    <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                      {scheme.note}
+                    </p>
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -235,6 +247,11 @@ function CountryDetail() {
                       {tax.material ? ` · ${lv.materials[tax.material]}` : ""}
                     </p>
                   </div>
+                  {tax.provenance ? (
+                    <span className="mt-2 block">
+                      <ProvenanceLine provenance={tax.provenance} />
+                    </span>
+                  ) : null}
                   {tax.note ? (
                     <p className="mt-2 max-w-[70ch] text-sm text-muted-foreground">{tax.note}</p>
                   ) : null}
@@ -272,8 +289,11 @@ function CountryDetail() {
               {country.drs.deposit ? (
                 <FormRow label="Depozīts">{country.drs.deposit}</FormRow>
               ) : null}
-              {country.drs.note ? (
-                <FormRow label="Piezīme">{country.drs.note}</FormRow>
+              {country.drs.note ? <FormRow label="Piezīme">{country.drs.note}</FormRow> : null}
+              {country.drs.provenance ? (
+                <FormRow label={lv.detail.verification}>
+                  <ProvenanceLine provenance={country.drs.provenance} />
+                </FormRow>
               ) : null}
             </div>
             {country.drs.url ? (

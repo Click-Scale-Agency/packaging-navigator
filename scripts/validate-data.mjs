@@ -7,6 +7,9 @@
 //   R2  verified:true requires at least one sources[].official === true
 //   R3  any non-null pro.rates value requires pro.tariffYear
 //   R4  no duplicate country codes
+//   R5  any provenance with status "official" requires a sourceUrl
+//   R6  provenance.validTo (if present) must be >= validFrom
+//   R7  exactly 27 country files must exist (all EU member states)
 import { readFileSync, readdirSync } from "node:fs";
 import { basename, join } from "node:path";
 
@@ -69,6 +72,29 @@ for (const file of countryFiles) {
   if (hasRate && typeof country.pro?.tariffYear !== "number") {
     errors.push(`${file}: R3 — non-null rates require pro.tariffYear`);
   }
+
+  // R5/R6 — provenance integrity across every fact that can carry it.
+  const provenances = [
+    ["register.provenance", country.register?.provenance],
+    ["register.arProvenance", country.register?.arProvenance],
+    ["pro.ratesProvenance", country.pro?.ratesProvenance],
+    ["drs.provenance", country.drs?.provenance],
+    ...(country.extraTaxes ?? []).map((t, i) => [`extraTaxes[${i}].provenance`, t.provenance]),
+  ];
+  for (const [where, p] of provenances) {
+    if (!p) continue;
+    if (p.status === "official" && !p.sourceUrl) {
+      errors.push(`${file}: R5 — ${where} status "official" requires a sourceUrl`);
+    }
+    if (p.validFrom && p.validTo && p.validTo < p.validFrom) {
+      errors.push(`${file}: R6 — ${where} validTo (${p.validTo}) is before validFrom (${p.validFrom})`);
+    }
+  }
+}
+
+// R7 — the dataset must cover exactly the 27 EU member states.
+if (countryFiles.length !== 27) {
+  errors.push(`R7 — expected exactly 27 country files, found ${countryFiles.length}`);
 }
 
 // regulation.json / cn-codes.json: JSON well-formedness only (no schema yet)

@@ -11,6 +11,31 @@ export type MaterialKey = "paper" | "plastic" | "glass" | "metal" | "wood" | "co
 
 export const MATERIALS: MaterialKey[] = ["paper", "plastic", "glass", "metal", "wood", "composite"];
 
+/**
+ * Per-fact verification status. The country-level `verified` boolean is a blunt
+ * rollup; this lets a single tariff or obligation carry its own truth so the UI
+ * can distinguish an official statutory rate from an inferred obligation, a
+ * non-public tariff, or an open question.
+ */
+export type FactStatus =
+  | "official"
+  | "operator_published"
+  | "secondary_source"
+  | "inferred"
+  | "unverified"
+  | "not_applicable"
+  | "unknown";
+
+/** Provenance for one fact: status + its specific source + validity window. */
+export interface Provenance {
+  status: FactStatus;
+  sourceUrl: string | null;
+  checkedAt: string | null;
+  validFrom: string | null;
+  validTo: string | null;
+  note: string | null;
+}
+
 /** Layer 1 — the state producer register. */
 export interface RegisterLayer {
   exists: boolean;
@@ -27,6 +52,10 @@ export interface RegisterLayer {
   /** De-minimis / threshold text, e.g. "0 kg — first unit triggers duty". */
   deMinimis: string | null;
   note?: string | null;
+  /** Provenance of the register facts (exists/name/url/format). */
+  provenance?: Provenance | null;
+  /** Provenance of the authorised-representative obligation. */
+  arProvenance?: Provenance | null;
 }
 
 /** Layer 2 — producer responsibility organisation (PRO) scheme. */
@@ -40,6 +69,8 @@ export interface ProScheme {
   /** Minimum annual / minimum declaration fee in EUR. null = not published. */
   minAnnualFeeEur: number | null;
   note?: string | null;
+  /** Provenance of the per-material rates (shared across a country's schemes). */
+  ratesProvenance?: Provenance | null;
 }
 
 /** Layer 3 — separate national taxes, independent of EPR/PRO fees. */
@@ -56,6 +87,8 @@ export interface ExtraTax {
   conditional: boolean;
   url: string | null;
   note?: string | null;
+  /** Provenance of this tax fact. */
+  provenance?: Provenance | null;
 }
 
 export interface SourceRef {
@@ -72,6 +105,7 @@ export interface Drs {
   deposit: string | null;
   url: string | null;
   note: string | null;
+  provenance?: Provenance | null;
 }
 
 export interface CountryData {

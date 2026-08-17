@@ -13,7 +13,9 @@ import type {
   BriefingTopic,
   CountryData,
   ExtraTax,
+  FactStatus,
   MaterialKey,
+  Provenance,
   ProScheme,
   RegisterLayer,
   SourceRef,
@@ -22,6 +24,15 @@ import { MATERIALS } from "./types";
 import regulation from "../../data/regulation.json";
 
 /* ---- canonical shapes (subset we consume; see /data/schema) ---- */
+
+interface CanonicalProvenance {
+  status: FactStatus;
+  sourceUrl?: string;
+  checkedAt?: string;
+  validFrom?: string;
+  validTo?: string;
+  note?: string;
+}
 
 interface CanonicalCountry {
   code: string;
@@ -37,6 +48,8 @@ interface CanonicalCountry {
     arRequiredForForeignSellers?: boolean | null;
     registrationCostEur?: number | null;
     notes?: string;
+    provenance?: CanonicalProvenance;
+    arProvenance?: CanonicalProvenance;
   };
   pro: {
     membershipRequired: boolean | string;
@@ -45,6 +58,7 @@ interface CanonicalCountry {
     tariffYear?: number | null;
     minAnnualFeeEur?: number | null;
     ecoModulation?: string;
+    ratesProvenance?: CanonicalProvenance;
   };
   thresholds?: { deMinimis?: string };
   extraTaxes?: {
@@ -57,6 +71,7 @@ interface CanonicalCountry {
     appliesConditionally?: boolean;
     collectedBy?: string;
     url?: string;
+    provenance?: CanonicalProvenance;
   }[];
   drs?: {
     active?: boolean | null;
@@ -64,6 +79,7 @@ interface CanonicalCountry {
     deposit?: string;
     url?: string;
     note?: string;
+    provenance?: CanonicalProvenance;
   };
   notes?: string;
   sources: { url: string; title?: string; checkedAt: string }[];
@@ -81,6 +97,18 @@ const canonical = import.meta.glob("/data/countries/*.json", {
 const emptyRates = (): Record<MaterialKey, number | null> =>
   Object.fromEntries(MATERIALS.map((m) => [m, null])) as Record<MaterialKey, number | null>;
 
+function mapProvenance(p?: CanonicalProvenance): Provenance | null {
+  if (!p) return null;
+  return {
+    status: p.status,
+    sourceUrl: p.sourceUrl ?? null,
+    checkedAt: p.checkedAt ?? null,
+    validFrom: p.validFrom ?? null,
+    validTo: p.validTo ?? null,
+    note: p.note ?? null,
+  };
+}
+
 function mapRegister(c: CanonicalCountry): RegisterLayer {
   return {
     exists: c.register.exists,
@@ -92,11 +120,14 @@ function mapRegister(c: CanonicalCountry): RegisterLayer {
     numberOnInvoices: c.register.numberOnInvoices ?? null,
     deMinimis: c.thresholds?.deMinimis ?? null,
     note: c.register.notes ?? null,
+    provenance: mapProvenance(c.register.provenance),
+    arProvenance: mapProvenance(c.register.arProvenance),
   };
 }
 
 function mapPro(c: CanonicalCountry): ProScheme[] {
   const rates = { ...emptyRates(), ...(c.pro.rates ?? {}) };
+  const ratesProvenance = mapProvenance(c.pro.ratesProvenance);
   // Canonical membershipRequired may be a string ("state-run", "de-facto…");
   // for the UI boolean, anything except an explicit false counts as required.
   const membershipRequired = c.pro.membershipRequired !== false;
@@ -108,6 +139,7 @@ function mapPro(c: CanonicalCountry): ProScheme[] {
     membershipRequired,
     minAnnualFeeEur: c.pro.minAnnualFeeEur ?? null,
     note: typeof c.pro.membershipRequired === "string" ? c.pro.membershipRequired : null,
+    ratesProvenance,
   }));
 }
 
@@ -132,6 +164,7 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
       conditional: t.appliesConditionally === true,
       url: t.url ?? null,
       note: noteParts.join(" — "),
+      provenance: mapProvenance(t.provenance),
     };
   });
 }
@@ -157,6 +190,7 @@ export const countries: CountryData[] = Object.values(canonical)
           deposit: c.drs.deposit ?? null,
           url: c.drs.url ?? null,
           note: c.drs.note ?? null,
+          provenance: mapProvenance(c.drs.provenance),
         }
       : null,
     register: mapRegister(c),

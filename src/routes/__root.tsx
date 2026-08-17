@@ -127,12 +127,22 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    // On initial load / hard refresh, scroll to the top only when there is no
+    // hash anchor — the browser handles hash targets itself. TanStack Router’s
+    // scrollRestoration handles scroll-to-top on client-side navigations.
+    if (typeof window !== "undefined" && !window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <MotionConfig reducedMotion="user">
         <SmoothScroll />
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        <BackToTop />
       </MotionConfig>
     </QueryClientProvider>
   );

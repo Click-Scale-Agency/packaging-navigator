@@ -36,10 +36,10 @@
     },
     {
       "date": "2027-02-12",
-      "title": { "lv": "Nacionālie reģistri un sodi", "en": "National registers and penalties" },
+      "title": { "lv": "Nacionālie reģistri un sodi (orientējoši)", "en": "National registers and penalties (indicative)" },
       "summary": {
-        "lv": "Dalībvalstīm jāizveido ražotāju reģistri un jānosaka sodu režīmi.",
-        "en": "Member states must have producer registers set up and penalty regimes defined."
+        "lv": "Dalībvalstīm jāizveido ražotāju reģistri un jānosaka sodu režīmi. UZMANĪBU: 44. pants reģistra izveidi sasaista ar 18 mēnešiem pēc attiecīgā Komisijas īstenošanas akta spēkā stāšanās (akts bija jāpieņem līdz 2026-02-12), nevis ar fiksētu 2027-02-12 datumu — precīzs termiņš jāpārbauda pēc akta faktiskās spēkā stāšanās.",
+        "en": "Member states must set up producer registers and define penalty regimes. NOTE: Art. 44 ties register set-up to 18 months after the relevant Commission implementing act enters into force (the act was due by 2026-02-12), not a fixed 2027-02-12 date — the exact deadline depends on that act's actual entry into force."
       }
     },
     {

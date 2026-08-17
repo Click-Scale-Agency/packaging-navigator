@@ -40,6 +40,37 @@ export const lv = {
     not_applicable: "Fakts šai valstij nepastāv (piem., nav publiska tarifa).",
     unknown: "Atklāts jautājums — nav noskaidrots.",
   },
+  methodology: {
+    metaTitle: "Metodoloģija un datu statusi",
+    kicker: "Metodoloģija",
+    title: "Kā mēs strukturējam datus",
+    lead: "Šis portāls apzināti nodala zināmu, daļēji zināmu, interpretētu un nezināmu informāciju. Šeit ir, ko katrs statuss nozīmē un kā tiek rēķinātas izmaksas.",
+    layersTitle: "Trīs pienākumu slāņi",
+    layersLead:
+      "Reģistrācija, PRO dalība un papildu nodokļi ir trīs atsevišķas lietas — tās nekad nav viena un tā pati.",
+    layerRegister:
+      "Reģistrs — valsts ražotāju saraksts, kas izsniedz numuru, ko pārbauda tirdzniecības platformas.",
+    layerPro: "PRO shēma — apsaimniekotājs, kas iekasē maksas un organizē pārstrādi.",
+    layerTaxes:
+      "Papildu nodokļi — atsevišķi nacionāli nodokļi (piem., ES plastmasas akcīze), neatkarīgi no PRO maksas.",
+    statusesTitle: "Verifikācijas statusi",
+    statusesLead:
+      "Katram tarifam un pienākumam ir savs statuss, avots un pārbaudes datums — nevis viens vienots “verificēts” karodziņš visai valstij.",
+    coverageTitle: "Kalkulatora seguma stāvokļi",
+    coverageLead: "Kalkulators nekad nepieņem trūkstošu likmi par nulli.",
+    coverageFull: "Aprēķināts — visiem izvēlētajiem materiāliem ir likme.",
+    coveragePartial:
+      "Daļējs — daļai materiālu likmes nav; summa ir zināmā daļa (grīda), ne pilnas izmaksas.",
+    coverageNone: "Nav aprēķināms — nevienam izvēlētajam materiālam nav likmes.",
+    coverageConditional:
+      "Iespējams nodoklis — piemērojamība atkarīga no darījuma; netiek automātiski pieskaitīts.",
+    changelogTitle: "Izmaiņu žurnāls",
+    changelogLead: "Būtiskās datu un metodoloģijas izmaiņas tiek fiksētas publiskā žurnālā.",
+    changelogLink: "Skatīt izmaiņu žurnālu (GitHub)",
+    disclaimerTitle: "Atruna",
+    disclaimer:
+      "Rezultāts ir sākotnējs atbilstības novērtējums, kas balstīts uz norādītajiem datiem un publiski pieejamiem avotiem. Tas var neietvert visus tarifus, nodokļus, ekomodulāciju, pārstāvniecības, audita un administratīvos izdevumus. Pirms reģistrācijas vai pārdošanas uzsākšanas pārbaudiet informāciju attiecīgās valsts oficiālajā reģistrā vai pie kvalificēta speciālista.",
+  },
   nav: {
     guide: "Ceļvedis",
     calculator: "Kalkulators",
@@ -402,6 +433,9 @@ export const lv = {
       "Dati ir produkts. Katrs valsts fakts dzīvo JSON failā ar avotu un pārbaudes datumu — nevis kodā.",
     repo: "Click-Scale-Agency/packaging-navigator",
     credit: "Uztur Click Scale Agency",
+    resourcesLabel: "Resursi",
+    methodology: "Metodoloģija un statusi",
+    changelog: "Izmaiņu žurnāls",
     disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
   },
 } as const;

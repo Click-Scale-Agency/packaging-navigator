@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CelvedisRouteImport } from './routes/celvedis'
+import { Route as MetodologijaRouteImport } from './routes/metodologija'
 import { Route as ValstisCodeRouteImport } from './routes/valstis.$code'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const CelvedisRoute = CelvedisRouteImport.update({
   path: '/celvedis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MetodologijaRoute = MetodologijaRouteImport.update({
+  id: '/metodologija',
+  path: '/metodologija',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ValstisCodeRoute = ValstisCodeRouteImport.update({
   id: '/valstis/$code',
   path: '/valstis/$code',
@@ -32,30 +38,34 @@ const ValstisCodeRoute = ValstisCodeRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/celvedis': typeof CelvedisRoute
+  '/metodologija': typeof MetodologijaRoute
   '/valstis/$code': typeof ValstisCodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/celvedis': typeof CelvedisRoute
+  '/metodologija': typeof MetodologijaRoute
   '/valstis/$code': typeof ValstisCodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/celvedis': typeof CelvedisRoute
+  '/metodologija': typeof MetodologijaRoute
   '/valstis/$code': typeof ValstisCodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/celvedis' | '/valstis/$code'
+  fullPaths: '/' | '/celvedis' | '/metodologija' | '/valstis/$code'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/celvedis' | '/valstis/$code'
-  id: '__root__' | '/' | '/celvedis' | '/valstis/$code'
+  to: '/' | '/celvedis' | '/metodologija' | '/valstis/$code'
+  id: '__root__' | '/' | '/celvedis' | '/metodologija' | '/valstis/$code'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CelvedisRoute: typeof CelvedisRoute
+  MetodologijaRoute: typeof MetodologijaRoute
   ValstisCodeRoute: typeof ValstisCodeRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CelvedisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/metodologija': {
+      id: '/metodologija'
+      path: '/metodologija'
+      fullPath: '/metodologija'
+      preLoaderRoute: typeof MetodologijaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/valstis/$code': {
       id: '/valstis/$code'
       path: '/valstis/$code'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CelvedisRoute: CelvedisRoute,
+  MetodologijaRoute: MetodologijaRoute,
   ValstisCodeRoute: ValstisCodeRoute,
 }
 export const routeTree = rootRouteImport

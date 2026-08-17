@@ -13,9 +13,9 @@
     "url": "https://www.ivcie.be",
     "operator": "Interregional Packaging Commission (three regions jointly)",
     "numberOnInvoices": false,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Site fetched 2026-08-16: IVC/CIE is the government authority for packaging EPR; recognised schemes are Fost Plus (household, recognition 02.02.2024) and Valipac (industrial, 02.12.2021). Members declare via their scheme; non-members declare directly via forma.ivcie.be (a 'Dossierkost' file cost applies to direct declarants — amount at ivcie.be/dossierkost/, not yet fetched). No AR statement found on the fetched page. NEW: IVC/CIE is rolling out a national producer register branded EPRIBEL (epribel.be), reported to start around 12.08.2026; as of 2026-08-16 the epribel.be site is still under construction and points back to ivcie.be — treat EPRIBEL as the emerging register, IVC/CIE the current channel."
+    "notes": "Site fetched 2026-08-16: IVC/CIE is the government authority for packaging EPR; recognised schemes are Fost Plus (household, recognition 02.02.2024) and Valipac (industrial, 02.12.2021). Members declare via their scheme; non-members declare directly via forma.ivcie.be (a 'Dossierkost' file cost applies to direct declarants — amount at ivcie.be/dossierkost/, not yet fetched). The national page carried no explicit AR statement, but PPWR Art. 45 makes a local authorised representative mandatory for non-established (foreign) producers from 12.08.2026. NEW: IVC/CIE is rolling out a national producer register branded EPRIBEL (epribel.be), reported to start around 12.08.2026; as of 2026-08-16 the epribel.be site is still under construction and points back to ivcie.be — treat EPRIBEL as the emerging register, IVC/CIE the current channel."
   },
   "pro": {
     "membershipRequired": true,

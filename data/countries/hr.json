@@ -12,7 +12,7 @@
     "name": "RPPO (Registar proizvođača s proširenom odgovornošću)",
     "url": "https://www.fzoeu.hr",
     "operator": "FZOEU (Environmental Protection and Energy Efficiency Fund)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "State-run fee model: producers pay the Fund (FZOEU) directly, no private PROs. Fees prescribed by the Uredba o gospodarenju otpadnom ambalažom and published as an official fee list (popis naknada)."
   },

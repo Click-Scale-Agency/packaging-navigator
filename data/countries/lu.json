@@ -9,6 +9,7 @@
   "legalBasis": "2017. gada 21. marta likums par iepakojumu un iepakojuma atkritumiem",
   "register": {
     "exists": false,
+    "arRequiredForForeignSellers": true,
     "notes": "e-RA register covers only WEEE/batteries — packaging compliance runs through Valorlux membership (Point Vert / Green Dot) in practice. No separate state packaging producer register."
   },
   "pro": {

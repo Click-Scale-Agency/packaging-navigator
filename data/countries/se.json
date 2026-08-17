@@ -12,7 +12,7 @@
     "name": "Producentansvarsregistret",
     "url": "https://www.naturvardsverket.se/vagledning-och-stod/producentansvar/producentansvar-for-forpackningar/",
     "operator": "Naturvårdsverket (Swedish EPA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "Guidance page fetched 2026-08-16 (last reviewed 11.08.2026, already reflects PPWR changes from 12.08.2026). Registration and reporting via the Naturvårdsverket e-service; producers pay the packaging fee to their producentansvarsorganisation (PRO). Under the PPWR-driven rules, actors covered by the EU producer definition must register and report annually by 31 March (first deadline 31.03.2027 for the period 12.08–31.12.2026)."
   },

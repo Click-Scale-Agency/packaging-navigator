@@ -12,7 +12,7 @@
     "name": "EMPA (National Producer Register)",
     "url": "https://www.eoan.gr",
     "operator": "EOAN (Hellenic Recycling Agency / HRA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "Producers register in the national producer register held by EOAN and comply via a licensed collective system (HERRCO). HERRCO operates under Law 4819/2021 (ex 2939/2001)."
   },

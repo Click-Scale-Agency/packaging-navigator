@@ -12,7 +12,7 @@
     "name": "Register of persons placing packaged goods on the market (MOEW / ExEA)",
     "url": "https://www.moew.government.bg/bg/otpaduci/specifichni-otpaduchni-potoci/otpaduci-ot-opakovki/",
     "operator": "Ministry of Environment and Water (MOEW) / Executive Environment Agency (ExEA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "MOEW packaging page fetched 2026-08-16 (Bulgarian): producers comply either by joining a recovery organisation (Ecopack, Bulecopack) or fulfilling obligations individually (product fee to the state/PUDOOS). Public registers of recovery organisations and obligated persons exist under MOEW. The earlier candidate portal nwms.eea.government.bg returned only an 'IIS Windows Server' placeholder — not the register; corrected here. Qualified e-signature is required for e-registration."
   },

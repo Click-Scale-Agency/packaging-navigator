@@ -12,7 +12,7 @@
     "name": "Producer registers of the Department of Environment",
     "url": "https://www.moa.gov.cy",
     "operator": "Department of Environment (MARDE)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "No single register brand — producers register with the Department of Environment and comply via a licensed collective system. Producers register regardless of volume. The state Department page (moa.gov.cy environment portal) returned HTTP 503 on 2026-08-16 and could not be fetched this session; Green Dot Cyprus (the licensed system) registration pages were fetched instead and are the practical registration/compliance route."
   },

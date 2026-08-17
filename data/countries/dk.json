@@ -12,9 +12,9 @@
     "name": "DPA producer register (all streams)",
     "url": "https://www.producentansvar.dk",
     "operator": "Dansk Producentansvar (DPA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
-    "notes": "Site fetched 2026-08-16: 'Companies that put products subject to producer responsibility for packaging on the market in Denmark, must register in the producer register.' Single register for all EPR streams; registration via virk.dk; annual DPA fees based on reported volumes (fee page not parsed). AR requirement for foreign sellers not stated on the fetched page."
+    "notes": "Site fetched 2026-08-16: 'Companies that put products subject to producer responsibility for packaging on the market in Denmark, must register in the producer register.' Single register for all EPR streams; registration via virk.dk; annual DPA fees based on reported volumes (fee page not parsed). AR for foreign (non-established) sellers is mandatory under PPWR Art. 45 from 12.08.2026 (not separately restated on the DPA page)."
   },
   "pro": {
     "membershipRequired": true,

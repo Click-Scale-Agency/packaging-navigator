@@ -9,6 +9,7 @@
   "legalBasis": "Iepakojuma likums; Dabas resursu nodokļa likums",
   "register": {
     "exists": false,
+    "arRequiredForForeignSellers": true,
     "notes": "No separate packaging register yet — Elektroregistrs covers WEEE/batteries only. The PPWR-mandated producer register is to be created by 12.02.2027 (KEM: registers within 24 months). Packaging compliance runs through the DRN system + contracts with licensed waste managers."
   },
   "pro": {

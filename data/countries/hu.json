@@ -12,7 +12,7 @@
     "name": "OKIR / OKIRkapu",
     "url": "https://okirkapu.hu",
     "operator": "National environmental registry (reports feed the MOHU concession)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "OKIRkapu portal fetched live 2026-08-16 ('OKIRKAPU – út az OKIR felé'). Dual registration in practice: OKIR/OKIRkapu (quarterly EPR filings) + MOHU service contract (producer ID, invoicing). Note (MOHU FAQ): foreign-made packaging finally separated from its product counts as own-use of packaging (EPR reg. §17) — so registration, reporting and fee liability arise."
   },

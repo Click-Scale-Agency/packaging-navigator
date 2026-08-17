@@ -14,7 +14,7 @@
     "operator": "ADEME",
     "numberFormat": "IDU/UIN — unique identifier issued per EPR scheme",
     "numberOnInvoices": false,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": 0,
     "notes": "Portal live (fetched 2026-08-16). The UIN must be displayed on marketplaces / in general terms of sale. Registration happens through the PRO (e.g. CITEO), which reports to SYDEREP and triggers issuance of the IDU; no separate state registration fee."
   },

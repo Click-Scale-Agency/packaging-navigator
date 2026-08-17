@@ -14,7 +14,7 @@
     "operator": "Ministry of Climate and Environment / marshal offices",
     "numberFormat": "9-digit BDO number",
     "numberOnInvoices": true,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "Portal fetched live 2026-08-16 (blocks some bots; reachable). BDO number must be obtained before trading and shown on invoices and waste documents. 2026 registration/annual fee: 200 PLN for micro-enterprises, 800 PLN for others (raised from 100/300 PLN; annual fee due by 28 February, non-payment leads to removal — confirmed on the Mazovia marshal office BIP notice). Annual fee is waived in the year the registration fee is paid."
   },

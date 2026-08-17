@@ -12,7 +12,7 @@
     "name": "Tuottajarekisteri (single register, 8 streams)",
     "url": "https://lvv.fi/en/environment/information-on-extended-producer-responsibility",
     "operator": "Lupa- ja valvontavirasto (LVV, Finnish Supervisory Agency)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "The producer register is commonly called TURRe; its public membership search is at jatehuoltokompassi.fi/haetietoja/turre/ (confirmed 2026-08-16). LVV EPR page fetched 2026-08-16 (LVV took over from Pirkanmaa ELY 01.01.2026): EPR explicitly applies to distance sellers, who without a Finnish branch must appoint an authorised representative; LVV recommends joining a producer organisation, which carries the legal obligations on behalf of the company. Exact register e-service entry point and possible state fees still to locate on LVV subpages."
   },

@@ -193,3 +193,11 @@ Driven by the "useful catalog" goal — users need to see not just packaging €
 **DRS (deposit-return) round** — new optional `drs` field {active, operator, deposit, note, url} on schema + all 27 files, plus a UI section. 2026 status anchored to primary/consolidated sources (Zero Waste Europe, TOMRA, Sensoneo): **active (17):** DE, DK, SE, FI, EE, LT, LV, HR, NL, SK, IE, MT, RO, AT (01.01.2025), HU (2024), PL (01.10.2025), PT (10.04.2026). **not yet / none (10):** BG, CY, CZ, ES (conditional, targets-based), FR, GR (in preparation ~2026), IE n/a, IT, LU, SI. DRS is contextual (not a fee claim); `verified` flags unchanged.
 
 **Registration cost backfill:** set CZ €33 (800 CZK). Most others are €0 (DE, FR) or tiered/non-EUR (PL 200/800 PLN) — kept in notes rather than forcing a single misleading number. The doc's §16 "full cost model" (registration + PRO entry + per-material + min annual + AR setup/maintenance + DRS + audit) is the reference for a future cost calculator.
+
+## 16. Authorised representative — PPWR Art. 45 (2026-08-16, Claude Code)
+
+Confirmed (EUR-Lex + consolidated compliance sources): PPWR Art. 45 requires a producer NOT established in a Member State to appoint, in each such Member State where it first makes packaging/packaged products available, a local authorised representative for EPR — mandatory from 12.08.2026, direct effect, no national transposition, cannot be relaxed. This squarely covers the site's audience (a Latvian e-shop shipping B2C into other Member States).
+
+Action: set `register.arRequiredForForeignSellers = true` for all 27 (was already true for DE/ES/AT/PT/SI/SK from national confirmation; the other 21 now derive from Art. 45). BE and DK notes reconciled (they previously said "no AR statement on the page" — now clarified that the EU-level Art. 45 obligation applies regardless). The country page shows this per country with a plain-language Art. 45 hint. NOTE: the AR is a paid private service (market-priced, typically a few hundred to ~€1,500/yr per country) — not a fixed state fee, so it is not encoded in `registrationCostEur`.
+
+Registration cost (`registrationCostEur`): state registration itself is typically free (the real recurring cost is the PRO fee + AR service). Confirmed values: DE €0, FR €0, CZ ≈€33 (800 CZK). PL is tiered (200/800 PLN, in notes). Others left null rather than assume.

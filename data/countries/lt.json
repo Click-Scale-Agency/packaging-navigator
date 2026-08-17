@@ -12,7 +12,7 @@
     "name": "GPAIS (unified product/packaging register, 8 streams)",
     "url": "https://www.gpais.eu",
     "operator": "Environmental Protection Agency (AAA)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "Registration and reporting in GPAIS are mandatory even at very small volumes."
   },

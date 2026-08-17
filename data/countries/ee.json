@@ -12,7 +12,7 @@
     "name": "PAKIS (packaging register, separate from PROTO)",
     "url": "https://pakis.envir.ee",
     "operator": "Kliimaministeerium (Climate Ministry) / Keskkonnaagentuur (Environment Agency)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "PAKIS fetched 2026-08-16 (Estonian, English option): board members get accounts from business-registry data, authenticate via ID-card/Mobile-ID/Smart-ID, and report packaging placed on market. Records feed both packaging and excise-tax reporting."
   },

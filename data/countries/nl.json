@@ -9,6 +9,7 @@
   "legalBasis": "Besluit beheer verpakkingen (Iepakojuma apsaimniekošanas dekrēts)",
   "register": {
     "exists": false,
+    "arRequiredForForeignSellers": true,
     "notes": "No state packaging register — RWS UPV registers cover other streams. Packaging obligations (registration, declaration, fees) are handled entirely through Verpact (formerly Afvalfonds Verpakkingen)."
   },
   "pro": {

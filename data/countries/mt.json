@@ -13,7 +13,7 @@
     "url": "https://era.org.mt",
     "operator": "Environment and Resources Authority (ERA)",
     "numberOnInvoices": true,
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "Registration number must appear on invoices; annual renewal by 31 March."
   },

@@ -12,7 +12,7 @@
     "name": "AFM producer records (Environmental Fund)",
     "url": "https://www.afm.ro",
     "operator": "AFM (Administrația Fondului pentru Mediu)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": null,
     "notes": "Fund-and-declaration model: producers declare quantities to AFM."
   },

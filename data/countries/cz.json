@@ -12,7 +12,7 @@
     "name": "Seznam osob (§ 14 zákona o obalech) / VISOH2",
     "url": "https://mzp.gov.cz/cz/agenda/odpadove-hospodarstvi-a-cirkularni-ekonomika/zpetny-odber-vyrobku-a-obalu/obaly",
     "operator": "Ministry of the Environment (MŽP)",
-    "arRequiredForForeignSellers": null,
+    "arRequiredForForeignSellers": true,
     "registrationCostEur": 33,
     "notes": "Page fetched 2026-08-16 — confirms the Seznam osob under §14 of Packaging Act 477/2001 Sb. and that a joint-performance contract with the authorised packaging company (EKO-KOM) exempts from individual listing. Registration fee 800 CZK (~€33) and 60-day application deadline per earlier search-level research (not on the fetched page — reconfirm)."
   },

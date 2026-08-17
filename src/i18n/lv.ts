@@ -127,6 +127,19 @@ export const lv = {
     plusAr: "+ pārstāvis",
     plusArTitle:
       "Vajadzīgs vietējais pilnvarotais pārstāvis (PPWR 45. p.) — atsevišķa, mainīga maksa, nav iekļauta aprēķinātajā daļā.",
+    fromPrefix: "no",
+    altRateChip: "alternatīvā likme",
+    altRateTitle: (name: string, when: string) => `${name}. ${when}`,
+    altRateNote: (name: string, when: string) => `${name}: rāda ${when.toLowerCase()}`,
+    arApplyQ: "Vai pārstāvis attiecas uz tevi?",
+    arYes: "attiecas",
+    arNo: "neattiecas",
+    arUnknown: "nav zināms",
+    fullTotalNote: "Daļa tarifu un administratīvo izmaksu var nebūt publiski pieejama.",
+    arConfirmedNote: (n: number) =>
+      n === 0
+        ? "Pārstāvja maksa netiek pieskaitīta, kamēr neatzīmē, ka pienākums attiecas."
+        : `Pieskaitīts ${n} valstij(-īm), ko atzīmēji kā “attiecas”.`,
     partialBadge: "daļējs aprēķins",
     partialTitle: (mats: string) =>
       `Šīm izvēlētajām pozīcijām nav publiskotas likmes: ${mats}. Summa ir tikai zināmā daļa — reālās izmaksas ir augstākas.`,
@@ -137,13 +150,14 @@ export const lv = {
     condTaxTitle: (names: string) =>
       `Iespējams papildu nodoklis (${names}) — piemērojamība atkarīga no darījuma un iepakojuma; nav automātiski pieskaitīts. Jāpārbauda.`,
     arFeeLabel: "Pārstāvja gada maksa (aplēse, €/valstī)",
-    arFeeHint: "Tirgus cena atšķiras; pielāgo pēc sava pakalpojuma sniedzēja piedāvājuma.",
+    arFeeHint:
+      "Nepieskaita automātiski. Pārbaudi, kurās valstīs pienākums attiecas uz tavu uzņēmumu, un atzīmē tās sarakstā.",
     safeTotal: "Aprēķinātā daļa (PRO + reģistrācija)",
-    estTotalLabel: "Aplēstās papildu izmaksas (pārstāvis)",
-    estCountriesNote: (n: number) => `${n} valstīs vajadzīgs pārstāvis`,
+    estTotalLabel: "Iespējamās pilnvarotā pārstāvja izmaksas",
+    estCountriesNote: (n: number) => `${n} valstī(-īs) atzīmēts “attiecas”`,
     partialSelectedNote: (n: number) =>
       `${n} ${n === 1 ? "valstij" : "valstīm"} likmes ir tikai daļēji — kopsumma ir zināmā daļa, ne pilnas izmaksas.`,
-    fullTotal: "Pilnā aina 1. gadā (indikatīvi)",
+    fullTotal: "Aptuvenās zināmās izmaksas 1. gadā",
     drsChip: "depozīts",
     drsChipTitle:
       "Šajā valstī ir aktīva dzērienu depozīta sistēma (DRS) — atsevišķa no iepakojuma EPR.",
@@ -228,7 +242,9 @@ export const lv = {
     taskProMandatory: "Dalība apsaimniekotāja shēmā šajā valstī ir obligāta.",
     taskProOptional:
       "Var izpildīt caur licencētu apsaimniekotāju vai statūtos noteikto maksājumu — pārbaudi izdevīgāko.",
-    taskReport: "Ziņo iepakojuma apjomus (parasti reizi gadā)",
+    taskReport: "Ziņo iepakojuma apjomus",
+    taskReportUnknown: "Ziņošanas biežums un termiņi vēl jāpārbauda.",
+    taskReportCheck: "jāpārbauda",
     taskInvoice: "Norādi reģistrācijas numuru uz rēķiniem / komercdokumentiem",
     taskMarketplaceNumber: "Ievadi EPR reģistrācijas numuru platformas pārdevēja kontā",
     taskMarketplaceNumberDetail:
@@ -243,7 +259,7 @@ export const lv = {
     evidenceRegNumber: "Reģistrācijas numurs (ekrānšāviņš / apstiprinājums)",
     evidenceProContract: "Līgums ar apsaimniekotāju (PRO)",
     evidenceArMandate: "Pilnvarotā pārstāvja pilnvarojums",
-    evidenceDeclaration: "Ikgadējā iepakojuma deklarācija",
+    evidenceDeclaration: "Iesniegtās iepakojuma deklarācijas un iesniegšanas apliecinājumi.",
     evidenceImporterNumber: "Importētāja/platformas EPR numura kopija",
     flagUnverified: (code: string) =>
       `Dati par ${code} vēl nav pārbaudīti pret oficiālu tarifu — apstiprini summas oficiālajā avotā.`,
@@ -360,6 +376,12 @@ export const lv = {
     reportingZero: "Nulles deklarācija",
     reportingCorrection: "Labojumi",
     reportingNone: "Ziņošanas kārtība šai valstij vēl nav apkopota.",
+    statutoryTitle: "Alternatīvās likumā noteiktās likmes",
+    statutoryAppliesWhen: "Kad piemēro",
+    statutoryRatesLabel: "Likmes (€/kg)",
+    statutoryTariffYear: "Tarifa gads",
+    statutoryScenarioNote:
+      "Šīs ir alternatīva PRO līgumam — tās nekad netiek summētas kopā ar apsaimniekotāja maksu.",
     noSources: "Avoti vēl nav pievienoti.",
     noPro: "PRO shēmas vēl nav apkopotas.",
     noTaxes: "Nav zināmu papildu nodokļu.",

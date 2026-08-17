@@ -270,6 +270,62 @@ function CountryDetail() {
           )}
         </Press>
 
+        {/* Statutory fallback (e.g. LV DRN full rates) */}
+        {country.statutoryFallback ? (
+          <Press delay={0.08} className="mt-16">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <h2 className="text-2xl md:text-3xl">{lv.detail.statutoryTitle}</h2>
+              <ProvenanceLine provenance={country.statutoryFallback.provenance ?? null} />
+            </div>
+            <p className="mt-3 max-w-[75ch] text-sm text-muted-foreground">
+              {country.statutoryFallback.name}
+            </p>
+            <p className="mt-2 max-w-[75ch] border-l-2 border-primary pl-3 text-sm leading-relaxed text-primary">
+              {lv.detail.statutoryScenarioNote}
+            </p>
+            <div className="mt-6 border-t-2 border-foreground">
+              {country.statutoryFallback.appliesWhen ? (
+                <FormRow label={lv.detail.statutoryAppliesWhen}>
+                  {country.statutoryFallback.appliesWhen}
+                </FormRow>
+              ) : null}
+              {country.statutoryFallback.tariffYear !== null ? (
+                <FormRow label={lv.detail.statutoryTariffYear}>
+                  {country.statutoryFallback.tariffYear}
+                </FormRow>
+              ) : null}
+              <div className="border-t border-dashed border-border py-3">
+                <span className="form-label">{lv.detail.statutoryRatesLabel}</span>
+                <ul className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1 sm:grid-cols-3">
+                  {MATERIALS.map((m) => (
+                    <li key={m} className="flex items-baseline justify-between gap-2">
+                      <span className="form-label truncate">{lv.materials[m]}</span>
+                      <span className="data-value text-sm">
+                        {country.statutoryFallback?.rates[m] ?? "—"}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              {country.statutoryFallback.note ? (
+                <FormRow label="Piezīme">{country.statutoryFallback.note}</FormRow>
+              ) : null}
+              {country.statutoryFallback.url ? (
+                <FormRow label={lv.detail.registerUrl}>
+                  <a
+                    href={country.statutoryFallback.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="break-all text-primary underline decoration-dashed underline-offset-4"
+                  >
+                    {country.statutoryFallback.url}
+                  </a>
+                </FormRow>
+              ) : null}
+            </div>
+          </Press>
+        ) : null}
+
         {/* Layer 3 */}
         <Press delay={0.08} className="mt-16">
           <h2 className="text-2xl md:text-3xl">{lv.detail.taxesTitle}</h2>

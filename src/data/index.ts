@@ -20,6 +20,7 @@ import type {
   RegisterLayer,
   Reporting,
   SourceRef,
+  StatutoryFallback,
 } from "./types";
 import { MATERIALS } from "./types";
 import regulation from "../../data/regulation.json";
@@ -87,6 +88,16 @@ interface CanonicalCountry {
     deadlines?: string[];
     zeroDeclaration?: boolean | null;
     correction?: string;
+    note?: string;
+    provenance?: CanonicalProvenance;
+  };
+  statutoryFallback?: {
+    name: string;
+    appliesWhen?: string;
+    rates: Partial<Record<MaterialKey, number | null>>;
+    tariffYear?: number | null;
+    collectedBy?: string;
+    url?: string;
     note?: string;
     provenance?: CanonicalProvenance;
   };
@@ -190,6 +201,21 @@ function mapReporting(c: CanonicalCountry): Reporting | null {
   };
 }
 
+function mapStatutoryFallback(c: CanonicalCountry): StatutoryFallback | null {
+  const s = c.statutoryFallback;
+  if (!s) return null;
+  return {
+    name: s.name ?? null,
+    appliesWhen: s.appliesWhen ?? null,
+    rates: { ...emptyRates(), ...(s.rates ?? {}) },
+    tariffYear: s.tariffYear ?? null,
+    collectedBy: s.collectedBy ?? null,
+    url: s.url ?? null,
+    note: s.note ?? null,
+    provenance: mapProvenance(s.provenance),
+  };
+}
+
 function mapSources(c: CanonicalCountry): SourceRef[] {
   return c.sources.map((s) => ({
     url: s.url,
@@ -215,6 +241,7 @@ export const countries: CountryData[] = Object.values(canonical)
         }
       : null,
     reporting: mapReporting(c),
+    statutoryFallback: mapStatutoryFallback(c),
     register: mapRegister(c),
     pro: mapPro(c),
     extraTaxes: mapExtraTaxes(c),

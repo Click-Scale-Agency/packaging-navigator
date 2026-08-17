@@ -81,22 +81,43 @@ export function Calculator() {
       countries
         .filter((c) => selected.includes(c.code))
         .map((country) => {
-          let fee = 0;
+          let variable = 0;
           let hasRate = false;
           for (const m of MATERIALS) {
             const rate = rateFor(country, m);
             const tax = extraTaxFor(country, m);
             if (rate !== null) {
-              fee += rate * kgPerYear[m];
+              variable += rate * kgPerYear[m];
               hasRate = true;
             }
             if (tax !== null) {
-              fee += tax * kgPerYear[m];
+              variable += tax * kgPerYear[m];
               hasRate = true;
             }
           }
-          const blended = hasRate && totalKg > 0 ? fee / totalKg : null;
-          return { country, fee, hasRate, blended };
+          // §16 full-cost model: the PRO fee is the greater of the variable
+          // packaging fee and the minimum annual fee; add the state
+          // registration cost; flag (but don't price) the authorised rep.
+          const minFee =
+            country.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ??
+            null;
+          const proFee = Math.max(variable, minFee ?? 0);
+          const minApplied = minFee !== null && minFee > variable;
+          const regCost = country.register.registrationCostEur ?? 0;
+          const fee = proFee + regCost;
+          const known = hasRate || minFee !== null || regCost > 0;
+          const blended = hasRate && totalKg > 0 ? variable / totalKg : null;
+          return {
+            country,
+            fee,
+            variable,
+            proFee,
+            minApplied,
+            regCost,
+            hasRate: known,
+            blended,
+            arRequired: country.register.arRequired === true,
+          };
         }),
     [selected, kgPerYear, totalKg],
   );
@@ -241,6 +262,33 @@ export function Calculator() {
                             ? (row.country.register.name ?? lv.countries.unknown)
                             : lv.countries.noRegister}
                         </span>
+                        {row.hasRate ? (
+                          <span className="mt-2 flex flex-wrap gap-1.5">
+                            {row.variable > 0 ? (
+                              <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                {lv.calculator.breakdownVariable} €{row.variable.toFixed(0)}
+                              </span>
+                            ) : null}
+                            {row.minApplied ? (
+                              <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                {lv.calculator.breakdownMinApplied}
+                              </span>
+                            ) : null}
+                            {row.regCost > 0 ? (
+                              <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                                {lv.calculator.breakdownReg} €{row.regCost}
+                              </span>
+                            ) : null}
+                            {row.arRequired ? (
+                              <span
+                                title={lv.calculator.plusArTitle}
+                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
+                              >
+                                {lv.calculator.plusAr}
+                              </span>
+                            ) : null}
+                          </span>
+                        ) : null}
                         {!row.country.verified ? (
                           <span className="mt-2 block">
                             <UnverifiedStamp short />

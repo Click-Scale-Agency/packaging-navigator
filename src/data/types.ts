@@ -7,22 +7,34 @@
  * and never edit /data by hand inside Lovable.
  */
 
-export type MaterialKey =
-  | "paper"
-  | "plastic"
-  | "glass"
-  | "metal"
-  | "wood"
-  | "composite";
+export type MaterialKey = "paper" | "plastic" | "glass" | "metal" | "wood" | "composite";
 
-export const MATERIALS: MaterialKey[] = [
-  "paper",
-  "plastic",
-  "glass",
-  "metal",
-  "wood",
-  "composite",
-];
+export const MATERIALS: MaterialKey[] = ["paper", "plastic", "glass", "metal", "wood", "composite"];
+
+/**
+ * Per-fact verification status. The country-level `verified` boolean is a blunt
+ * rollup; this lets a single tariff or obligation carry its own truth so the UI
+ * can distinguish an official statutory rate from an inferred obligation, a
+ * non-public tariff, or an open question.
+ */
+export type FactStatus =
+  | "official"
+  | "operator_published"
+  | "secondary_source"
+  | "inferred"
+  | "unverified"
+  | "not_applicable"
+  | "unknown";
+
+/** Provenance for one fact: status + its specific source + validity window. */
+export interface Provenance {
+  status: FactStatus;
+  sourceUrl: string | null;
+  checkedAt: string | null;
+  validFrom: string | null;
+  validTo: string | null;
+  note: string | null;
+}
 
 /** Layer 1 — the state producer register. */
 export interface RegisterLayer {
@@ -40,6 +52,10 @@ export interface RegisterLayer {
   /** De-minimis / threshold text, e.g. "0 kg — first unit triggers duty". */
   deMinimis: string | null;
   note?: string | null;
+  /** Provenance of the register facts (exists/name/url/format). */
+  provenance?: Provenance | null;
+  /** Provenance of the authorised-representative obligation. */
+  arProvenance?: Provenance | null;
 }
 
 /** Layer 2 — producer responsibility organisation (PRO) scheme. */
@@ -53,6 +69,8 @@ export interface ProScheme {
   /** Minimum annual / minimum declaration fee in EUR. null = not published. */
   minAnnualFeeEur: number | null;
   note?: string | null;
+  /** Provenance of the per-material rates (shared across a country's schemes). */
+  ratesProvenance?: Provenance | null;
 }
 
 /** Layer 3 — separate national taxes, independent of EPR/PRO fees. */
@@ -61,8 +79,16 @@ export interface ExtraTax {
   /** €/kg where applicable. */
   ratePerKg: number | null;
   material: MaterialKey | null;
+  /**
+   * True when liability is unresolved for this portal's target user (e.g. the
+   * Spanish plastic excise for a foreign B2C distance seller). Conditional
+   * taxes are surfaced as a "verify" caveat and NEVER auto-added to a total.
+   */
+  conditional: boolean;
   url: string | null;
   note?: string | null;
+  /** Provenance of this tax fact. */
+  provenance?: Provenance | null;
 }
 
 export interface SourceRef {
@@ -72,6 +98,17 @@ export interface SourceRef {
   checkedAt: string;
 }
 
+/** How and when packaging volumes must be declared in a country. */
+export interface Reporting {
+  frequency: string | null;
+  deadlines: string[];
+  /** Must a nil return be filed even with zero volume? null = unknown. */
+  zeroDeclaration: boolean | null;
+  correction: string | null;
+  note: string | null;
+  provenance?: Provenance | null;
+}
+
 /** Deposit-return system for beverage containers (separate from packaging EPR). */
 export interface Drs {
   active: boolean | null;
@@ -79,6 +116,7 @@ export interface Drs {
   deposit: string | null;
   url: string | null;
   note: string | null;
+  provenance?: Provenance | null;
 }
 
 export interface CountryData {
@@ -92,6 +130,8 @@ export interface CountryData {
   legalBasis?: string | null;
   /** Deposit-return system (beverages). */
   drs?: Drs | null;
+  /** Reporting cadence + deadlines. */
+  reporting?: Reporting | null;
   register: RegisterLayer;
   pro: ProScheme[];
   extraTaxes: ExtraTax[];

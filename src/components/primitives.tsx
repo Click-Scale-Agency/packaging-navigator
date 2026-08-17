@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import type { ReactNode } from "react";
 
 import lv from "@/i18n/lv";
+import type { FactStatus, Provenance } from "@/data";
 import { cn } from "@/lib/utils";
 
 /** Soft press spring — like a rubber stamp, never bouncy. */
@@ -84,6 +85,63 @@ export function UnverifiedStamp({
       )}
     >
       {short ? lv.badge.unverifiedShort : lv.badge.unverified}
+    </span>
+  );
+}
+
+/** Visual treatment per verification status (red stays reserved for the stamp). */
+const STATUS_STYLE: Record<FactStatus, string> = {
+  official: "border-primary text-primary",
+  operator_published: "border-primary text-primary",
+  secondary_source: "border-border-strong text-foreground",
+  inferred: "border-dashed border-border-strong text-muted-foreground",
+  unverified: "border-dashed border-border-strong text-muted-foreground",
+  not_applicable: "border-border text-muted-foreground",
+  unknown: "border-dashed border-border text-muted-foreground",
+};
+
+/** Small per-fact verification tag — shows the status of one tariff/obligation. */
+export function StatusTag({ status, className }: { status: FactStatus; className?: string }) {
+  return (
+    <span
+      title={lv.statusDesc[status]}
+      className={cn(
+        "inline-flex items-center border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em]",
+        STATUS_STYLE[status],
+        className,
+      )}
+    >
+      {lv.status[status]}
+    </span>
+  );
+}
+
+/**
+ * Per-fact provenance line: a status tag plus an optional validity window and
+ * "checked" date, so a rate/obligation carries its own truth in the UI.
+ */
+export function ProvenanceLine({
+  provenance,
+  className,
+}: {
+  provenance?: Provenance | null;
+  className?: string;
+}) {
+  if (!provenance) return null;
+  const { status, validFrom, validTo, checkedAt } = provenance;
+  const validity =
+    validFrom || validTo
+      ? `${lv.status.validLabel}: ${validFrom ?? "…"}${validTo ? `–${validTo}` : "+"}`
+      : null;
+  return (
+    <span className={cn("flex flex-wrap items-center gap-x-2 gap-y-1", className)}>
+      <StatusTag status={status} />
+      {validity ? <span className="form-label">{validity}</span> : null}
+      {checkedAt ? (
+        <span className="form-label">
+          {lv.detail.checkedAt}: {checkedAt}
+        </span>
+      ) : null}
     </span>
   );
 }

@@ -10,7 +10,18 @@
   "register": {
     "exists": false,
     "arRequiredForForeignSellers": true,
-    "notes": "Atsevišķa iepakojuma reģistra vēl nav — Elektroregistrs aptver tikai EEIA/baterijas. PPWR prasītais ražotāju reģistrs jāizveido līdz 12.02.2027 (KEM: reģistri 24 mēnešu laikā). Iepakojuma atbilstība notiek caur DRN sistēmu + līgumiem ar licencētiem atkritumu apsaimniekotājiem."
+    "notes": "Atsevišķa iepakojuma reģistra vēl nav — Elektroregistrs aptver tikai EEIA/baterijas. PPWR prasītais ražotāju reģistrs jāizveido 18 mēnešu laikā pēc attiecīgā Komisijas īstenošanas akta spēkā stāšanās (precīzs datums vēl jāpārbauda). Iepakojuma atbilstība notiek caur DRN sistēmu + līgumiem ar licencētiem atkritumu apsaimniekotājiem.",
+    "provenance": {
+      "status": "official",
+      "sourceUrl": "https://www.vvd.gov.lv",
+      "checkedAt": "2026-08-16",
+      "note": "VVD apstiprina, ka atsevišķa iepakojuma ražotāju reģistra pašlaik nav. PPWR prasītais reģistrs vēl nav izveidots — situācija mainīsies pēc reģistra ieviešanas."
+    },
+    "arProvenance": {
+      "status": "inferred",
+      "checkedAt": "2026-08-16",
+      "note": "Pilnvarotā pārstāvja pienākums izsecināts no PPWR 45. panta ārvalstu tālpārdevējiem, nevis no LV specifiska avota — faktiskais pienākums atkarīgs no darījuma scenārija."
+    }
   },
   "pro": {
     "membershipRequired": false,
@@ -34,7 +45,12 @@
     },
     "tariffYear": null,
     "minAnnualFeeEur": null,
-    "ecoModulation": ""
+    "ecoModulation": "",
+    "ratesProvenance": {
+      "status": "not_applicable",
+      "checkedAt": "2026-08-16",
+      "note": "Latvijas apsaimniekotāji (LZP, Zaļā josta) cenu nosaka pēc individuāla līguma un nepublicē publisku tarifu pa materiāliem — tāpēc kalkulatorā nav PRO likmju. Faktiskās izmaksas nosaka vai nu līguma pakalpojuma maksa, vai pilnās DRN likmes (skat. papildnodokļus)."
+    }
   },
   "extraTaxes": [
     {
@@ -42,18 +58,43 @@
       "summary": "Dabas resursu nodoklis par Latvijas tirgū laisto iepakojumu (Dabas resursu nodokļa likums, 7. pielikums, iegūts un apstrādāts no likumi.lv 2026-08-16; redakcija spēkā 15.07.2026). Pilnās oficiālās likmes pa materiāliem (EUR/kg): stikls 0,44; koks/papīrs/kartons/citas dabiskās šķiedras 0,24; metāls 1,10; bioplastmasa 0,24; plastmasa (polimēru) 1,25; kompozīta kartons 1,25; polistirols 2,20; putu plastmasa/putu polimēri 24,40; putu polistirols (EPS) 44,00. Kompozīta/laminēto iepakojumu apliek pēc pārsvarā esošā materiāla. Līgums ar licencētu apsaimniekošanas sistēmu (piem., LZP, Zaļā josta) atbrīvo ražotāju no DRN maksāšanas pilnajās likmēs — tāpēc dalība sistēmā ir standarta ceļš. (Atsevišķi likuma tekstā: plastmasas iepirkumu maisiņi un plastmasu saturoši zvejas rīki €4,80/kg, mitrās salvetes un baloni €12,20/kg, tabakas filtri €8,00/kg — tie ir plastmasas izstrādājumi, ne vispārīgs iepakojums.)",
       "rate": "EUR/kg: stikls 0,44, koks/papīrs/kartons 0,24, metāls 1,10, plastmasa 1,25, kompozīta kartons 1,25, polistirols 2,20, putu plastmasa 24,40, putu polistirols 44,00",
       "collectedBy": "VID (Valsts ieņēmumu dienests)",
-      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums"
+      "url": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums",
+      "provenance": {
+        "status": "official",
+        "sourceUrl": "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums",
+        "checkedAt": "2026-08-16",
+        "validFrom": "2026-07-15",
+        "note": "Pilnās oficiālās DRN likmes pa materiāliem no likuma teksta (7. pielikums), redakcija spēkā no 15.07.2026."
+      }
     }
   ],
   "thresholds": {
     "deMinimis": "0 kg — DRN saistības sākas ar pirmo tirgū laisto iepakojumu"
+  },
+  "reporting": {
+    "frequency": "DRN deklarācija reizi ceturksnī VID; ja ražotājs slēdzis līgumu ar licencētu apsaimniekotāju, ziņošana notiek apsaimniekotāja noteiktajā kārtībā (biežums var atšķirties).",
+    "deadlines": [
+      "Ceturkšņa DRN deklarācija VID (parasti līdz nākamā mēneša 20. datumam pēc ceturkšņa — precīzs termiņš jāpārbauda VID avotā)"
+    ],
+    "zeroDeclaration": null,
+    "note": "PPWR ražotāju reģistra ieviešana var mainīt ziņošanas plūsmu — jāseko līdzi izmaiņām.",
+    "provenance": {
+      "status": "secondary_source",
+      "checkedAt": "2026-08-16",
+      "note": "Vispārīga DRN ziņošanas kārtība; precīzi termiņi, nulles un labojumu deklarāciju noteikumi jāapstiprina VID vai apsaimniekotāja primārajā avotā."
+    }
   },
   "notes": "pro.rates left null: Latvian recovery schemes (Latvijas Zaļais punkts, Zaļā josta) price their service by contract and publish no public per-material tariff; membershipRequired=false because the legal alternative is paying full DRN (see extraTaxes — the complete official per-material DRN table is now confirmed from likumi.lv). No dedicated packaging producer register exists yet (PPWR-mandated register due by 12.02.2027). verified stays false because there is neither a packaging register to confirm a producer number against nor a public PRO tariff — but the DRN statutory rates that drive the actual cost ARE confirmed from the primary law. Open (research-log §8.7): scheme service fees vs DRN; what changes when the PPWR register arrives.",
   "drs": {
     "active": true,
     "operator": "Depozīta Iepakojuma Operators (DIO)",
     "deposit": "€0.10/vienība",
-    "note": "Kopš 2022. gada 1. februāra."
+    "note": "Kopš 2022. gada 1. februāra.",
+    "provenance": {
+      "status": "secondary_source",
+      "checkedAt": "2026-08-16",
+      "note": "DIO depozīta sistēma darbojas kopš 01.02.2022; tiešs operatora primārais avots vēl nav piesaistīts."
+    }
   },
   "sources": [
     {

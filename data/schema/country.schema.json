@@ -2,6 +2,34 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/Click-Scale-Agency/packaging-navigator/data/schema/country.schema.json",
   "title": "EU Packaging Hub — Country EPR data",
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "description": "Per-fact provenance: verification status, the specific source for THIS fact, when it was checked, and its validity window. Attach to individual tariffs/obligations rather than relying on the country-level `verified` boolean.",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "official",
+            "operator_published",
+            "secondary_source",
+            "inferred",
+            "unverified",
+            "not_applicable",
+            "unknown"
+          ],
+          "description": "official = primary law/government source; operator_published = PRO/scheme price list; secondary_source = reputable third party; inferred = derived from PPWR/interpretation, no country-specific source; unverified = not yet checked; not_applicable = fact does not exist for this country (e.g. no public per-material tariff); unknown = open question."
+        },
+        "sourceUrl": { "type": "string", "format": "uri", "description": "The specific source backing THIS fact (may differ from country-level sources)." },
+        "checkedAt": { "type": "string", "format": "date" },
+        "validFrom": { "type": "string", "format": "date", "description": "Start of the tariff/obligation validity period." },
+        "validTo": { "type": "string", "format": "date", "description": "End of validity, if known/bounded." },
+        "note": { "type": "string" }
+      }
+    }
+  },
   "type": "object",
   "additionalProperties": false,
   "required": ["code", "name", "register", "pro", "sources", "verified", "lastReviewed"],
@@ -48,7 +76,9 @@
           "description": "Authorised representative required for sellers without local establishment; null = unverified"
         },
         "registrationCostEur": { "type": ["number", "null"] },
-        "notes": { "type": "string" }
+        "notes": { "type": "string" },
+        "provenance": { "$ref": "#/$defs/provenance", "description": "Provenance of the register facts (exists/name/url/format)." },
+        "arProvenance": { "$ref": "#/$defs/provenance", "description": "Provenance of the authorised-representative obligation (often `inferred` from PPWR Art. 45 rather than a country-specific source)." }
       },
       "if": { "properties": { "exists": { "const": true } } },
       "then": { "required": ["exists", "name", "url"] }
@@ -90,7 +120,8 @@
         },
         "tariffYear": { "type": ["integer", "null"], "minimum": 2024, "maximum": 2035 },
         "minAnnualFeeEur": { "type": ["number", "null"], "minimum": 0 },
-        "ecoModulation": { "type": "string", "description": "Short note on bonus/malus system if notable" }
+        "ecoModulation": { "type": "string", "description": "Short note on bonus/malus system if notable" },
+        "ratesProvenance": { "$ref": "#/$defs/provenance", "description": "Provenance of the per-material PRO rates (e.g. operator_published from a price-list PDF, or not_applicable when schemes price by private contract)." }
       }
     },
     "extraTaxes": {
@@ -104,8 +135,18 @@
           "name": { "type": "string" },
           "summary": { "type": "string" },
           "rate": { "type": "string", "description": "Human-readable, e.g. '€0.45/kg non-recycled plastic'" },
+          "material": {
+            "type": ["string", "null"],
+            "enum": ["paper", "plastic", "glass", "metal", "wood", "composite", null],
+            "description": "Material this tax targets, used by the calculator. Explicit is preferred over guessing from the summary text."
+          },
+          "appliesConditionally": {
+            "type": "boolean",
+            "description": "true = liability is unresolved for a foreign B2C distance seller (e.g. ES plastic excise). The calculator surfaces it as a 'verify' caveat and never auto-adds it to a total."
+          },
           "collectedBy": { "type": "string" },
-          "url": { "type": "string", "format": "uri" }
+          "url": { "type": "string", "format": "uri" },
+          "provenance": { "$ref": "#/$defs/provenance" }
         }
       }
     },
@@ -114,6 +155,23 @@
       "additionalProperties": false,
       "properties": {
         "deMinimis": { "type": "string", "description": "e.g. '0 kg — first unit triggers duty' or 'full obligations from 50,000 kg/yr'" }
+      }
+    },
+    "reporting": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "How and when packaging volumes must be declared in this country.",
+      "properties": {
+        "frequency": { "type": "string", "description": "e.g. 'annual', 'quarterly', 'annual + monthly plastic-tax return'" },
+        "deadlines": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Human-readable filing deadlines, e.g. 'Annual declaration by 31 March for the previous year'."
+        },
+        "zeroDeclaration": { "type": ["boolean", "null"], "description": "Must a nil return be filed even with zero volume? null = unknown." },
+        "correction": { "type": "string", "description": "Correction/amendment procedure for past periods." },
+        "note": { "type": "string" },
+        "provenance": { "$ref": "#/$defs/provenance" }
       }
     },
     "drs": {
@@ -125,7 +183,8 @@
         "operator": { "type": "string" },
         "deposit": { "type": "string", "description": "Human-readable deposit, e.g. '€0.10/container'" },
         "url": { "type": "string", "format": "uri" },
-        "note": { "type": "string" }
+        "note": { "type": "string" },
+        "provenance": { "$ref": "#/$defs/provenance" }
       }
     },
     "notes": { "type": "string" },

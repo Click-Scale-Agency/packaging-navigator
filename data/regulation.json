@@ -30,16 +30,16 @@
       "date": "2026-08-12",
       "title": { "lv": "Regulu sāk piemērot", "en": "Regulation applies" },
       "summary": {
-        "lv": "EPR reģistrācija katrā dalībvalstī, atbilstības deklarācija, pilnvarotais pārstāvis, 40% tukšās telpas ierobežojums e-komercijā, PFAS limiti pārtikas iepakojumam.",
-        "en": "EPR registration in every member state, declaration of conformity, authorised representative, 40% empty-space cap for e-commerce, PFAS limits for food-contact packaging."
+        "lv": "EPR reģistrācija katrā dalībvalstī, atbilstības deklarācija, pilnvarotais pārstāvis, PFAS limiti pārtikas iepakojumam. Iepakojuma minimizācijas princips (24. p.) — iepakojumu samazina līdz nepieciešamajam. UZMANĪBU: 50% maksimālais tukšās telpas ierobežojums grupētajam/transporta/e-komercijas iepakojumam iestājas tikai no 2030-01-01, nevis tagad.",
+        "en": "EPR registration in every member state, declaration of conformity, authorised representative, PFAS limits for food-contact packaging. Packaging minimisation principle (Art. 24) applies. NOTE: the 50% maximum empty-space ratio for grouped/transport/e-commerce packaging applies only from 2030-01-01, not now."
       }
     },
     {
       "date": "2027-02-12",
-      "title": { "lv": "Nacionālie reģistri un sodi", "en": "National registers and penalties" },
+      "title": { "lv": "Nacionālie reģistri un sodi (orientējoši)", "en": "National registers and penalties (indicative)" },
       "summary": {
-        "lv": "Dalībvalstīm jāizveido ražotāju reģistri un jānosaka sodu režīmi.",
-        "en": "Member states must have producer registers set up and penalty regimes defined."
+        "lv": "Dalībvalstīm jāizveido ražotāju reģistri un jānosaka sodu režīmi. UZMANĪBU: 44. pants reģistra izveidi sasaista ar 18 mēnešiem pēc attiecīgā Komisijas īstenošanas akta spēkā stāšanās (akts bija jāpieņem līdz 2026-02-12), nevis ar fiksētu 2027-02-12 datumu — precīzs termiņš jāpārbauda pēc akta faktiskās spēkā stāšanās.",
+        "en": "Member states must set up producer registers and define penalty regimes. NOTE: Art. 44 ties register set-up to 18 months after the relevant Commission implementing act enters into force (the act was due by 2026-02-12), not a fixed 2027-02-12 date — the exact deadline depends on that act's actual entry into force."
       }
     },
     {
@@ -54,12 +54,12 @@
       "date": "2030-01-01",
       "title": { "lv": "Pārstrādājamības klases un mērķi", "en": "Recyclability grades and targets" },
       "summary": {
-        "lv": "Pārstrādājamības klases (A/B/C), obligātais pārstrādātā materiāla saturs, atkārtotas izmantošanas mērķi, 40% tukšās telpas aprēķina piemērošana.",
-        "en": "Recyclability grades (A/B/C), recycled-content minimums, reuse targets, 40% empty-space calculation applies."
+        "lv": "Pārstrādājamības klases (A/B/C), obligātais pārstrādātā materiāla saturs, atkārtotas izmantošanas mērķi. 50% maksimālais tukšās telpas ierobežojums grupētajam, transporta un e-komercijas iepakojumam (24. p.) — vai 3 gadus pēc tukšās telpas aprēķina īstenošanas akta spēkā stāšanās, atkarībā no vēlākā datuma; Komisijai metode jāpieņem līdz 2028-02-12.",
+        "en": "Recyclability grades (A/B/C), recycled-content minimums, reuse targets. 50% maximum empty-space ratio for grouped, transport and e-commerce packaging (Art. 24) — or 3 years after the empty-space calculation implementing act enters into force, whichever is later; the Commission is to adopt the method by 2028-02-12."
       }
     }
   ],
-  "notes": "Environmental Omnibus (COM(2025) 982) relief for micro/small enterprises and the AR suspension were NOT in force as of 2026-08-16 — assume obligations apply. Official EC interpretation documents: Commission Notice C(2026) 3702 final of 05.06.2026 (guidance document for Regulation (EU) 2025/40) and the PPWR FAQ, 2nd edition published early August 2026 (20 chapters, incl. new enforcement chapter; clarifies i.a. that non-compliant packaging is not automatically banned from 12.08.2026 — corrective action first — and that pre-12.08.2026 stocks need not be destroyed or relabelled).",
+  "notes": "Environmental Omnibus (COM(2025) 982) relief for micro/small enterprises and the AR suspension were NOT in force as of 2026-08-16 — assume obligations apply. Official EC interpretation documents: Commission Notice C(2026) 3702 final of 05.06.2026 (guidance document for Regulation (EU) 2025/40) and the PPWR FAQ, 2nd edition published early August 2026 (20 chapters, incl. new enforcement chapter; clarifies i.a. that non-compliant packaging is not automatically banned from 12.08.2026 — corrective action first — and that pre-12.08.2026 stocks need not be destroyed or relabelled). CORRECTION 2026-08-17: the empty-space ratio (Art. 24) is 50% (not 40%) and applies from 2030-01-01 (or 3 years after the empty-space calculation implementing act, whichever is later; Commission to adopt the method by 2028-02-12) — the minimisation principle itself applies from 12.08.2026. Verify exact Art. 24 wording against the EUR-Lex consolidated text before further edits.",
   "sources": [
     {
       "url": "https://eur-lex.europa.eu/eli/reg/2025/40/oj",
@@ -80,5 +80,5 @@
       "official": true
     }
   ],
-  "lastReviewed": "2026-08-16"
+  "lastReviewed": "2026-08-17"
 }

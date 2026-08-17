@@ -13,15 +13,27 @@ import type {
   BriefingTopic,
   CountryData,
   ExtraTax,
+  FactStatus,
   MaterialKey,
+  Provenance,
   ProScheme,
   RegisterLayer,
+  Reporting,
   SourceRef,
 } from "./types";
 import { MATERIALS } from "./types";
 import regulation from "../../data/regulation.json";
 
 /* ---- canonical shapes (subset we consume; see /data/schema) ---- */
+
+interface CanonicalProvenance {
+  status: FactStatus;
+  sourceUrl?: string;
+  checkedAt?: string;
+  validFrom?: string;
+  validTo?: string;
+  note?: string;
+}
 
 interface CanonicalCountry {
   code: string;
@@ -37,6 +49,8 @@ interface CanonicalCountry {
     arRequiredForForeignSellers?: boolean | null;
     registrationCostEur?: number | null;
     notes?: string;
+    provenance?: CanonicalProvenance;
+    arProvenance?: CanonicalProvenance;
   };
   pro: {
     membershipRequired: boolean | string;
@@ -45,14 +59,20 @@ interface CanonicalCountry {
     tariffYear?: number | null;
     minAnnualFeeEur?: number | null;
     ecoModulation?: string;
+    ratesProvenance?: CanonicalProvenance;
   };
   thresholds?: { deMinimis?: string };
   extraTaxes?: {
     name: string;
     summary: string;
     rate?: string;
+    /** Explicit material the tax targets — preferred over text-guessing. */
+    material?: MaterialKey | null;
+    /** True = liability unresolved for the target user; never auto-summed. */
+    appliesConditionally?: boolean;
     collectedBy?: string;
     url?: string;
+    provenance?: CanonicalProvenance;
   }[];
   drs?: {
     active?: boolean | null;
@@ -60,6 +80,15 @@ interface CanonicalCountry {
     deposit?: string;
     url?: string;
     note?: string;
+    provenance?: CanonicalProvenance;
+  };
+  reporting?: {
+    frequency?: string;
+    deadlines?: string[];
+    zeroDeclaration?: boolean | null;
+    correction?: string;
+    note?: string;
+    provenance?: CanonicalProvenance;
   };
   notes?: string;
   sources: { url: string; title?: string; checkedAt: string }[];
@@ -75,10 +104,19 @@ const canonical = import.meta.glob("/data/countries/*.json", {
 /* ---- mapping ---- */
 
 const emptyRates = (): Record<MaterialKey, number | null> =>
-  Object.fromEntries(MATERIALS.map((m) => [m, null])) as Record<
-    MaterialKey,
-    number | null
-  >;
+  Object.fromEntries(MATERIALS.map((m) => [m, null])) as Record<MaterialKey, number | null>;
+
+function mapProvenance(p?: CanonicalProvenance): Provenance | null {
+  if (!p) return null;
+  return {
+    status: p.status,
+    sourceUrl: p.sourceUrl ?? null,
+    checkedAt: p.checkedAt ?? null,
+    validFrom: p.validFrom ?? null,
+    validTo: p.validTo ?? null,
+    note: p.note ?? null,
+  };
+}
 
 function mapRegister(c: CanonicalCountry): RegisterLayer {
   return {
@@ -91,11 +129,14 @@ function mapRegister(c: CanonicalCountry): RegisterLayer {
     numberOnInvoices: c.register.numberOnInvoices ?? null,
     deMinimis: c.thresholds?.deMinimis ?? null,
     note: c.register.notes ?? null,
+    provenance: mapProvenance(c.register.provenance),
+    arProvenance: mapProvenance(c.register.arProvenance),
   };
 }
 
 function mapPro(c: CanonicalCountry): ProScheme[] {
   const rates = { ...emptyRates(), ...(c.pro.rates ?? {}) };
+  const ratesProvenance = mapProvenance(c.pro.ratesProvenance);
   // Canonical membershipRequired may be a string ("state-run", "de-facto…");
   // for the UI boolean, anything except an explicit false counts as required.
   const membershipRequired = c.pro.membershipRequired !== false;
@@ -106,10 +147,8 @@ function mapPro(c: CanonicalCountry): ProScheme[] {
     tariffYear: c.pro.tariffYear ?? null,
     membershipRequired,
     minAnnualFeeEur: c.pro.minAnnualFeeEur ?? null,
-    note:
-      typeof c.pro.membershipRequired === "string"
-        ? c.pro.membershipRequired
-        : null,
+    note: typeof c.pro.membershipRequired === "string" ? c.pro.membershipRequired : null,
+    ratesProvenance,
   }));
 }
 
@@ -117,8 +156,13 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
   return (c.extraTaxes ?? []).map((t) => {
     // Parse "€0.45/kg …" style rates; non-EUR rates (e.g. "2 RON/kg") stay null.
     const eur = t.rate?.match(/€\s*(\d+(?:[.,]\d+)?)\s*\/\s*kg/);
-    const blob = `${t.name} ${t.summary} ${t.rate ?? ""}`.toLowerCase();
-    const material = MATERIALS.find((m) => blob.includes(m)) ?? null;
+    // Prefer an explicit `material`; only fall back to a text guess when absent.
+    // Text-guessing is fragile (English keys vs. LV/native summaries), so an
+    // explicit field is the reliable path and avoids accidental (mis)matches.
+    const material =
+      t.material ??
+      MATERIALS.find((m) => `${t.name} ${t.summary} ${t.rate ?? ""}`.toLowerCase().includes(m)) ??
+      null;
     const noteParts = [t.summary];
     if (t.rate) noteParts.push(t.rate);
     if (t.collectedBy) noteParts.push(`Administrē: ${t.collectedBy}`);
@@ -126,10 +170,24 @@ function mapExtraTaxes(c: CanonicalCountry): ExtraTax[] {
       name: t.name,
       ratePerKg: eur?.[1] ? Number(eur[1].replace(",", ".")) : null,
       material,
+      conditional: t.appliesConditionally === true,
       url: t.url ?? null,
       note: noteParts.join(" — "),
+      provenance: mapProvenance(t.provenance),
     };
   });
+}
+
+function mapReporting(c: CanonicalCountry): Reporting | null {
+  if (!c.reporting) return null;
+  return {
+    frequency: c.reporting.frequency ?? null,
+    deadlines: c.reporting.deadlines ?? [],
+    zeroDeclaration: c.reporting.zeroDeclaration ?? null,
+    correction: c.reporting.correction ?? null,
+    note: c.reporting.note ?? null,
+    provenance: mapProvenance(c.reporting.provenance),
+  };
 }
 
 function mapSources(c: CanonicalCountry): SourceRef[] {
@@ -153,8 +211,10 @@ export const countries: CountryData[] = Object.values(canonical)
           deposit: c.drs.deposit ?? null,
           url: c.drs.url ?? null,
           note: c.drs.note ?? null,
+          provenance: mapProvenance(c.drs.provenance),
         }
       : null,
+    reporting: mapReporting(c),
     register: mapRegister(c),
     pro: mapPro(c),
     extraTaxes: mapExtraTaxes(c),
@@ -182,9 +242,9 @@ interface CanonicalTimelineEntry {
   summary: { lv: string; en: string };
 }
 
-export const timeline: TimelineEntry[] = (
-  regulation.timeline as CanonicalTimelineEntry[]
-).map((t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }));
+export const timeline: TimelineEntry[] = (regulation.timeline as CanonicalTimelineEntry[]).map(
+  (t) => ({ date: t.date, label: t.title.lv, detail: t.summary.lv }),
+);
 
 export * from "./types";
 

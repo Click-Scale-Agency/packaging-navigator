@@ -13,6 +13,64 @@ export const lv = {
     subtitle: "EU Packaging Hub",
     tagline: "Atvērts ceļvedis PPWR prasībām",
   },
+  errors: {
+    notFoundTitle: "Lapa nav atrasta",
+    notFoundBody: "Meklētā lapa neeksistē vai ir pārvietota.",
+    goHome: "Uz sākumu",
+    errorTitle: "Lapu neizdevās ielādēt",
+    errorBody: "Radās kļūda mūsu pusē. Mēģini pārlādēt vai atgriezies sākumā.",
+    tryAgain: "Mēģināt vēlreiz",
+  },
+  status: {
+    official: "oficiāls",
+    operator_published: "operatora publicēts",
+    secondary_source: "sekundārs avots",
+    inferred: "izsecināts",
+    unverified: "nepārbaudīts",
+    not_applicable: "nav attiecināms",
+    unknown: "nezināms",
+    validLabel: "spēkā",
+  },
+  statusDesc: {
+    official: "Apstiprināts no primāra avota — likuma teksta vai valsts iestādes.",
+    operator_published: "No operatora/PRO publicēta cenrāža vai tarifu lapas.",
+    secondary_source: "No uzticama trešās puses avota, nevis primāra.",
+    inferred: "Izsecināts no PPWR/interpretācijas, bez valsts specifiska avota.",
+    unverified: "Vēl nav pārbaudīts pret avotu.",
+    not_applicable: "Fakts šai valstij nepastāv (piem., nav publiska tarifa).",
+    unknown: "Atklāts jautājums — nav noskaidrots.",
+  },
+  methodology: {
+    metaTitle: "Metodoloģija un datu statusi",
+    kicker: "Metodoloģija",
+    title: "Kā mēs strukturējam datus",
+    lead: "Šis portāls apzināti nodala zināmu, daļēji zināmu, interpretētu un nezināmu informāciju. Šeit ir, ko katrs statuss nozīmē un kā tiek rēķinātas izmaksas.",
+    layersTitle: "Trīs pienākumu slāņi",
+    layersLead:
+      "Reģistrācija, PRO dalība un papildu nodokļi ir trīs atsevišķas lietas — tās nekad nav viena un tā pati.",
+    layerRegister:
+      "Reģistrs — valsts ražotāju saraksts, kas izsniedz numuru, ko pārbauda tirdzniecības platformas.",
+    layerPro: "PRO shēma — apsaimniekotājs, kas iekasē maksas un organizē pārstrādi.",
+    layerTaxes:
+      "Papildu nodokļi — atsevišķi nacionāli nodokļi (piem., ES plastmasas akcīze), neatkarīgi no PRO maksas.",
+    statusesTitle: "Verifikācijas statusi",
+    statusesLead:
+      "Katram tarifam un pienākumam ir savs statuss, avots un pārbaudes datums — nevis viens vienots “verificēts” karodziņš visai valstij.",
+    coverageTitle: "Kalkulatora seguma stāvokļi",
+    coverageLead: "Kalkulators nekad nepieņem trūkstošu likmi par nulli.",
+    coverageFull: "Aprēķināts — visiem izvēlētajiem materiāliem ir likme.",
+    coveragePartial:
+      "Daļējs — daļai materiālu likmes nav; summa ir zināmā daļa (grīda), ne pilnas izmaksas.",
+    coverageNone: "Nav aprēķināms — nevienam izvēlētajam materiālam nav likmes.",
+    coverageConditional:
+      "Iespējams nodoklis — piemērojamība atkarīga no darījuma; netiek automātiski pieskaitīts.",
+    changelogTitle: "Izmaiņu žurnāls",
+    changelogLead: "Būtiskās datu un metodoloģijas izmaiņas tiek fiksētas publiskā žurnālā.",
+    changelogLink: "Skatīt izmaiņu žurnālu (GitHub)",
+    disclaimerTitle: "Atruna",
+    disclaimer:
+      "Rezultāts ir sākotnējs atbilstības novērtējums, kas balstīts uz norādītajiem datiem un publiski pieejamiem avotiem. Tas var neietvert visus tarifus, nodokļus, ekomodulāciju, pārstāvniecības, audita un administratīvos izdevumus. Pirms reģistrācijas vai pārdošanas uzsākšanas pārbaudiet informāciju attiecīgās valsts oficiālajā reģistrā vai pie kvalificēta speciālista.",
+  },
   nav: {
     guide: "Ceļvedis",
     calculator: "Kalkulators",
@@ -58,7 +116,8 @@ export const lv = {
     tableFee: "Indikatīvi €/gadā",
     noCountries: "Izvēlies vismaz vienu valsti, lai redzētu aprēķinu.",
     noRate: "nav likmes",
-    disclaimer: "Indikatīvi. Nav juridiska konsultācija. Aprēķins ietver iepakojuma maksu un minimālo gada maksu; pilnvarotā pārstāvja, konsultāciju un depozīta izmaksas nav iekļautas (mainīgas).",
+    disclaimer:
+      "Indikatīvi. Nav juridiska konsultācija. Rāda tikai to izmaksu daļu, kurai ir publiskota likme — trūkstošās likmes NETIEK pieņemtas par nulli. Pilnvarotā pārstāvja, ekomodulācijas, konsultāciju un depozīta izmaksas nav iekļautas (mainīgas).",
     grandTotal: "Kopā 1. gadā (indikatīvi)",
     reset: "Notīrīt",
     selectAll: "Visas 27",
@@ -66,15 +125,28 @@ export const lv = {
     breakdownMinApplied: "min. gada maksa piemērota",
     breakdownReg: "reģistrācija",
     plusAr: "+ pārstāvis",
-    plusArTitle: "Vajadzīgs vietējais pilnvarotais pārstāvis (PPWR 45. p.) — atsevišķa, mainīga maksa, nav iekļauta drošajā summā.",
+    plusArTitle:
+      "Vajadzīgs vietējais pilnvarotais pārstāvis (PPWR 45. p.) — atsevišķa, mainīga maksa, nav iekļauta aprēķinātajā daļā.",
+    partialBadge: "daļējs aprēķins",
+    partialTitle: (mats: string) =>
+      `Šīm izvēlētajām pozīcijām nav publiskotas likmes: ${mats}. Summa ir tikai zināmā daļa — reālās izmaksas ir augstākas.`,
+    noneBadge: "nav aprēķināms",
+    noneTitle:
+      "Nevienam izvēlētajam materiālam nav publiskotas likmes šai valstij — summu nevar aprēķināt.",
+    condTaxChip: "+ iespējams nodoklis",
+    condTaxTitle: (names: string) =>
+      `Iespējams papildu nodoklis (${names}) — piemērojamība atkarīga no darījuma un iepakojuma; nav automātiski pieskaitīts. Jāpārbauda.`,
     arFeeLabel: "Pārstāvja gada maksa (aplēse, €/valstī)",
     arFeeHint: "Tirgus cena atšķiras; pielāgo pēc sava pakalpojuma sniedzēja piedāvājuma.",
-    safeTotal: "Drošās izmaksas (PRO + reģistrācija)",
+    safeTotal: "Aprēķinātā daļa (PRO + reģistrācija)",
     estTotalLabel: "Aplēstās papildu izmaksas (pārstāvis)",
     estCountriesNote: (n: number) => `${n} valstīs vajadzīgs pārstāvis`,
+    partialSelectedNote: (n: number) =>
+      `${n} ${n === 1 ? "valstij" : "valstīm"} likmes ir tikai daļēji — kopsumma ir zināmā daļa, ne pilnas izmaksas.`,
     fullTotal: "Pilnā aina 1. gadā (indikatīvi)",
     drsChip: "depozīts",
-    drsChipTitle: "Šajā valstī ir aktīva dzērienu depozīta sistēma (DRS) — atsevišķa no iepakojuma EPR.",
+    drsChipTitle:
+      "Šajā valstī ir aktīva dzērienu depozīta sistēma (DRS) — atsevišķa no iepakojuma EPR.",
     copySummary: "Kopēt kopsavilkumu",
     downloadCsv: "Lejupielādēt CSV",
     copied: "Nokopēts!",
@@ -98,7 +170,8 @@ export const lv = {
     lead: "Atbildi uz trīs jautājumiem, un mēs izveidosim personalizētu rīcības plānu katrai valstij — kur reģistrēties, vai vajag pilnvaroto pārstāvi, kuru apsaimniekotāju izvēlēties un ko iesniegt.",
     promoKicker: "Rīcības ceļvedis",
     promoTitle: "Nezini, no kā sākt?",
-    promoLead: "Kalkulators parāda, cik tas maksās. Ceļvedis parāda, kas tieši tev jādara — soli pa solim, katrai valstij, uz kuru sūti.",
+    promoLead:
+      "Kalkulators parāda, cik tas maksās. Ceļvedis parāda, kas tieši tev jādara — soli pa solim, katrai valstij, uz kuru sūti.",
     promoCta: "Sākt ceļvedi",
     promoBullet1: "Reģistrācija un numuri katrai valstij",
     promoBullet2: "Vai vajag pilnvaroto pārstāvi (PPWR 45. p.)",
@@ -108,10 +181,12 @@ export const lv = {
     step1Hint: "Izvēlies visas galamērķa valstis, kur tavs iepakojums pirmo reizi nonāk tirgū.",
     step2Label: "2. solis",
     step2Title: "Kāds ir pārdošanas kanāls?",
-    step2Hint: "Nosaka, kur jānorāda reģistrācijas numurs un kurš var uzņemties ražotāja pienākumu.",
+    step2Hint:
+      "Nosaka, kur jānorāda reģistrācijas numurs un kurš var uzņemties ražotāja pienākumu.",
     step3Label: "3. solis",
     step3Title: "Kurš pirmais dara iepakojumu pieejamu tirgū?",
-    step3Hint: "PPWR pienākums gulstas uz to, kurš preci iepakojumā pirmais laiž konkrētās valsts tirgū.",
+    step3Hint:
+      "PPWR pienākums gulstas uz to, kurš preci iepakojumā pirmais laiž konkrētās valsts tirgū.",
     channelOwn: "Savs e-veikals",
     channelOwnDesc: "Tu pārdod tieši pircējiem no sava interneta veikala (tālpārdošana).",
     channelMarketplace: "Tirdzniecības platforma",
@@ -131,8 +206,10 @@ export const lv = {
     obligationYou: "Pienākums ir tev",
     obligationYouNote: "Tu pirmais laid iepakojumu šīs valsts tirgū, tāpēc EPR pienākumi ir tavi.",
     obligationOther: "Pienākums, visticamāk, nav tev",
-    obligationImporterNote: "Iepakojumu pirmais laiž tirgū vietējais importētājs — praksē pienākums ir viņam. Tavi soļi ir pārbaude un dokumentācija.",
-    obligationPlatformNote: "Ja platforma ir reģistrēta kā ražotājs šai precei un valstij, tā var uzņemties pienākumu. Tas jāapstiprina rakstiski — citādi pienākums paliek tev.",
+    obligationImporterNote:
+      "Iepakojumu pirmais laiž tirgū vietējais importētājs — praksē pienākums ir viņam. Tavi soļi ir pārbaude un dokumentācija.",
+    obligationPlatformNote:
+      "Ja platforma ir reģistrēta kā ražotājs šai precei un valstij, tā var uzņemties pienākumu. Tas jāapstiprina rakstiski — citādi pienākums paliek tev.",
     tasksTitle: "Uzdevumi",
     evidenceTitle: "Savācamie pierādījumi",
     flagsTitle: "Jāpārbauda cilvēkam",
@@ -142,31 +219,42 @@ export const lv = {
     openCountry: "Atvērt valsts karti",
     taskRegister: (name: string) => `Reģistrējies ražotāju reģistrā: ${name}`,
     taskRegisterFormat: (fmt: string) => `Numura formāts: ${fmt}`,
-    taskNoRegister: "Šai valstij nav atsevišķa valsts reģistra — reģistrācija un uzskaite notiek caur apsaimniekotāju (PRO) vai līgumu.",
+    taskNoRegister:
+      "Šai valstij nav atsevišķa valsts reģistra — reģistrācija un uzskaite notiek caur apsaimniekotāju (PRO) vai līgumu.",
     taskAr: "Iecel vietējo pilnvaroto pārstāvi (PPWR 45. p.)",
-    taskArDetail: "Ārvalstu tālpārdevējam bez vietējās pārstāvniecības tas ir obligāts katrā galamērķa valstī no 2026-08-12.",
+    taskArDetail:
+      "Ārvalstu tālpārdevējam bez vietējās pārstāvniecības tas ir obligāts katrā galamērķa valstī no 2026-08-12.",
     taskPro: (names: string) => `Slēdz līgumu ar apsaimniekotāju (PRO): ${names}`,
     taskProMandatory: "Dalība apsaimniekotāja shēmā šajā valstī ir obligāta.",
-    taskProOptional: "Var izpildīt caur licencētu apsaimniekotāju vai statūtos noteikto maksājumu — pārbaudi izdevīgāko.",
+    taskProOptional:
+      "Var izpildīt caur licencētu apsaimniekotāju vai statūtos noteikto maksājumu — pārbaudi izdevīgāko.",
     taskReport: "Ziņo iepakojuma apjomus (parasti reizi gadā)",
     taskInvoice: "Norādi reģistrācijas numuru uz rēķiniem / komercdokumentiem",
     taskMarketplaceNumber: "Ievadi EPR reģistrācijas numuru platformas pārdevēja kontā",
-    taskMarketplaceNumberDetail: "Bez derīga numura platforma var apturēt tavus sarakstus šajā valstī.",
+    taskMarketplaceNumberDetail:
+      "Bez derīga numura platforma var apturēt tavus sarakstus šajā valstī.",
     taskTax: (name: string) => `Papildu nodoklis: ${name}`,
-    taskDrs: (op: string, dep: string) => `Ja sūti dzērienus: piemēro depozīta sistēmu (${op}${dep ? `, ${dep}` : ""})`,
+    taskDrs: (op: string, dep: string) =>
+      `Ja sūti dzērienus: piemēro depozīta sistēmu (${op}${dep ? `, ${dep}` : ""})`,
     taskImporterNumber: "Iegūsti un saglabā vietējā importētāja EPR reģistrācijas numuru",
     taskImporterContract: "Apstiprini līgumā, kurš kārto reģistrāciju, ziņošanu un maksas",
-    taskPlatformConfirm: "Saņem no platformas rakstisku apstiprinājumu, ka tā ir reģistrētais ražotājs šai precei un valstij",
+    taskPlatformConfirm:
+      "Saņem no platformas rakstisku apstiprinājumu, ka tā ir reģistrētais ražotājs šai precei un valstij",
     evidenceRegNumber: "Reģistrācijas numurs (ekrānšāviņš / apstiprinājums)",
     evidenceProContract: "Līgums ar apsaimniekotāju (PRO)",
     evidenceArMandate: "Pilnvarotā pārstāvja pilnvarojums",
     evidenceDeclaration: "Ikgadējā iepakojuma deklarācija",
     evidenceImporterNumber: "Importētāja/platformas EPR numura kopija",
-    flagUnverified: (code: string) => `Dati par ${code} vēl nav pārbaudīti pret oficiālu tarifu — apstiprini summas oficiālajā avotā.`,
-    flagMarketplace: "Pārbaudi platformas līgumā, vai tā pati neuzņemas ražotāja pienākumus tavā vietā.",
-    flagWhoFirst: "Pārliecinies, kurš juridiski skaitās “ražotājs” šajā valstī — definīcija dažviet atšķiras.",
-    flagB2b: "B2B gadījumā pienākums bieži pāriet vietējam pircējam, kas preci laiž tālāk — apstiprini līgumā.",
-    disclaimer: "Indikatīvi norādījumi, nevis juridiska konsultācija. Pirms reģistrācijas pārbaudi oficiālo avotu katrai valstij.",
+    flagUnverified: (code: string) =>
+      `Dati par ${code} vēl nav pārbaudīti pret oficiālu tarifu — apstiprini summas oficiālajā avotā.`,
+    flagMarketplace:
+      "Pārbaudi platformas līgumā, vai tā pati neuzņemas ražotāja pienākumus tavā vietā.",
+    flagWhoFirst:
+      "Pārliecinies, kurš juridiski skaitās “ražotājs” šajā valstī — definīcija dažviet atšķiras.",
+    flagB2b:
+      "B2B gadījumā pienākums bieži pāriet vietējam pircējam, kas preci laiž tālāk — apstiprini līgumā.",
+    disclaimer:
+      "Indikatīvi norādījumi, nevis juridiska konsultācija. Pirms reģistrācijas pārbaudi oficiālo avotu katrai valstij.",
     printPlan: "Drukāt / saglabāt PDF",
     step4Label: "4. solis",
     step4Title: "Kāds ir tavs iepakojums?",
@@ -185,13 +273,23 @@ export const lv = {
     reuseSingle: "Vienreiz lietojams",
     reuseReusable: "Atkārtoti lietojams",
     costChip: (eur: string) => `≈ €${eur}/gadā`,
-    costChipTitle: "Indikatīvas iepakojuma EPR izmaksas gadā (PRO maksa + reģistrācija) pēc izvēlētajiem materiāliem un svara. Nav iekļauts pilnvarotais pārstāvis.",
+    costPartialChip: (eur: string) => `≥ €${eur}/gadā (daļējs)`,
+    costChipTitle:
+      "Indikatīvas iepakojuma EPR izmaksas gadā (PRO maksa + reģistrācija) pēc izvēlētajiem materiāliem un svara. Nav iekļauts pilnvarotais pārstāvis.",
+    costPartialTitle:
+      "Daļai izvēlēto materiālu nav publiskotas likmes — parādītā summa ir tikai zināmā daļa, reālās izmaksas ir augstākas.",
     costUnknown: "nav publiskotas likmes",
+    condTaxNote: (names: string) =>
+      `Iespējams papildu nodoklis: ${names} — piemērojamība atkarīga no darījuma un iepakojuma, nav pieskaitīts. Jāpārbauda.`,
     openCalculator: "Atvērt pilno kalkulatoru ar šiem datiem",
-    noteEcom: "E-komercijas un transporta iepakojums PPWR ir atsevišķa kategorija — tas skaitās un jāziņo tāpat kā pārdošanas iepakojums.",
-    noteCommercial: "Komerciālam/rūpnieciskam iepakojumam var būt cita ziņošanas plūsma nekā mājsaimniecības iepakojumam — apstiprini ar apsaimniekotāju.",
-    noteReusable: "Atkārtoti lietojamam iepakojumam piemēro atkārtotas lietošanas mērķu režīmu; standarta uz-vienību EPR maksa var neattiekties tāpat — pārbaudi.",
-    notePlastic: "Izvēlēta plastmasa: dažās valstīs (piem., ES) ir atsevišķs nodoklis par nepārstrādātu plastmasu papildus PRO maksai.",
+    noteEcom:
+      "E-komercijas un transporta iepakojums PPWR ir atsevišķa kategorija — tas skaitās un jāziņo tāpat kā pārdošanas iepakojums.",
+    noteCommercial:
+      "Komerciālam/rūpnieciskam iepakojumam var būt cita ziņošanas plūsma nekā mājsaimniecības iepakojumam — apstiprini ar apsaimniekotāju.",
+    noteReusable:
+      "Atkārtoti lietojamam iepakojumam piemēro atkārtotas lietošanas mērķu režīmu; standarta uz-vienību EPR maksa var neattiekties tāpat — pārbaudi.",
+    notePlastic:
+      "Izvēlēta plastmasa: dažās valstīs (piem., ES) ir atsevišķs nodoklis par nepārstrādātu plastmasu papildus PRO maksai.",
     scenariosTitle: "Sāc no gatava scenārija",
     scenariosHint: "Izvēlies tipisku situāciju — mēs aizpildīsim visus soļus, un tu vari koriģēt.",
     copyPlan: "Kopēt plānu",
@@ -200,8 +298,7 @@ export const lv = {
     planHeader: "PPWR rīcības plāns",
     planChannelLabel: "Kanāls",
     planWhoLabel: "Iepakojumu pirmais laiž tirgū",
-    planSummaryLine: (n: number, kg: string) =>
-      `${n} valstis · kopējais iepakojums ${kg} kg/gadā`,
+    planSummaryLine: (n: number, kg: string) => `${n} valstis · kopējais iepakojums ${kg} kg/gadā`,
   },
   materials: {
     paper: "Papīrs / kartons",
@@ -246,7 +343,8 @@ export const lv = {
     registrationCost: "Reģistrācijas maksa",
     annualMinFee: "Minimālā gada maksa",
     arRequired: "Vajadzīgs pilnvarotais pārstāvis",
-    arHint: "Ārvalstu tālpārdevējam bez vietējās pārstāvniecības jāieceļ vietējais pilnvarotais pārstāvis (PPWR 45. p.).",
+    arHint:
+      "Ārvalstu tālpārdevējam bez vietējās pārstāvniecības jāieceļ vietējais pilnvarotais pārstāvis (PPWR 45. p.).",
     numberOnInvoices: "Numurs jānorāda uz rēķiniem",
     deMinimis: "Slieksnis (de-minimis)",
     free: "bez maksas (€0)",
@@ -255,6 +353,13 @@ export const lv = {
     unknownShort: "nav zināms",
     lastReviewed: "Pēdējoreiz pārskatīts",
     checkedAt: "Pārbaudīts",
+    verification: "Verifikācija",
+    reportingTitle: "Ziņošana",
+    reportingFrequency: "Biežums",
+    reportingDeadlines: "Termiņi",
+    reportingZero: "Nulles deklarācija",
+    reportingCorrection: "Labojumi",
+    reportingNone: "Ziņošanas kārtība šai valstij vēl nav apkopota.",
     noSources: "Avoti vēl nav pievienoti.",
     noPro: "PRO shēmas vēl nav apkopotas.",
     noTaxes: "Nav zināmu papildu nodokļu.",
@@ -328,6 +433,9 @@ export const lv = {
       "Dati ir produkts. Katrs valsts fakts dzīvo JSON failā ar avotu un pārbaudes datumu — nevis kodā.",
     repo: "Click-Scale-Agency/packaging-navigator",
     credit: "Uztur Click Scale Agency",
+    resourcesLabel: "Resursi",
+    methodology: "Metodoloģija un statusi",
+    changelog: "Izmaiņu žurnāls",
     disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
   },
 } as const;

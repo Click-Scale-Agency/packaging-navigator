@@ -1,7 +1,10 @@
+import { Link } from "@tanstack/react-router";
+
 import lv from "@/i18n/lv";
 import { Barcode, Perforation, Press } from "@/components/primitives";
 
 const REPO = "https://github.com/Click-Scale-Agency/packaging-navigator";
+const CHANGELOG = `${REPO}/blob/main/CHANGELOG.md`;
 const AGENCY = "https://clickscale.agency";
 
 export function Footer() {
@@ -30,6 +33,21 @@ export function Footer() {
             </a>
             <span className="form-label mt-6 block">Licence</span>
             <p className="data-value mt-2 text-sm">{lv.footer.licence}</p>
+            <span className="form-label mt-6 block">{lv.footer.resourcesLabel}</span>
+            <Link
+              to="/metodologija"
+              className="data-value mt-2 block text-sm text-primary underline decoration-dashed underline-offset-4"
+            >
+              {lv.footer.methodology}
+            </Link>
+            <a
+              href={CHANGELOG}
+              target="_blank"
+              rel="noreferrer"
+              className="data-value mt-1 block text-sm text-primary underline decoration-dashed underline-offset-4"
+            >
+              {lv.footer.changelog}
+            </a>
           </div>
           <div>
             <span className="form-label">Uzturētājs</span>

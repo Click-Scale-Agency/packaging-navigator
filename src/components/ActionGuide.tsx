@@ -216,8 +216,27 @@ function buildPlan(
       evidence.push(lv.guide.evidenceProContract);
     }
 
-    // 4 — reporting
-    tasks.push({ key: "report", label: lv.guide.taskReport, level: "required" });
+    // 4 — reporting (per-country; never assert an unverified deadline as fact)
+    const rep = country.reporting;
+    if (rep?.frequency) {
+      const unverified = rep.provenance != null && rep.provenance.status !== "official";
+      const detailParts = [rep.frequency];
+      if (rep.deadlines.length) detailParts.push(rep.deadlines.join("; "));
+      if (unverified) detailParts.push(`(${lv.guide.taskReportCheck})`);
+      tasks.push({
+        key: "report",
+        label: lv.guide.taskReport,
+        detail: detailParts.join(" — "),
+        level: "required",
+      });
+    } else {
+      tasks.push({
+        key: "report",
+        label: lv.guide.taskReport,
+        detail: lv.guide.taskReportUnknown,
+        level: "required",
+      });
+    }
     evidence.push(lv.guide.evidenceDeclaration);
 
     // 5 — number on invoices

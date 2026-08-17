@@ -54,6 +54,9 @@ export function conditionalTaxesFor(
 /** How much of the requested material mix we could actually price. */
 export type Coverage = "full" | "partial" | "none";
 
+/** Which rate set produced the variable fee. */
+export type RateBasis = "pro" | "statutory" | "none";
+
 export interface CountryCost {
   /** Variable packaging fee: Σ (rate + unconditional material tax) × kg. */
   variable: number;
@@ -76,33 +79,40 @@ export interface CountryCost {
   unpricedMaterials: MaterialKey[];
   /** Names of taxes that may apply but are not included in `total`. */
   conditionalTaxes: string[];
+  /**
+   * Which rate set the variable fee came from: "pro" (published scheme rates),
+   * "statutory" (statutory fallback, e.g. LV DRN full rates — used ONLY when no
+   * PRO rate applies, never summed with PRO), or "none".
+   */
+  basis: RateBasis;
 }
 
-/**
- * §16 full-cost model for one country: variable packaging fee → PRO fee
- * (greater of variable and the minimum annual fee) → + state registration
- * cost. The authorised-representative fee is deliberately NOT included here
- * (it's market-priced and flagged separately by callers).
- */
-export function computeCountryCost(
+interface Priced {
+  variable: number;
+  hasRate: boolean;
+  priced: MaterialKey[];
+  unpriced: MaterialKey[];
+}
+
+/** Price the entered mix with a given per-material rate getter. */
+function priceMix(
   country: CountryData,
   kgPerYear: Record<MaterialKey, number>,
-  totalKg: number,
-): CountryCost {
+  rateOf: (m: MaterialKey) => number | null,
+): Priced {
   let variable = 0;
   let hasRate = false;
-  const pricedMaterials: MaterialKey[] = [];
-  const unpricedMaterials: MaterialKey[] = [];
-
+  const priced: MaterialKey[] = [];
+  const unpriced: MaterialKey[] = [];
   for (const m of MATERIALS) {
-    const rate = rateFor(country, m);
+    const rate = rateOf(m);
     const tax = extraTaxFor(country, m);
     const weighted = (kgPerYear[m] ?? 0) > 0;
-    // A material is "priced" only when it has an EPR rate; a standalone tax
+    // A material is "priced" only when it has a base rate; a standalone tax
     // without a base rate is not a complete price for that material.
     if (weighted) {
-      if (rate !== null) pricedMaterials.push(m);
-      else unpricedMaterials.push(m);
+      if (rate !== null) priced.push(m);
+      else unpriced.push(m);
     }
     if (rate !== null) {
       variable += rate * kgPerYear[m];
@@ -113,6 +123,41 @@ export function computeCountryCost(
       hasRate = true;
     }
   }
+  return { variable, hasRate, priced, unpriced };
+}
+
+/**
+ * §16 full-cost model for one country: variable packaging fee → PRO fee
+ * (greater of variable and the minimum annual fee) → + state registration
+ * cost. The authorised-representative fee is deliberately NOT included here
+ * (it's market-priced and flagged separately by callers).
+ *
+ * When a country publishes no PRO rate for the entered materials but has a
+ * statutory fallback (e.g. LV DRN full rates), the variable fee is computed
+ * from the fallback instead — these two are mutually exclusive and are NEVER
+ * summed together.
+ */
+export function computeCountryCost(
+  country: CountryData,
+  kgPerYear: Record<MaterialKey, number>,
+  totalKg: number,
+): CountryCost {
+  const proPriced = priceMix(country, kgPerYear, (m) => rateFor(country, m));
+
+  let priced = proPriced;
+  let basis: RateBasis = "pro";
+  const fb = country.statutoryFallback;
+  // Fall back to statutory rates ONLY when PRO priced nothing for the weighted
+  // set — never in addition to PRO.
+  if (proPriced.priced.length === 0 && fb) {
+    const fbPriced = priceMix(country, kgPerYear, (m) => fb.rates[m] ?? null);
+    if (fbPriced.priced.length > 0) {
+      priced = fbPriced;
+      basis = "statutory";
+    }
+  }
+
+  const { variable, hasRate, priced: pricedMaterials, unpriced: unpricedMaterials } = priced;
 
   const minFee = country.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ?? null;
   const proFee = Math.max(variable, minFee ?? 0);
@@ -146,6 +191,7 @@ export function computeCountryCost(
     pricedMaterials,
     unpricedMaterials,
     conditionalTaxes: conditionalTaxesFor(country, kgPerYear),
+    basis: hasRate ? basis : "none",
   };
 }
 

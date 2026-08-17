@@ -80,10 +80,18 @@ export function Calculator() {
     search.ship && /^\d+$/.test(search.ship) ? search.ship : "2000",
   );
   const [arFee, setArFee] = useState("400");
+  // Per-country authorised-representative decision. Default "unknown" — the AR
+  // fee is NEVER auto-added just because the data flags arRequired; the user
+  // must mark a country "attiecas" for it to count.
+  const [arApplies, setArApplies] = useState<Record<string, "yes" | "no" | "unknown">>({});
   const [selected, setSelected] = useState<string[]>(
     seededCc && seededCc.length ? seededCc : DEFAULT_SELECTION,
   );
   const [copied, setCopied] = useState(false);
+
+  const arStateOf = (code: string): "yes" | "no" | "unknown" => arApplies[code] ?? "unknown";
+  const setAr = (code: string, v: "yes" | "no" | "unknown") =>
+    setArApplies((p) => ({ ...p, [code]: v }));
 
   const kgPerYear = useMemo(() => kgPerYearFrom(weights, shipments), [weights, shipments]);
 
@@ -106,8 +114,10 @@ export function Calculator() {
             hasRate: cost.known,
             blended: cost.blended,
             coverage: cost.coverage,
+            basis: cost.basis,
             unpricedMaterials: cost.unpricedMaterials,
             conditionalTaxes: cost.conditionalTaxes,
+            statutory: country.statutoryFallback,
             arRequired: country.register.arRequired === true,
             drsActive: country.drs?.active === true,
           };
@@ -116,8 +126,13 @@ export function Calculator() {
   );
 
   const grandTotal = rows.reduce((sum, r) => sum + r.fee, 0);
-  const arCount = rows.filter((r) => r.arRequired).length;
-  const estTotal = (Number(arFee) || 0) * arCount;
+  // Countries where the AR obligation is flagged in data (candidates for the fee).
+  const arFlaggedCount = rows.filter((r) => r.arRequired).length;
+  // Countries the user actually confirmed the AR applies to — only these count.
+  const arConfirmedCount = rows.filter(
+    (r) => r.arRequired && arStateOf(r.country.code) === "yes",
+  ).length;
+  const estTotal = (Number(arFee) || 0) * arConfirmedCount;
   const fullTotal = grandTotal + estTotal;
   // Countries where the material mix is only partially (or not) priced, so the
   // grand total is a FLOOR, not a complete figure.
@@ -129,6 +144,9 @@ export function Calculator() {
     setSelected((prev) => (prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code]));
 
   const eur = (n: number) => n.toFixed(2);
+  // A partial figure is a floor — prefix it with "no €" (from €).
+  const feeText = (r: (typeof rows)[number]) =>
+    r.hasRate ? `${r.coverage !== "full" ? `${lv.calculator.fromPrefix} ` : ""}${eur(r.fee)}` : "—";
   const coverageLabel = (r: (typeof rows)[number]) =>
     r.coverage === "full"
       ? "pilns"
@@ -137,6 +155,14 @@ export function Calculator() {
         : r.unpricedMaterials.length > 0
           ? "nav aprēķināms"
           : "—";
+  const arDecisionLabel = (r: (typeof rows)[number]) =>
+    !r.arRequired
+      ? ""
+      : arStateOf(r.country.code) === "yes"
+        ? lv.calculator.arYes
+        : arStateOf(r.country.code) === "no"
+          ? lv.calculator.arNo
+          : lv.calculator.arUnknown;
   const exportRows = () =>
     rows.map((r) => ({
       code: r.country.code,
@@ -145,10 +171,11 @@ export function Calculator() {
       variable: eur(r.variable),
       minFee: r.minApplied && r.minFee !== null ? eur(r.minFee) : "",
       reg: r.regCost > 0 ? eur(r.regCost) : "",
-      total: eur(r.fee),
+      total: feeText(r),
+      basis: r.basis === "statutory" ? (r.statutory?.name ?? "alternatīvā likme") : "",
       coverage: coverageLabel(r),
       condTax: r.conditionalTaxes.join(" / "),
-      ar: r.arRequired ? "jā" : "nē",
+      arDecision: arDecisionLabel(r),
       drs: r.drsActive ? "jā" : "nē",
     }));
 
@@ -161,9 +188,10 @@ export function Calculator() {
       "Min. gada maksa EUR",
       "Reģistrācija EUR",
       "PRO+reģistrācija EUR/gadā",
+      "Aprēķina bāze",
       "Seguma statuss",
       "Iespējams papildu nodoklis",
-      "Pārstāvis vajadzīgs",
+      "Pārstāvis (tavs lēmums)",
       "Depozīta sistēma",
     ];
     const body = exportRows().map((r) =>
@@ -175,24 +203,28 @@ export function Calculator() {
         r.minFee,
         r.reg,
         r.total,
+        r.basis,
         r.coverage,
         r.condTax,
-        r.ar,
+        r.arDecision,
         r.drs,
       ]
         .map((v) => `"${String(v).replace(/"/g, '""')}"`)
         .join(";"),
     );
     const totals = [
-      `"KOPĀ aprēķinātā daļa (PRO+reģ)";;;;;;"${eur(grandTotal)}";;;;`,
-      `"Aplēstās (pārstāvis, ${arCount} valstīs)";;;;;;"${eur(estTotal)}";;;;`,
-      `"PILNĀ AINA 1. gadā";;;;;;"${eur(fullTotal)}";;;;`,
+      `"KOPĀ aprēķinātā daļa (PRO+reģ)";;;;;;"${eur(grandTotal)}";;;;;`,
+      `"Iespējamās pārstāvja izmaksas (${arConfirmedCount} atzīmētas)";;;;;;"${eur(estTotal)}";;;;;`,
+      `"APTUVENĀS ZINĀMĀS IZMAKSAS 1. gadā";;;;;;"${eur(fullTotal)}";;;;;`,
     ];
     if (partialCount > 0) {
       totals.push(
-        `"Piezīme: ${partialCount} valstij(-īm) segums ir daļējs — summa ir zināmā daļa, ne pilnas izmaksas.";;;;;;;;;;`,
+        `"Piezīme: ${partialCount} valstij(-īm) segums ir daļējs — summa ir zināmā daļa (no €X), ne pilnas izmaksas.";;;;;;;;;;;`,
       );
     }
+    totals.push(
+      `"Piezīme: daļa tarifu un administratīvo izmaksu var nebūt publiski pieejama.";;;;;;;;;;;`,
+    );
     return [head.join(";"), ...body, "", ...totals].join("\r\n");
   };
 
@@ -204,24 +236,25 @@ export function Calculator() {
       ...exportRows().map(
         (r) =>
           `${r.code} ${r.name}: ${r.total} €/gadā (${r.scheme})` +
+          `${r.basis ? ` · bāze: ${r.basis}` : ""}` +
           `${r.coverage !== "pilns" ? ` · segums: ${r.coverage}` : ""}` +
           `${r.minFee ? ` · min. maksa ${r.minFee} €` : ""}` +
           `${r.reg ? ` · reģistrācija ${r.reg} €` : ""}` +
           `${r.condTax ? ` · iespējams nodoklis: ${r.condTax} (jāpārbauda)` : ""}` +
-          `${r.ar === "jā" ? " · + pārstāvis" : ""}` +
+          `${r.arDecision ? ` · pārstāvis: ${r.arDecision}` : ""}` +
           `${r.drs === "jā" ? " · depozīts" : ""}`,
       ),
       "",
       `Aprēķinātā daļa kopā: ${eur(grandTotal)} €`,
       ...(partialCount > 0
         ? [
-            `(${partialCount} valstij(-īm) segums daļējs — summa ir zināmā daļa, ne pilnas izmaksas)`,
+            `(${partialCount} valstij(-īm) segums daļējs — summa ir zināmā daļa "no €X", ne pilnas izmaksas)`,
           ]
         : []),
-      `Aplēstās papildu (pārstāvis, ${arCount} valstīs): ${eur(estTotal)} €`,
-      `Pilnā aina 1. gadā: ${eur(fullTotal)} €`,
+      `Iespējamās pilnvarotā pārstāvja izmaksas (${arConfirmedCount} atzīmētas): ${eur(estTotal)} €`,
+      `Aptuvenās zināmās izmaksas 1. gadā: ${eur(fullTotal)} €`,
       "",
-      "Indikatīvi. Nav juridiska konsultācija. Trūkstošās likmes nav pieņemtas par nulli.",
+      "Indikatīvi. Nav juridiska konsultācija. Trūkstošās likmes nav pieņemtas par nulli. Daļa tarifu un administratīvo izmaksu var nebūt publiski pieejama.",
     ].join("\n");
 
   const handleCopy = async () => {
@@ -404,6 +437,17 @@ export function Calculator() {
                                 {lv.calculator.breakdownVariable} €{row.variable.toFixed(0)}
                               </span>
                             ) : null}
+                            {row.basis === "statutory" && row.statutory ? (
+                              <span
+                                title={lv.calculator.altRateTitle(
+                                  row.statutory.name ?? "",
+                                  row.statutory.appliesWhen ?? "",
+                                )}
+                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
+                              >
+                                {lv.calculator.altRateChip}
+                              </span>
+                            ) : null}
                             {row.minApplied ? (
                               <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                                 {lv.calculator.breakdownMinApplied} €{row.minFee}
@@ -412,14 +456,6 @@ export function Calculator() {
                             {row.regCost > 0 ? (
                               <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                                 {lv.calculator.breakdownReg} €{row.regCost}
-                              </span>
-                            ) : null}
-                            {row.arRequired ? (
-                              <span
-                                title={lv.calculator.plusArTitle}
-                                className="border border-primary px-1.5 py-0.5 font-mono text-[10px] text-primary"
-                              >
-                                {lv.calculator.plusAr}
                               </span>
                             ) : null}
                             {row.drsActive ? (
@@ -464,6 +500,46 @@ export function Calculator() {
                             ) : null}
                           </span>
                         ) : null}
+                        {row.basis === "statutory" && row.statutory ? (
+                          <span className="mt-2 block border-l-2 border-primary pl-2 text-[11px] leading-snug text-muted-foreground">
+                            {lv.calculator.altRateNote(
+                              row.statutory.name ?? "",
+                              row.statutory.appliesWhen ?? "",
+                            )}
+                          </span>
+                        ) : null}
+                        {row.arRequired ? (
+                          <span className="mt-2 block">
+                            <span className="form-label block">{lv.calculator.arApplyQ}</span>
+                            <span className="mt-1 flex flex-wrap gap-1">
+                              {(["yes", "no", "unknown"] as const).map((opt) => {
+                                const on = arStateOf(row.country.code) === opt;
+                                const label =
+                                  opt === "yes"
+                                    ? lv.calculator.arYes
+                                    : opt === "no"
+                                      ? lv.calculator.arNo
+                                      : lv.calculator.arUnknown;
+                                return (
+                                  <button
+                                    key={opt}
+                                    type="button"
+                                    onClick={() => setAr(row.country.code, opt)}
+                                    aria-pressed={on}
+                                    className={cn(
+                                      "border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.08em] transition-all active:scale-95",
+                                      on
+                                        ? "border-primary bg-primary/10 text-primary"
+                                        : "border-border-strong text-muted-foreground hover:border-primary hover:text-primary",
+                                    )}
+                                  >
+                                    {label}
+                                  </button>
+                                );
+                              })}
+                            </span>
+                          </span>
+                        ) : null}
                         {!row.country.verified ? (
                           <span className="mt-2 block">
                             <UnverifiedStamp short />
@@ -476,6 +552,11 @@ export function Calculator() {
                       <span className="data-value text-right text-base md:text-lg">
                         {row.hasRate ? (
                           <>
+                            {row.coverage !== "full" ? (
+                              <span className="text-sm text-muted-foreground">
+                                {lv.calculator.fromPrefix}{" "}
+                              </span>
+                            ) : null}
                             <Money value={row.fee} /> €
                           </>
                         ) : (
@@ -491,6 +572,11 @@ export function Calculator() {
                 <div className="flex flex-wrap items-baseline justify-between gap-3">
                   <span className="form-label">{lv.calculator.safeTotal}</span>
                   <span className="data-value text-xl font-bold md:text-2xl">
+                    {partialCount > 0 ? (
+                      <span className="text-sm font-normal text-muted-foreground">
+                        {lv.calculator.fromPrefix}{" "}
+                      </span>
+                    ) : null}
                     <Money value={grandTotal} /> €
                   </span>
                 </div>
@@ -499,21 +585,31 @@ export function Calculator() {
                     {lv.calculator.partialSelectedNote(partialCount)}
                   </p>
                 ) : null}
-                <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
+                <div className="mt-3 flex flex-wrap items-baseline justify-between gap-3">
                   <span className="form-label text-muted-foreground">
                     {lv.calculator.estTotalLabel}
-                    {arCount > 0 ? ` · ${lv.calculator.estCountriesNote(arCount)}` : ""}
+                    {arConfirmedCount > 0
+                      ? ` · ${lv.calculator.estCountriesNote(arConfirmedCount)}`
+                      : ""}
                   </span>
                   <span className="data-value text-lg text-muted-foreground">
                     + <Money value={estTotal} /> €
                   </span>
                 </div>
+                {arFlaggedCount > 0 ? (
+                  <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
+                    {lv.calculator.arConfirmedNote(arConfirmedCount)}
+                  </p>
+                ) : null}
                 <div className="mt-3 flex flex-wrap items-baseline justify-between gap-3 border-t border-dashed border-border pt-3">
                   <span className="form-label">{lv.calculator.fullTotal}</span>
                   <span className="data-value text-2xl font-bold md:text-3xl">
                     <Money value={fullTotal} /> €
                   </span>
                 </div>
+                <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+                  {lv.calculator.fullTotalNote}
+                </p>
               </div>
             </div>
             {rows.length > 0 ? (

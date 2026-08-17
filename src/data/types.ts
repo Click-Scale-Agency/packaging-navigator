@@ -98,6 +98,22 @@ export interface SourceRef {
   checkedAt: string;
 }
 
+/**
+ * Statutory per-material rates that apply as an ALTERNATIVE to a PRO contract
+ * (e.g. LV DRN full rates without scheme membership). The calculator shows this
+ * as a separate scenario and NEVER sums it together with PRO fees.
+ */
+export interface StatutoryFallback {
+  name: string | null;
+  appliesWhen: string | null;
+  rates: Record<MaterialKey, number | null>;
+  tariffYear: number | null;
+  collectedBy: string | null;
+  url: string | null;
+  note: string | null;
+  provenance?: Provenance | null;
+}
+
 /** How and when packaging volumes must be declared in a country. */
 export interface Reporting {
   frequency: string | null;
@@ -132,6 +148,8 @@ export interface CountryData {
   drs?: Drs | null;
   /** Reporting cadence + deadlines. */
   reporting?: Reporting | null;
+  /** Statutory alternative rates (e.g. LV DRN) — never summed with PRO. */
+  statutoryFallback?: StatutoryFallback | null;
   register: RegisterLayer;
   pro: ProScheme[];
   extraTaxes: ExtraTax[];

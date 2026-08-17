@@ -157,3 +157,15 @@ Documented-but-not-verified (rates recorded with caveat, or as extraTax):
 FX added this session: 362.95 HUF/EUR (2026-08-16).
 
 New AR (authorised representative) confirmations for foreign sellers: ES, AT, PT, SI, SK require one (per fetched official pages); DE now mandatory from 12.08.2026 (from batch 1).
+
+## 13. Completion pass — statutory-rate deep dive (2026-08-16, Claude Code)
+
+**verified:true now 18/27** (added **HU**). **verified:false 9:** GR, IE, LT, LV, MT, PL, RO, SI, SK — every one because its PRO fee is contract/members-only, NOT because data is missing.
+
+- **HU FLIPPED** — fetched the official decree **33/2025. (XI. 28.) EM** from net.jogtar.hu (njt.hu was 503). Packaging díjtételek confirmed exactly (Ft/kg, base+modulation totals): plastic M01 219, paper P01 173, metal V01 186, glass U01 107, wood F01 22, composite K01 191, textile C01 148, other X01 129. verified:true (OKIRkapu register + official decree).
+- **LV** — the DRN Annex 7 packaging table WAS in the likumi.lv HTML (needed table-cell-preserving parse, not a separate attachment as first thought). Full official €/kg: glass 0.44, wood/paper/cardboard/natural fibres 0.24, metal 1.10, bioplastic 0.24, plastic (polymer) 1.25, composite carton 1.25, polystyrene 2.20, foam plastic 24.40, foam polystyrene (EPS) 44.00. Recorded in DRN extraTax. Stays verified:false (no packaging register yet, no public PRO tariff) but DRN now fully sourced from the primary law.
+- **PL** — official opłata produktowa rates from Dz.U. 2023 poz. 2683 (Dziennik Ustaw PDF): plastic 2.70, aluminium 1.40, ferrous 0.80, paper 0.70, glass 0.30, wood 0.30, composite 1.70, hazardous 2.00, other 1.00 zł/kg. Added as extraTax (statutory penalty/ceiling; Rekopol PRO fee still private).
+- **SI** — okoljska dajatev €0.0017/kg + €33.38/yr admin (FU.gov.si). Small national levy; PRO fee private. Added as extraTax.
+- **GR, IE, MT, SK** — confirmed no public per-material figure exists: HERRCO fees in contract Annex C1; Repak members-only; Malta packaging eco-contribution waived for scheme members (GreenPak/GreenMT fees on application); SK OZV recycling fees per-contract.
+
+Net: all 9 unverified countries whose statute sets a per-material figure (LT, LV, PL, RO, SI) now carry it as an official extraTax; the remaining 4 (GR, IE, MT, SK) have genuinely no public per-material rate. FX: PLN/EUR 4.31, HUF/EUR 362.95 (2026-08-16).

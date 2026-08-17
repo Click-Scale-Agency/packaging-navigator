@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
@@ -113,6 +114,7 @@ export function Calculator() {
             fee,
             variable,
             proFee,
+            minFee,
             minApplied,
             regCost,
             hasRate: known,
@@ -268,9 +270,13 @@ export function Calculator() {
                       transition={{ ...PRESS_SPRING, delay: Math.min(i * 0.03, 0.3) }}
                       className="grid grid-cols-[3.2rem_minmax(0,1fr)_auto] items-start gap-3 border-b border-dashed border-border px-4 py-3 md:grid-cols-[4rem_minmax(0,1fr)_7rem_9rem]"
                     >
-                      <span className="data-value text-lg font-bold leading-none md:text-xl">
+                      <Link
+                        to="/valstis/$code"
+                        params={{ code: row.country.code }}
+                        className="data-value text-lg font-bold leading-none text-primary underline decoration-dashed underline-offset-4 transition-opacity hover:opacity-70 md:text-xl"
+                      >
                         {row.country.code}
-                      </span>
+                      </Link>
                       <span className="min-w-0">
                         <span className="data-value block truncate text-sm">
                           {row.country.pro[0]?.name ?? lv.countries.unknown}
@@ -289,7 +295,7 @@ export function Calculator() {
                             ) : null}
                             {row.minApplied ? (
                               <span className="border border-border px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
-                                {lv.calculator.breakdownMinApplied}
+                                {lv.calculator.breakdownMinApplied} €{row.minFee}
                               </span>
                             ) : null}
                             {row.regCost > 0 ? (

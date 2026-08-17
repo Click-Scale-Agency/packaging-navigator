@@ -205,3 +205,7 @@ Registration cost (`registrationCostEur`): state registration itself is typicall
 ## 17. Cost calculator — §16 full-cost model (2026-08-16, Claude Code)
 
 Upgraded the calculator (src/components/Calculator.tsx) beyond the bare material €/kg. Per selected country it now computes: variable packaging fee (Σ rate×kg + material-linked extra tax) → **PRO fee = max(variable, minimum annual fee)** → **+ state registration cost** = first-year total; and **flags the authorised-representative requirement** as a separate, unpriced item (PPWR Art. 45; market-priced, not a fixed cost). Row shows a breakdown (iepakojums / min. gada maksa piemērota / reģistrācija / +pārstāvis). This surfaces the key SME insight: for small volumes the minimum annual fee dominates, not the per-kg rate. Not yet modelled (deferred, per §16's "estimate/variable" bucket): AR service fee amount, consulting/audit, DRS logistics, penalty risk.
+
+## 18. DRS borderline verification (2026-08-16, Claude Code)
+
+Point 3: verified the "planned/not-live" DRS cases. Confirmed none is live in 2026: **ES** — no universal DRS; conditional/targets-based under Ley 7/2022 (kept). **GR** — operator DRS Hellas SA established by producers/retailers, full operation expected 2026 but not yet live (note refined). **CZ** — planned for PET bottles + cans (~1.8bn bottles/yr), initially targeted mid-2025 but operator not yet appointed, not live (note refined). No `drs.active` values changed; only GR/CZ notes refined. Active-DRS list stays 17 (sources vary 17–18 EU; difference is counting of in-transition schemes).

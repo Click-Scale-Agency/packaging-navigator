@@ -6,7 +6,6 @@ import { Calculator } from "@/components/Calculator";
 import { CountryCatalog } from "@/components/CountryCatalog";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
-import { FunctionNotCode } from "@/components/FunctionNotCode";
 import { GuidePromo } from "@/components/GuidePromo";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -43,8 +42,22 @@ export const Route = createFileRoute("/")({
           ]
         : []),
     ],
-    scripts:
-      briefing && briefingThumb
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: lv.faq.groups.flatMap((g) =>
+            g.items.map((it) => ({
+              "@type": "Question",
+              name: it.q,
+              acceptedAnswer: { "@type": "Answer", text: it.a },
+            })),
+          ),
+        }),
+      },
+      ...(briefing && briefingThumb
         ? [
             {
               type: "application/ld+json",
@@ -64,7 +77,8 @@ export const Route = createFileRoute("/")({
               }),
             },
           ]
-        : [],
+        : []),
+    ],
   }),
   component: Index,
 });
@@ -81,7 +95,6 @@ function Index() {
         <MarketplaceNumbers />
         <Timeline />
         <VideoBriefing />
-        <FunctionNotCode />
         <Faq />
       </main>
       <Footer />

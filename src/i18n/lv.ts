@@ -52,7 +52,7 @@ export const lv = {
       "Reģistrs — valsts ražotāju saraksts, kas izsniedz numuru, ko pārbauda tirdzniecības platformas.",
     layerPro: "PRO shēma — apsaimniekotājs, kas iekasē maksas un organizē pārstrādi.",
     layerTaxes:
-      "Papildu nodokļi — atsevišķi nacionāli nodokļi (piem., ES plastmasas akcīze), neatkarīgi no PRO maksas.",
+      "Papildu nodokļi — atsevišķi nacionāli nodokļi (piemēram, Spānijas plastmasas akcīze), neatkarīgi no PRO maksas.",
     statusesTitle: "Verifikācijas statusi",
     statusesLead:
       "Katram tarifam un pienākumam ir savs statuss, avots un pārbaudes datums — nevis viens kopīgs “pārbaudīts” karodziņš visai valstij.",
@@ -83,7 +83,7 @@ export const lv = {
   },
   hero: {
     headline: "Iepakojums tagad ir regulēts. Mēs to iztulkojam.",
-    sub: "Regula (ES) 2025/40 — piemēro no 2026. gada 12. augusta. Šis ir mierīgs galds birokrātijas vidū: viena lapa, trīs slāņi, nekādu pārsteigumu.",
+    sub: "Regula (ES) 2025/40 — piemēro no 2026. gada 12. augusta. Vienā lapā: kur jāreģistrējas, kam jāmaksā un cik tas izmaksās.",
     senderLabel: "Nosūtītājs",
     sender: "Tavs e-veikals, LV",
     recipientLabel: "Saņēmējs",
@@ -94,12 +94,12 @@ export const lv = {
     refLabel: "Dokumenta Nr.",
     ref: "PPWR/2025/40",
     weightLabel: "Svars",
-    weight: "VAR MAINĪTIES",
+    weight: "PĒC MATERIĀLA (€/kg)",
     classLabel: "Klase",
-    class: "EPR / REĢISTRS / PRO",
+    class: "REĢISTRS / PRO / NODOKĻI",
     ctaPrimary: "Aprēķināt maksas",
     ctaSecondary: "Skatīt valstis",
-    scrollHint: "Ritini — zīmogi tiek uzspiesti",
+    scrollHint: "Ritini uz leju",
   },
   calculator: {
     kicker: "Sadaļa 01",
@@ -167,7 +167,7 @@ export const lv = {
     copied: "Nokopēts!",
   },
   marketplace: {
-    kicker: "Sadaļa 04",
+    kicker: "Sadaļa 03",
     title: "Reģistrācijas numuri tirdzniecības platformām",
     lead: "Amazon, eBay, Etsy un citas platformas prasa iepakojuma EPR reģistrācijas numuru katrai valstij, kurā pārdod. Šeit ir katras valsts numura formāts un norāde, vai numurs jānorāda uz rēķiniem.",
     colCountry: "Valsts",
@@ -390,13 +390,13 @@ export const lv = {
     notFound: "Šāds valsts kods nav katalogā.",
   },
   timeline: {
-    kicker: "Sadaļa 03",
+    kicker: "Sadaļa 04",
     title: "Laika līnija",
     lead: "Pieci datumi, kas maina pienākumus. Sarkanais zīmogs rāda, kur mēs šobrīd atrodamies.",
     now: "ŠODIEN",
   },
   video: {
-    kicker: "Sadaļa 04",
+    kicker: "Sadaļa 05",
     title: "Video un kopsavilkums",
     lead: "Publisks Tveris.App sagatavots ieraksts par PPWR prasībām, kuras piemēro no 12. augusta, un tā strukturēts kopsavilkums latviski.",
     play: "Atskaņot",
@@ -405,44 +405,102 @@ export const lv = {
     topicsTitle: "Detalizēts pārskats par tēmām",
     sourceLabel: "Avots — ieraksts",
   },
-  functionNotCode: {
-    kicker: "Sadaļa 05",
-    title: "Funkcija, nevis kods",
-    lead: "EPR pienākumu iedarbina iepakojuma funkcija, nevis muitas CN kods.",
-    points: [
-      {
-        title: "Funkcija nosaka pienākumu",
-        body: "Ja materiāls aizsargā, satur vai pasniedz preci gala patērētājam, tas ir iepakojums — neatkarīgi no tā, kā tas ierakstīts muitas deklarācijā.",
-      },
-      {
-        title: "CN kodi ir muitai",
-        body: "CN kodi apraksta preci robežas šķērsošanai. Tie nav EPR klasifikators — tie nedz rada, nedz atceļ reģistrācijas pienākumu.",
-      },
-      {
-        title: "Kad CN kods tomēr ir svarīgs",
-        body: "Divos gadījumos: ievedot tukšu iepakojumu kā preci un aprēķinot Spānijas plastmasas nodokli, kur deklarācija balstās uz CN kodiem.",
-      },
-    ],
-  },
   faq: {
     kicker: "Sadaļa 06",
-    title: "BUJ",
-    items: [
+    title: "Bieži uzdotie jautājumi",
+    lead: "Astoņpadsmit jautājumi, ko e-veikali uzdod visbiežāk. Atbildes balstās uz šajā lapā apkopotajiem datiem un regulas tekstu.",
+    groups: [
       {
-        q: "Vai man jāreģistrējas visās 27 valstīs?",
-        a: "Nē — tikai tajās, kurās tu pirmais laid tirgū iepakotu preci gala patērētājam. Praksē tās ir visas valstis, uz kurām sūti pasūtījumus tieši pircējiem. Ja pārdod caur tirdzniecības platformu, kas uzņēmusies ražotāja pienākumus, pienākums var būt tai — pārbaudi līgumu.",
+        title: "Pamati",
+        items: [
+          {
+            q: "Kas ir PPWR un no kura datuma tā ir spēkā?",
+            a: "PPWR ir Regula (ES) 2025/40 par iepakojumu un iepakojuma atkritumiem. Tā ir regula, nevis direktīva — tas nozīmē, ka to piemēro visās 27 dalībvalstīs tieši, bez atsevišķas pārņemšanas nacionālajā likumā. Lielākā daļa prasību ir piemērojama no 2026. gada 12. augusta; atsevišķi pienākumi, piemēram, marķēšana un iepakojuma minimizēšana, iestājas vēlāk. Konkrētie datumi ir laika līnijas sadaļā.",
+          },
+          {
+            q: "Kas vispār ir iepakojums PPWR izpratnē?",
+            a: "Iepakojumu nosaka funkcija, nevis materiāls vai preces kods. Ja kaut kas aizsargā, satur, pārvieto vai pasniedz preci gala patērētājam, tas ir iepakojums: kastes, plēves, gaisa spilventiņi, līmlentes, etiķetes, vāciņi, arī tējas un kafijas maisiņi. Katrs elements tiek uzskaitīts atsevišķi pēc sava materiāla un svara.",
+          },
+          {
+            q: "Kas ir “izgatavotājs” un ar ko tas atšķiras no ražotāja?",
+            a: "PPWR ievieš jēdzienu “izgatavotājs” — tā ir persona, kas pieņem lēmumus par iepakojuma dizainu. Šai personai jāsagatavo un jāglabā ES atbilstības deklarācija. “Ražotājs” EPR nozīmē ir tas, kas iepakojumu pirmais laiž konkrētās valsts tirgū un maksā EPR maksas. Mazam e-veikalam, kas pats izvēlas savas kastes, abas lomas bieži sakrīt.",
+          },
+          {
+            q: "Ar ko sākt, ja neesmu darījis neko?",
+            a: "Vispirms uzraksti sarakstu ar valstīm, uz kurām sūti pasūtījumus tieši pircējiem. Tad nosver savu tipisko iepakojumu pa materiāliem. Ar šiem diviem datiem izej rīcības ceļvedi šajā lapā — tas parādīs, kur jāreģistrējas, kur vajadzīgs pilnvarotais pārstāvis un ko iesniegt. Dokumentāciju sāc kārtot uzreiz, negaidot kontroles pieprasījumu.",
+          },
+        ],
       },
       {
-        q: "Ar ko reģistrs atšķiras no PRO?",
-        a: "Reģistrs ir valsts uzturēts saraksts: tu iegūsti numuru, ko prasa tirdzniecības platformas. PRO ir privāts apsaimniekotājs, kuram tu maksā par savākšanu un pārstrādi. Vācijā vajadzīgi abi: LUCID numurs un līgums ar duālo sistēmu. Latvijā valsts reģistra vēl nav, taču līgums ar apsaimniekotāju ir spēkā jau šodien.",
+        title: "Reģistrācija un pienākumi",
+        items: [
+          {
+            q: "Vai man jāreģistrējas visās 27 valstīs?",
+            a: "Nē — tikai tajās, kurās tu pirmais laid tirgū iepakotu preci. Praksē tās ir visas valstis, uz kurām sūti pasūtījumus tieši pircējiem. Vienotas ES reģistrācijas nav: katra valsts ir atsevišķa procedūra, un lielākajā daļā valstu nav apjoma sliekšņa — pienākums iestājas ar pirmo sūtījumu.",
+          },
+          {
+            q: "Ar ko reģistrs atšķiras no PRO?",
+            a: "Reģistrs ir valsts uzturēts ražotāju saraksts: tu iegūsti numuru, ko pārbauda tirdzniecības platformas un uzraugi. PRO ir apsaimniekotājs, kuram tu maksā par savākšanu un pārstrādi. Vairumā valstu vajadzīgi abi. Piemēram, Vācijā — LUCID numurs un līgums ar duālo sistēmu; dažās valstīs, piemēram, Itālijā vai Nīderlandē, atsevišķa iepakojuma reģistra nav un viss notiek caur shēmu.",
+          },
+          {
+            q: "Kas ir pilnvarotais pārstāvis un kad tas ir vajadzīgs?",
+            a: "Tas ir vietējais uzņēmums vai persona attiecīgajā valstī, kas uzņemas tavus EPR pienākumus (PPWR 45. pants). To parasti prasa no ārvalstu tālpārdevēja, kuram šajā valstī nav juridiskas klātbūtnes. Maksa ir atsevišķa no PRO maksas, un tā stipri atšķiras starp pakalpojumu sniedzējiem, tāpēc kalkulators to nepieskaita automātiski — to atzīmē pats.",
+          },
+          {
+            q: "Vai Amazon tiešām bloķē pārdevējus?",
+            a: "Jā. Tirdzniecības platformām ir pienākums pārbaudīt ražotāja numurus, un bez derīga numura sludinājumus attiecīgajā valstī var apturēt. Numurs ir ne tikai jāiegūst, bet arī jāievada pārdevēja kontā — tas ir visbiežākais iemesls, kāpēc sludinājumi tiek apturēti, lai gan reģistrācija ir kārtībā.",
+          },
+          {
+            q: "Ja pārdodu tikai caur platformu, vai pienākums ir tai?",
+            a: "Tikai tad, ja platforma konkrētajā valstī un konkrētajai precei ir reģistrēta kā ražotājs un tas ir apstiprināts rakstiski. Pretējā gadījumā pienākums paliek tev. Vairums platformu pienākumu neuzņemas — tās to tikai pārbauda.",
+          },
+          {
+            q: "Vai maziem uzņēmumiem ir atbrīvojums?",
+            a: "Vispārēja ES atbrīvojuma maziem uzņēmumiem nav. Par atvieglojumiem mikro un mazajiem uzņēmumiem ES līmenī ir diskusijas, bet uz 2026. gada augustu tie nav spēkā, tāpēc jārēķinās, ka pienākumi attiecas pilnā apjomā. Atsevišķas valstis nosaka nelielus administratīvus sliekšņus, taču lielākajā daļā slieksnis ir 0 kg.",
+          },
+        ],
       },
       {
-        q: "Cik tas maksās?",
-        a: "Maksu parasti rēķina €/kg par katru materiālu, tāpēc nozīme ir faktiskajam iepakojuma svaram, nevis pasūtījumu skaitam. Mazam e-veikalam klāt nāk arī gada administrācijas maksa. Publicētās likmes pievienojam pakāpeniski — kamēr ieraksts nav pārbaudīts, tas ir apzīmēts ar sarkanu zīmogu.",
+        title: "Izmaksas",
+        items: [
+          {
+            q: "Cik tas izmaksās?",
+            a: "Divas izmaksu daļas: vienreizēja vai gada reģistrācijas maksa un mainīgā PRO maksa par faktiski tirgū laisto iepakojuma svaru. Vienam e-veikalam ar dažiem tūkstošiem sūtījumu gadā PRO maksa bieži ir desmiti līdz simti eiro par valsti, bet reģistrācijas un pārstāvja izmaksas var būt lielākas par pašu maksu. Precīzu skaitli parāda kalkulators, ievadot savus svarus.",
+          },
+          {
+            q: "Kā tiek rēķinātas €/kg likmes un kas ir ekomodulācija?",
+            a: "Maksa ir likme €/kg katram materiālam, reizināta ar attiecīgā materiāla svaru. Ekomodulācija nozīmē, ka likme mainās atkarībā no pārstrādājamības: slikti pārstrādājams iepakojums var maksāt vairākas reizes vairāk nekā monomateriāls. Likmes tiek pārskatītas katru gadu, tāpēc katrai likmei ir norādīts tarifu gads.",
+          },
+          {
+            q: "Kāpēc dažām valstīm nav norādīta likme?",
+            a: "Vairākas shēmas cenrādi nepublicē — to izsniedz tikai pēc pieteikuma vai līguma noslēgšanas. Šādos gadījumos likmes vietā rāda “nav datu”, un trūkstošā likme nekad netiek pieņemta par nulli. Ja daļai materiālu likmes nav, kopsumma tiek atzīmēta kā daļēja — tā ir apakšējā robeža, nevis pilnās izmaksas.",
+          },
+          {
+            q: "Vai depozīta sistēma (DRS) ir tas pats, kas EPR?",
+            a: "Nē. Depozīta sistēma attiecas uz dzērienu iepakojumu, tā ir atsevišķa nauda, ko iekasē no pircēja un atmaksā pie taras nodošanas. EPR maksa par to pašu pudeli var būt jāmaksā papildus. Kalkulators depozītu nesummē — valstis ar aktīvu DRS ir tikai atzīmētas.",
+          },
+          {
+            q: "Vai CN kods ietekmē izmaksas?",
+            a: "EPR pienākumu CN kods nerada un neatceļ — to nosaka funkcija. Bet divos gadījumos kods ir svarīgs: ievedot tukšu iepakojumu kā preci un aprēķinot Spānijas plastmasas nodokli (€0,45/kg par nepārstrādātu plastmasu), kur deklarācija balstās uz CN kodiem. Šis nodoklis ir atsevišķs no PRO maksas un to iekasē nodokļu administrācija.",
+          },
+        ],
       },
       {
-        q: "Vai Amazon tiešām bloķē pārdevējus?",
-        a: "Jā. Tirdzniecības platformām ir pienākums pārbaudīt ražotāja numurus, un bez derīga numura sludinājumus attiecīgajā valstī var apturēt. Numurs ir ne tikai jāiegūst, bet arī jāievada pārdevēja kontā.",
+        title: "Dokumentācija un dati",
+        items: [
+          {
+            q: "Kas ir ES atbilstības deklarācija un cik ilgi tā jāglabā?",
+            a: "Tā ir rakstiska deklarācija, ka iepakojums atbilst PPWR prasībām; to sagatavo izgatavotājs un uzrāda pēc uzraudzības iestādes pieprasījuma. Vienreiz lietojamam iepakojumam tā jāglabā 5 gadus, atkārtoti izmantojamam — 10 gadus. Pienākums attiecas no 2026. gada 12. augusta, tāpēc dokumentus sagatavo iepriekš.",
+          },
+          {
+            q: "Kā ir ar marķēšanu un PFAS?",
+            a: "No 2026. gada 12. augusta piemēro prasības par vielām, kas rada bažas, tostarp PFAS robežkoncentrācijas — papildus jau esošajām smago metālu prasībām. Vienotā materiālu marķējuma un šķirošanas norāžu prasības nāk vēlāk, kad Eiropas Komisija pieņem īstenošanas aktu ar simboliem. Līdz tam nacionālās marķēšanas prasības paliek spēkā.",
+          },
+          {
+            q: "No kur nāk šie dati un cik tiem var uzticēties?",
+            a: "Katrs fakts nāk no atklāta JSON faila ar avota saiti un pārbaudes datumu. Kur avots ir oficiāls, tas ir atzīmēts; kur nav — ieraksts nes sarkano zīmogu “NAV PĀRBAUDĪTS”. Visi aprēķini ir indikatīvi un nav juridiska konsultācija: pirms reģistrācijas pārbaudi informāciju attiecīgās valsts oficiālajā avotā. Datus var pārbaudīt un labot GitHub repozitorijā.",
+          },
+        ],
       },
     ],
   },
@@ -454,7 +512,7 @@ export const lv = {
   footer: {
     licence: "MIT licence",
     dataProduct:
-      "Dati ir produkts. Katrs valsts fakts glabājas JSON failā ar avotu un pārbaudes datumu — nevis kodā.",
+      "Katrs fakts par valsti glabājas atklātā JSON failā ar avotu un pārbaudes datumu.",
     repo: "Click-Scale-Agency/packaging-navigator",
     credit: "Uztur Click Scale Agency",
     resourcesLabel: "Resursi",

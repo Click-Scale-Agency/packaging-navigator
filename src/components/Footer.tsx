@@ -1,7 +1,8 @@
 import lv from "@/i18n/lv";
 import { Barcode, Perforation, Press } from "@/components/primitives";
 
-const REPO = "https://github.com/Click-Scale-Agency/eu-packaging-hub";
+const REPO = "https://github.com/Click-Scale-Agency/packaging-navigator";
+const AGENCY = "https://clickscale.agency";
 
 export function Footer() {
   return (
@@ -32,7 +33,14 @@ export function Footer() {
           </div>
           <div>
             <span className="form-label">Uzturētājs</span>
-            <p className="data-value mt-2 text-sm">{lv.footer.credit}</p>
+            <a
+              href={AGENCY}
+              target="_blank"
+              rel="noreferrer"
+              className="data-value mt-2 block text-sm text-primary underline decoration-dashed underline-offset-4"
+            >
+              {lv.footer.credit}
+            </a>
             <div className="mt-6 h-10">
               <Barcode seed="CLICKSCALE" className="h-full opacity-70" />
             </div>

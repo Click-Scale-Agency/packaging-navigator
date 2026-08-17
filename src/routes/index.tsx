@@ -7,6 +7,7 @@ import { CountryCatalog } from "@/components/CountryCatalog";
 import { Faq } from "@/components/Faq";
 import { Footer } from "@/components/Footer";
 import { FunctionNotCode } from "@/components/FunctionNotCode";
+import { GuidePromo } from "@/components/GuidePromo";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { MarketplaceNumbers } from "@/components/MarketplaceNumbers";
@@ -19,6 +20,14 @@ const briefingThumb = briefing
   : null;
 
 export const Route = createFileRoute("/")({
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { w?: string | undefined; ship?: string | undefined; cc?: string | undefined } => ({
+    // Optional calculator pre-fill from the action guide deep-link.
+    w: typeof search["w"] === "string" ? (search["w"] as string) : undefined,
+    ship: typeof search["ship"] === "string" ? (search["ship"] as string) : undefined,
+    cc: typeof search["cc"] === "string" ? (search["cc"] as string) : undefined,
+  }),
   head: () => ({
     meta: [
       { title: lv.meta.title },
@@ -66,6 +75,7 @@ function Index() {
       <Header />
       <main>
         <Hero />
+        <GuidePromo />
         <Calculator />
         <CountryCatalog />
         <MarketplaceNumbers />

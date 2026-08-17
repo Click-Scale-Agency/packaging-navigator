@@ -224,3 +224,33 @@ Points 1/3/4 from the UX plan:
 ## 21. Latvian translation of user-facing country text (2026-08-16, Claude Code)
 
 The catalog is LV-first, but country data prose was English (with native terms). Translated every UI-RENDERED field to Latvian via a patch script (sets fields by path — numbers/rates/URLs/dates never touched; JSON round-trip is byte-identical so diffs stay clean): register.name descriptors, register.notes, thresholds.deMinimis, numberFormat, pro.membershipRequired (string variants), pro.schemes[].name descriptors, extraTaxes[].name/summary/collectedBy/rate, and sources[].title. Proper nouns kept in original/native (LUCID, PAKIS, GPAIS, Seznam osob, SIRER, RVVV, scheme names, law citations, portal URLs). Internal-only fields NOT rendered in the UI (country-level `notes`, `pro.ecoModulation`) were left as English documentation; the English audit trail also lives in this research log. Verified via a leftover-English scan (only remaining hit is SK's official Slovak register name, correctly kept).
+
+## 22. Action guide — "Ko man jādara?" decision tool, scope A (2026-08-17, Claude Code)
+
+Spec §3.3 "Ieteicamais lēmumu dzinējs": the site so far answered *"what does it cost / what are the facts"* (catalog + calculator + marketplace numbers). This adds the complementary *"what do I actually do"* layer, built as scope-A MVP (steps 1–3 + per-country action plan, all from existing `/data` — no new research).
+
+- **New route `/celvedis`** (`src/routes/celvedis.tsx`) + home teaser section `GuidePromo.tsx` (anchor `#celvedis`, placed after Hero) + nav Link `lv.nav.guide`.
+- **`ActionGuide.tsx`** — 3-step form: (1) destination countries, (2) sales channel (own webshop / marketplace / B2B), (3) who first makes the packaging available (you / local importer / platform). `buildPlan(country, channel, who)` derives a per-country plan: obligation holder, a task checklist (register + number format, authorised rep per Art. 45, PRO contract + membership, annual reporting, number-on-invoices, marketplace-number entry, extra taxes, DRS-if-beverages), an evidence list, and human-review flags. Tasks carry a level (obligāti / atkarībā / info). Honest by construction: unverified countries keep the red stamp + a "confirm against official source" flag; marketplace/B2B/who-first each add their own caveat flag; if the obligation rests with importer/platform the plan shifts to due-diligence tasks.
+- All copy in `lv.guide.*`. No canonical data changed. `validate-data.mjs` green; `vite build` green (route tree regenerated to include `/celvedis`).
+
+Deferred to scope B/C (awaiting user): packaging classification step (level/material/household-vs-commercial/reusable) wired to the calculator; scenario library (§14 ready-made "LV e-shop → DE/FR" profiles); exportable/printable action plan.
+
+## 23. Action guide scope B — packaging classification + calculator wiring (2026-08-17, Claude Code)
+
+Extends §22's guide with the packaging-classification step and connects it to the cost engine.
+
+- **Shared fee engine** `src/lib/fees.ts` — extracted `rateFor` / `extraTaxFor` / `computeCountryCost` / `kgPerYearFrom` from the Calculator so the guide and calculator compute identical numbers from one source. Calculator refactored to consume it (no behaviour change).
+- **Step 4 (classification)** in `ActionGuide.tsx`: material weights (g/shipment) + shipments/year, packaging level (sales / grouped / transport / e-commerce, multi-select), audience (household vs commercial), reuse (single vs reusable). `buildPlan` now takes the classification and adds informational context notes: e-commerce/transport counts as its own PPWR category; commercial packaging may follow a different reporting stream; reusable follows the reuse-target regime (per-use EPR may not apply the same); plastic → some MS levy a separate non-recycled-plastic tax on top of the PRO fee.
+- **Indicative cost per country** shown as a chip in each plan card (same engine as the calculator; PRO fee incl. minimum + registration; AR excluded, as in §16), or "nav publiskotas likmes" when no rates exist.
+- **Deep-link to the full calculator**: a button builds `/?w=paper:120,plastic:35&ship=2000&cc=DE,FR,ES#kalkulators`; the index route gained `validateSearch` (optional `w`/`ship`/`cc`) and the Calculator seeds its initial weights/shipments/selection from those params. Plain `<Link to="/">` links stay valid (search keys optional).
+- tsc clean (strict `exactOptionalPropertyTypes` + `noPropertyAccessFromIndexSignature`); `vite build` + `validate-data.mjs` green.
+
+## 24. Action guide scope C — scenario library + exportable plan (2026-08-17, Claude Code)
+
+Completes the guide (spec §14 + exportable output).
+
+- **Scenario library**: 5 ready-made Baltic/LV-first profiles (`SCENARIOS` in `ActionGuide.tsx`) that pre-fill every step and let the user tweak: "LV e-veikals → DE + FR", "LV pārdevējs Amazon → DE", "Baltijas e-veikals → LV + LT + EE", "Populārākie ES tirgi (DE/FR/ES/IT/NL/BE)", "Ievešana caur vietējo importētāju (B2B)". Rendered as a card row above step 1.
+- **Exportable plan**: "Kopēt plānu" builds a full plain-text plan (per-country obligation holder, task checklist with levels + URLs, classification notes, evidence, human-review flags, indicative cost, plus the disclaimer) to the clipboard; "Drukāt / saglabāt PDF" calls `window.print()`. The four input steps + scenario bar + action buttons carry `print:hidden`, so a print/PDF shows only the plan cards.
+- tsc clean; `vite build` + `validate-data.mjs` green. Scenario titles/descriptions are LV content strings co-located with their state config (whole app is LV-only).
+
+Guide is now feature-complete across A/B/C: guided who-must-do-what flow, packaging classification, per-country cost via the shared engine, calculator deep-link, ready-made scenarios, and a copy/print action plan — all derived from canonical /data, nothing hardcoded.

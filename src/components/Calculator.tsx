@@ -1,9 +1,10 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useSearch } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import lv from "@/i18n/lv";
-import { countries, MATERIALS, type CountryData, type MaterialKey } from "@/data";
+import { countries, MATERIALS, type MaterialKey } from "@/data";
+import { computeCountryCost, kgPerYearFrom } from "@/lib/fees";
 import {
   PRESS_SPRING,
   Press,
@@ -14,21 +15,20 @@ import { cn } from "@/lib/utils";
 
 const DEFAULT_SELECTION = ["DE", "LV", "ES"];
 
-/** Average of a scheme's published rates for a material, or null. */
-function rateFor(country: CountryData, material: MaterialKey): number | null {
-  const values = country.pro
-    .map((scheme) => scheme.rates?.[material])
-    .filter((v): v is number => typeof v === "number");
-  if (!values.length) return null;
-  return values.reduce((a, b) => a + b, 0) / values.length;
-}
-
-function extraTaxFor(country: CountryData, material: MaterialKey): number | null {
-  const values = country.extraTaxes
-    .filter((t) => t.material === material && typeof t.ratePerKg === "number")
-    .map((t) => t.ratePerKg as number);
-  if (!values.length) return null;
-  return values.reduce((a, b) => a + b, 0);
+/** Parse "paper:120,plastic:35" from a deep-link into a weights record. */
+function parseWeights(raw?: string): Record<MaterialKey, string> | null {
+  if (!raw) return null;
+  const out = {} as Record<MaterialKey, string>;
+  for (const m of MATERIALS) out[m] = "";
+  let touched = false;
+  for (const pair of raw.split(",")) {
+    const [key, val] = pair.split(":");
+    if (key && val && (MATERIALS as string[]).includes(key) && /^\d+(\.\d+)?$/.test(val)) {
+      out[key as MaterialKey] = val;
+      touched = true;
+    }
+  }
+  return touched ? out : null;
 }
 
 function useCountUp(value: number) {
@@ -57,25 +57,43 @@ function Money({ value }: { value: number }) {
 }
 
 export function Calculator() {
-  const [weights, setWeights] = useState<Record<MaterialKey, string>>({
-    paper: "120",
-    plastic: "35",
-    glass: "",
-    metal: "",
-    wood: "",
-    composite: "",
-  });
-  const [shipments, setShipments] = useState("2000");
+  // Optional deep-link params from the action guide (?w=…&ship=…&cc=…).
+  const search = useSearch({ strict: false }) as {
+    w?: string;
+    ship?: string;
+    cc?: string;
+  };
+  const seededWeights = parseWeights(search.w);
+  const seededCc = search.cc
+    ? search.cc
+        .split(",")
+        .map((c) => c.toUpperCase())
+        .filter((c) => countries.some((x) => x.code === c))
+    : null;
+
+  const [weights, setWeights] = useState<Record<MaterialKey, string>>(
+    seededWeights ?? {
+      paper: "120",
+      plastic: "35",
+      glass: "",
+      metal: "",
+      wood: "",
+      composite: "",
+    },
+  );
+  const [shipments, setShipments] = useState(
+    search.ship && /^\d+$/.test(search.ship) ? search.ship : "2000",
+  );
   const [arFee, setArFee] = useState("400");
-  const [selected, setSelected] = useState<string[]>(DEFAULT_SELECTION);
+  const [selected, setSelected] = useState<string[]>(
+    seededCc && seededCc.length ? seededCc : DEFAULT_SELECTION,
+  );
   const [copied, setCopied] = useState(false);
 
-  const kgPerYear = useMemo(() => {
-    const n = Number(shipments) || 0;
-    const out = {} as Record<MaterialKey, number>;
-    for (const m of MATERIALS) out[m] = ((Number(weights[m]) || 0) * n) / 1000;
-    return out;
-  }, [weights, shipments]);
+  const kgPerYear = useMemo(
+    () => kgPerYearFrom(weights, shipments),
+    [weights, shipments],
+  );
 
   const totalKg = MATERIALS.reduce((sum, m) => sum + kgPerYear[m], 0);
 
@@ -84,42 +102,17 @@ export function Calculator() {
       countries
         .filter((c) => selected.includes(c.code))
         .map((country) => {
-          let variable = 0;
-          let hasRate = false;
-          for (const m of MATERIALS) {
-            const rate = rateFor(country, m);
-            const tax = extraTaxFor(country, m);
-            if (rate !== null) {
-              variable += rate * kgPerYear[m];
-              hasRate = true;
-            }
-            if (tax !== null) {
-              variable += tax * kgPerYear[m];
-              hasRate = true;
-            }
-          }
-          // §16 full-cost model: the PRO fee is the greater of the variable
-          // packaging fee and the minimum annual fee; add the state
-          // registration cost; flag (but don't price) the authorised rep.
-          const minFee =
-            country.pro.find((p) => p.minAnnualFeeEur !== null)?.minAnnualFeeEur ??
-            null;
-          const proFee = Math.max(variable, minFee ?? 0);
-          const minApplied = minFee !== null && minFee > variable;
-          const regCost = country.register.registrationCostEur ?? 0;
-          const fee = proFee + regCost;
-          const known = hasRate || minFee !== null || regCost > 0;
-          const blended = hasRate && totalKg > 0 ? variable / totalKg : null;
+          const cost = computeCountryCost(country, kgPerYear, totalKg);
           return {
             country,
-            fee,
-            variable,
-            proFee,
-            minFee,
-            minApplied,
-            regCost,
-            hasRate: known,
-            blended,
+            fee: cost.total,
+            variable: cost.variable,
+            proFee: cost.proFee,
+            minFee: cost.minFee,
+            minApplied: cost.minApplied,
+            regCost: cost.regCost,
+            hasRate: cost.known,
+            blended: cost.blended,
             arRequired: country.register.arRequired === true,
             drsActive: country.drs?.active === true,
           };

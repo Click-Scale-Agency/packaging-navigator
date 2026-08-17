@@ -234,3 +234,13 @@ Spec §3.3 "Ieteicamais lēmumu dzinējs": the site so far answered *"what does 
 - All copy in `lv.guide.*`. No canonical data changed. `validate-data.mjs` green; `vite build` green (route tree regenerated to include `/celvedis`).
 
 Deferred to scope B/C (awaiting user): packaging classification step (level/material/household-vs-commercial/reusable) wired to the calculator; scenario library (§14 ready-made "LV e-shop → DE/FR" profiles); exportable/printable action plan.
+
+## 23. Action guide scope B — packaging classification + calculator wiring (2026-08-17, Claude Code)
+
+Extends §22's guide with the packaging-classification step and connects it to the cost engine.
+
+- **Shared fee engine** `src/lib/fees.ts` — extracted `rateFor` / `extraTaxFor` / `computeCountryCost` / `kgPerYearFrom` from the Calculator so the guide and calculator compute identical numbers from one source. Calculator refactored to consume it (no behaviour change).
+- **Step 4 (classification)** in `ActionGuide.tsx`: material weights (g/shipment) + shipments/year, packaging level (sales / grouped / transport / e-commerce, multi-select), audience (household vs commercial), reuse (single vs reusable). `buildPlan` now takes the classification and adds informational context notes: e-commerce/transport counts as its own PPWR category; commercial packaging may follow a different reporting stream; reusable follows the reuse-target regime (per-use EPR may not apply the same); plastic → some MS levy a separate non-recycled-plastic tax on top of the PRO fee.
+- **Indicative cost per country** shown as a chip in each plan card (same engine as the calculator; PRO fee incl. minimum + registration; AR excluded, as in §16), or "nav publiskotas likmes" when no rates exist.
+- **Deep-link to the full calculator**: a button builds `/?w=paper:120,plastic:35&ship=2000&cc=DE,FR,ES#kalkulators`; the index route gained `validateSearch` (optional `w`/`ship`/`cc`) and the Calculator seeds its initial weights/shipments/selection from those params. Plain `<Link to="/">` links stay valid (search keys optional).
+- tsc clean (strict `exactOptionalPropertyTypes` + `noPropertyAccessFromIndexSignature`); `vite build` + `validate-data.mjs` green.

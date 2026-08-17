@@ -3,20 +3,33 @@ import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
 import lv from "@/i18n/lv";
-import { countries, type CountryData } from "@/data";
+import { countries, MATERIALS, type CountryData, type MaterialKey } from "@/data";
+import { computeCountryCost, kgPerYearFrom } from "@/lib/fees";
 import { PRESS_SPRING, Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
 import { cn } from "@/lib/utils";
 
 type Channel = "own" | "marketplace" | "b2b";
 type WhoFirst = "you" | "importer" | "platform";
 type Level = "required" | "conditional" | "info";
+type PackLevel = "sales" | "grouped" | "transport" | "ecom";
+type Audience = "household" | "commercial";
+type Reuse = "single" | "reusable";
 
 interface Task {
   key: string;
   label: string;
-  detail?: string;
-  url?: string;
+  detail?: string | undefined;
+  url?: string | undefined;
   level: Level;
+}
+
+interface Classification {
+  levels: PackLevel[];
+  audience: Audience;
+  reuse: Reuse;
+  hasPlastic: boolean;
+  kgPerYear: Record<MaterialKey, number>;
+  totalKg: number;
 }
 
 interface Plan {
@@ -25,7 +38,9 @@ interface Plan {
   obligationNote: string;
   tasks: Task[];
   evidence: string[];
+  notes: string[];
   flags: string[];
+  costLabel: string | null;
 }
 
 const DEFAULT_SELECTION = ["DE", "FR", "ES"];
@@ -36,11 +51,17 @@ function proNames(country: CountryData): string {
 }
 
 /** Derive the concrete, per-country action plan from the canonical data + the
- * three answers. Everything here reads from /data via the ./data bridge —
+ * four answers. Everything here reads from /data via the ./data bridge —
  * no country facts are hardcoded. */
-function buildPlan(country: CountryData, channel: Channel, who: WhoFirst): Plan {
+function buildPlan(
+  country: CountryData,
+  channel: Channel,
+  who: WhoFirst,
+  cls: Classification,
+): Plan {
   const tasks: Task[] = [];
   const evidence: string[] = [];
+  const notes: string[] = [];
   const flags: string[] = [];
 
   const reg = country.register;
@@ -138,9 +159,19 @@ function buildPlan(country: CountryData, channel: Channel, who: WhoFirst): Plan 
   } else {
     tasks.push({ key: "plat-confirm", label: lv.guide.taskPlatformConfirm, level: "required" });
     evidence.push(lv.guide.evidenceImporterNumber);
-    // The platform may cover this channel only — direct sales stay the seller's duty.
     tasks.push({ key: "plat-report", label: lv.guide.taskReport, level: "conditional" });
   }
+
+  // Classification-driven context notes (informational).
+  if (cls.levels.includes("ecom") || cls.levels.includes("transport"))
+    notes.push(lv.guide.noteEcom);
+  if (cls.audience === "commercial") notes.push(lv.guide.noteCommercial);
+  if (cls.reuse === "reusable") notes.push(lv.guide.noteReusable);
+  if (cls.hasPlastic) notes.push(lv.guide.notePlastic);
+
+  // Indicative annual cost from the shared fee engine (same as the calculator).
+  const cost = computeCountryCost(country, cls.kgPerYear, cls.totalKg);
+  const costLabel = cost.known ? lv.guide.costChip(cost.total.toFixed(0)) : null;
 
   // Flags — always honest about verification + channel nuance.
   if (!country.verified) flags.push(lv.guide.flagUnverified(country.code));
@@ -148,7 +179,7 @@ function buildPlan(country: CountryData, channel: Channel, who: WhoFirst): Plan 
   if (channel === "b2b") flags.push(lv.guide.flagB2b);
   flags.push(lv.guide.flagWhoFirst);
 
-  return { country, obligationYou, obligationNote, tasks, evidence, flags };
+  return { country, obligationYou, obligationNote, tasks, evidence, notes, flags, costLabel };
 }
 
 const LEVEL_STYLE: Record<Level, string> = {
@@ -201,23 +232,93 @@ function OptionCard({
   );
 }
 
+function Chip({
+  active,
+  label,
+  onClick,
+}: {
+  active: boolean;
+  label: string;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn(
+        "data-value border px-3 py-1.5 text-xs uppercase tracking-[0.08em] transition-all active:scale-95",
+        active
+          ? "border-foreground bg-foreground text-background"
+          : "border-border-strong text-muted-foreground hover:border-primary hover:text-primary",
+      )}
+    >
+      {label}
+    </button>
+  );
+}
+
+function StepHead({ label, title, hint }: { label: string; title: string; hint: string }) {
+  return (
+    <>
+      <div className="flex items-baseline gap-4">
+        <span className="form-label">{label}</span>
+        <span className="h-px flex-1 border-t border-dashed border-border-strong" />
+      </div>
+      <h3 className="mt-4 text-xl md:text-2xl">{title}</h3>
+      <p className="mt-2 max-w-[60ch] text-sm text-muted-foreground">{hint}</p>
+    </>
+  );
+}
+
 export function ActionGuide() {
   const [selected, setSelected] = useState<string[]>(DEFAULT_SELECTION);
   const [channel, setChannel] = useState<Channel>("own");
   const [who, setWho] = useState<WhoFirst>("you");
+
+  // Step 4 — packaging classification.
+  const [weights, setWeights] = useState<Record<MaterialKey, string>>({
+    paper: "120",
+    plastic: "35",
+    glass: "",
+    metal: "",
+    wood: "",
+    composite: "",
+  });
+  const [shipments, setShipments] = useState("2000");
+  const [levels, setLevels] = useState<PackLevel[]>(["sales", "ecom"]);
+  const [audience, setAudience] = useState<Audience>("household");
+  const [reuse, setReuse] = useState<Reuse>("single");
 
   const toggle = (code: string) =>
     setSelected((prev) =>
       prev.includes(code) ? prev.filter((c) => c !== code) : [...prev, code],
     );
 
+  const toggleLevel = (l: PackLevel) =>
+    setLevels((prev) => (prev.includes(l) ? prev.filter((x) => x !== l) : [...prev, l]));
+
+  const kgPerYear = useMemo(() => kgPerYearFrom(weights, shipments), [weights, shipments]);
+  const totalKg = MATERIALS.reduce((sum, m) => sum + kgPerYear[m], 0);
+  const hasPlastic = (Number(weights.plastic) || 0) > 0;
+
+  const cls: Classification = useMemo(
+    () => ({ levels, audience, reuse, hasPlastic, kgPerYear, totalKg }),
+    [levels, audience, reuse, hasPlastic, kgPerYear, totalKg],
+  );
+
   const plans = useMemo(
     () =>
       countries
         .filter((c) => selected.includes(c.code))
-        .map((c) => buildPlan(c, channel, who)),
-    [selected, channel, who],
+        .map((c) => buildPlan(c, channel, who, cls)),
+    [selected, channel, who, cls],
   );
+
+  // Deep-link payload for the full calculator.
+  const encodedWeights = MATERIALS.filter((m) => (Number(weights[m]) || 0) > 0)
+    .map((m) => `${m}:${weights[m]}`)
+    .join(",");
 
   return (
     <section className="border-b border-dashed border-border-strong">
@@ -231,12 +332,11 @@ export function ActionGuide() {
 
         {/* Step 1 — countries */}
         <Press delay={0.05} className="mt-14">
-          <div className="flex items-baseline gap-4">
-            <span className="form-label">{lv.guide.step1Label}</span>
-            <span className="h-px flex-1 border-t border-dashed border-border-strong" />
-          </div>
-          <h3 className="mt-4 text-xl md:text-2xl">{lv.guide.step1Title}</h3>
-          <p className="mt-2 max-w-[60ch] text-sm text-muted-foreground">{lv.guide.step1Hint}</p>
+          <StepHead
+            label={lv.guide.step1Label}
+            title={lv.guide.step1Title}
+            hint={lv.guide.step1Hint}
+          />
           <div className="mt-5 flex flex-wrap gap-2">
             {countries.map((c) => {
               const on = selected.includes(c.code);
@@ -262,12 +362,11 @@ export function ActionGuide() {
 
         {/* Step 2 — channel */}
         <Press delay={0.06} className="mt-14">
-          <div className="flex items-baseline gap-4">
-            <span className="form-label">{lv.guide.step2Label}</span>
-            <span className="h-px flex-1 border-t border-dashed border-border-strong" />
-          </div>
-          <h3 className="mt-4 text-xl md:text-2xl">{lv.guide.step2Title}</h3>
-          <p className="mt-2 max-w-[60ch] text-sm text-muted-foreground">{lv.guide.step2Hint}</p>
+          <StepHead
+            label={lv.guide.step2Label}
+            title={lv.guide.step2Title}
+            hint={lv.guide.step2Hint}
+          />
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             <OptionCard
               active={channel === "own"}
@@ -292,12 +391,11 @@ export function ActionGuide() {
 
         {/* Step 3 — who first */}
         <Press delay={0.07} className="mt-14">
-          <div className="flex items-baseline gap-4">
-            <span className="form-label">{lv.guide.step3Label}</span>
-            <span className="h-px flex-1 border-t border-dashed border-border-strong" />
-          </div>
-          <h3 className="mt-4 text-xl md:text-2xl">{lv.guide.step3Title}</h3>
-          <p className="mt-2 max-w-[60ch] text-sm text-muted-foreground">{lv.guide.step3Hint}</p>
+          <StepHead
+            label={lv.guide.step3Label}
+            title={lv.guide.step3Title}
+            hint={lv.guide.step3Hint}
+          />
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             <OptionCard
               active={who === "you"}
@@ -320,8 +418,84 @@ export function ActionGuide() {
           </div>
         </Press>
 
+        {/* Step 4 — packaging classification */}
+        <Press delay={0.08} className="mt-14">
+          <StepHead
+            label={lv.guide.step4Label}
+            title={lv.guide.step4Title}
+            hint={lv.guide.step4Hint}
+          />
+          <div className="mt-6 grid gap-8 lg:grid-cols-2">
+            <div>
+              <span className="form-label">{lv.guide.classMaterialsTitle}</span>
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                {MATERIALS.map((m) => (
+                  <label key={m} className="block border border-border-strong px-3 py-2">
+                    <span className="form-label block truncate">{lv.materials[m]}</span>
+                    <input
+                      inputMode="decimal"
+                      value={weights[m]}
+                      onChange={(e) =>
+                        setWeights((w) => ({
+                          ...w,
+                          [m]: e.target.value.replace(/[^\d.]/g, ""),
+                        }))
+                      }
+                      placeholder="0"
+                      className="data-value mt-1 w-full bg-transparent text-lg outline-none placeholder:text-muted-foreground focus:text-primary"
+                      aria-label={lv.materials[m]}
+                    />
+                  </label>
+                ))}
+              </div>
+              <div className="mt-4">
+                <span className="form-label">{lv.guide.classShipmentsLabel}</span>
+                <input
+                  inputMode="numeric"
+                  value={shipments}
+                  onChange={(e) => setShipments(e.target.value.replace(/[^\d]/g, ""))}
+                  className="data-value mt-2 w-full border-b-2 border-foreground bg-transparent pb-2 text-2xl outline-none focus:border-primary focus:text-primary"
+                  aria-label={lv.guide.classShipmentsLabel}
+                />
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <span className="form-label">{lv.guide.classLevelsTitle}</span>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Chip active={levels.includes("sales")} label={lv.guide.levelSales} onClick={() => toggleLevel("sales")} />
+                  <Chip active={levels.includes("grouped")} label={lv.guide.levelGrouped} onClick={() => toggleLevel("grouped")} />
+                  <Chip active={levels.includes("transport")} label={lv.guide.levelTransport} onClick={() => toggleLevel("transport")} />
+                  <Chip active={levels.includes("ecom")} label={lv.guide.levelEcom} onClick={() => toggleLevel("ecom")} />
+                </div>
+              </div>
+              <div>
+                <span className="form-label">{lv.guide.classAudienceTitle}</span>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Chip active={audience === "household"} label={lv.guide.audienceHousehold} onClick={() => setAudience("household")} />
+                  <Chip active={audience === "commercial"} label={lv.guide.audienceCommercial} onClick={() => setAudience("commercial")} />
+                </div>
+              </div>
+              <div>
+                <span className="form-label">{lv.guide.classReuseTitle}</span>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Chip active={reuse === "single"} label={lv.guide.reuseSingle} onClick={() => setReuse("single")} />
+                  <Chip active={reuse === "reusable"} label={lv.guide.reuseReusable} onClick={() => setReuse("reusable")} />
+                </div>
+              </div>
+              <div className="border-t border-dashed border-border-strong pt-4">
+                <span className="form-label">{lv.calculator.totalWeightLabel}</span>
+                <p className="data-value mt-1 text-2xl">
+                  {totalKg.toLocaleString("lv-LV", { maximumFractionDigits: 1 })} kg
+                </p>
+              </div>
+            </div>
+          </div>
+        </Press>
+
         {/* Result */}
-        <Press delay={0.08} className="mt-16">
+        <Press delay={0.09} className="mt-16">
           <div className="flex items-baseline gap-4">
             <span className="form-label">→</span>
             <span className="h-px flex-1 border-t border-dashed border-border-strong" />
@@ -352,6 +526,15 @@ export function ActionGuide() {
                         <span className="form-label ml-3">{plan.country.name}</span>
                       </div>
                       {!plan.country.verified ? <UnverifiedStamp short /> : null}
+                    </div>
+
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span
+                        title={lv.guide.costChipTitle}
+                        className="border border-border-strong px-2 py-1 font-mono text-[11px] text-foreground"
+                      >
+                        {plan.costLabel ?? lv.guide.costUnknown}
+                      </span>
                     </div>
 
                     <div
@@ -413,6 +596,20 @@ export function ActionGuide() {
                       ))}
                     </ul>
 
+                    {/* Classification notes */}
+                    {plan.notes.length ? (
+                      <ul className="mt-4 space-y-1">
+                        {plan.notes.map((n) => (
+                          <li
+                            key={n}
+                            className="border-l-2 border-border pl-2 text-xs leading-snug text-muted-foreground"
+                          >
+                            {n}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+
                     {/* Evidence */}
                     {plan.evidence.length ? (
                       <>
@@ -454,6 +651,19 @@ export function ActionGuide() {
                   </motion.div>
                 ))}
               </div>
+
+              <Link
+                to="/"
+                hash="kalkulators"
+                search={{
+                  w: encodedWeights || undefined,
+                  ship: shipments || undefined,
+                  cc: selected.join(",") || undefined,
+                }}
+                className="data-value mt-8 inline-flex items-center border-2 border-foreground px-5 py-3 text-sm font-bold uppercase tracking-[0.06em] transition-colors hover:border-primary hover:text-primary"
+              >
+                {lv.guide.openCalculator} →
+              </Link>
             </>
           )}
           <p className="mt-8 border border-dashed border-border-strong px-3 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">

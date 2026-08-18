@@ -572,10 +572,6 @@ export const lv = {
         label: "VID — Dabas resursu nodoklis par iepakojumu",
         url: "https://www.vid.gov.lv/lv/biezak-uzdotie-jautajumi-katalogs/dabas-resursu-nodoklis-nodoklis-par-videi-kaitigam-precem-un-iepakojumu",
       },
-      {
-        label: "evoex — Packaging tax for e-commerce (DRN, EPR, invoicing)",
-        url: "https://evoex.eu/en/blogs/packaging-tax-for-e-commerce-drn-epr-and-invoicing",
-      },
     ],
     disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
   },

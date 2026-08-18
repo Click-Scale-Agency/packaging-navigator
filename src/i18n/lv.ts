@@ -416,7 +416,7 @@ export const lv = {
   faq: {
     kicker: "Sadaļa 06",
     title: "Bieži uzdotie jautājumi",
-    lead: "Astoņpadsmit jautājumi, ko e-veikali uzdod visbiežāk. Atbildes balstās uz šajā lapā apkopotajiem datiem un regulas tekstu.",
+    lead: "Divdesmit divi jautājumi, ko e-veikali uzdod visbiežāk. Atbildes balstās uz šajā lapā apkopotajiem datiem, regulas tekstu un oficiālo EK BUJ.",
     groups: [
       {
         title: "Pamati",
@@ -510,6 +510,27 @@ export const lv = {
           },
         ],
       },
+      {
+        title: "Rēķini, DRN un norādīšana klientam",
+        items: [
+          {
+            q: "Vai EPR maksa vai DRN jārāda atsevišķi rēķinā vai pie kases?",
+            a: "Nē. EPR maksas un dabas resursu nodoklis (DRN) ir uzņēmuma izmaksas, kas iekļautas preces cenā, nevis atsevišķa rinda klienta rēķinā vai grozā. Vienīgais, ko norāda atsevišķi, ir atmaksājamais depozīts par dzērienu iepakojumu (Latvijā €0,10 par vienību) — tas ir depozīta sistēmas (DRS), nevis EPR daļa, un to klientam atmaksā, nododot taru. Praksē: PRO izraksta rēķinu tev, tu to sedz kā izmaksu; pircējam redzama tikai preces cena un attiecīgā gadījumā depozīts.",
+          },
+          {
+            q: "Kā Latvijā aprēķina DRN un no kura brīža jāreģistrējas?",
+            a: "DRN maksā tas, kas iepakotu preci pirmais laiž Latvijas tirgū. Nodokli rēķina no kopējā gadā tirgū laistā iepakojuma svara pa materiāliem, nevis par katru pasūtījumu atsevišķi. Iepakotājam, kura izlietotā iepakojuma apjoms kalendāra gadā pārsniedz 300 kg, triju mēnešu laikā jāreģistrējas Valsts vides dienesta (VVD) reģionālajā vides pārvaldē. Daudzi mazie un vidējie e-veikali pievienojas apsaimniekotājam (piem., Zaļā josta, Zaļais punkts) un par pareizi apsaimniekoto iepakojumu saņem DRN atbrīvojumu, maksājot apsaimniekotājam servisa maksu.",
+          },
+          {
+            q: "Ievedu preces Latvijā — vai DRN maksātājs esmu es?",
+            a: "Jā. Ievedot preci Latvijā, importētājs kļūst par DRN maksātāju par preces iepakojumu — primāro, sekundāro un transporta. Ārvalsts personai, kura VID nav reģistrēta kā nodokļu maksātāja, kurai nav pastāvīgās pārstāvniecības un kura nav noslēgusi rakstveida līgumu par saistību pārņemšanu, VID nav jāiesniedz pārskats — tā DRN vienkārši iemaksā valsts budžeta kontā. Praksē lielākā daļa pārņem saistības ar līgumu vai pievienojas apsaimniekotājam, lai kārtotu uzskaiti un iegūtu atbrīvojumu.",
+          },
+          {
+            q: "Kā notiek pārrobežu EPR rēķini un cik bieži jāziņo?",
+            a: "Katrā mērķa valstī: (1) reģistrējies ražotāju reģistrā un iegūsti numuru (piem., LUCID Vācijā, IDU/UIN Francijā), (2) noslēdz līgumu ar vietējo PRO, (3) deklarē tirgū laistā iepakojuma svaru pa materiāliem, (4) PRO izraksta rēķinu pēc deklarētajiem datiem. Ziņošanas biežums šobrīd atšķiras (ceturksnī vai reizi gadā), bet pēc PPWR harmonizētajiem noteikumiem ražotāji ziņo līdz jūnijam par katru pilno iepriekšējo kalendāro gadu — pirmā harmonizētā atskaite pēc oficiālā EK BUJ jāsniedz līdz 2030. gada 1. jūnijam. Tirdzniecības platforma pēc rakstiska pilnvarojuma var samaksāt tavas EPR maksas (45. panta 4. punkts), taču pati reģistrācija un ziņošana paliek tavā (vai PRO / pilnvarotā pārstāvja) atbildībā.",
+          },
+        ],
+      },
     ],
   },
   badge: {
@@ -525,6 +546,37 @@ export const lv = {
     resourcesLabel: "Resursi",
     methodology: "Metodoloģija un statusi",
     changelog: "Izmaiņu žurnāls",
+    sourcesLabel: "Galvenie avoti",
+    sources: [
+      {
+        label: "Regula (ES) 2025/40 (PPWR) — EUR-Lex",
+        url: "https://eur-lex.europa.eu/eli/reg/2025/40/oj",
+      },
+      {
+        label: "EK PPWR biežāk uzdotie jautājumi (2. izd., ceļvedis)",
+        url: "https://environment.ec.europa.eu/publications/faq-packaging-and-packaging-waste-regulation-ppwr_en",
+      },
+      {
+        label: "EK vadlīnijas C(2026) 3702",
+        url: "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=intcom%3AC%282026%293702",
+      },
+      {
+        label: "ES publikācijas (op.europa.eu)",
+        url: "https://op.europa.eu/en/publications",
+      },
+      {
+        label: "Dabas resursu nodokļa likums — likumi.lv",
+        url: "https://likumi.lv/ta/id/124707-dabas-resursu-nodokla-likums",
+      },
+      {
+        label: "VID — Dabas resursu nodoklis par iepakojumu",
+        url: "https://www.vid.gov.lv/lv/biezak-uzdotie-jautajumi-katalogs/dabas-resursu-nodoklis-nodoklis-par-videi-kaitigam-precem-un-iepakojumu",
+      },
+      {
+        label: "evoex — Packaging tax for e-commerce (DRN, EPR, invoicing)",
+        url: "https://evoex.eu/en/blogs/packaging-tax-for-e-commerce-drn-epr-and-invoicing",
+      },
+    ],
     disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
   },
 } as const;

@@ -2,6 +2,15 @@
 
 Būtiskās datu un metodoloģijas izmaiņas. Formāts seko [Keep a Changelog](https://keepachangelog.com/) principam; datumi ISO (YYYY-MM-DD).
 
+## [Nepubliskots] — rēķinu/DRN sadaļa + oficiālā EK BUJ ceļvedis (2026-08-18)
+
+Papildināta lapa ar informāciju no oficiālā EK PPWR BUJ ceļveža (2. izd., DG ENV, KH-01-26-068-EN-N) un evoex bloga raksta par iepakojuma nodokļiem e-komercijā (DRN, EPR, rēķini).
+
+- **Jauna BUJ grupa “Rēķini, DRN un norādīšana klientam”** (4 jautājumi): EPR/DRN nerāda atsevišķi rēķinā vai kasē (tikai atmaksājamo depozītu €0,10); LV DRN aprēķins un 300 kg/gadā reģistrācijas slieksnis VVD; importētājs kā DRN maksātājs; pārrobežu EPR rēķini un ziņošana. BUJ lapā tagad 22 jautājumi.
+- **`regulation.json` — oficiālais EK BUJ ceļvedis** pievienots kā precīzi citēts avots (2. izd., katalogs KH-01-26-068-EN-N, CC BY 4.0); pievienota `euPublications` saite. `notes` papildināts ar EK BUJ faktiem (XVIII–XX nod.): pirmā harmonizētā EPR atskaite jāsniedz **līdz 2030-06-01**; <10 t/gadā samazināti ziņošanas pienākumi; platforma pēc rakstiska pilnvarojuma var maksāt EPR maksas (45. p. 4. d.), bet reģistrācija/ziņošana paliek ražotājam; ekomodulācija harmonizēta uz 6. panta pārstrādājamības klasēm.
+- **Kājenē “Galvenie avoti”** — atsauču bloks ar oficiālajiem avotiem (EUR-Lex PPWR, EK BUJ ceļvedis, EK vadlīnijas C(2026) 3702, op.europa.eu), LV DRN likumu + VID, un evoex bloga rakstu.
+- LV DRN 300 kg slieksnis un €0,10 depozīts pārbaudīti pret oficiālajiem avotiem (likumi.lv, VID, VARAM); precizēts, ka 300 kg reģistrācija ir VVD (nevis VID, kā vedināja bloga formulējums).
+
 ## [Nepubliskots] — validācijas partijas glābšana (no PR #9)
 
 Pārceltas vēl vērtīgās daļas no agrākas validācijas partijas (PR #9), kas bija novecojusi un konfliktēja ar `main`; dublētās daļas (LV DRN, ES tags) atmestas, jo tās jau ir izdarītas citādi.

@@ -254,3 +254,25 @@ Completes the guide (spec §14 + exportable output).
 - tsc clean; `vite build` + `validate-data.mjs` green. Scenario titles/descriptions are LV content strings co-located with their state config (whole app is LV-only).
 
 Guide is now feature-complete across A/B/C: guided who-must-do-what flow, packaging classification, per-country cost via the shared engine, calculator deep-link, ready-made scenarios, and a copy/print action plan — all derived from canonical /data, nothing hardcoded.
+
+## 25. Invoicing/DRN enrichment + official EC FAQ guide book (2026-08-18, Claude Code)
+
+Inputs: (a) the official **EC PPWR FAQ, 2nd edition** (DG ENV Unit B.1, manuscript March 2026 / updated August 2026, Publications Office cat. **KH-01-26-068-EN-N**, CC BY 4.0, 69 pp., 20 chapters) — supplied as PDF, this is the "guide book"; and (b) the **evoex** blog "Packaging tax for e-commerce — DRN, EPR and invoicing" (https://evoex.eu/en/blogs/packaging-tax-for-e-commerce-drn-epr-and-invoicing). The site had catalog + calculator + guide but no coverage of the **invoicing / how fees appear to the customer** angle — that was the gap this session filled.
+
+New facts read from the official FAQ (ch. XVIII EPR, XIX return/collection, XX DRS):
+- **First harmonised EPR report is due 1 June 2030** — producers report by June for each full preceding calendar year; registers are set up 18 months after the Art. 44(14) format implementing act (due 02.2026). (Sharper than the blog's "quarterly or annually".)
+- **No general micro-enterprise EPR exemption**, but **<10 t/year** in a Member State → reduced reporting; a micro-enterprise manufacturer that is also the producer is exempt when its packaging-material supplier is established in the same Member State.
+- **Online platforms** may, on a **written mandate**, pay a producer's EPR fees (Art. 45(4)), but registration + reporting stay with the producer / PRO / AR unless the platform is appointed AR; platforms must verify EPR registration before allowing sales (Art. 45(6), DSA) — confirms observed Amazon behaviour.
+- Eco-modulation harmonised on the Art. 6 recyclability grades.
+
+Blog claims cross-checked against primary LV sources before encoding (blog had one imprecision):
+- **DRN 300 kg/year registration threshold** — CONFIRMED (Dabas resursu nodokļa likums, likumi.lv; VID FAQ): a packer whose used-packaging exceeds 300 kg/calendar year registers with the **VVD** (Valsts vides dienests) regional environmental board within 3 months. The blog said "State Revenue Service (VID)" — corrected to VVD (VID handles the tax return/payment side; a foreign person not VID-registered and without a permanent establishment/assumption contract just pays DRN into the state budget account, no return).
+- **€0.10 beverage deposit** (DRS) — CONFIRMED (VARAM, depozitapunkts.lv); shown separately to the consumer, refundable, distinct from EPR.
+- DRN is charged to whoever first places packaged goods on the LV market, by total annual weight × material (not per order); SMEs typically join a scheme operator (Zaļā josta, Zaļais punkts) for the DRN exemption against a service fee.
+
+Changes:
+- `data/regulation.json` — official EC FAQ guide book added as a precisely-cited `official` source (2nd ed., cat. KH-01-26-068-EN-N); `links.euPublications` added; `notes` extended with the EPR FAQ facts above. Schema-valid (27 countries + regulation + cn-codes), tsc + vite build green.
+- `src/i18n/lv.ts` — new FAQ group **"Rēķini, DRN un norādīšana klientam"** (4 Q&A); FAQ count 18 → 22; lead updated to credit the official EC FAQ.
+- `src/components/Footer.tsx` + `lv.footer.sources` — new **"Galvenie avoti"** references block in the footer (EUR-Lex PPWR, EC FAQ guide, C(2026) 3702, op.europa.eu, LV DRN law, VID, evoex blog).
+
+No `verified` flags or per-material rates changed (this is regulatory/invoicing context, not fee data). The invoicing claims are LV-primary-sourced; the EPR mechanics are from the official EC FAQ.

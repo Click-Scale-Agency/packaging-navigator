@@ -65,7 +65,25 @@ export function Footer() {
           </div>
         </Press>
 
-        <p className="mt-12 border-t border-dashed border-border-strong pt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+        <Press className="mt-12 border-t border-dashed border-border-strong pt-8">
+          <span className="form-label">{lv.footer.sourcesLabel}</span>
+          <ul className="mt-3 flex flex-col gap-2 md:flex-row md:flex-wrap md:gap-x-8">
+            {lv.footer.sources.map((s) => (
+              <li key={s.url}>
+                <a
+                  href={s.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="data-value text-[13px] text-primary underline decoration-dashed underline-offset-4"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Press>
+
+        <p className="mt-10 border-t border-dashed border-border-strong pt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
           {lv.footer.disclaimer}
         </p>
       </div>

@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 import { briefings } from "@/data";
+import { canonicalUrl, socialImageMeta } from "@/lib/seo";
 import { Calculator } from "@/components/Calculator";
 import { CountryCatalog } from "@/components/CountryCatalog";
 import { Faq } from "@/components/Faq";

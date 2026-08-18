@@ -1,6 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
+import { canonicalUrl, socialImageMeta } from "@/lib/seo";
 import { MATERIALS, countryByCode } from "@/data";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -29,7 +30,11 @@ export const Route = createFileRoute("/valstis/$code")({
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: canonicalUrl(`/valstis/${code}`) },
+        ...socialImageMeta,
       ],
+      links: [{ rel: "canonical", href: canonicalUrl(`/valstis/${code}`) }],
     };
   },
   component: CountryDetail,

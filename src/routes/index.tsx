@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 import { briefings } from "@/data";
+import { canonicalUrl, socialImageMeta } from "@/lib/seo";
 import { Calculator } from "@/components/Calculator";
 import { CountryCatalog } from "@/components/CountryCatalog";
 import { Faq } from "@/components/Faq";
@@ -34,14 +35,10 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: lv.meta.title },
       { property: "og:description", content: lv.meta.description },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-      ...(briefingThumb
-        ? [
-            { property: "og:image", content: briefingThumb },
-            { name: "twitter:image", content: briefingThumb },
-          ]
-        : []),
+      { property: "og:url", content: canonicalUrl("/") },
+      ...socialImageMeta,
     ],
+    links: [{ rel: "canonical", href: canonicalUrl("/") }],
     scripts: [
       {
         type: "application/ld+json",

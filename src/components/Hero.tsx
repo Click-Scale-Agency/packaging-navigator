@@ -124,14 +124,24 @@ export function Hero() {
                   <motion.span
                     key={s.text}
                     className="inline-flex items-center border-2 border-dashed px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.16em] stamp-ink"
-                    initial={{ opacity: 0, scale: 1.6, rotate: s.rotate * 2 }}
-                    whileInView={{ opacity: 1, scale: 1, rotate: s.rotate }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{ type: "spring", stiffness: 210, damping: 24, delay: s.delay }}
+                    {...(animate
+                      ? {
+                          initial: { opacity: 0, scale: 1.6, rotate: s.rotate * 2 },
+                          whileInView: { opacity: 1, scale: 1, rotate: s.rotate },
+                          viewport: { once: true, amount: 0.4 },
+                          transition: {
+                            type: "spring",
+                            stiffness: 210,
+                            damping: 24,
+                            delay: s.delay,
+                          },
+                        }
+                      : { style: { rotate: s.rotate } })}
                   >
                     {s.text}
                   </motion.span>
                 ))}
+
               </div>
 
               <div className="mt-7 h-16 border-t-2 border-foreground pt-4">

@@ -4,9 +4,15 @@ import { useMemo, useState } from "react";
 import lv from "@/i18n/lv";
 import { countries } from "@/data";
 import { CropMarks, Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
+import { useIsMobile } from "@/hooks/use-mobile";
+
+/** Keep the mobile document short — a 24k px page makes iOS Safari drop paint. */
+const MOBILE_SLICE = 8;
 
 export function CountryCatalog() {
   const [query, setQuery] = useState("");
+  const [expanded, setExpanded] = useState(false);
+  const isMobile = useIsMobile();
 
   const list = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -15,6 +21,9 @@ export function CountryCatalog() {
       (c) => c.code.toLowerCase().includes(q) || c.name.toLowerCase().includes(q),
     );
   }, [query]);
+
+  const collapsed = isMobile && !expanded && !query.trim() && list.length > MOBILE_SLICE;
+  const visible = collapsed ? list.slice(0, MOBILE_SLICE) : list;
 
   return (
     <section className="border-b border-dashed border-border-strong bg-paper-deep/40">
@@ -37,8 +46,9 @@ export function CountryCatalog() {
         </Press>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {list.map((c, i) => (
+          {visible.map((c, i) => (
             <Press key={c.code} delay={Math.min(i * 0.02, 0.24)}>
+
               <Link
                 to="/valstis/$code"
                 params={{ code: c.code }}
@@ -84,6 +94,17 @@ export function CountryCatalog() {
             </Press>
           ))}
         </div>
+
+        {collapsed ? (
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="mt-8 w-full border border-border-strong px-5 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-primary"
+          >
+            {lv.countries.showAll}
+          </button>
+        ) : null}
+
       </div>
     </section>
   );

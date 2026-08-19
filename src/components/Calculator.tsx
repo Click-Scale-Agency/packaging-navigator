@@ -6,6 +6,8 @@ import lv from "@/i18n/lv";
 import { countries, MATERIALS, type MaterialKey } from "@/data";
 import { computeCountryCost, kgPerYearFrom } from "@/lib/fees";
 import { PRESS_SPRING, Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
+import { useRevealMotion } from "@/hooks/use-reveal-motion";
+
 import { cn } from "@/lib/utils";
 
 const DEFAULT_SELECTION = ["DE", "LV", "ES"];
@@ -52,7 +54,9 @@ function Money({ value }: { value: number }) {
 }
 
 export function Calculator() {
+  const animateRows = useRevealMotion();
   // Optional deep-link params from the action guide (?w=…&ship=…&cc=…).
+
   const search = useSearch({ strict: false }) as {
     w?: string;
     ship?: string;
@@ -408,12 +412,17 @@ export function Calculator() {
                   {rows.map((row, i) => (
                     <motion.li
                       key={row.country.code}
-                      layout
-                      initial={{ opacity: 0, x: -14 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ ...PRESS_SPRING, delay: Math.min(i * 0.03, 0.3) }}
+                      {...(animateRows
+                        ? {
+                            layout: true as const,
+                            initial: { opacity: 0, x: -14 },
+                            animate: { opacity: 1, x: 0 },
+                            transition: { ...PRESS_SPRING, delay: Math.min(i * 0.03, 0.3) },
+                          }
+                        : {})}
                       className="grid grid-cols-[3.2rem_minmax(0,1fr)_auto] items-start gap-3 border-b border-dashed border-border px-4 py-3 md:grid-cols-[4rem_minmax(0,1fr)_7rem_9rem]"
                     >
+
                       <Link
                         to="/valstis/$code"
                         params={{ code: row.country.code }}

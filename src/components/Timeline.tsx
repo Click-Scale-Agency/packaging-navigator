@@ -4,10 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import lv from "@/i18n/lv";
 import { timeline } from "@/data";
 import { Press, SectionHead } from "@/components/primitives";
+import { useRevealMotion } from "@/hooks/use-reveal-motion";
 import { cn } from "@/lib/utils";
+
 
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
+  const animate = useRevealMotion();
   // Computed after hydration only: the server render happens at build time and
   // would otherwise disagree with the client about which date is "today".
   const [today, setToday] = useState<Date | null>(null);
@@ -17,6 +20,7 @@ export function Timeline() {
     offset: ["start 80%", "end 40%"],
   });
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
 
   const currentIndex = today
     ? timeline.reduce(
@@ -37,8 +41,14 @@ export function Timeline() {
 
         <div ref={ref} className="relative mt-16">
           <div className="relative h-px w-full border-t border-dashed border-border-strong">
-            <motion.div style={{ width }} className="absolute -top-px left-0 h-[3px] bg-foreground" />
+            {animate ? (
+              <motion.div
+                style={{ width }}
+                className="absolute -top-px left-0 h-[3px] bg-foreground"
+              />
+            ) : null}
           </div>
+
 
           <ol className="mt-0 grid gap-8 md:grid-cols-5 md:gap-4">
             {timeline.map((entry, i) => {
@@ -63,15 +73,20 @@ export function Timeline() {
                   </p>
                   {isCurrent ? (
                     <motion.span
-                      initial={{ opacity: 0, scale: 1.5, rotate: -10 }}
-                      whileInView={{ opacity: 1, scale: 1, rotate: -4 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                      {...(animate
+                        ? {
+                            initial: { opacity: 0, scale: 1.5, rotate: -10 },
+                            whileInView: { opacity: 1, scale: 1, rotate: -4 },
+                            viewport: { once: true },
+                            transition: { type: "spring", stiffness: 200, damping: 22 },
+                          }
+                        : { style: { rotate: -4 } })}
                       className="mt-4 inline-flex border-2 border-dashed px-2 py-1 font-mono text-[10px] font-bold tracking-[0.18em] stamp-ink"
                     >
                       {lv.timeline.now}
                     </motion.span>
                   ) : null}
+
                 </Press>
               );
             })}

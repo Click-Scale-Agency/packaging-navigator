@@ -851,7 +851,8 @@ export const lv = {
       kicker: "Sagatavojamais dokuments",
       title: "PPWR iepakojuma datu pakete klientam",
       lead: "Šablons, ko aizpildi katram SKU un dod klientiem, kas preci pārdod tālāk vai eksportē — pienākuma izpilde un pārdošanas arguments vienā. Lejupielādē un pielāgo (MIT, brīvi izmantojams).",
-      download: "Lejupielādēt šablonu (.md)",
+      download: "Lejupielādēt Markdown (.md)",
+      downloadDocx: "Lejupielādēt Word (.docx)",
       contentsTitle: "Šablona saturs",
       contents: [
         "Produkts, lomas un lietošanas veids (vienreiz vai atkārtoti lietojams)",

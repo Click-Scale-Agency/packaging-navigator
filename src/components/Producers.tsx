@@ -341,13 +341,22 @@ function Template() {
                   ))}
                 </ul>
               </div>
-              <a
-                href="/ppwr-klienta-paketes-sablons.md"
-                download
-                className="data-value inline-flex shrink-0 items-center justify-center border-2 border-foreground bg-foreground px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] text-background transition-colors hover:bg-background hover:text-foreground"
-              >
-                {t.download} ↓
-              </a>
+              <div className="flex shrink-0 flex-col gap-3">
+                <a
+                  href="/ppwr-klienta-paketes-sablons.docx"
+                  download
+                  className="data-value inline-flex items-center justify-center border-2 border-foreground bg-foreground px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] text-background transition-colors hover:bg-background hover:text-foreground"
+                >
+                  {t.downloadDocx} ↓
+                </a>
+                <a
+                  href="/ppwr-klienta-paketes-sablons.md"
+                  download
+                  className="data-value inline-flex items-center justify-center border-2 border-foreground px-6 py-4 text-sm font-bold uppercase tracking-[0.08em] transition-colors hover:border-primary hover:text-primary"
+                >
+                  {t.download} ↓
+                </a>
+              </div>
             </div>
           </div>
         </Press>

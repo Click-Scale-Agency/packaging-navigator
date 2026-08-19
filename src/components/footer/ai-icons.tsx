@@ -1,8 +1,11 @@
+import type { ReactNode } from "react";
+
 /**
  * Simplified monochrome glyphs for AI assistants — currentColor only,
  * no brand assets, no colour, in keeping with the ink/paper design system.
  */
-const PATHS: Record<string, JSX.Element> = {
+const PATHS: Record<string, ReactNode> = {
+
   chatgpt: (
     <>
       <circle cx="12" cy="12" r="8.5" />

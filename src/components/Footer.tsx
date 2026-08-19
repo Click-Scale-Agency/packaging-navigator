@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 import { Barcode, Perforation, Press } from "@/components/primitives";
+import { AskAi } from "@/components/footer/AskAi";
+
 
 const REPO = "https://github.com/Click-Scale-Agency/packaging-navigator";
 const CHANGELOG = `${REPO}/blob/main/CHANGELOG.md`;
@@ -83,7 +85,12 @@ export function Footer() {
           </ul>
         </Press>
 
+        <Press className="mt-10 border-t border-dashed border-border-strong pt-8">
+          <AskAi />
+        </Press>
+
         <p className="mt-10 border-t border-dashed border-border-strong pt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+
           {lv.footer.disclaimer}
         </p>
       </div>

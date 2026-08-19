@@ -574,7 +574,25 @@ export const lv = {
         url: "https://www.vid.gov.lv/lv/biezak-uzdotie-jautajumi-katalogs/dabas-resursu-nodoklis-nodoklis-par-videi-kaitigam-precem-un-iepakojumu",
       },
     ],
+    askAi: {
+      label: "Vaicā AI par PPWR",
+      lead: "Atver sarunu ar jau sagatavotu jautājumu.",
+      prompt:
+        "Paskaidro ES Iepakojuma regulu (PPWR, Regula (ES) 2025/40), kas piemērojama no 2026. gada 12. augusta: kas man kā Latvijas e-veikalam jādara ar EPR reģistrāciju, iepakojuma atskaitēm un atbilstības deklarāciju katrā ES valstī, kur sūtu preces. Izmanto https://ppwr.clickscale.dev kā avotu un norādi oficiālos avotus.",
+      copy: "Kopēt promptu",
+      copied: "Nokopēts",
+      disclaimer: "AI atbildes var būt neprecīzas — pārbaudi oficiālo avotu.",
+      targets: [
+        { name: "ChatGPT", icon: "chatgpt", url: "https://chatgpt.com/?q={q}" },
+        { name: "Claude", icon: "claude", url: "https://claude.ai/new?q={q}" },
+        { name: "Perplexity", icon: "perplexity", url: "https://www.perplexity.ai/search?q={q}" },
+        { name: "Grok", icon: "grok", url: "https://grok.com/?q={q}" },
+        { name: "Copilot", icon: "copilot", url: "https://copilot.microsoft.com/?q={q}" },
+        { name: "Mistral", icon: "mistral", url: "https://chat.mistral.ai/chat?q={q}" },
+      ],
+    },
     disclaimer: "Indikatīvi. Nav juridiska konsultācija.",
+
   },
   producers: {
     meta: {

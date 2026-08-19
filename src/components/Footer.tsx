@@ -85,7 +85,12 @@ export function Footer() {
           </ul>
         </Press>
 
+        <Press className="mt-10 border-t border-dashed border-border-strong pt-8">
+          <AskAi />
+        </Press>
+
         <p className="mt-10 border-t border-dashed border-border-strong pt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+
           {lv.footer.disclaimer}
         </p>
       </div>

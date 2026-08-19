@@ -11,6 +11,7 @@ import { GuidePromo } from "@/components/GuidePromo";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { MarketplaceNumbers } from "@/components/MarketplaceNumbers";
+import { ProducersPromo } from "@/components/ProducersPromo";
 import { Timeline } from "@/components/Timeline";
 import { VideoBriefing } from "@/components/VideoBriefing";
 
@@ -88,6 +89,7 @@ function Index() {
         <Hero />
         <GuidePromo />
         <Calculator />
+        <ProducersPromo />
         <CountryCatalog />
         <MarketplaceNumbers />
         <Timeline />

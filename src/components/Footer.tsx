@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <footer className="bg-background">
       <Perforation className="opacity-60" />
-      <div className="mx-auto max-w-[1400px] px-5 py-14 md:px-10 md:py-20">
+      <div className="mx-auto max-w-[1400px] px-5 pb-[calc(env(safe-area-inset-bottom)+5.5rem)] pt-14 md:px-10 md:py-20">
         <Press className="grid gap-10 md:grid-cols-[1.2fr_1fr_1fr]">
           <div>
             <p className="data-value text-sm font-bold uppercase tracking-[0.08em]">

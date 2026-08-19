@@ -33,7 +33,7 @@ export function BackToTop() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ type: "spring", stiffness: 260, damping: 24 }}
-          className="fixed bottom-5 right-5 z-50 border border-primary bg-background/90 px-4 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-primary shadow-sm backdrop-blur-[2px] transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:bottom-8 md:right-8"
+          className="fixed bottom-[calc(env(safe-area-inset-bottom)+4.75rem)] right-5 z-50 border border-primary bg-background/90 px-4 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-primary shadow-sm backdrop-blur-[2px] transition-colors hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background md:bottom-8 md:right-8"
           aria-label={lv.a11y.backToTop}
         >
           {lv.a11y.backToTop} ↑

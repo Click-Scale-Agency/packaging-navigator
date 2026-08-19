@@ -36,10 +36,8 @@ export function Press({
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ ...PRESS_SPRING, delay }}
-      onAnimationComplete={() => {
-        /* release the composited layer once the reveal is done */
-      }}
       style={{ willChange: "auto" }}
+
     >
       {children}
     </Comp>

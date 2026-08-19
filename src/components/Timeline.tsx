@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import lv from "@/i18n/lv";
 import { timeline } from "@/data";
 import { Press, SectionHead } from "@/components/primitives";
+import { useRevealMotion } from "@/hooks/use-reveal-motion";
 import { cn } from "@/lib/utils";
+
 
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);

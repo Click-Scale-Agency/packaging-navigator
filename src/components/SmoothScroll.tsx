@@ -4,6 +4,10 @@ import { useEffect } from "react";
 export function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Touch devices keep native scrolling: on iOS the extra rAF/transform work
+    // on a very tall document makes Safari drop painted tiles (blank page).
+    if (window.matchMedia("(pointer: coarse), (max-width: 767px)").matches) return;
+
     let lenis: { raf: (t: number) => void; destroy: () => void } | null = null;
     let frame = 0;
     let cancelled = false;

@@ -343,6 +343,8 @@ export const lv = {
     unknown: "nav datu",
     open: "Atvērt",
     searchPlaceholder: "Meklēt valsti vai kodu",
+    showAll: "Rādīt visas 27 valstis",
+
   },
   detail: {
     back: "Atpakaļ uz katalogu",

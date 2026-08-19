@@ -41,8 +41,14 @@ export function Timeline() {
 
         <div ref={ref} className="relative mt-16">
           <div className="relative h-px w-full border-t border-dashed border-border-strong">
-            <motion.div style={{ width }} className="absolute -top-px left-0 h-[3px] bg-foreground" />
+            {animate ? (
+              <motion.div
+                style={{ width }}
+                className="absolute -top-px left-0 h-[3px] bg-foreground"
+              />
+            ) : null}
           </div>
+
 
           <ol className="mt-0 grid gap-8 md:grid-cols-5 md:gap-4">
             {timeline.map((entry, i) => {

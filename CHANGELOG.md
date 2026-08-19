@@ -2,6 +2,20 @@
 
 Būtiskās datu un metodoloģijas izmaiņas. Formāts seko [Keep a Changelog](https://keepachangelog.com/) principam; datumi ISO (YYYY-MM-DD).
 
+## [Nepubliskots] — sadaļas „Ražotājiem" juridiskie labojumi (2026-08-19)
+
+Atbilde uz audita atradumiem par sadaļu `/razotajiem`. Dizains un struktūra nemainīti; laboti juridiskā satura precizitātes, vedņa loģikas un bojāta teksta jautājumi.
+
+- **Vedņa mikrouzņēmumu loģika pārtaisīta:** 3. jautājums sadalīts neatkarīgos (vai pats esmu mikrouzņēmums; vai ir private label mikrouzņēmumu klienti Latvijā) + piegādātāja atrašanās vietas apakšjautājums. Ieviests `remove` mehānisms (`data/role-wizard.json`), lai mikrouzņēmumu izņēmums **aizstāj**, nevis papildina kategoriskos blokus — vairs neparādās pretrunīgi secinājumi (piem., „tu esi izgatavotājs" + „izgatavotājs ir piegādātājs" vienlaikus).
+- **D2C vs wholesale nošķīrums:** 2. jautājumā atdalīta tiešā D2C pārdošana ārvalstīs, pārdošana ārvalstu izplatītājam/importētājam un pārdošana ārvalstu gala lietotājam. Ārvalstu izplatītāja gadījumā vairs netiek automātiski secināts, ka LV eksportētājs ir producer galamērķī; bloks „Klienti-eksportētāji" padarīts nosacīts.
+- **LV EPR formulējums:** „DRN + līgums ar apsaimniekotāju" → „līgums ar licencētu apsaimniekotāju un DRN atbrīvojums, vai DRN samaksa pilnajās likmēs, ja atbrīvojums netiek piemērots" (bez maldinošas summēšanas).
+- **Pilnvarotais pārstāvis:** precizēts, ka pēc pašreizējā PPWR AR ir nepieciešams, bet Environmental Omnibus atvieglojums vēl NAV spēkā un atrodas ES likumdošanas procesā; noņemts nestabilais ENVI balsojuma datums no lietotājam redzamā teksta.
+- **DoC parakstīšana:** absolūtais „tu nevari parakstīt DoC klienta vietā" → „kā parasts piegādātājs neparaksti; to dara izgatavotājs vai viņa rakstiski pilnvarots pārstāvis, atbildība paliek izgatavotājam".
+- **„Klientam Latvijā nekas nav jādara"** → precizēts, ka atkārtots EPR pienākums parasti nerodas, bet izplatītāja pārbaudes un neatbilstības rīcības pienākumi saglabājas.
+- **Bojātās vadības rakstzīmes:** izlabotas 7 `U+0001` rakstzīmes `src/i18n/lv.ts` (radās agrākā redakcijā); repozitorijā tekstos vairs nav vadības rakstzīmju.
+- **Primāro avotu atsauces:** galvenajiem apgalvojumiem pievienoti PPWR panti (3., 15., 16., 19., 21., 38., 39., 44., 45.) un [S22]/[S23]; nozares avoti saglabāti kā praktiski skaidrojumi.
+- **Testi:** vedņa loģika izdalīta tīrā modulī `src/components/producers/wizard-logic.ts`; pievienoti determinēti scenāriju testi (`scripts/test-role-wizard.ts`, `bun test`), kas pārbauda 7 scenārijus un ka pretrunīgi bloki nekad nesakrīt.
+
 ## [Nepubliskots] — sadaļa „Ražotājiem" + lomu vednis (2026-08-19)
 
 Jauna sadaļa `/razotajiem`, kas atbild uz jautājumu, ko ražotāji un pildītāji saņem no klientiem — „kurš par ko atbild, kad preci pārdod tālāk?". Saturs, loģika un atsauces sagatavoti izpētes sesijā (2026-08-19); avoti dubultā ar primāro regulu, EK vadlīnijām C(2026) 3702 un ZSVR skaidrojumiem.

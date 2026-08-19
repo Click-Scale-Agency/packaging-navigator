@@ -1,6 +1,6 @@
 {
-  "$comment": "Lomu vedņa dati. blocks = pienākumu bloki ar pilniem tekstiem; rules = kartēšana no atbildēm uz blokiem. Atsauces [S#] -> references/sources.md",
-  "version": "1.0",
+  "$comment": "Lomu vedņa dati. blocks = pienākumu bloki ar pilniem tekstiem; rules = kartēšana no atbildēm uz blokiem (add pievieno, remove noņem, lai mikrouzņēmumu izņēmums aizstāj, nevis dublē kategoriskos blokus). Atsauces [S#] -> src/i18n/lv.ts producers.sources.refs; primārie avoti: PPWR (ES) 2025/40 panti + EK vadlīnijas C(2026) 3702.",
+  "version": "2.0",
   "questions": {
     "q1": {
       "type": "multi",
@@ -18,17 +18,39 @@
       "options": {
         "sell_lv": "Pārdodu Latvijā",
         "client_exports": "Klienti eksportē uz citām ES valstīm",
-        "i_export": "Pats piegādāju uz citām ES valstīm"
+        "i_export_d2c": "Pats pārdodu D2C gala pircējiem citās ES valstīs",
+        "i_export_dealer": "Pārdodu ārvalstu importētājam/izplatītājam tālākpārdošanai",
+        "i_export_enduser": "Pārdodu ārvalstu uzņēmumam, kas pats ir gala lietotājs"
       }
     },
-    "q3": {
+    "q3a": {
       "type": "single",
       "showIf": "q1 includes own_brand OR client_brand",
-      "text": "Mikrouzņēmumu statuss (<10 darbinieki un ≤€2M apgrozījums/bilance)",
+      "text": "Vai tavs uzņēmums ir mikrouzņēmums?",
+      "hint": "<10 darbinieki UN gada apgrozījums vai bilance ≤ €2 milj. (2003/361/EK)",
       "options": {
-        "micro_me": "Es esmu mikrouzņēmums",
-        "micro_clients": "Man ir private label klienti — mikrouzņēmumi Latvijā",
-        "micro_none": "Neviens no minētajiem / nezinu"
+        "micro_yes": "Jā, esmu mikrouzņēmums",
+        "micro_no": "Nē / neattiecas"
+      }
+    },
+    "q3b": {
+      "type": "single",
+      "showIf": "q1 includes client_brand",
+      "text": "Vai tev ir private label klienti — mikrouzņēmumi Latvijā?",
+      "options": {
+        "plmicro_yes": "Jā, ir mikrouzņēmumu klienti Latvijā",
+        "plmicro_no": "Nē / nezinu"
+      }
+    },
+    "q4": {
+      "type": "single",
+      "showIf": "q3a == micro_yes AND q1 includes own_brand",
+      "text": "Kur atrodas tava iepakojuma vai preces piegādātājs?",
+      "options": {
+        "same_country": "Tajā pašā dalībvalstī (Latvijā)",
+        "other_eu": "Citā ES dalībvalstī",
+        "outside_eu": "Ārpus ES",
+        "unknown": "Nav zināms / atšķiras"
       }
     }
   },
@@ -36,56 +58,68 @@
     "mfr_you": {
       "kind": "role",
       "title": "Tu esi izgatavotājs (visā ES)",
-      "text": "Tavs zīmols uz iepakojuma nozīmē: tu atbildi par iepakojuma atbilstību — neatkarīgi no tā, kurš to fiziski saražoja. Katram iepakojuma veidam visā ES ir viens izgatavotājs, un tas esi tu.",
-      "refs": ["S1", "S2", "S3"]
+      "text": "Tavs zīmols uz iepakojuma nozīmē: tu atbildi par iepakojuma atbilstību — neatkarīgi no tā, kurš to fiziski saražoja (PPWR 3. un 15. pants). Katram iepakojuma veidam visā ES ir viens izgatavotājs, un tas esi tu.",
+      "refs": ["S1", "S3", "S22", "S23"]
     },
     "doc_full": {
       "kind": "conformity",
       "title": "DoC un tehniskais fails katram iepakojuma veidam",
-      "text": "Atbilstības novērtējums (Art. 38, Module A — bez ārējas sertifikācijas), Annex VII tehniskā dokumentācija, Annex VIII deklarācija. Viena DoC uz iepakojuma veidu: pārdošanas vienība ar visām komponentēm = viena deklarācija; transporta vienības — katrai sava. Glabāšana: 5 gadi (vienreizlietojams) / 10 gadi (atkārtoti lietojams); uzrādīšana iestādēm 10 dienās. Marķējumā: nosaukums/zīmols, pasta adrese, partijas vai sērijas numurs.",
-      "refs": ["S7", "S8", "S20", "S21"]
+      "text": "Atbilstības novērtējums (38. pants), Annex VII tehniskā dokumentācija un Annex VIII ES atbilstības deklarācija (39. pants). Viena DoC uz iepakojuma veidu: pārdošanas vienība ar visām komponentēm = viena deklarācija; transporta vienības — katrai sava. Glabāšana: 5 gadi (vienreizlietojams) / 10 gadi (atkārtoti lietojams); uzrādīšana iestādēm 10 dienās. Marķējumā: nosaukums/zīmols, pasta adrese, partijas vai sērijas numurs.",
+      "refs": ["S7", "S8", "S20", "S23"]
+    },
+    "mfr_is_supplier": {
+      "kind": "role",
+      "title": "PPWR izgatavotājs ir tavs piegādātājs",
+      "text": "Tu esi mikrouzņēmums, un iepakojumu vai preci tev piegādā vai izstrādā piegādātājs tajā pašā dalībvalstī. Tāpēc PPWR izgatavotāja loma un atbilstības pienākumi (novērtējums, tehniskais fails, DoC) ir piegādātājam, ne tev. Pārbaudi to piegādes līgumā. EPR pienākumi (reģistrācija, DRN) ar šo izņēmumu nepazūd.",
+      "refs": ["S18", "S22", "S23"]
+    },
+    "micro_conditional": {
+      "kind": "special",
+      "title": "Mikrouzņēmums: rezultāts atkarīgs no piegādes modeļa",
+      "text": "Tu esi mikrouzņēmums, bet piegādātājs ir citā valstī vai piegādes modelis nav skaidrs. Ja pašzīmola iepakojumu vai preci pasūti no piegādātāja tajā pašā dalībvalstī, izgatavotājs ir viņš; ja no citas ES valsts vai ārpus ES — izgatavotājs, visticamāk, esi tu pats. Pārbaudi konkrēto piegādes modeli, pirms pieņem, kam pieder DoC. EPR pienākumi paliek jebkurā gadījumā.",
+      "refs": ["S18", "S22", "S23"]
     },
     "epr_lv": {
       "kind": "epr",
       "title": "EPR Latvijā: tu esi producer",
-      "text": "Tu pirmais laid iepakojumu LV tirgū — DRN saistības un līgums ar apsaimniekotāju (LZP / Zaļā josta) sedz Latvijas tirgu. Klientiem, kas pārdod tālāk Latvijā, EPR pienākumu nav.",
-      "refs": ["S4"]
+      "text": "Tu pirmais laid iepakojumu LV tirgū. Latvijas EPR darbojas DRN režīmā: slēdz līgumu ar licencētu apsaimniekotāju (piem., LZP / Zaļā josta) un saņem DRN atbrīvojumu vai, ja atbrīvojums netiek piemērots, maksā DRN pilnajās likmēs. Klientiem, kas tavu preci pārdod tālāk Latvijā, atkārtots EPR pienākums parasti nerodas.",
+      "refs": ["S23"]
     },
     "data_pack_offer": {
       "kind": "action",
       "title": "Sagatavo PPWR klienta paketi eksportējošiem klientiem",
-      "text": "Klienti, kas tavu preci ved uz citām ES valstīm, tur kļūst par producer — un bez taviem datiem (svari pa materiāliem, komponentes, DoC numurs) viņi atskaites iesniegt nevar. Gatava datu pakete katram SKU ir gan pienākuma izpilde, gan pārdošanas arguments. Šablons lejupielādei pieejams šajā lapā.",
+      "text": "Klienti, kas tavu preci ved uz citām ES valstīm, tur var kļūt par producer — un bez taviem datiem (svari pa materiāliem, komponentes, DoC numurs) viņi atskaites iesniegt nevar. Gatava datu pakete katram SKU ir gan datu sniegšanas pienākuma izpilde (16. pants), gan pārdošanas arguments. Šablons lejupielādei pieejams šajā lapā.",
       "refs": ["S4", "S5"]
     },
     "supplier_art16": {
       "kind": "role",
-      "title": "Private label plūsmā tu esi piegādātājs (Art. 16)",
-      "text": "Izgatavotājs ir tavs klients — zīmola īpašnieks — pat ja tu ražo un pildi. Tev ir OBLIGĀTS pienākums sniegt klientam visu atbilstības pierādīšanai vajadzīgo: materiālu sastāvu un svarus, pārstrādātā satura rādītājus, pārstrādājamības datus, vielu atbilstību (PFAS, smagie metāli), minimizācijas pierādījumus. No šī pienākuma nevar atteikties.",
-      "refs": ["S1", "S5", "S9"]
+      "title": "Private label plūsmā tev ir datu sniegšanas pienākums (16. pants)",
+      "text": "Tev kā piegādātājam ir OBLIGĀTS pienākums sniegt zīmola īpašniekam visu atbilstības pierādīšanai vajadzīgo: materiālu sastāvu un svarus, pārstrādātā satura rādītājus, pārstrādājamības datus, vielu atbilstību (PFAS, smagie metāli), minimizācijas pierādījumus. No šī pienākuma nevar atteikties.",
+      "refs": ["S5", "S23"]
+    },
+    "pl_client_is_mfr": {
+      "kind": "role",
+      "title": "Parasti izgatavotājs ir klients (zīmola īpašnieks)",
+      "text": "Ja klients nav mikrouzņēmums vai atrodas citā dalībvalstī, izgatavotāja loma un DoC atbildība ir viņam — pat ja tu fiziski ražo un pildi. Klients parasti ir arī producer savā tirgū.",
+      "refs": ["S1", "S9"]
     },
     "no_doc_signing": {
       "kind": "conformity",
-      "title": "DoC paraksta klients, ne tu",
-      "text": "Deklarāciju izdod un atbildību nes zīmola īpašnieks — tu nevari parakstīt viņa vietā, un viņš nevar atbildību līgumiski novelt uz tevi. Tas, ka tavs nosaukums kā pildītājam arī ir uz iepakojuma, neko nemaina.",
+      "title": "DoC atbildība paliek izgatavotājam",
+      "text": "Kā parasts piegādātājs tu neparaksti DoC klienta vietā. To sagatavo izgatavotājs vai viņa rakstiski pilnvarots pārstāvis; juridiskā atbildība par iepakojuma atbilstību paliek izgatavotājam. Tas, ka tavs nosaukums kā pildītājam arī ir uz iepakojuma, atbildību nedala.",
       "refs": ["S6", "S9", "S10"]
     },
     "contract_clauses": {
       "kind": "action",
       "title": "Sakārto private label līgumus",
-      "text": "Ieraksti līgumā: kādus datus, kādā formātā un termiņā sniedz; kā paziņo izmaiņas iepakojumā; klienta mikrouzņēmuma statusa deklarēšanu; datu sagatavošanas atlīdzību. Lomas pašas ar līgumu pārcelt nevar — bet datu apriti un cenu var un vajag.",
+      "text": "Ieraksti līgumā: kādus datus, kādā formātā un termiņā sniedz; kā paziņo izmaiņas iepakojumā; klienta mikrouzņēmuma statusa deklarēšanu; datu sagatavošanas atlīdzību. Juridisko lomu ar līgumu pārcelt nevar, bet atsevišķu uzdevumu izpildi un datu apriti var un vajag noregulēt.",
       "refs": ["S5", "S6"]
     },
     "micro_trap_supplier": {
       "kind": "special",
-      "title": "⚠️ Mikrouzņēmumu klienti Latvijā: DoC nasta pāriet TEV",
-      "text": "Ja tavs private label klients ir mikrouzņēmums un jūs esat vienā dalībvalstī, izgatavotāja pienākumi (novērtējums, tehniskais fails, DoC) gulstas uz tevi kā piegādātāju. Tiem pašiem klientiem citās ES valstīs nasta paliek viņiem pašiem. Ieceno šo pirms līguma — DoC sagatavošana nav bezmaksas darbs.",
-      "refs": ["S18"]
-    },
-    "micro_relief_me": {
-      "kind": "special",
-      "title": "Tavs mikrouzņēmuma atvieglojums (tikai atbilstībai!)",
-      "text": "Ja iepakojumu tev izgatavo vai izstrādā piegādātājs Latvijā — DoC un tehniskā faila pienākumi ir viņam, ne tev. BET: ja pasūti pašzīmola iepakojumu no citas ES valsts vai ārpus ES, izgatavotājs esi tu pats. Un no EPR (reģistrācija, atskaites, maksas) izņēmuma NAV — tikai vieglāka atskaite zem 10 t gadā.",
-      "refs": ["S18", "S19"]
+      "title": "Private label mikrouzņēmumu klienti Latvijā: izgatavotājs esi tu",
+      "text": "Klientiem, kas ir mikrouzņēmumi tajā pašā dalībvalstī (Latvijā), izgatavotāja loma un atbilstības pienākumi (novērtējums, tehniskais fails, DoC) ir TEV kā piegādātājam — šiem klientiem DoC sagatavo un paraksta tu. Klientiem, kas nav mikrouzņēmumi vai atrodas citā valstī, izgatavotājs paliek klients. Ieceno DoC sagatavošanu pirms līguma.",
+      "refs": ["S18", "S22"]
     },
     "mfr_you_conditional": {
       "kind": "role",
@@ -96,38 +130,44 @@
     "buyer_becomes_mfr": {
       "kind": "supply",
       "title": "Pircējs, uzliekot savu zīmolu, kļūst par izgatavotāju",
-      "text": "Brīdī, kad tavs white label pircējs pievieno savu zīmolu vai būtiski modificē iepakojumu un laiž to tirgū, viņš pārņem pilnu izgatavotāja atbildību (DoC, fails). Līdz tam brīdim tā ir tava.",
-      "refs": ["S13"]
+      "text": "Brīdī, kad tavs white label pircējs pievieno savu zīmolu vai būtiski modificē iepakojumu un laiž to tirgū, viņš pārņem pilnu izgatavotāja atbildību (21. pants — DoC, fails). Līdz tam brīdim tā ir tava.",
+      "refs": ["S13", "S23"]
     },
     "whitelabel_split_pricing": {
       "kind": "action",
       "title": "Šķir divus white label piedāvājumus",
-      "text": "Cenrādī un piedāvājumos skaidri atdali: (1) 'bez zīmola — ar mūsu DoC' un (2) 'jūsu zīmolam — ar pilnu datu paketi jūsu DoC sagatavošanai'. Klients uzreiz redz, kādu atbildību viņš pērk līdzi.",
+      "text": "Cenrādī un piedāvājumos skaidri atdali: (1) „bez zīmola — ar mūsu DoC” un (2) „jūsu zīmolam — ar pilnu datu paketi jūsu DoC sagatavošanai”. Klients uzreiz redz, kādu atbildību viņš pērk līdzi.",
       "refs": ["S12", "S13"]
     },
     "distributor_checks": {
       "kind": "role",
-      "title": "Citu zīmolu izplatīšana: pārbaudes pienākumi",
-      "text": "Kā izplatītājam pirms preces piedāvāšanas tev jāpārliecinās, ka izgatavotājs un importētājs ir izpildījuši marķējuma un identifikācijas prasības un ka DoC eksistē. Ja importē no trešajām valstīm — papildus jāverificē trešās valsts izgatavotāja novērtējums un DoC, un savi kontaktdati jānorāda uz iepakojuma vai pavaddokumentā. UZMANĪBU: uzliec importētajai precei SAVU zīmolu — un kļūsti izgatavotājs ar pilnu atbildību (Art. 21).",
-      "refs": ["S13", "S15"]
+      "title": "Citu zīmolu izplatīšana: pārbaudes pienākumi (19. pants)",
+      "text": "Kā izplatītājam pirms preces piedāvāšanas tev jāpārliecinās, ka izgatavotājs un importētājs ir izpildījuši marķējuma un identifikācijas prasības un ka DoC eksistē. Ja importē no trešajām valstīm — papildus jāverificē trešās valsts izgatavotāja novērtējums un DoC, un savi kontaktdati jānorāda uz iepakojuma vai pavaddokumentā. UZMANĪBU: uzliec importētajai precei SAVU zīmolu vai to būtiski modificē — un kļūsti izgatavotājs ar pilnu atbildību (21. pants).",
+      "refs": ["S13", "S15", "S23"]
     },
     "client_producer_abroad": {
       "kind": "epr",
-      "title": "Klienti-eksportētāji: producer viņu galamērķos ir viņi",
-      "text": "Katrs klients, kas tavu preci pirmais dara pieejamu citā ES valstī, tur kļūst par producer — reģistrācija un maksas ir viņa pienākums, ne tavs. Tavs pienākums: iedot datus, bez kuriem viņš to nevar izdarīt. Norādi klientiem mūsu valstu reģistru sarakstu.",
-      "refs": ["S4"]
+      "title": "Klienti-eksportētāji: producer var būt viņi",
+      "text": "Ja klients tavu preci pirmais dara pieejamu citā ES valstī un atbilst PPWR producer definīcijai tajā piegādes modelī, producer tur ir viņš — reģistrācija un maksas ir viņa pienākums. Tas nav automātiski: konkrēto lomu nosaka faktiskā piegādes ķēde un līgums. Tavs pienākums jebkurā gadījumā: iedot datus, bez kuriem viņš atskaiti sniegt nevar.",
+      "refs": ["S4", "S23"]
     },
     "you_producer_abroad": {
       "kind": "epr",
-      "title": "Tu eksportē pats: producer katrā galamērķa valstī esi tu",
-      "text": "Katrā ES valstī, kur pirmais piegādā (wholesale ārvalstu izplatītājam vai D2C gala pircējam), tev vajadzīga EPR reģistrācija, atskaites un maksas. Piezīme: tas attiecas arī uz precēm ar klienta zīmolu — izgatavotājs var būt klients, bet producer valstī X ir tas, kurš tur piegādā pirmais.",
-      "refs": ["S4"]
+      "title": "Tu pārdod D2C ārvalstīs: producer esi tu",
+      "text": "Pārdodot tieši gala lietotājiem citā dalībvalstī, producer šajā valstī parasti esi tu — reģistrācija, atskaites un maksas tur (44. un 45. pants). Tas attiecas arī uz precēm ar klienta zīmolu: izgatavotājs var būt klients, bet producer valstī, kur pirmais piegādā gala pircējam, esi tu.",
+      "refs": ["S4", "S23"]
+    },
+    "dealer_producer_note": {
+      "kind": "epr",
+      "title": "Pārdošana ārvalstu izplatītājam: producer parasti ir vietējais uzņēmums",
+      "text": "Ja pārdod ārvalstu importētājam vai izplatītājam tālākpārdošanai, producer galamērķa valstī parasti ir vietējais uzņēmums, kas iepakojumu pirmo reizi dara pieejamu tā tirgū — ne obligāti tu. Konkrēto lomu nosaka faktiskā piegādes ķēde un līguma modelis. Nostiprini līgumā, kurš ir producer un kārto reģistrāciju un maksas.",
+      "refs": ["S4", "S23"]
     },
     "ar_warning": {
       "kind": "special",
-      "title": "Pilnvarotais pārstāvis valstīs bez tavas klātbūtnes",
-      "text": "Valstīs, kur tev nav juridiskās klātbūtnes, EPR izpildei var būt vajadzīgs pilnvarotais pārstāvis. ES apspriestie atvieglojumi (Omnibus) NAV spēkā — ENVI komitejas balsojums 01.10.2026; līdz tam plāno ar pieņēmumu, ka prasība ir spēkā.",
-      "refs": ["S16"]
+      "title": "Pilnvarotais pārstāvis (EPR)",
+      "text": "Saskaņā ar pašlaik spēkā esošo PPWR attiecīgajiem pārrobežu producers jāieceļ EPR pilnvarotais pārstāvis (45. pants). Pašlaik plāno ar pieņēmumu, ka tas ir nepieciešams. ES tiek izskatīts priekšlikums (Environmental Omnibus) šo prasību uz laiku apturēt noteiktām uzņēmumu grupām, bet tas vēl nav spēkā. Apstiprini savu producer statusu un konkrētās valsts izpildes kārtību.",
+      "refs": ["S16", "S23"]
     },
     "calculator_link": {
       "kind": "action",
@@ -138,28 +178,65 @@
     "action_plan_link": {
       "kind": "action",
       "title": "Pilnais 7 soļu rīcības plāns",
-      "text": "Inventārs → piegādātāju dati → DoC → lomu karte → klienta paketes → līgumu revīzija → Omnibus monitorings. Detalizēti — sadaļā 'Ražotāja rīcības plāns'.",
+      "text": "Inventārs → piegādātāju dati → DoC → lomu karte → klienta paketes → līgumu revīzija → Omnibus monitorings. Detalizēti — sadaļā „Ražotāja rīcības plāns”.",
       "refs": []
     },
     "disclaimer": {
       "kind": "footer",
       "title": "",
       "text": "Informatīvs kopsavilkums, balstīts Regulā (ES) 2025/40 un EK vadlīnijās C(2026) 3702 (05.06.2026). Nav juridisks atzinums — robežgadījumiem piesaisti juristu.",
-      "refs": ["S3", "S22"]
+      "refs": ["S22", "S23"]
     }
   },
   "rules": [
     { "if": { "q1": ["own_brand"] }, "add": ["mfr_you", "doc_full"] },
     { "if": { "q1": ["own_brand"], "q2": ["sell_lv"] }, "add": ["epr_lv"] },
     { "if": { "q1": ["own_brand"], "q2": ["client_exports"] }, "add": ["data_pack_offer"] },
-    { "if": { "q1": ["client_brand"] }, "add": ["supplier_art16", "no_doc_signing", "contract_clauses"] },
-    { "if": { "q1": ["client_brand"], "q3": "micro_clients" }, "add": ["micro_trap_supplier"] },
-    { "if": { "q1": ["no_brand"] }, "add": ["mfr_you_conditional", "whitelabel_split_pricing", "buyer_becomes_mfr"] },
+    {
+      "if": { "q1": ["own_brand"], "q3a": "micro_yes", "q4": "same_country" },
+      "add": ["mfr_is_supplier"],
+      "remove": ["mfr_you", "doc_full"]
+    },
+    {
+      "if": { "q1": ["own_brand"], "q3a": "micro_yes", "q4": "other_eu" },
+      "add": ["micro_conditional"],
+      "remove": ["mfr_you", "doc_full"]
+    },
+    {
+      "if": { "q1": ["own_brand"], "q3a": "micro_yes", "q4": "outside_eu" },
+      "add": ["micro_conditional"],
+      "remove": ["mfr_you", "doc_full"]
+    },
+    {
+      "if": { "q1": ["own_brand"], "q3a": "micro_yes", "q4": "unknown" },
+      "add": ["micro_conditional"],
+      "remove": ["mfr_you", "doc_full"]
+    },
+    {
+      "if": { "q1": ["client_brand"] },
+      "add": ["supplier_art16", "pl_client_is_mfr", "no_doc_signing", "contract_clauses"]
+    },
+    {
+      "if": { "q1": ["client_brand"], "q3b": "plmicro_yes" },
+      "add": ["micro_trap_supplier"],
+      "remove": ["pl_client_is_mfr", "no_doc_signing"]
+    },
+    {
+      "if": { "q1": ["no_brand"] },
+      "add": ["mfr_you_conditional", "whitelabel_split_pricing", "buyer_becomes_mfr"]
+    },
     { "if": { "q1": ["no_brand"], "q2": ["sell_lv"] }, "add": ["epr_lv"] },
     { "if": { "q1": ["others_brand"] }, "add": ["distributor_checks"] },
     { "if": { "q2": ["client_exports"] }, "add": ["client_producer_abroad"] },
-    { "if": { "q2": ["i_export"] }, "add": ["you_producer_abroad", "ar_warning", "calculator_link"] },
-    { "if": { "q1": ["own_brand"], "q3": "micro_me" }, "add": ["micro_relief_me"] },
+    {
+      "if": { "q2": ["i_export_d2c"] },
+      "add": ["you_producer_abroad", "ar_warning", "calculator_link"]
+    },
+    {
+      "if": { "q2": ["i_export_enduser"] },
+      "add": ["you_producer_abroad", "ar_warning", "calculator_link"]
+    },
+    { "if": { "q2": ["i_export_dealer"] }, "add": ["dealer_producer_note", "calculator_link"] },
     { "if": "always", "add": ["action_plan_link", "disclaimer"] }
   ],
   "blockOrder": ["role", "conformity", "supply", "epr", "special", "action", "footer"]

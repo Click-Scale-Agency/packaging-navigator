@@ -604,24 +604,25 @@ export const lv = {
     hero: {
       kicker: "Ražotājiem un pildītājiem",
       title: "Ražo, pildi, pārdod tālāk? Noskaidro, kurš par ko atbild.",
-      sub: "PPWR vienam uzņēmumam uzliek divas dažādas „” — un tās mēdz nonākt pie dažādiem uzņēmumiem, tiklīdz prece iet caur izplatītājiem, private label klientiem vai eksportu. Šis vednis 3 jautājumos parāda tieši tavas lomas un pienākumus.",
+      sub: "PPWR vienam uzņēmumam uzliek divas dažādas „cepures” — un tās mēdz nonākt pie dažādiem uzņēmumiem, tiklīdz prece iet caur izplatītājiem, private label klientiem vai eksportu. Šis vednis dažos jautājumos parāda tieši tavas lomas un pienākumus.",
       cta: "Sākt lomu vedni",
       ctaMatrix: "Skatīt gadījumus",
     },
     twoHats: {
       kicker: "Pamatprincips",
       title: "Viena regula, divas atbildības",
-      intro: "PPWR šķir divas lomas, ko ikdienā abas sauc par „” — un tieši tas rada apjukumu:",
+      intro:
+        "PPWR šķir divas lomas, ko ikdienā abas sauc par „ražotāju” — un tieši tas rada apjukumu:",
       mfrLabel: "Izgatavotājs (manufacturer)",
       mfrText:
-        "atbild par to, ka iepakojums fiziski atbilst regulai: atbilstības novērtējums, tehniskā dokumentācija, ES atbilstības deklarācija (DoC), marķējums. Izgatavotājs NAV tas, kurš darbina iekārtas — tas ir tas, kura vārds vai preču zīme ir uz iepakojuma un kurš nosaka tā specifikācijas [S1][S2]. Katram iepakojuma veidam visā ES ir viens izgatavotājs [S3].",
+        "atbild par to, ka iepakojums fiziski atbilst regulai: atbilstības novērtējums, tehniskā dokumentācija, ES atbilstības deklarācija (DoC), marķējums. Izgatavotājs (PPWR 3. panta definīcija) NAV tas, kurš darbina iekārtas — tas ir tas, kura vārds vai preču zīme ir uz iepakojuma un kurš nosaka tā specifikācijas [S1][S22]. Katram iepakojuma veidam visā ES ir viens izgatavotājs [S3][S23].",
       producerLabel: "Ražotājs EPR izpratnē (producer)",
       producerText:
-        "atbild par naudu un atskaitēm: reģistrācija valsts reģistrā, apjomu ziņošana, apsaimniekošanas maksas. Ražotājs ir tas, kurš pirmo reizi dara iepakojumu pieejamu konkrētās valsts tirgū — tāpēc šī loma atkārtojas katrā valstī atsevišķi un pārrobežu ķēdēs bieži nonāk pie cita uzņēmuma nekā izgatavotāja loma [S4].",
+        "atbild par naudu un atskaitēm: reģistrācija valsts reģistrā, apjomu ziņošana, apsaimniekošanas maksas (44. un 45. pants). Ražotājs (producer) ir tas, kurš pirmo reizi dara iepakojumu pieejamu konkrētās valsts tirgū — tāpēc šī loma atkārtojas katrā valstī atsevišķi un pārrobežu ķēdēs bieži nonāk pie cita uzņēmuma nekā izgatavotāja loma [S4][S23].",
       formula:
         "Iegaumē formulu: zīmols = atbilstības atbildība (vienreiz, visā ES); pirmā piegāde valstī = EPR atbildība (katrā valstī atsevišķi).",
       cannotTransfer:
-        "Svarīgi: lomas piešķir likums pēc faktiem — tās NEVAR nodot, atteikt vai pārrakstīt ar komerclīgumu. Līguma klauzula „” tavu juridisko pozīciju nemaina [S5][S6].",
+        "Svarīgi: juridisko lomu nevar mainīt ar komerclīgumu — klauzula „par PPWR atbild klients” tavu juridisko pozīciju nemaina. Atsevišķu uzdevumu izpildi var uzticēt citai personai, ja PPWR to pieļauj, bet juridiskā atbildība paliek attiecīgajam operatoram [S5][S6].",
     },
     matrix: {
       kicker: "Gadījumu matrica",
@@ -639,17 +640,17 @@ export const lv = {
             kind: "list",
             heading: "Kas jādara tev:",
             items: [
-              "DoC un tehniskais fails katram iepakojuma veidam (burka + vāks + etiķete = viena vienība ar datiem par katru komponenti; palete/plēve = atsevišķas vienības) [S7]",
+              "DoC un tehniskais fails katram iepakojuma veidam — atbilstības novērtējums (38. pants) un ES atbilstības deklarācija (39. pants). Burka + vāks + etiķete = viena vienība ar datiem par katru komponenti; palete/plēve = atsevišķas vienības [S7][S23]",
               "Marķējums: nosaukums/zīmols, pasta adrese, partijas vai sērijas numurs [S2]",
               "Dokumentu glabāšana: 5 gadi vienreizlietojamam, 10 gadi atkārtoti lietojamam iepakojumam; uzrādīšana iestādēm 10 dienu laikā [S8]",
-              "EPR Latvijā: DRN + līgums ar apsaimniekotāju (kā līdz šim)",
+              "EPR Latvijā: līgums ar licencētu apsaimniekotāju un DRN atbrīvojums vai, ja atbrīvojums netiek piemērots, DRN samaksa pilnajās likmēs",
             ],
           },
           {
             kind: "list",
             heading: "Kas jādara tavam klientam:",
             items: [
-              "Pārdod tikai Latvijā → nekas (tu jau esi producer LV)",
+              "Pārdod tikai Latvijā → atkārtots EPR pienākums parasti nerodas (iepakojumu LV tirgū jau pirmo reizi laidi tu). Klientam kā izplatītājam saglabājas PPWR pārbaudes un neatbilstības rīcības pienākumi",
               "Eksportē uz citu ES valsti → viņš ir producer tur: reģistrācija + maksas tajā valstī. Viņam vajadzēs tavu datu paketi (svari pa materiāliem, DoC kopija)",
             ],
           },
@@ -681,8 +682,8 @@ export const lv = {
           },
           {
             kind: "para",
-            heading: "Ko tu NEVARI:",
-            text: "parakstīt DoC klienta vietā. Deklarāciju paraksta un atbildību nes zīmola īpašnieks [S10]. Pat ja tavs nosaukums arī ir uz iepakojuma kā pildītājam — atbildība nedalās [S9].",
+            heading: "DoC atbildība paliek izgatavotājam:",
+            text: "Kā parasts piegādātājs tu neparaksti DoC klienta vietā. To sagatavo izgatavotājs vai viņa rakstiski pilnvarots pārstāvis; juridiskā atbildība par iepakojuma atbilstību paliek izgatavotājam [S10]. Tas, ka tavs nosaukums kā pildītājam arī ir uz iepakojuma, atbildību nedala [S9].",
           },
           {
             kind: "action",
@@ -692,7 +693,7 @@ export const lv = {
           {
             kind: "warning",
             heading: "Mikrouzņēmumu āķis:",
-            text: "ja tavs private label klients ir mikrouzņēmums UN tu esat vienā valstī — izgatavotāja pienākumi (DoC, viss fails) pāriet TEV. Skat. sadaļu „”.",
+            text: "ja tavs private label klients ir mikrouzņēmums UN tu esat vienā valstī (Latvijā) — izgatavotāja pienākumi (DoC, viss fails) pāriet TEV. Skat. sadaļu „Mikrouzņēmumiem”.",
           },
         ],
       },
@@ -714,7 +715,7 @@ export const lv = {
           {
             kind: "action",
             heading: "Tava rīcība:",
-            text: "white label cenrāžos šķir divus produktus: „” un „”. Tas klientam uzreiz parāda, ko viņš pērk.",
+            text: "white label cenrāžos šķir divus produktus: „bez zīmola — ar mūsu DoC” un „jūsu zīmolam — ar pilnu datu paketi jūsu DoC sagatavošanai”. Tas klientam uzreiz parāda, ko viņš pērk.",
           },
         ],
       },
@@ -728,7 +729,7 @@ export const lv = {
             kind: "list",
             items: [
               "Savs zīmols → izgatavotājs + producer (kā A gadījumā)",
-              "Citu ES zīmolu izplatīšana → izplatītājs: pirms piedāvāšanas jāpārliecinās, ka izgatavotājs un importētājs ir izpildījuši identifikācijas un marķējuma prasības un ka DoC eksistē [S15]",
+              "Citu ES zīmolu izplatīšana → izplatītājs (19. pants): pirms piedāvāšanas jāpārliecinās, ka izgatavotājs un importētājs ir izpildījuši identifikācijas un marķējuma prasības un ka DoC eksistē [S15][S23]",
               "Imports no trešajām valstīm → importētājs: jāverificē, ka trešās valsts izgatavotājs veicis novērtējumu un sagatavojis DoC; savi kontaktdati jānorāda uz iepakojuma vai pavaddokumentā [S13]",
               "Ja importētajam uzliec SAVU zīmolu → kļūsti izgatavotājs ar pilnu atbildību (Art. 21) [S13]",
             ],
@@ -745,7 +746,7 @@ export const lv = {
         title: "Tiešā pārdošana",
         subtitle: "D2C e-veikals / eksports pašam",
         roles:
-          "Tava loma katrā galamērķa valstī: producer — reģistrācija, atskaites, maksas tur [S4]. Valstīs bez tavas juridiskās klātbūtnes var būt vajadzīgs pilnvarotais pārstāvis (Omnibus atvieglojumi vēl NAV spēkā; ENVI balsojums 01.10.2026) [S16].",
+          "Ja pārdod tieši gala pircējiem (D2C) citā dalībvalstī, producer tur parasti esi tu — reģistrācija, atskaites un maksas (44. un 45. pants) [S4]. Ja pārdod ārvalstu importētājam vai izplatītājam tālākpārdošanai, producer parasti ir vietējais uzņēmums, kas iepakojumu pirmo reizi dara pieejamu tirgū — ne obligāti tu. Saskaņā ar pašlaik spēkā esošo PPWR pārrobežu producers jāieceļ EPR pilnvarotais pārstāvis; ES izskata priekšlikumu (Environmental Omnibus) to uz laiku apturēt noteiktām uzņēmumu grupām, bet tas vēl nav spēkā [S16][S23].",
         groups: [
           {
             kind: "action",
@@ -808,14 +809,14 @@ export const lv = {
         },
         {
           title: "Seko Omnibus",
-          text: "ENVI balsojums 01.10.2026 var mainīt AR prasības un mazo uzņēmumu atvieglojumus [S16].",
+          text: "Environmental Omnibus priekšlikums atrodas ES likumdošanas procesā — tas var mainīt pilnvarotā pārstāvja prasības un mazo uzņēmumu atvieglojumus. Līdz spēkā stāšanās brīdim plāno ar pieņēmumu, ka prasības ir spēkā [S16].",
         },
       ],
     },
     wizard: {
       kicker: "Lomu vednis",
       title: "Kādas ir tavas PPWR lomas?",
-      lead: "Atbildi uz 3 jautājumiem — parādīsim tieši tavas lomas, pienākumus un valstu saites. Vari atzīmēt vairākas atbildes: vienam uzņēmumam bieži ir vairāki modeļi.",
+      lead: "Atbildi uz dažiem jautājumiem — parādīsim tieši tavas lomas, pienākumus un valstu saites. Vari atzīmēt vairākas atbildes: vienam uzņēmumam bieži ir vairāki modeļi, un rezultāts to ņem vērā.",
       q1Hint: "Atzīmē visus, kas attiecas — katrs modelis rezultātā būs redzams atsevišķi.",
       q2Hint: "Kā tavas preces nonāk pie gala tirgus?",
       q3Hint: "Mikrouzņēmums = <10 darbinieki UN apgrozījums vai bilance ≤ €2 milj.",
@@ -860,16 +861,16 @@ export const lv = {
       lead: "Pieci jautājumi, ko ražotāji un pildītāji uzdod visbiežāk.",
       items: [
         {
-          q: "Es fiziski ražoju iepakojumu/preci — vai tad es neesmu „” automātiski?",
+          q: "Es fiziski ražoju iepakojumu/preci — vai tad es neesmu „izgatavotājs” automātiski?",
           a: "Nē. PPWR izgatavotāju definē pēc zīmola un specifikāciju kontroles, ne pēc tā, kurš stāv pie iekārtas. Ja prece iet ar klienta zīmolu, izgatavotājs ir klients, o tu esi piegādātājs ar datu sniegšanas pienākumu [S1][S5].",
         },
         {
           q: "Vai varam līgumā vienoties, ka par PPWR atbild otra puse?",
-          a: "Nē — lomas piešķir likums pēc faktiem, un tās nevar pārcelt ar līgumu. Līgumā VAR un VAJAG noregulēt datu sniegšanu, termiņus un atlīdzību [S5][S6].",
+          a: "Juridisko lomu nevar mainīt ar komerclīgumu — tā izriet no faktiem. Taču atsevišķu uzdevumu izpildi (piem., datu sagatavošanu vai maksājumus) var uzticēt citai personai, ja PPWR to pieļauj; juridiskā atbildība paliek attiecīgajam operatoram. Līgumā VAR un VAJAG noregulēt datu sniegšanu, termiņus un atlīdzību [S5][S6].",
         },
         {
           q: "Mans klients pārdod manu preci Latvijā — vai viņam kaut kas jādara?",
-          a: "EPR pusē nē: tu jau esi producer Latvijā, jo pirmais laidi iepakojumu LV tirgū. Izplatītāja pienākums ir pārliecināties, ka marķējums un dokumentācija eksistē [S15].",
+          a: "EPR pusē atkārtots pienākums parasti nerodas: iepakojumu Latvijas tirgū jau pirmo reizi laidi tu. Klientam kā izplatītājam joprojām jāpārbauda nepieciešamā identifikācija, marķējums un atbilstības dokumentācija un jārīkojas, ja rodas aizdomas par neatbilstību [S15].",
         },
         {
           q: "Klients grib manu preci pārdot Vācijā — kurš maksā Vācijas EPR?",
@@ -948,7 +949,7 @@ export const lv = {
           url: "https://www.compliancegate.com/eu-ppwr-obligations/",
         },
         S16: {
-          title: "Ecosistant — e-komercijas ceļvedis (AR, ENVI balsojums)",
+          title: "Ecosistant — e-komercijas ceļvedis (pilnvarotais pārstāvis, Omnibus)",
           url: "https://www.ecosistant.eu/en/eu-packaging-regulation-e-commerce/",
         },
         S17: {

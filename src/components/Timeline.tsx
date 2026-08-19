@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function Timeline() {
   const ref = useRef<HTMLDivElement>(null);
+  const animate = useRevealMotion();
   // Computed after hydration only: the server render happens at build time and
   // would otherwise disagree with the client about which date is "today".
   const [today, setToday] = useState<Date | null>(null);
@@ -19,6 +20,7 @@ export function Timeline() {
     offset: ["start 80%", "end 40%"],
   });
   const width = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
 
   const currentIndex = today
     ? timeline.reduce(

@@ -1,8 +1,9 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
 import lv from "@/i18n/lv";
 import type { FactStatus, Provenance } from "@/data";
+import { useRevealMotion } from "@/hooks/use-reveal-motion";
 import { cn } from "@/lib/utils";
 
 /** Soft press spring — like a rubber stamp, never bouncy. */
@@ -10,7 +11,7 @@ export const PRESS_SPRING = { type: "spring", stiffness: 190, damping: 26, mass:
 export const REVEAL_DURATION = 0.55;
 export const STAGGER_STEP = 0.07;
 
-/** Section reveal: presses in from 1.02 → 1. */
+/** Section reveal: presses in from 1.02 → 1. Desktop only (see useRevealMotion). */
 export function Press({
   children,
   className,
@@ -22,9 +23,12 @@ export function Press({
   delay?: number;
   as?: "div" | "section" | "li" | "tr";
 }) {
-  const reduce = useReducedMotion();
+  const animate = useRevealMotion();
   const Comp = motion[as] as typeof motion.div;
-  if (reduce) return <Comp className={className}>{children}</Comp>;
+  if (!animate) {
+    const Plain = as as "div";
+    return <Plain className={className}>{children}</Plain>;
+  }
   return (
     <Comp
       className={className}
@@ -32,11 +36,16 @@ export function Press({
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ ...PRESS_SPRING, delay }}
+      onAnimationComplete={() => {
+        /* release the composited layer once the reveal is done */
+      }}
+      style={{ willChange: "auto" }}
     >
       {children}
     </Comp>
   );
 }
+
 
 export function SectionHead({
   kicker,

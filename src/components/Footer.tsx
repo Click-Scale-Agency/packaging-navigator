@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 
 import lv from "@/i18n/lv";
 import { Barcode, Perforation, Press } from "@/components/primitives";
+import { AskAi } from "@/components/footer/AskAi";
+
 
 const REPO = "https://github.com/Click-Scale-Agency/packaging-navigator";
 const CHANGELOG = `${REPO}/blob/main/CHANGELOG.md`;

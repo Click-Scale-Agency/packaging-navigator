@@ -6,6 +6,8 @@ import lv from "@/i18n/lv";
 import { countries, MATERIALS, type MaterialKey } from "@/data";
 import { computeCountryCost, kgPerYearFrom } from "@/lib/fees";
 import { PRESS_SPRING, Press, SectionHead, UnverifiedStamp } from "@/components/primitives";
+import { useRevealMotion } from "@/hooks/use-reveal-motion";
+
 import { cn } from "@/lib/utils";
 
 const DEFAULT_SELECTION = ["DE", "LV", "ES"];
@@ -52,7 +54,9 @@ function Money({ value }: { value: number }) {
 }
 
 export function Calculator() {
+  const animateRows = useRevealMotion();
   // Optional deep-link params from the action guide (?w=…&ship=…&cc=…).
+
   const search = useSearch({ strict: false }) as {
     w?: string;
     ship?: string;

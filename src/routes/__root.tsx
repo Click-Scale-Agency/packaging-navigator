@@ -128,6 +128,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useHashScroll();
 
   useEffect(() => {
     // On initial load / hard refresh, scroll to the top only when there is no
@@ -145,6 +146,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <BackToTop />
+        <MobileNav />
       </MotionConfig>
     </QueryClientProvider>
   );

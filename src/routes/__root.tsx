@@ -16,6 +16,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import lv from "@/i18n/lv";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { BackToTop } from "@/components/BackToTop";
+import { MobileNav } from "@/components/MobileNav";
+import { useHashScroll } from "@/hooks/use-hash-scroll";
 
 function NotFoundComponent() {
   return (
@@ -126,6 +128,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useHashScroll();
 
   useEffect(() => {
     // On initial load / hard refresh, scroll to the top only when there is no
@@ -143,6 +146,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <BackToTop />
+        <MobileNav />
       </MotionConfig>
     </QueryClientProvider>
   );

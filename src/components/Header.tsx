@@ -28,20 +28,21 @@ export function Header() {
             {lv.producers.nav}
           </Link>
           {[
-            { href: "#kalkulators", label: lv.nav.calculator },
-            { href: "#valstis", label: lv.nav.countries },
-            { href: "#numuri", label: lv.nav.numbers },
-            { href: "#laika-linija", label: lv.nav.timeline },
-            { href: "#video", label: lv.nav.video },
-            { href: "#buj", label: lv.nav.faq },
+            { hash: "kalkulators", label: lv.nav.calculator },
+            { hash: "valstis", label: lv.nav.countries },
+            { hash: "numuri", label: lv.nav.numbers },
+            { hash: "laika-linija", label: lv.nav.timeline },
+            { hash: "video", label: lv.nav.video },
+            { hash: "buj", label: lv.nav.faq },
           ].map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
+            <Link
+              key={item.hash}
+              to="/"
+              hash={item.hash}
               className="form-label hidden transition-colors hover:text-primary sm:inline"
             >
               {item.label}
-            </a>
+            </Link>
           ))}
           <a
             href={REPO}

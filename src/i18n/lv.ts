@@ -75,6 +75,7 @@ export const lv = {
       "Rezultāts ir sākotnējs atbilstības novērtējums, kas balstīts uz norādītajiem datiem un publiski pieejamiem avotiem. Tajā var nebūt ietverti visi tarifi, nodokļi, ekomodulācija, kā arī pārstāvniecības, audita un administratīvās izmaksas. Pirms reģistrācijas vai pārdošanas uzsākšanas pārbaudi informāciju attiecīgās valsts oficiālajā avotā vai pie kvalificēta speciālista.",
   },
   nav: {
+    home: "Sākums",
     guide: "Ceļvedis",
     calculator: "Kalkulators",
     countries: "Valstis",
@@ -83,6 +84,10 @@ export const lv = {
     video: "Video",
     faq: "BUJ",
     repo: "GitHub",
+    more: "Vairāk",
+    methodology: "Metodoloģija",
+    menu: "Izvēlne",
+    close: "Aizvērt",
   },
   hero: {
     headline: "Iepakojums tagad ir regulēts. Mēs to iztulkojam.",

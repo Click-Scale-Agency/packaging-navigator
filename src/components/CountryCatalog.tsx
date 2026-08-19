@@ -94,6 +94,17 @@ export function CountryCatalog() {
             </Press>
           ))}
         </div>
+
+        {collapsed ? (
+          <button
+            type="button"
+            onClick={() => setExpanded(true)}
+            className="mt-8 w-full border border-border-strong px-5 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.14em] text-primary"
+          >
+            {lv.countries.showAll}
+          </button>
+        ) : null}
+
       </div>
     </section>
   );

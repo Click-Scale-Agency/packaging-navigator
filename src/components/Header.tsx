@@ -21,6 +21,12 @@ export function Header() {
           >
             {lv.nav.guide}
           </Link>
+          <Link
+            to="/razotajiem"
+            className="form-label hidden transition-colors hover:text-primary sm:inline"
+          >
+            {lv.producers.nav}
+          </Link>
           {[
             { href: "#kalkulators", label: lv.nav.calculator },
             { href: "#valstis", label: lv.nav.countries },

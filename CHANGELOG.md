@@ -2,6 +2,19 @@
 
 Būtiskās datu un metodoloģijas izmaiņas. Formāts seko [Keep a Changelog](https://keepachangelog.com/) principam; datumi ISO (YYYY-MM-DD).
 
+## [Nepubliskots] — sadaļa „Ražotājiem" + lomu vednis (2026-08-19)
+
+Jauna sadaļa `/razotajiem`, kas atbild uz jautājumu, ko ražotāji un pildītāji saņem no klientiem — „kurš par ko atbild, kad preci pārdod tālāk?". Saturs, loģika un atsauces sagatavoti izpētes sesijā (2026-08-19); avoti dubultā ar primāro regulu, EK vadlīnijām C(2026) 3702 un ZSVR skaidrojumiem.
+
+- **Divu lomu skaidrojums** (izgatavotājs vs producer): zīmols = atbilstības atbildība (vienreiz, visā ES); pirmā piegāde valstī = EPR atbildība (katrā valstī atsevišķi). Lomas piešķir likums pēc faktiem — tās nevar pārcelt ar līgumu.
+- **Gadījumu matrica A–E** (akordeons): savs zīmols/wholesale, private label, white label, ražotājs-izplatītājs, tiešā pārdošana — katram lomas, pienākumi un rīcība.
+- **Mikrouzņēmumu izņēmums** ar divvirzienu 2×2 matricu: DoC nasta pāriet piegādātājam TIKAI ja pasūtītājs ir mikrouzņēmums un piegādātājs ir tajā pašā dalībvalstī; EPR izņēmuma nav nevienā gadījumā.
+- **Interaktīvs lomu vednis** (`RoleWizard`): 3 jautājumi, multi-select, lēmumu koks + bloku teksti dzīvo `data/role-wizard.json` (kopiena var labot bez koda maiņas). Rezultāts = pienākumu bloki ar atsaucēm + „kopēt kopsavilkumu", šablona lejupielāde, saites uz valstu reģistriem/kalkulatoru.
+- **Klienta datu paketes šablons** (`public/ppwr-klienta-paketes-sablons.md`, MIT) lejupielādei — aizpilda katram SKU un dod tālākpārdevējiem/eksportētājiem.
+- **7 soļu ražotāja rīcības plāns**, BUJ ražotājiem (ar FAQ schema.org marķējumu SEO) un numurēts avotu saraksts (S1–S23).
+- Navigācijā jauns ieraksts „Ražotājiem"; sākumlapā promo bloks. Viss saturs `src/i18n/lv.ts` `producers` telpā; dizains esošajā kraft-label sistēmā.
+- Atvērtie jautājumi (nebloķē): ES plastmasas akcīzes piemērojamība LV→ES B2C (vedņa ES outputā brīdinājums, ne aprēķins); Omnibus/ENVI balsojums 01.10.2026 var mainīt mikrouzņēmumu un AR prasības.
+
 ## [Nepubliskots] — rēķinu/DRN sadaļa + oficiālā EK BUJ ceļvedis (2026-08-18)
 
 Papildināta lapa ar informāciju no oficiālā EK PPWR BUJ ceļveža (2. izd., DG ENV, KH-01-26-068-EN-N) un evoex bloga raksta par iepakojuma nodokļiem e-komercijā (DRN, EPR, rēķini).

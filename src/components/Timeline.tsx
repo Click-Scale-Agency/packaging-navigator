@@ -73,15 +73,20 @@ export function Timeline() {
                   </p>
                   {isCurrent ? (
                     <motion.span
-                      initial={{ opacity: 0, scale: 1.5, rotate: -10 }}
-                      whileInView={{ opacity: 1, scale: 1, rotate: -4 }}
-                      viewport={{ once: true }}
-                      transition={{ type: "spring", stiffness: 200, damping: 22 }}
+                      {...(animate
+                        ? {
+                            initial: { opacity: 0, scale: 1.5, rotate: -10 },
+                            whileInView: { opacity: 1, scale: 1, rotate: -4 },
+                            viewport: { once: true },
+                            transition: { type: "spring", stiffness: 200, damping: 22 },
+                          }
+                        : { style: { rotate: -4 } })}
                       className="mt-4 inline-flex border-2 border-dashed px-2 py-1 font-mono text-[10px] font-bold tracking-[0.18em] stamp-ink"
                     >
                       {lv.timeline.now}
                     </motion.span>
                   ) : null}
+
                 </Press>
               );
             })}

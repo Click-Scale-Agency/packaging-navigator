@@ -854,10 +854,11 @@ export const lv = {
       download: "Lejupielādēt šablonu (.md)",
       contentsTitle: "Šablona saturs",
       contents: [
-        "Piegādātāja un produkta identifikācija + PPWR izgatavotāja loma šim SKU",
-        "Iepakojuma vienības un sastāvs (pārdošanas, grupētais, transporta) pa komponentēm",
-        "Atbilstības informācija: DoC Nr., vielu atbilstība, pārstrādājamība",
-        "EPR aprēķinu palīgtabula klientam (kg uz vienību pa materiāliem)",
+        "Produkts, lomas un lietošanas veids (vienreiz vai atkārtoti lietojams)",
+        "Iepakojuma vienības un sastāvs pa komponentēm ar pārstrādāto saturu un pārstrādājamību (pārdošanas, grupētais, transporta)",
+        "Iepakojuma minimizācija un tukšās telpas koeficients",
+        "Atbilstība: DoC Nr., PFAS un smago metālu apliecinājums, marķējums, tehniskā dokumentācija",
+        "EPR aprēķinu palīgtabula klientam pa visiem iepakojuma līmeņiem",
       ],
     },
     faq: {

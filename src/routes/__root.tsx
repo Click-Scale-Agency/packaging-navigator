@@ -16,6 +16,8 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import lv from "@/i18n/lv";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { BackToTop } from "@/components/BackToTop";
+import { MobileNav } from "@/components/MobileNav";
+import { useHashScroll } from "@/hooks/use-hash-scroll";
 
 function NotFoundComponent() {
   return (

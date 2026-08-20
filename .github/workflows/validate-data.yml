@@ -1,11 +1,9 @@
 name: Validate country data
 
 on:
+  # Run on every PR so the required "validate" check always reports (data-only
+  # path filters previously left non-data PRs blocked with a missing check).
   pull_request:
-    paths:
-      - "data/**"
-      - "scripts/validate-data.mjs"
-      - ".github/workflows/validate-data.yml"
   push:
     branches: [main]
     paths:

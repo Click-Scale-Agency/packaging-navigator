@@ -1,23 +1,55 @@
 #!/usr/bin/env python3
-# Generates public/ppwr-klienta-paketes-sablons.docx — the Word version of the
-# PPWR client data package template. Mirrors the Markdown template
-# (public/ppwr-klienta-paketes-sablons.md); keep the two in sync when editing.
+# Generates public/ppwr-klienta-paketes-sablons.docx from the canonical
+# Markdown source (public/ppwr-klienta-paketes-sablons.md). The Markdown file
+# is the single source of truth — edit it, then re-run this script; never edit
+# the .docx by hand.
+#
+# Supported Markdown subset: # / ## / ### headings, the paragraph immediately
+# after the H1 title (rendered as a subtitle), > blockquotes, --- rules,
+# GFM tables, paragraphs with **bold**, _italic_ and `code` inline markup.
 #
 # Requires python-docx:  pip install python-docx
 # Run from repo root:     python3 scripts/build-client-package-docx.py
 import os
+import re
 
 from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement
 from docx.shared import Pt, RGBColor
 
+SRC = os.path.join(os.path.dirname(__file__), "..", "public", "ppwr-klienta-paketes-sablons.md")
 OUT = os.path.join(os.path.dirname(__file__), "..", "public", "ppwr-klienta-paketes-sablons.docx")
 
 GREY = RGBColor(0x80, 0x80, 0x80)
+DARK_GREY = RGBColor(0x55, 0x55, 0x55)
 HEADER_FILL = "E6E6E6"
+NOTE_FILL = "F2F2F2"
+
+INLINE_RE = re.compile(r"(\*\*.+?\*\*|_[^_]+_|`[^`]+`)")
+
+
+def add_runs(paragraph, text, size=None, color=None, italic=False):
+    """Render inline **bold** / _italic_ / `code` markup into runs."""
+    for token in INLINE_RE.split(text):
+        if not token:
+            continue
+        bold = False
+        it = italic
+        if token.startswith("**") and token.endswith("**") and len(token) > 4:
+            token, bold = token[2:-2], True
+        elif token.startswith("_") and token.endswith("_") and len(token) > 2:
+            token, it = token[1:-1], True
+        elif token.startswith("`") and token.endswith("`") and len(token) > 2:
+            token = token[1:-1]  # backticks are Markdown-only; render as plain text
+        run = paragraph.add_run(token)
+        run.bold = bold
+        run.italic = it
+        if size:
+            run.font.size = size
+        if color:
+            run.font.color.rgb = color
 
 
 def set_cell_bg(cell, hex_fill):
@@ -29,30 +61,12 @@ def set_cell_bg(cell, hex_fill):
     tc_pr.append(shd)
 
 
-def add_table(doc, headers, rows, widths=None):
-    table = doc.add_table(rows=1, cols=len(headers))
-    table.style = "Table Grid"
-    table.alignment = WD_TABLE_ALIGNMENT.CENTER
-    hdr = table.rows[0].cells
-    for i, h in enumerate(headers):
-        hdr[i].text = ""
-        run = hdr[i].paragraphs[0].add_run(h)
-        run.bold = True
-        run.font.size = Pt(9.5)
-        set_cell_bg(hdr[i], HEADER_FILL)
-    for row in rows:
-        cells = table.add_row().cells
-        for i, val in enumerate(row):
-            cells[i].text = ""
-            run = cells[i].paragraphs[0].add_run(val)
-            run.font.size = Pt(9.5)
-            if val.startswith("["):
-                run.font.color.rgb = GREY
-    if widths:
-        for row in table.rows:
-            for i, w in enumerate(widths):
-                row.cells[i].width = w
-    return table
+def shade_paragraph(paragraph, hex_fill):
+    p_pr = paragraph._p.get_or_add_pPr()
+    shd = OxmlElement("w:shd")
+    shd.set(qn("w:val"), "clear")
+    shd.set(qn("w:fill"), hex_fill)
+    p_pr.append(shd)
 
 
 def add_hr(doc):
@@ -68,168 +82,97 @@ def add_hr(doc):
     p_pr.append(borders)
 
 
+def split_row(line):
+    return [c.strip() for c in line.strip().strip("|").split("|")]
+
+
+def add_table(doc, headers, rows):
+    font_size = Pt(9.5) if len(headers) <= 4 else Pt(8.5)
+    table = doc.add_table(rows=1, cols=len(headers))
+    table.style = "Table Grid"
+    table.alignment = WD_TABLE_ALIGNMENT.CENTER
+    hdr = table.rows[0].cells
+    for i, h in enumerate(headers):
+        hdr[i].text = ""
+        add_runs(hdr[i].paragraphs[0], h, size=font_size)
+        for run in hdr[i].paragraphs[0].runs:
+            run.bold = True
+        set_cell_bg(hdr[i], HEADER_FILL)
+    for row in rows:
+        cells = table.add_row().cells
+        for i, val in enumerate(row[: len(headers)]):
+            cells[i].text = ""
+            color = GREY if val.startswith("[") else None
+            add_runs(cells[i].paragraphs[0], val, size=font_size, color=color)
+    if len(headers) == 2:
+        for row in table.rows:
+            row.cells[0].width = Pt(200)
+            row.cells[1].width = Pt(240)
+    return table
+
+
 def main():
+    with open(os.path.normpath(SRC), encoding="utf-8") as f:
+        lines = f.read().splitlines()
+
     doc = Document()
-    doc.core_properties.title = "PPWR iepakojuma datu pakete"
+    doc.core_properties.title = "Iepakojuma tehnisko datu veidlapa klientam"
     doc.core_properties.author = "ppwr.clickscale.dev"
 
     normal = doc.styles["Normal"]
     normal.font.name = "Calibri"
     normal.font.size = Pt(10.5)
 
-    doc.add_heading("PPWR iepakojuma datu pakete klientam", level=0)
-    doc.add_paragraph(
-        "Šablons, ko piegādātājs aizpilda katram SKU un dod klientam, kurš preci pārdod tālāk vai "
-        "eksportē. Lauki kvadrātiekavās [ … ] ir aizpildāmi."
-    )
+    saw_title = False
+    subtitle_pending = False
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
+        if not line.strip():
+            i += 1
+            continue
 
-    note = doc.add_paragraph()
-    note.add_run("Kā lietot. ").bold = True
-    note.add_run(
-        "Ja iepakojums nes klienta zīmolu, PPWR izpratnē izgatavotājs ir klients; piegādātājs sniedz "
-        "šos datus klienta ES atbilstības deklarācijas (DoC) sagatavošanai (Regulas (ES) 2025/40 "
-        "16. pants). Šī pakete apkopo datus, ko klients ievieto savā DoC, tehniskajā dokumentācijā "
-        "un EPR atskaitēs."
-    )
-    set_cell_bg  # noqa: keep import usage explicit
-    note_pr = note._p.get_or_add_pPr()
-    shd = OxmlElement("w:shd")
-    shd.set(qn("w:val"), "clear")
-    shd.set(qn("w:fill"), "F2F2F2")
-    note_pr.append(shd)
-
-    add_hr(doc)
-
-    for label, value in [
-        ("Piegādātājs:", " [uzņēmums, reģ. nr., adrese, kontaktpersona]"),
-        ("Klients / saņēmējs:", " [uzņēmums]"),
-    ]:
-        p = doc.add_paragraph()
-        p.add_run(label).bold = True
-        p.add_run(value)
-    p = doc.add_paragraph()
-    p.add_run("Sagatavots:").bold = True
-    p.add_run(" [datums]   ·   ")
-    p.add_run("Versija:").bold = True
-    p.add_run(" [v1.0]   ·   ")
-    p.add_run("Derīgums:").bold = True
-    p.add_run(
-        " dati atbilst stāvoklim norādītajā datumā; par izmaiņām iepakojumā informēsim [X] darba "
-        "dienu laikā."
-    )
-
-    doc.add_heading("1. Produkts un lomas", level=1)
-    add_table(
-        doc,
-        ["Lauks", "Vērtība"],
-        [
-            ["SKU / artikuls", ""],
-            ["Produkta nosaukums", ""],
-            ["Zīmols uz iepakojuma", "[mūsu / klienta / bez zīmola]"],
-            ["PPWR izgatavotāja loma šim SKU", "[mēs / klients — skat. piezīmi ievadā]"],
-            ["Lietošanas veids", "[vienreiz lietojams / atkārtoti lietojams]"],
-            ["Atkārtotas lietošanas sistēma (ja attiecas)", "[apraksts, 11. pants]"],
-        ],
-        widths=[Pt(200), Pt(240)],
-    )
-
-    doc.add_heading("2. Iepakojuma vienības un sastāvs", level=1)
-    doc.add_paragraph(
-        "Aizpildi katru līmeni, kas attiecas uz šo SKU. Svars norādāms gramos par vienu vienību. "
-        "Katrs materiāls un komponente tiek uzskaitīts atsevišķi."
-    )
-    doc.add_paragraph().add_run(
-        "Pārdošanas (primārais) iepakojums — viena vienība ar komponentēm:"
-    ).bold = True
-    add_table(
-        doc,
-        ["Komponente", "Materiāls", "CN kods", "Svars, g", "Pārstrādātais saturs, %", "Pārstrādājamība", "Piezīmes"],
-        [
-            ["Pamatiepakojums (piem., burka)", "", "", "", "", "", ""],
-            ["Noslēgs (piem., vāciņš)", "", "", "", "", "", ""],
-            ["Etiķete", "", "", "", "", "", ""],
-            ["Cits", "", "", "", "", "", ""],
-        ],
-    )
-    doc.add_paragraph().add_run("Grupētais (sekundārais) iepakojums — ja ir:").bold = True
-    add_table(
-        doc,
-        ["Komponente", "Materiāls", "Svars, g", "Pārstrādātais saturs, %", "Uz cik pārdošanas vienībām", "Piezīmes"],
-        [["", "", "", "", "", ""], ["", "", "", "", "", ""]],
-    )
-    doc.add_paragraph().add_run(
-        "Transporta (terciārais) iepakojums — katra vienība atsevišķi:"
-    ).bold = True
-    add_table(
-        doc,
-        ["Vienība", "Materiāls", "Svars, g", "Pārstrādātais saturs, %", "Uz cik produkta vienībām", "Piezīmes"],
-        [
-            ["Kaste", "", "", "", "", ""],
-            ["Pildmateriāls", "", "", "", "", ""],
-            ["Līmlente", "", "", "", "", ""],
-            ["Palete / plēve", "", "", "", "", ""],
-        ],
-    )
-
-    doc.add_heading("3. Iepakojuma minimizācija un tukšā telpa", level=1)
-    add_table(
-        doc,
-        ["Lauks", "Vērtība"],
-        [
-            ["Minimizācijas pamatojums", "[kāpēc iepakojums nav samazināms tālāk — svars, apjoms, aizsardzība, 10. pants]"],
-            ["Tukšās telpas koeficients (grupētajam / transporta / e-komercijas)", "[%, mērķis ≤ 50 %; piemērošanas datums jāpārbauda oficiālajā avotā, 24. pants]"],
-            ["Novērstie liekie slāņi / dubultā iepakošana", "[apraksts, ja attiecas]"],
-        ],
-        widths=[Pt(200), Pt(240)],
-    )
-
-    doc.add_heading("4. Atbilstība un vielas", level=1)
-    add_table(
-        doc,
-        ["Lauks", "Vērtība"],
-        [
-            ["ES atbilstības deklarācijas (DoC) Nr.", "[ja izgatavotājs esam mēs]"],
-            ["Pārstrādājamības novērtējums / klase", "[dizains pārstrādei, mono vai kompozīts, klase, ja noteikta, 6. pants]"],
-            ["Vielu atbilstība — PFAS (pārtikas saskarē)", "[apliecinām / testu atskaites pēc pieprasījuma, 5. pants]"],
-            ["Vielu atbilstība — smagie metāli (Pb, Cd, Hg, Cr VI)", "[summa ≤ 100 ppm — apliecinām / testu atskaites pēc pieprasījuma]"],
-            ["Marķējums uz iepakojuma", "[materiālu sastāva / šķirošanas marķējums, ja jau ir, 12. pants]"],
-            ["Tehniskās dokumentācijas pieejamība", "[pēc pieprasījuma [X] darba dienās]"],
-        ],
-        widths=[Pt(200), Pt(240)],
-    )
-
-    doc.add_heading("5. EPR aprēķinu palīgtabula klientam", level=1)
-    doc.add_paragraph(
-        "Iepakojuma svars uz vienu pārdoto produkta vienību, kg. Iekļauj visus iepakojuma līmeņus, "
-        "kas attiecināmi uz vienu vienību (pārdošanas + attiecīgā daļa no grupētā un transporta "
-        "iepakojuma) — EPR maksā par visu tirgū laisto iepakojumu, ne tikai pārdošanas vienību."
-    )
-    add_table(
-        doc,
-        ["Materiāls", "kg / pārdotā vienība"],
-        [[m, ""] for m in ["Papīrs / kartons", "Plastmasa", "Stikls", "Metāls", "Koks", "Kompozīts"]],
-        widths=[Pt(260), Pt(180)],
-    )
-    doc.add_paragraph(
-        "Reizini katru vērtību ar attiecīgajā valstī pārdoto vienību skaitu, lai iegūtu gada apjomu "
-        "EPR atskaitei. Valstu reģistri un indikatīvās likmes: ppwr.clickscale.dev"
-    )
-
-    doc.add_heading("6. Paraksts", level=1)
-    doc.add_paragraph("[Vārds, amats, paraksts, datums]")
-
-    add_hr(doc)
-    disc = doc.add_paragraph()
-    run = disc.add_run(
-        "Šī pakete ir informatīva un sagatavota labā ticībā; tā neaizstāj saņēmēja pienākumu izvērtēt "
-        "savas PPWR saistības un pārbaudīt datus oficiālajā avotā. Pantu numuri un piemērošanas datumi "
-        "(īpaši tukšās telpas un marķējuma prasības) jāpārbauda pret Regulas (ES) 2025/40 tekstu. "
-        "Šablons: ppwr.clickscale.dev (MIT, brīvi izmantojams)."
-    )
-    run.italic = True
-    run.font.size = Pt(9)
-    run.font.color.rgb = RGBColor(0x55, 0x55, 0x55)
-    disc.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        if line.startswith("### "):
+            doc.add_heading(line[4:], level=2)
+            subtitle_pending = False
+        elif line.startswith("## "):
+            doc.add_heading(line[3:], level=1)
+            subtitle_pending = False
+        elif line.startswith("# "):
+            doc.add_heading(line[2:], level=0)
+            saw_title, subtitle_pending = True, True
+        elif line.strip() == "---":
+            add_hr(doc)
+            subtitle_pending = False
+        elif line.startswith("> "):
+            p = doc.add_paragraph()
+            add_runs(p, line[2:])
+            shade_paragraph(p, NOTE_FILL)
+            subtitle_pending = False
+        elif line.startswith("|"):
+            headers = split_row(line)
+            rows = []
+            i += 1
+            if i < len(lines) and re.fullmatch(r"\|?[\s:|-]+\|?", lines[i].strip()):
+                i += 1
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append(split_row(lines[i]))
+                i += 1
+            add_table(doc, headers, rows)
+            subtitle_pending = False
+            continue
+        else:
+            if saw_title and subtitle_pending:
+                p = doc.add_paragraph()
+                add_runs(p, line, size=Pt(12), color=DARK_GREY, italic=True)
+                subtitle_pending = False
+            elif line.startswith("_") and line.endswith("_"):
+                p = doc.add_paragraph()
+                add_runs(p, line[1:-1], size=Pt(9), color=DARK_GREY, italic=True)
+            else:
+                p = doc.add_paragraph()
+                add_runs(p, line)
+        i += 1
 
     doc.save(os.path.normpath(OUT))
     print("Wrote", os.path.normpath(OUT))

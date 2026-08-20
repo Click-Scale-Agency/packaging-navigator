@@ -88,7 +88,7 @@
     "data_pack_offer": {
       "kind": "action",
       "title": "Sagatavo iepakojuma datu paketi eksportējošiem klientiem",
-      "text": "Klienti, kas tavu preci ved uz citām ES valstīm, tur var kļūt par ražotāju EPR izpratnē — un bez taviem datiem (svari pa materiāliem, komponentes, DoC numurs) viņi atskaites iesniegt nevar. Gatava datu pakete katram SKU ir gan datu sniegšanas pienākuma izpilde (16. pants), gan pārdošanas arguments. Šablons lejupielādei pieejams šajā lapā.",
+      "text": "Klienti, kas tavu preci ved uz citām ES valstīm, tur var kļūt par ražotāju EPR izpratnē — un bez taviem datiem (svari pa materiāliem, komponentes, DoC numurs) viņi atskaites iesniegt nevar. Gatava tehnisko datu veidlapa katrai iepakojuma konfigurācijai ir gan datu sniegšanas pienākuma izpilde (16. pants), gan pārdošanas arguments. Veidlapa lejupielādei pieejama šajā lapā.",
       "refs": ["S4", "S5"]
     },
     "supplier_art16": {

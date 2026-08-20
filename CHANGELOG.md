@@ -2,6 +2,21 @@
 
 Būtiskās datu un metodoloģijas izmaiņas. Formāts seko [Keep a Changelog](https://keepachangelog.com/) principam; datumi ISO (YYYY-MM-DD).
 
+## [Nepubliskots] — klienta datu paketes pārstrāde par tehnisko datu veidlapu (2026-08-20)
+
+Dokuments `public/ppwr-klienta-paketes-sablons.md` (+ ģenerētais `.docx`) pārstrādāts pēc juridiskā satura audita. Jaunais nosaukums: **„Iepakojuma tehnisko datu veidlapa klientam”** (apakšvirsraksts „PPWR atbilstības dokumentācijas un EPR aprēķinu datu apkopošanai”). Failu ceļi `public/` nemainās, tāpēc lapas lejupielādes saites automātiski servē jauno versiju.
+
+- **Statuss skaidri norādīts:** tā ir tehnisko datu nodošanas veidlapa — pati par sevi nav ES atbilstības deklarācija un neapliecina atbilstību; dati klientam jāizvērtē un jāizmanto savai tehniskajai dokumentācijai, DoC un EPR aprēķiniem.
+- **Lomu skaidrojums juridiski precizēts:** absolūtais „ja klienta zīmols → izgatavotājs ir klients” aizstāts ar 3. panta 13. punkta formulējumu ar mikrouzņēmumu izņēmumu; pievienota lomu nošķīruma tabula (izgatavotājs / piegādātājs / importētājs / izplatītājs / EPR ražotājs) un norāde, ka PPWR izgatavotājs nav automātiski EPR ražotājs visās valstīs.
+- **16. panta pienākums precizēts:** attiecas uz iepakojuma/materiālu piegādātāju; ne katrs gatava iepakota produkta piegādātājs automātiski ir 16. panta piegādātājs.
+- **Identifikācija:** dokumenta versija/izmaiņas, iepakojuma specifikācijas ID, konfigurācijas versija, mērķa valstis, kanāls, datu spēkā esība; piezīme, ka vienam SKU var būt vairākas konfigurācijas.
+- **Sastāva tabulas** (pārdošanas/grupētais/transporta/e-komercijas): materiāla veids + apakšveids + EPR kategorija, svēršanas metode, svars uz pārdoto vienību, materiāla piegādātājs, pierādījuma dokuments; **„CN kods” kolonna izņemta** (KN kods = tikai muitas klasifikācija, atsevišķa piezīme).
+- **Pārstrādājamība:** metodika/datums/veicējs/pierādījums; atruna, ka līdz deleģēto aktu piemērošanai tas ir tehnisks novērtējums, nevis oficiāla PPWR klase.
+- **Tukšā telpa:** skaidri norādīts, ka 50 % robeža vēl nav piemērojama (no 2030-01-01 vai +3 gadi pēc īstenošanas akta — vēlākais no abiem); metodikas akts EK jāpieņem līdz 2028-02-12, līdz tam aprēķins orientējošs; pārdošanas iepakojumam 50 % nepiemēro; pildmateriāls = tukšā telpa (24. pants).
+- **PFAS atdalīts no smagajiem metāliem:** PFAS tikai pārtikas saskarei, piemērojams no 2026-08-12, prasīta testa metode/laboratorija/datums/dokuments („apliecinām” bez dokumenta nepietiek); smagajiem metāliem Pb+Cd+Hg+Cr(VI) summa ≤ 100 mg/kg ar pierādījuma dokumentu.
+- **DoC nošķīrums:** veidlapa vs tehniskā dokumentācija vs ES atbilstības deklarācija; paraksts apliecina datu patiesumu, ne atbilstību.
+- **Viens satura avots:** `scripts/build-client-package-docx.py` pārrakstīts — `.docx` tagad tiek ģenerēts tieši no Markdown faila (Markdown = galvenais avots), satura dublēšanās skriptā novērsta.
+
 ## [Nepubliskots] — sadaļas „Ražotājiem" juridiskie labojumi (2026-08-19)
 
 Atbilde uz audita atradumiem par sadaļu `/razotajiem`. Dizains un struktūra nemainīti; laboti juridiskā satura precizitātes, vedņa loģikas un bojāta teksta jautājumi.
